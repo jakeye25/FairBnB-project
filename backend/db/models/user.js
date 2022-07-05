@@ -7,8 +7,8 @@ const { Model, Validator } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { id, username, firstName, lastName, email } = this; // context will be the User instance
+      return { id, username, firstName, lastName, email };
     };
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -30,10 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope('currentUser').findByPk(user.id);
       }
     };
-    static async signup({ username, email, password }) {
+    static async signup({ username, firstName, lastName, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
+        firstName,
+        lastName,
         email,
         hashedPassword
       });
@@ -58,12 +60,30 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 256]
+        }
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 256]
+        }
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [3, 256]
         }
+      },
+      token: {
+        type: DataTypes.STRING,
+
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
@@ -78,15 +98,15 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+          exclude: ["hashedPassword", "email", "username", "createdAt", "updatedAt"]
         }
       },
       scopes: {
         currentUser: {
-          attributes: { exclude: ["hashedPassword"] }
+          attributes: { exclude: ["hashedPassword", "token"] }
         },
         loginUser: {
-          attributes: {}
+          attributes: {exclude: ["hashedPassword"] }
         }
       }
     }
