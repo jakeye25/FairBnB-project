@@ -35,24 +35,39 @@ function checkRequiredFieldslogin(req, res, next) {
   next()
 };
 // ...
+// async function checkUniqueEmailsignup(req, res, next) {
+
+  // try{
+  //   let user = await User.signup({ email, username, firstName, lastName, password });
+  // } catch(err) {
+  //   if(err.name === 'SequelizeUniqueConstraintError') {
+  //     const error = Error('User already exists');
+  //     error.title = 'User already exists';
+  //     error.message = 'User with that email already exists';
+  //     error.statusCode = 403;
+  //     error.errors = 'User with that email already exists';
+  //     return next(error)
+  //   } else {
+  //     return next(err)
+  //   }
+  // }
+// }
 async function checkUniqueEmailsignup(req, res, next) {
+  const {email} = req.body;
 
-  if(!req.email) return next();
+  if (!email) return next();
 
-  const user =  await User.findOne({
-    where: {
-      email: req.eamil
-    }
+  const user = await User.findOne({
+    where: {email}
   })
 
-  if (user) {error.errors.email = "User with that email already exists"
-
+  if (user) {
     return res.json({
       message: "User already exists",
       statusCode: 403,
       errors: "User with that email already exists"
-    })}
-
+    })
+  }
   next()
 };
 //...
@@ -106,7 +121,9 @@ router.post(
     validateSignup,
     async (req, res) => {
       let { email,  username, firstName, lastName, password } = req.body;
+
       const user = await User.signup({ email, username, firstName, lastName, password });
+
 
       let token = await setTokenCookie(res, user);
       user.dataValues.token = token
