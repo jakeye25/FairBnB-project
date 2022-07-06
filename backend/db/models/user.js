@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       return { id, username, firstName, lastName, email };
     };
     validatePassword(password) {
+      console.log('start')
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     };
     static getCurrentUserById(id) {
