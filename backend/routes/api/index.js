@@ -8,8 +8,8 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-const spotsRouter = require('./spots');
-router.use('/spots', spotsRouter);
+// const spotsRouter = require('./spots');
+// router.use('/spots', spotsRouter);
 
 // backend/routes/api/index.js
 // ...

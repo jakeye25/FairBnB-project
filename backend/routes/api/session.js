@@ -31,10 +31,10 @@ router.post(
       const user = await User.login({ credential, password });
 
       if (!user) {
-        const err = new Error('Invalid credentials');
+        const err = new Error('Authentication required');
         err.status = 401;
-        err.title = 'Invalid credentials';
-        err.errors = ['Invalid credentials'];
+        err.title = 'Authentication required';
+        err.errors = ['Authentication required'];
         return next(err);
       }
 
