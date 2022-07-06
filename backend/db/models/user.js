@@ -8,8 +8,11 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
       const { id, username, firstName, lastName, email } = this; // context will be the User instance
+      console.log(this)
       return { id, username, firstName, lastName, email };
+
     };
+
     validatePassword(password) {
       console.log('start')
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -107,7 +110,7 @@ module.exports = (sequelize, DataTypes) => {
           attributes: { exclude: ["hashedPassword", "token"] }
         },
         loginUser: {
-          attributes: {exclude: ["hashedPassword"] }
+          attributes: { }
         }
       }
     }
