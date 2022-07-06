@@ -12,6 +12,71 @@ const { token } = require('morgan');
 
 const router = express.Router();
 
+//...
+function checkRequiredFieldslogin(req, res, next) {
+  const { firstName, lastName, email, password } = req.body;
+
+  const error = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {}
+  }
+
+  if (!firstName) error.errors.firstName = "First Name is required"
+  if (!lastName) error.errors.lastName = "Last Name is required"
+  if (!email) error.errors.email = "Email is required"
+  if (!password) error.errors.password = "Password is required"
+
+
+  if (!firstName || !lastName || !email || !password) {
+    res.statusCode = 400;
+    return res.json(error)
+  }
+  next()
+};
+// ...
+async function checkUniqueEmailsignup(req, res, next) {
+
+  if(!req.email) return next();
+
+  const user =  await User.findOne({
+    where: {
+      email: req.eamil
+    }
+  })
+
+  if (user) {error.errors.email = "User with that email already exists"
+
+    return res.json({
+      message: "User already exists",
+      statusCode: 403,
+      errors: "User with that email already exists"
+    })}
+
+  next()
+};
+//...
+function checkRequiredFieldssignup(req, res, next) {
+  const { firstName, lastName, email, password } = req.body;
+
+  const error = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {}
+  }
+
+  if (!firstName) error.errors.firstName = "First Name is required"
+  if (!lastName) error.errors.lastName = "Last Name is required"
+  if (!email) error.errors.email = "Invalid Email"
+  if (!password) error.errors.password = "Password is required"
+
+
+  if (!firstName || !lastName || !email || !password) {
+    res.statusCode = 400;
+    return res.json(error)
+  }
+  next()
+};
 // ...
 const validateSignup = [
     check('email')
@@ -36,21 +101,23 @@ const validateSignup = [
 // Sign up
 router.post(
     '/signup',
+    checkUniqueEmailsignup,
+    checkRequiredFieldssignup,
     validateSignup,
     async (req, res) => {
-      const { email,  username, firstName, lastName, password } = req.body;
+      let { email,  username, firstName, lastName, password } = req.body;
       const user = await User.signup({ email, username, firstName, lastName, password });
 
-      await setTokenCookie(res, user);
-      firstName = user.firstName;
-      id= user.id;
-      lastName=user.lastName;
-      email = user.email;
+      let token = await setTokenCookie(res, user);
+      user.dataValues.token = token
+
+
       return res.json({
-        "id": id,
-        "firstName": firstName,
-        'lastName': lastName,
-        "email":email
+        "id": user.id,
+        "firstName": user.firstName,
+        'lastName': user.lastName,
+        "email": user.email,
+        "token" : token
       });
     }
   );
@@ -68,6 +135,7 @@ router.post(
 // Log in
 router.post(
     '/login',
+    checkRequiredFieldslogin,
     validateLogin,
     async (req, res, next) => {
       const { credential, password } = req.body;
@@ -118,5 +186,6 @@ router.post(
       } else return res.json({});
     }
   );
+
 
 module.exports = router;
