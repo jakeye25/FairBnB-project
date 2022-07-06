@@ -63,7 +63,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       type: DataTypes.INTEGER
-    }
+    },
+    previewImage: {
+      type: DataTypes.STRING
+    },
+
   }, {
     sequelize,
     modelName: 'Spot',
