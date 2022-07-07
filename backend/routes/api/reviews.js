@@ -9,3 +9,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 // ...
 
 const router = express.Router();
+
+
+module.exports = router;
