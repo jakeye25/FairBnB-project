@@ -13,22 +13,22 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Booking.belongsTo(
         models.User,
-          { foreignKey: 'userId' }
+          { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true }
       );
 
       Booking.belongsTo(
         models.Spot,
-          { foreignKey: 'spotId' }
+          { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true }
       );
     }
   }
   Booking.init({
     startDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull:false,
     },
     endDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull:false,
     },
     spotId: {

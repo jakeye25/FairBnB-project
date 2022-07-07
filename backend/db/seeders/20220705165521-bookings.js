@@ -29,10 +29,10 @@ const bookings = [
   {
     startDate:'2022-03-01',
     endDate:'2022-03-10',
-    spotId:2,
-    userId:4
+    spotId: 2,
+    userId: 1
   },
-]
+];
 
 module.exports = {
   async up (queryInterface, Sequelize) {
