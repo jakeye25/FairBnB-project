@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 //get spot by soptId
 router.get('/:id', async (req, res, next) => {
-    const spots = await Spot.findAll({
+    const spots = await Spot.findOne({
         where:{ id: req.params.id},
         attributes:{
             include:[
@@ -35,7 +35,18 @@ router.get('/:id', async (req, res, next) => {
             model: Review,
             as: 'reviews',
             attributes: []
-          }],
+          },
+          {
+            model: Image,
+            as: 'images',
+            attributes: ['url']
+          },
+          {
+            model: User,
+            as: 'Owner',
+            attributes: ['id', 'firstName', 'lastName']
+          }
+        ],
 });
 
     if(!spots) {

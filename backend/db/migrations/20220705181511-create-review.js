@@ -15,7 +15,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imageId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Images',
+          key: 'id'
+        }
       },
       userId: {
         type: Sequelize.INTEGER,
