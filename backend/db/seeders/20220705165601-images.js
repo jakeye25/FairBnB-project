@@ -6,12 +6,14 @@ const images = [
   {
     url: 'image url1',
     imageableType: 'Spot',
-    spotId: 1
+    spotId: 1,
+    reviewId: null
   },
   {
     url: 'image url2',
     imageableType: 'Spot',
-    spotId: 2
+    spotId: 2,
+    reviewId: null
   },
   {
     url: 'image url3',

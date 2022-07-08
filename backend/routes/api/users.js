@@ -277,4 +277,36 @@ router.post(
     res.json({spots})
   })
 
+  //current user reviews
+  router.get('/current/reviews',
+    restoreUser,
+    requireAuth,
+    async (req, res) => {
+      const { user } = req;
+
+    const reviews = await Review.findAll({
+      where: { userId: user.id},
+      include: [
+        // {
+        //   model: User,
+        //   as: 'users',
+        //   attributes:['id', 'firstName', 'lastName']
+        // },
+        // {
+        //   model: Spot,
+        //   as: 'spots',
+        //   attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+        // },
+        // {
+        //   model: Image,
+        //   as: 'images',
+        //   attributes: ['url']
+        // }
+      ]
+    })
+    res.json({reviews})
+  })
+
+
+
 module.exports = router;
