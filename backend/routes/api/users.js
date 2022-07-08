@@ -287,21 +287,21 @@ router.post(
     const reviews = await Review.findAll({
       where: { userId: user.id},
       include: [
-        // {
-        //   model: User,
-        //   as: 'users',
-        //   attributes:['id', 'firstName', 'lastName']
-        // },
-        // {
-        //   model: Spot,
-        //   as: 'spots',
-        //   attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
-        // },
-        // {
-        //   model: Image,
-        //   as: 'images',
-        //   attributes: ['url']
-        // }
+        {
+          model: User,
+          // as: 'users',
+          attributes:['id', 'firstName', 'lastName']
+        },
+        {
+          model: Spot,
+          // as: 'spots',
+          attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+        },
+        {
+          model: Image,
+          // as: 'images',
+          attributes: ['url']
+        }
       ]
     })
     res.json({reviews})
@@ -317,11 +317,11 @@ router.get('/current/bookings',
     const bookings = await Booking.findAll({
       where: { userId: user.id},
       include:[
-        // {
-        //   model: Spot,
-        //   as: 'spots',
-        //   attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', "previewImage"]
-        // }
+        {
+          model: Spot,
+          // as: 'spots',
+          attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', "previewImage"]
+        }
       ]
     })
     res.json({bookings})

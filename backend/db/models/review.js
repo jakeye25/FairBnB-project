@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Review.belongsTo(
         models.User,
-          { foreignKey: 'userId' }
+          { foreignKey: 'userId'  }
       );
 
       Review.belongsTo(
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Review.hasMany(
         models.Image,
-        {foreignKey: 'reviewId', as: 'reviews', onDelete: 'CASCADE', hooks: true}
+        {foreignKey: 'reviewId', onDelete: 'CASCADE', hooks: true}
       );
     }
   }

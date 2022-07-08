@@ -187,18 +187,18 @@ router.get('/:spotId/reviews',
       else{
     const reviews = await Review.findAll({
       where: { spotId: spotId},
-      // include: [
-      //   {
-      //     model: User,
-      //     as: 'users',
-      //     attributes:['id', 'firstName', 'lastName']
-      //   },
-      //        {
-      //     model: Image,
-      //     as: 'images',
-      //     attributes: ['url']
-      //   }
-      // ]
+      include: [
+        {
+          model: User,
+          // as: 'users',
+          attributes:['id', 'firstName', 'lastName']
+        },
+             {
+          model: Image,
+          // as: 'images',
+          attributes: ['url']
+        }
+      ]
     })
     res.json({reviews})
   }}
@@ -266,7 +266,7 @@ router.post(
  router.post(
   '/:spotId/bookings', restoreUser, requireAuth,
   async (req, res, next) => {
-    
+
 
     const newspotId = req.params.spotId
 
@@ -276,18 +276,44 @@ router.post(
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
 
-  const startDateBooking = await Booking.findAll({
-    where: {
-      [Op.and]: [
-        { startDate: req.user.id },
-        { spotId: req.params.spotId}
-      ]
+  if(newspotBooking.ownerId == req.user.id) {
+    return  res.status(401).json({message: "Can't rent spot to the owner",
+ statusCode: 401})}
+
+    let {startDate, endDate} = req.body;
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
     }
-  })
-  if (userspotReview.length >= 1) {
-    return res.status(403).json({
-      message: "User already has a review for this spot",
-      statusCode: 403
-    });
+
+    if (!startDate) error.errors.startDate = "Startdate is required."
+    if (!endDate) error.errors.endDate= "Enddate is required."
+    if( startDate>endDate ) error.errors.startDate = "Startdate must be before enddate."
+
+    if (!startDate || !endDate|| (startDate>endDate)) {
+      res.statusCode = 400;
+      return res.json(error)
+    }
+
+    const conflitBooking = await Booking.findAll({
+      where: {startDate: req.body.startDate}
+    })
+
+
+    // const startDateBooking = await Booking.findAll({
+  //   where: {
+  //     [Op.and]: [
+  //       { startDate: req.user.id },
+  //       { spotId: req.params.spotId}
+  //     ]
+  //   }
+  // })
+  // if (userspotReview.length >= 1) {
+  //   return res.status(403).json({
+  //     message: "User already has a review for this spot",
+  //     statusCode: 403
+  //   });
+  // }
 })
 module.exports = router;
