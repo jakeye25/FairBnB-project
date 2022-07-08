@@ -2,7 +2,7 @@ const express = require('express');
 const { restoreUser } = require('../../utils/auth');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Spot, User, Review, Booking, Image, sequelize } = require('../../db/models');
-// const user = require('../db/models/user');
+const user = require('../../db/models/user');
 // ...
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -58,4 +58,17 @@ router.get('/:id', async (req, res, next) => {
     }
     res.json(spots)
   })
+
+  //get all spots owned by current user
+  router.get('/myspots',
+    restoreUser,
+    requireAuth,
+    async (req, res) => {
+      const {id} = req.user.toJson().id;
+    const spots = await Spot.findAll({
+      where: { ownerId: id}
+    })
+    res.json(spots)
+  })
+
 module.exports = router;

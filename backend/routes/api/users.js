@@ -14,7 +14,7 @@ const router = express.Router();
 
 //...
 function checkRequiredFieldslogin(req, res, next) {
-  const { firstName, lastName, email, password } = req.body;
+  const {  email, password } = req.body;
 
   const error = {
     message: "Validation error",
@@ -22,13 +22,12 @@ function checkRequiredFieldslogin(req, res, next) {
     errors: {}
   }
 
-  if (!firstName) error.errors.firstName = "First Name is required"
-  if (!lastName) error.errors.lastName = "Last Name is required"
+
   if (!email) error.errors.email = "Email is required"
   if (!password) error.errors.password = "Password is required"
 
 
-  if (!firstName || !lastName || !email || !password) {
+  if ( !email || !password) {
     res.statusCode = 400;
     return res.json(error)
   }
@@ -98,14 +97,14 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .isEmail()
       .withMessage('Please provide a valid email.'),
-    check('username')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-      .not()
-      .isEmail()
-      .withMessage('Username cannot be an email.'),
+    // check('username')
+    //   .exists({ checkFalsy: true })
+    //   .isLength({ min: 4 })
+    //   .withMessage('Please provide a username with at least 4 characters.'),
+    // check('username')
+    //   .not()
+    //   .isEmail()
+    //   .withMessage('Username cannot be an email.'),
     check('password')
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
@@ -116,18 +115,51 @@ const validateSignup = [
 // Sign up
 router.post(
     '/signup',
-    checkUniqueEmailsignup,
-    checkRequiredFieldssignup,
-    validateSignup,
-    async (req, res) => {
-      let { email,  username, firstName, lastName, password } = req.body;
+    // checkUniqueEmailsignup,
+    // checkRequiredFieldssignup,
+    // validateSignup,
+    async (req, res, next) => {
+      let { email, firstName, lastName, password } = req.body;
 
-      const user = await User.signup({ email, username, firstName, lastName, password });
+      const error = {
+        message: "Validation error",
+        statusCode: 400,
+        errors: {}
+      }
+
+      if (!email) error.errors.email = "Invalid Email"
+      if (!firstName) error.errors.firstname= "First Name is required."
+      if (!lastName) error.errors.lastname = "Last Name is required."
+
+
+      if (!email || !lastName || !firstName) {
+        res.statusCode = 400;
+        return res.json(error)
+      }
+
+      const uniqueEmail = await User.findOne({
+        where:{ email: req.body.email},
+      })
+
+      if(uniqueEmail) {
+        const err = new Error("User already exists");
+
+        err.title = "User already exists";
+        err.message = "User already exists";
+        err.errors = {
+          "email": "User with that email already exists"
+        };
+        err.status = 403;
+        return next(err);
+    }
+
+
+      const user = await User.signup({ email, firstName, lastName, password });
 
 
       let token = await setTokenCookie(res, user);
       user.dataValues.token = token
-
+      if(user) {
 
       return res.json({
         "id": user.id,
@@ -136,14 +168,21 @@ router.post(
         "email": user.email,
         "token" : token
       });
+    } else {
+      let err = new Error('Invalid credentials');
+      err.status = 401;
+      err.title = 'Invalid credentials';
+      err.errors = ['Invalid credentials'];
+      return next(err);
     }
+  }
   );
 
   const validateLogin = [
-    check('credential')
+    check('email')
       .exists({ checkFalsy: true })
       .notEmpty()
-      .withMessage('Please provide a valid email or username.'),
+      .withMessage('Please provide a valid email.'),
     check('password')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a password.'),
@@ -152,12 +191,27 @@ router.post(
 // Log in
 router.post(
     '/login',
-    checkRequiredFieldslogin,
+    // checkRequiredFieldslogin,
     validateLogin,
     async (req, res, next) => {
-      const { credential, password } = req.body;
+      const { email, password } = req.body;
 
-      const user = await User.login({ credential, password });
+      const error = {
+        message: "Validation error",
+        statusCode: 400,
+        errors: {}
+      }
+
+      if (!email) error.errors.email = "Invalid Email"
+      if (!password) error.errors.password = "Password is required"
+
+
+      if (!email || !password) {
+        res.statusCode = 400;
+        return res.json(error)
+      }
+
+      const user = await User.login({ email, password });
 
       if (!user) {
         const err = new Error('Invalid credentials');
@@ -167,40 +221,44 @@ router.post(
         return next(err);
       }
 
-      await setTokenCookie(res, user);
-      firstName = user.firstName;
-      id= user.id;
-      lastName=user.lastName;
-      email = user.email;
+      let token = await setTokenCookie(res, user);
+      user.dataValues.token = token
 
-      return res.json({
-        "id": id,
-        "firstName": firstName,
-        'lastName': lastName,
-        "email":email,
-         "token": user.token
-      });
+
+      return res.json(
+        {
+        "id": user.id,
+        "firstName": user.firstName,
+        'lastName': user.lastName,
+        "email": user.email,
+         "token": token
+      }
+      );
     }
   );
 //get the current user
   router.get(
-    '/',
+    '/current',
     restoreUser,
-    (req, res) => {
+    requireAuth,
+    async (req, res) => {
       const { user } = req;
-      firstName = user.firstName;
-      id= user.id;
-      lastName=user.lastName;
-      email = user.email;
-      if (user) {
-        return res.json({
-          "id": id,
-          "firstName": firstName,
-          'lastName': lastName,
-          "email":email,
-          "token":user.token
-        });
-      } else return res.json({});
+
+      // if (user) {
+
+        let token = await setTokenCookie(res, user);
+        user.dataValues.token = token
+
+        return res.json(
+          {
+          "id": user.id,
+          "firstName": user.firstName,
+          'lastName': user.lastName,
+          "email": user.email,
+          "token":token
+          }
+        )
+      // } else return res.json({});
     }
   );
 
