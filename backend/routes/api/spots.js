@@ -60,15 +60,15 @@ router.get('/:id', async (req, res, next) => {
   })
 
   //get all spots owned by current user
-  router.get('/myspots',
-    restoreUser,
-    requireAuth,
-    async (req, res) => {
-      const {id} = req.user.toJson().id;
-    const spots = await Spot.findAll({
-      where: { ownerId: id}
-    })
-    res.json(spots)
-  })
+  // router.get('/myspots',
+  //   restoreUser,
+  //   requireAuth,
+  //   async (req, res) => {
+  //     const {id} = req.user.toJson().id;
+  //   const spots = await Spot.findAll({
+  //     where: { ownerId: id}
+  //   })
+  //   res.json(spots)
+  // })
 
 module.exports = router;
