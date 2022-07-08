@@ -61,7 +61,8 @@ router.get('/:id', async (req, res, next) => {
 
 //create spot
 router.post(
-  '/', async (req, res, next) => {
+  '/', restoreUser, requireAuth,
+   async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const error = {
@@ -70,15 +71,37 @@ router.post(
       errors: {}
     }
 
-    if (!email) error.errors.email = "Invalid Email"
-      if (!firstName) error.errors.firstname= "First Name is required."
-      if (!lastName) error.errors.lastname = "Last Name is required."
+    if (!address) error.errors.address = "Address is required."
+    if (!city) error.errors.city= "City is required."
+    if (!state) error.errors.state = "State is required."
+    if (!country) error.errors.country = "Country is required."
+    if (!lat) error.errors.lat = "Latitude is not valid."
+    if (!lng) error.errors.lng = "Logitude is not valid."
+    if (!name || name.length> 50) error.errors.name = "Name must be less than 50 characters."
+    if (!description) error.errors.description = "Description is required."
+    if (!price) error.errors.price = "Price per day is required."
 
-
-      if (!email || !lastName || !firstName) {
+      if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
         res.statusCode = 400;
         return res.json(error)
       }
+
+      const spot = await Spot.create({
+        ownerId: req.user.id,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+      });
+
+      res.status(201).json(spot);
+
+
   })
 
 
