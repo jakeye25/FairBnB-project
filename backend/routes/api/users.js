@@ -307,6 +307,24 @@ router.post(
     res.json({reviews})
   })
 
+//current user bookings
+router.get('/current/bookings',
+    restoreUser,
+    requireAuth,
+    async (req, res) => {
+      const { user } = req;
 
+    const bookings = await Booking.findAll({
+      where: { userId: user.id},
+      include:[
+        // {
+        //   model: Spot,
+        //   as: 'spots',
+        //   attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', "previewImage"]
+        // }
+      ]
+    })
+    res.json({bookings})
+  })
 
 module.exports = router;
