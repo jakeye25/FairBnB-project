@@ -176,9 +176,19 @@ statusCode: 200})
 router.get('/:spotId/reviews',
   requireAuth,
   async (req, res, next) => {
+    const spotId = req.params.spotId
 
+    const spotReview = await Spot.findByPk(spotId);
 
-  }
+    if(!spotReview) {
+      res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+      else{
+    const reviews = await Review.findAll({
+      where: { spotId: spotId}
+    })
+    res.json({reviews})
+  }}
   )
 
 module.exports = router;
