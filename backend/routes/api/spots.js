@@ -3,6 +3,7 @@ const { restoreUser } = require('../../utils/auth');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Spot, User, Review, Booking, Image, sequelize } = require('../../db/models');
 const user = require('../../db/models/user');
+const { Op } = require('sequelize');
 // ...
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -232,6 +233,21 @@ router.post(
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
 
+  const userspotReview = await Review.findAll({
+    where: {
+      [Op.and]: [
+        { userId: req.user.id },
+        { spotId: req.params.spotId}
+      ]
+    }
+  })
+  if (userspotReview.length >= 1) {
+    return res.status(403).json({
+      message: "User already has a review for this spot",
+      statusCode: 403
+    });
+  }
+
       const newReview = await Review.create({
           userId: req.user.id,
           spotId: req.params.spotId,
@@ -243,5 +259,6 @@ router.post(
 
     })
 
+ 
 
 module.exports = router;
