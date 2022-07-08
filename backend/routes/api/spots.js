@@ -185,10 +185,63 @@ router.get('/:spotId/reviews',
   statusCode: 404})}
       else{
     const reviews = await Review.findAll({
-      where: { spotId: spotId}
+      where: { spotId: spotId},
+      // include: [
+      //   {
+      //     model: User,
+      //     as: 'users',
+      //     attributes:['id', 'firstName', 'lastName']
+      //   },
+      //        {
+      //     model: Image,
+      //     as: 'images',
+      //     attributes: ['url']
+      //   }
+      // ]
     })
     res.json({reviews})
   }}
   )
+
+//create a review based on spot Id
+router.post(
+  '/:spotId/reviews', restoreUser, requireAuth,
+  async (req, res, next) => {
+
+    let {review, star} = req.body;
+
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
+
+    if (!review) error.errors.review = "Review text is required"
+    if (!star || star>5 || star <1) error.errors.star= "Stars must be an integer from 1 to 5"
+
+    if (!review || !star || star>5 || star <1) {
+      res.statusCode = 400;
+      return res.json(error)
+    }
+
+    const newspotId = req.params.spotId
+
+    const newspotReview = await Spot.findByPk(newspotId);
+
+    if(!newspotReview) {
+     return  res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+
+      const newReview = await Review.create({
+          userId: req.user.id,
+          spotId: req.params.spotId,
+          review,
+          star
+        });
+
+        res.status(200).json(newReview)
+
+    })
+
 
 module.exports = router;
