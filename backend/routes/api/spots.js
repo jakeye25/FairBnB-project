@@ -259,6 +259,35 @@ router.post(
 
     })
 
- 
+ //get all bookings for a spot based on spot Id
 
+
+ //create a booking based on spot id
+ router.post(
+  '/:spotId/bookings', restoreUser, requireAuth,
+  async (req, res, next) => {
+    
+
+    const newspotId = req.params.spotId
+
+    const newspotBooking = await Spot.findByPk(newspotId);
+
+    if(!newspotBooking) {
+     return  res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+
+  const startDateBooking = await Booking.findAll({
+    where: {
+      [Op.and]: [
+        { startDate: req.user.id },
+        { spotId: req.params.spotId}
+      ]
+    }
+  })
+  if (userspotReview.length >= 1) {
+    return res.status(403).json({
+      message: "User already has a review for this spot",
+      statusCode: 403
+    });
+})
 module.exports = router;
