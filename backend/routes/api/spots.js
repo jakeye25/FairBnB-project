@@ -103,7 +103,54 @@ router.post(
   })
 
 // edit spot
+router.put(
+  '/:spotId', restoreUser,
+  async (req, res, next) => {
+    let { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
+
+    if (!address) error.errors.address = "Address is required."
+    if (!city) error.errors.city= "City is required."
+    if (!state) error.errors.state = "State is required."
+    if (!country) error.errors.country = "Country is required."
+    if (!lat) error.errors.lat = "Latitude is not valid."
+    if (!lng) error.errors.lng = "Logitude is not valid."
+    if (!name || name.length> 50) error.errors.name = "Name must be less than 50 characters."
+    if (!description) error.errors.description = "Description is required."
+    if (!price) error.errors.price = "Price per day is required."
+
+      if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+        res.statusCode = 400;
+        return res.json(error)
+      }
+
+    let spotId = req.params.spotId;
+
+    const editSpot = await Spot.findByPk(spotId);
+
+    if(!editSpot) {
+      res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+ else {
+  editSpot.address = address
+  editSpot.city = city
+  editSpot.state = state
+  editSpot.country = country
+  editSpot.lat = lat
+  editSpot.lng = lng
+  editSpot.name = name
+  editSpot.description = description
+  editSpot.price = price
+
+  await editSpot.save()
+  res.status(200).json(editSpot);
+}
+})
 
 
 module.exports = router;
