@@ -59,16 +59,27 @@ router.get('/:id', async (req, res, next) => {
     res.json(spots)
   })
 
-  //get all spots owned by current user
-  // router.get('/myspots',
-  //   restoreUser,
-  //   requireAuth,
-  //   async (req, res) => {
-  //     const {id} = req.user.toJson().id;
-  //   const spots = await Spot.findAll({
-  //     where: { ownerId: id}
-  //   })
-  //   res.json(spots)
-  // })
+//create spot
+router.post(
+  '/', async (req, res, next) => {
+    let { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
+
+    if (!email) error.errors.email = "Invalid Email"
+      if (!firstName) error.errors.firstname= "First Name is required."
+      if (!lastName) error.errors.lastname = "Last Name is required."
+
+
+      if (!email || !lastName || !firstName) {
+        res.statusCode = 400;
+        return res.json(error)
+      }
+  })
+
 
 module.exports = router;
