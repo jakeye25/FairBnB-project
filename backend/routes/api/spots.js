@@ -100,9 +100,10 @@ router.post(
       });
 
       res.status(201).json(spot);
-
-
   })
+
+// edit spot
+
 
 
 module.exports = router;
