@@ -195,7 +195,7 @@ router.get('/:spotId/reviews',
         },
              {
           model: Image,
-          // as: 'images',
+          // as: 'images'
           attributes: ['url']
         }
       ]
@@ -260,13 +260,46 @@ router.post(
     })
 
  //get all bookings for a spot based on spot Id
+ router.get('/:spotId/bookings',
+ requireAuth,
+ async (req, res, next) => {
+   const spotId = req.params.spotId
 
+   const spotReview = await Spot.findByPk(spotId);
+
+   if(!spotReview) {
+     res.status(404).json({message: "Spot couldn't be found",
+ statusCode: 404})}
+ 
+ if(spotReview.ownerId != req.user.id){
+  const notownerBook = await Booking.findAll({
+
+    attributes: ['spotId', "startDate", "endDate"],
+    where: {spotId : req.params.spotId}
+  })
+  res.json(notownerBook)
+}
+    if(spotReview.ownerId = req.user.id){
+      const ownerBook = await Booking.findAll({
+        where: {spotId : req.params.spotId},
+        include:[
+          {
+            model: User,
+
+            attributes: ['id', 'firstName', 'lastName']
+          }
+        ]
+      })
+      res.json( ownerBook)
+    }
+
+ }
+ )
 
  //create a booking based on spot id
  router.post(
   '/:spotId/bookings', restoreUser, requireAuth,
   async (req, res, next) => {
-
 
     const newspotId = req.params.spotId
 
@@ -296,11 +329,23 @@ router.post(
       return res.json(error)
     }
 
-    const conflitBooking = await Booking.findAll({
-      where: {startDate: req.body.startDate}
-    })
+    const conflitBookingsd = await Booking.findAll({
+      where:{
+        [Op.and]: [
+      {startDate: req.body.startDate},
+      { spotId: req.params.spotId}
+        ]
+    }
+  })
 
-
+      if (conflitBookingsd.length >= 1) {
+    return res.status(403).json({
+      message: "Sorry, this spot is already booked for the specified dates",
+      statusCode: 403,
+      "errors": {
+        "startDate": "Start date conflicts with an existing booking"}
+    });
+  }
     // const startDateBooking = await Booking.findAll({
   //   where: {
   //     [Op.and]: [
