@@ -376,8 +376,20 @@ router.post(
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
 
+      if(req.user.id != newspotImage.ownerId) {
+        return  res.status(401).json({message: "Unauthorized",
+  statusCode: 401})
+      }
       const {url} = req.body;
 
+      if(!url) {
+        res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          errors: "Url is required"
+        })
+
+      }
       const newImage = await Image.create({
 
         imageableId: req.params.spotId,
