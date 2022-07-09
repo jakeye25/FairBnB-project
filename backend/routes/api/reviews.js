@@ -3,6 +3,7 @@ const { restoreUser } = require('../../utils/auth');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Spot, User, Review, Booking, Image, sequelize } = require('../../db/models');
 const user = require('../../db/models/user');
+const review = require('../../db/models/review');
 const { Op } = require('sequelize');
 // ...
 const { check } = require('express-validator');
@@ -70,4 +71,59 @@ statusCode: 404})}
 statusCode: 200})
 
     })
+
+//add image base on review id
+router.post(
+    '/:reviewId/images', restoreUser,  requireAuth,
+    async (req, res, next) => {
+      const newreviewId = req.params.reviewId
+
+      const newreviewImage = await Review.findByPk(newreviewId);
+
+      if(!newreviewImage) {
+       return  res.status(404).json({message: "Image couldn't be found",
+    statusCode: 404})}
+
+
+        if(req.user.id != newreviewImage.userId) {
+          return  res.status(401).json({message: "Unauthorized",
+    statusCode: 401})
+        }
+        const {url} = req.body;
+
+        if(!url) {
+          res.status(402).json({
+            message: "Validation error",
+            statusCode: 402,
+            errors: "Url is required"
+          })
+
+        }
+        const newImage = await Image.create({
+
+          imageableId: req.params.reviewId,
+          imageableType: "Review",
+          url
+        });
+
+        let imgCount = await Image.findAll({
+            where: {
+                [Op.and]: [{
+                imageableId: newImage.imageableId
+                }, {
+                    imageableType: "Review"
+                }]
+            }
+        });
+
+        if(imgCount.length >= 10){
+            res.status(400).json({message: "Maximum number of images for this resource was reached",
+            statusCode: 400})
+        }
+        res.status(200).json(newImage)
+    })
+
+
+
+
 module.exports = router;

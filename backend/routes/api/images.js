@@ -18,5 +18,29 @@ router.get('/', async (req, res) => {
     res.json(images)
   })
 
+//delete booking
+router.delete(
+    '/:imageId', restoreUser, requireAuth,
+    async (req, res, next) => {
 
+    let imgId = req.params.imageId;
+
+    const deleteImage = await Image.findByPk(imgId);
+
+    if(!deleteImage) {
+      return res.status(404).json({message: "Image couldn't be found", statusCode: 404})}
+// )
+//     if(deleteBooking.startDate < todayDate) {
+//        return res.status(400).json({message: "Bookings that have been started can't be deleted",
+//   statusCode: 400})}
+
+
+    await Image.destroy({where : {id: req.params.imageId}})
+    // deleteBooking.save()
+         res.status(200)
+         res.json({message: "Successfully deleted", statusCode: 200})
+        // res.send('deleted')
+//     }
+    }
+    )
   module.exports = router;
