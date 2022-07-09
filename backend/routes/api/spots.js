@@ -119,11 +119,10 @@ router.get('/:id', async (req, res, next) => {
 });
 
     if(!spots.id) {
-        const err = Error("Spot couldn't be found");
-        err.status = 404;
-        err.title = "Spot couldn't be found";
-        err.message = "Spot couldn't be found";
-        return next(err);
+      res.status(401).json({
+            message:"Spot could't be found",
+            statusCode: 404
+          })
     }
     res.json(spots)
   })

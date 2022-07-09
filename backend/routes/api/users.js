@@ -142,15 +142,23 @@ router.post(
       })
 
       if(uniqueEmail) {
-        const err = new Error("User already exists");
+        // const err = new Error("User already exists");
 
-        err.title = "User already exists";
-        err.message = "User already exists";
-        err.errors = {
-          "email": "User with that email already exists"
-        };
-        err.status = 403;
-        return next(err);
+        // err.title = "User already exists";
+        // err.message = "User already exists";
+        // err.errors = {
+        //   "email": "User with that email already exists"
+        // };
+        // err.status = 403;
+        // return next(err);
+        res.status(403).json({
+          message:"User already exists",
+          statusCode: 403,
+          errors: {
+            "email": "User with that email already exists"
+          }
+
+        })
     }
 
 
@@ -278,7 +286,16 @@ router.post(
     const spots = await Spot.findAll({
       where: { ownerId: user.id}
     })
-    res.json({spots})
+
+    // if(spots === null) {
+    //  return res.status(401).json({
+    //     message:"Authentication required",
+    //     statusCode: 401
+    //   })
+    // }
+    // else{
+      res.json(spots)
+    // }
   })
 
   //current user reviews
