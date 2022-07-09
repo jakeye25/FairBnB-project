@@ -129,7 +129,9 @@ router.get('/:id', async (req, res, next) => {
 
 //create spot
 router.post(
-  '/', restoreUser, requireAuth,
+  '/',
+  restoreUser,
+  requireAuth,
    async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -139,7 +141,7 @@ router.post(
       errors: {}
     }
 
-    if (!address) error.errors.address = "Address is required."
+    if (!address) error.errors.address = "Street address is required."
     if (!city) error.errors.city= "City is required."
     if (!state) error.errors.state = "State is required."
     if (!country) error.errors.country = "Country is required."
@@ -176,6 +178,14 @@ router.put(
   async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    let spotId = req.params.spotId;
+
+    const editSpot = await Spot.findByPk(spotId);
+
+    if(!editSpot) {
+      res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+
     const error = {
       message: "Validation error",
       statusCode: 400,
@@ -197,14 +207,8 @@ router.put(
         return res.json(error)
       }
 
-    let spotId = req.params.spotId;
 
-    const editSpot = await Spot.findByPk(spotId);
 
-    if(!editSpot) {
-      res.status(404).json({message: "Spot couldn't be found",
-  statusCode: 404})}
- else {
   editSpot.address = address
   editSpot.city = city
   editSpot.state = state
@@ -217,7 +221,7 @@ router.put(
 
   await editSpot.save()
   res.status(200).json(editSpot);
-}
+
 })
 
 //delete spot
