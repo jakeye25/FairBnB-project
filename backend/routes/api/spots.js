@@ -14,8 +14,76 @@ const router = express.Router();
 
 //get all spots
 router.get('/', async (req, res) => {
-    const spots = await Spot.findAll()
-    res.json(spots)
+
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+  const error = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {}
+  }
+
+  // if (!page) page = 0;
+  // if (!size) size = 20;
+
+  // page = parseInt(page);
+  // size = parseInt(size);
+  page = page === undefined ? 0 : parseInt(page);
+  size = size === undefined ? 20 : parseInt(size);
+
+  if (page > 10) page = 10
+  if (size > 20) size = 20
+
+  let pagination = { };
+
+  if (page < 0) error.errors.page = "Page must be greater than or equal to 0"
+  if (size < 0) error.errors.size = "Size must be greater than or equal to 0"
+  if (parseInt(maxLat) > 90) {
+    err.errors.maxLat = "Maximum latitude is invalid"
+    maxLat = false
+  }
+  if (parseInt(minLat) < -90) {
+    err.errors.maxLat = "Minimum latitude is invalid"
+    minLng = false
+  }
+  if (parseInt(maxLng) > 180) {
+    err.errors.maxLng = "Maximum longitude is invalid"
+    maxLng = false
+  }
+  if (parseInt(minLng) < -180) {
+    err.errors.minLng = "Minimum longitude is invalid"
+    minLng = false
+  }
+  if (parseInt(minPrice) < 0) {
+    err.errors.minPrice = "Maximum price must be greater than 0"
+    minPrice = false
+  }
+  if (parseInt(maxPrice) < 0) {
+    err.errors.maxPrice = "Minimum price must be greater than 0"
+    maxPrice = false
+  }
+
+  if (page < 0 || size < 0 ||
+     (!maxLat && maxLat !== undefined) ||
+     (!minLat && minLat !== undefined) ||
+     (!maxLng && maxLng !== undefined) ||
+     (!minLng && minLng !== undefined) ||
+      (!minPrice && minPrice !== undefined) ||
+       (!maxPrice && maxPrice !== undefined)) {
+    return res.status(400).json(error)
+  }
+
+  pagination.size = size;
+  pagination.page = page;
+
+    const spots = await Spot.findAll({
+      limit: pagination.size,
+    offset: pagination.size * pagination.page,
+    })
+    res.json(
+      {Spot: spots,
+      page: pagination.page,
+      size: pagination.size}
+      )
   })
 
 //get spot by soptId
