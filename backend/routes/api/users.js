@@ -192,7 +192,7 @@ router.post(
 router.post(
     '/login',
     // checkRequiredFieldslogin,
-    validateLogin,
+    // validateLogin,
     async (req, res, next) => {
       const { email, password } = req.body;
 
@@ -202,7 +202,7 @@ router.post(
         errors: {}
       }
 
-      if (!email) error.errors.email = "Invalid Email"
+      if (!email) error.errors.email = "Email is required"
       if (!password) error.errors.password = "Password is required"
 
 
@@ -214,11 +214,15 @@ router.post(
       const user = await User.login({ email, password });
 
       if (!user) {
-        const err = new Error('Invalid credentials');
-        err.status = 401;
-        err.title = 'Invalid credentials';
-        err.errors = ['Invalid credentials'];
-        return next(err);
+        // const err = new Error('Invalid credentials');
+        // err.status = 401;
+        // err.title = 'Invalid credentials';
+        // err.errors = ['Invalid credentials'];
+        // return next(err);
+        res.status(401).json({
+          message:"Invalid credentials",
+          statusCode: 401
+        })
       }
 
       let token = await setTokenCookie(res, user);
@@ -246,8 +250,8 @@ router.post(
 
       // if (user) {
 
-        let token = await setTokenCookie(res, user);
-        user.dataValues.token = token
+        // let token = await setTokenCookie(res, user);
+        // user.dataValues.token = token
 
         return res.json(
           {
@@ -255,7 +259,7 @@ router.post(
           "firstName": user.firstName,
           'lastName': user.lastName,
           "email": user.email,
-          "token":token
+          // "token":token
           }
         )
       // } else return res.json({});
