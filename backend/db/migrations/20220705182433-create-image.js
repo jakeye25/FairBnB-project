@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imageableId: {
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       imageableType: {
         type: Sequelize.STRING
