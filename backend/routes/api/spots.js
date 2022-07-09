@@ -364,5 +364,28 @@ router.post(
   }
 })
 
+//add image base on spot id
+router.post(
+  '/:spotId/images', restoreUser,  requireAuth,
+  async (req, res, next) => {
+    const newspotId = req.params.spotId
+
+    const newspotImage = await Spot.findByPk(newspotId);
+
+    if(!newspotImage) {
+     return  res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+
+      const {url} = req.body;
+
+      const newImage = await Image.create({
+
+        imageableId: req.params.spotId,
+        imageableType: "Spot",
+        url
+      });
+
+      res.status(200).json(newImage)
+  })
 
 module.exports = router;
