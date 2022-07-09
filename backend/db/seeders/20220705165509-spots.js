@@ -40,6 +40,32 @@ const spots = [
     description: "third spot",
     price: 789,
     previewImage: "image3"
+  },
+  {
+    ownerId: 4,
+    address: "4 Disney Lane",
+    city: "San Francisco",
+    state: "California",
+    country: "United States of America",
+    lat: 42.7645358,
+    lng: -124.4730327,
+    name: "App Academy",
+    description: "third spot",
+    price: 1011,
+    previewImage: "image4"
+  },
+  {
+    ownerId: 5,
+    address: "5 Disney Lane",
+    city: "San Francisco",
+    state: "California",
+    country: "United States of America",
+    lat: 45.7645358,
+    lng: -125.4730327,
+    name: "App Academy",
+    description: "third spot",
+    price: 1213,
+    previewImage: "image5"
   }
 ];
 

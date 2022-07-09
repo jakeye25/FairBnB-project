@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      imageableId: {
+        type: DataTypes.INTEGER
+      },
       imageableType: {
         type: Sequelize.STRING
       },

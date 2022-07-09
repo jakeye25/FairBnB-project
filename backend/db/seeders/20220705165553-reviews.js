@@ -21,6 +21,18 @@ const reviews = [
     review: "third review",
     stars: 2,
   },
+  {
+    userId: 2,
+    spotId: 3,
+    review: "fourth review",
+    stars: 3,
+  },
+  {
+    userId: 4,
+    spotId: 3,
+    review: "fourth review",
+    stars: 4,
+  },
 ];
 
 module.exports = {

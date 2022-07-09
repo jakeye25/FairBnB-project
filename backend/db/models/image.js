@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Image.init({
+    imageableId: {
+      type: DataTypes.INTEGER
+    },
     imageableType: {
       type: DataTypes.STRING
     },
