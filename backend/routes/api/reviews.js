@@ -93,8 +93,8 @@ router.post(
 
 
         if(req.user.id != newreviewImage.userId) {
-          return  res.status(401).json({message: "Unauthorized",
-    statusCode: 401})
+          return  res.status(403).json({message: "Forbidden",
+    statusCode: 403})
         }
         const {url} = req.body;
 
@@ -104,14 +104,21 @@ router.post(
             statusCode: 402,
             errors: "Url is required"
           })
-
         }
-        const newImage = await Image.create({
+
+        let newImage = await Image.create({
 
           imageableId: req.params.reviewId,
           imageableType: "Review",
+          reviewId: req.params.reviewId,
           url
         });
+
+        newImage = newImage.toJSON()
+  delete newImage['spotId']
+  delete newImage['reviewId']
+  delete newImage['createdAt']
+  delete newImage['updatedAt']
 
         let imgCount = await Image.findAll({
             where: {
