@@ -287,13 +287,6 @@ router.post(
       where: { ownerId: user.id}
     })
 
-    // if(spots === null) {
-    //  return res.status(401).json({
-    //     message:"Authentication required",
-    //     statusCode: 401
-    //   })
-    // }
-    // else{
       res.json(spots)
     // }
   })
@@ -310,17 +303,17 @@ router.post(
       include: [
         {
           model: User,
-          // as: 'users',
+
           attributes:['id', 'firstName', 'lastName']
         },
         {
           model: Spot,
-          // as: 'spots',
+
           attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
         },
         {
           model: Image,
-          // as: 'images',
+
           attributes: ['url']
         }
       ]
@@ -340,12 +333,12 @@ router.get('/current/bookings',
       include:[
         {
           model: Spot,
-          // as: 'spots',
+
           attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', "previewImage"]
         }
       ]
     })
-    res.json({"Booking": bookings})
+    res.json({"Bookings": bookings})
   })
 
 module.exports = router;
