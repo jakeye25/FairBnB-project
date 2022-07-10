@@ -97,7 +97,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     previewImage: {
       type: DataTypes.STRING,
-      omitNull: true
+      // omitNull: true
     },
 
   }, {
