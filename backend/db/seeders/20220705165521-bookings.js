@@ -24,7 +24,7 @@ const bookings = [
     startDate:'2022-07-01',
     endDate:'2022-07-20',
     spotId:4,
-    userId:4
+    userId:1
   },
   {
     startDate:'2022-10-01',

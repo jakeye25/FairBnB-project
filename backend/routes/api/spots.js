@@ -119,18 +119,19 @@ router.get('/:id', async (req, res, next) => {
 });
 
     if(!spots.id) {
-        const err = Error("Spot couldn't be found");
-        err.status = 404;
-        err.title = "Spot couldn't be found";
-        err.message = "Spot couldn't be found";
-        return next(err);
+      res.status(401).json({
+            message:"Spot could't be found",
+            statusCode: 404
+          })
     }
     res.json(spots)
   })
 
 //create spot
 router.post(
-  '/', restoreUser, requireAuth,
+  '/',
+  restoreUser,
+  requireAuth,
    async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -140,7 +141,7 @@ router.post(
       errors: {}
     }
 
-    if (!address) error.errors.address = "Address is required."
+    if (!address) error.errors.address = "Street address is required."
     if (!city) error.errors.city= "City is required."
     if (!state) error.errors.state = "State is required."
     if (!country) error.errors.country = "Country is required."
@@ -177,6 +178,14 @@ router.put(
   async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    let spotId = req.params.spotId;
+
+    const editSpot = await Spot.findByPk(spotId);
+
+    if(!editSpot) {
+      res.status(404).json({message: "Spot couldn't be found",
+  statusCode: 404})}
+
     const error = {
       message: "Validation error",
       statusCode: 400,
@@ -198,14 +207,8 @@ router.put(
         return res.json(error)
       }
 
-    let spotId = req.params.spotId;
 
-    const editSpot = await Spot.findByPk(spotId);
 
-    if(!editSpot) {
-      res.status(404).json({message: "Spot couldn't be found",
-  statusCode: 404})}
- else {
   editSpot.address = address
   editSpot.city = city
   editSpot.state = state
@@ -218,7 +221,7 @@ router.put(
 
   await editSpot.save()
   res.status(200).json(editSpot);
-}
+
 })
 
 //delete spot
@@ -277,21 +280,7 @@ router.post(
   '/:spotId/reviews', restoreUser, requireAuth,
   async (req, res, next) => {
 
-    let {review, star} = req.body;
-
-    const error = {
-      message: "Validation error",
-      statusCode: 400,
-      errors: {}
-    }
-
-    if (!review) error.errors.review = "Review text is required"
-    if (!star || star>5 || star <1) error.errors.star= "Stars must be an integer from 1 to 5"
-
-    if (!review || !star || star>5 || star <1) {
-      res.statusCode = 400;
-      return res.json(error)
-    }
+    let {review, stars} = req.body;
 
     const newspotId = req.params.spotId
 
@@ -300,6 +289,22 @@ router.post(
     if(!newspotReview) {
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
+
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
+
+    if (!review) error.errors.review = "Review text is required"
+    if (!stars || stars>5 || stars <1) error.errors.stars= "Stars must be an integer from 1 to 5"
+
+    if (!review || !stars || stars>5 || stars <1) {
+      res.statusCode = 400;
+      return res.json(error)
+    }
+
+
 
   const userspotReview = await Review.findAll({
     where: {
@@ -320,7 +325,7 @@ router.post(
           userId: req.user.id,
           spotId: req.params.spotId,
           review,
-          star
+          stars
         });
 
         res.status(200).json(newReview)
@@ -377,7 +382,7 @@ router.post(
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
 
-  if(newspotBooking.ownerId == req.user.id) {
+  if(newspotBooking.ownerId === req.user.id) {
     return  res.status(401).json({message: "Can't rent spot to the owner",
  statusCode: 401})}
 
@@ -397,21 +402,27 @@ router.post(
       return res.json(error)
     }
 
+    let todayDate = new Date().toISOString().slice(0, 10)
+    if(startDate > endDate || startDate<todayDate || endDate< todayDate) {
+      res.status(403).json({
+          message: "Sorry, this spot is already booked for the specified dates",
+          statusCode: 403,
+          "errors": {
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an existing booking"}
+        })
+      }
     const conflitBooking = await Booking.findAll({
       where:{
-        // [Op.or]: [ {
+
         [Op.and]: [
       {startDate: req.body.startDate},
       { spotId: req.params.spotId}
         ]},
-        // {[Op.and]: [
-        //   {endDate: req.body.endDate},
-        //   { spotId: req.params.spotId}
-        //     ]}
-        //   ]
-    // }
+
   })
-      if(!conflitBooking.id) {
+
+        if(conflitBooking.length < 1) {
         const booking =  await Booking.create({
           userId: req.user.id,
           spotId: req.params.spotId,
@@ -445,8 +456,8 @@ router.post(
   statusCode: 404})}
 
       if(req.user.id != newspotImage.ownerId) {
-        return  res.status(401).json({message: "Unauthorized",
-  statusCode: 401})
+        return  res.status(403).json({message: "Forbidden",
+  statusCode: 403})
       }
       const {url} = req.body;
 
@@ -458,13 +469,19 @@ router.post(
         })
 
       }
-      const newImage = await Image.create({
+      let newImage = await Image.create({
 
         imageableId: req.params.spotId,
         imageableType: "Spot",
+        spotId: req.params.spotId,
         url
       });
 
+      newImage = newImage.toJSON()
+  delete newImage['spotId']
+  delete newImage['reviewId']
+  delete newImage['createdAt']
+  delete newImage['updatedAt']
       res.status(200).json(newImage)
   })
 

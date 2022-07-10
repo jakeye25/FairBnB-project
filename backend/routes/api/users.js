@@ -142,15 +142,23 @@ router.post(
       })
 
       if(uniqueEmail) {
-        const err = new Error("User already exists");
+        // const err = new Error("User already exists");
 
-        err.title = "User already exists";
-        err.message = "User already exists";
-        err.errors = {
-          "email": "User with that email already exists"
-        };
-        err.status = 403;
-        return next(err);
+        // err.title = "User already exists";
+        // err.message = "User already exists";
+        // err.errors = {
+        //   "email": "User with that email already exists"
+        // };
+        // err.status = 403;
+        // return next(err);
+        res.status(403).json({
+          message:"User already exists",
+          statusCode: 403,
+          errors: {
+            "email": "User with that email already exists"
+          }
+
+        })
     }
 
 
@@ -192,7 +200,7 @@ router.post(
 router.post(
     '/login',
     // checkRequiredFieldslogin,
-    validateLogin,
+    // validateLogin,
     async (req, res, next) => {
       const { email, password } = req.body;
 
@@ -202,7 +210,7 @@ router.post(
         errors: {}
       }
 
-      if (!email) error.errors.email = "Invalid Email"
+      if (!email) error.errors.email = "Email is required"
       if (!password) error.errors.password = "Password is required"
 
 
@@ -214,11 +222,15 @@ router.post(
       const user = await User.login({ email, password });
 
       if (!user) {
-        const err = new Error('Invalid credentials');
-        err.status = 401;
-        err.title = 'Invalid credentials';
-        err.errors = ['Invalid credentials'];
-        return next(err);
+        // const err = new Error('Invalid credentials');
+        // err.status = 401;
+        // err.title = 'Invalid credentials';
+        // err.errors = ['Invalid credentials'];
+        // return next(err);
+        res.status(401).json({
+          message:"Invalid credentials",
+          statusCode: 401
+        })
       }
 
       let token = await setTokenCookie(res, user);
@@ -246,8 +258,8 @@ router.post(
 
       // if (user) {
 
-        let token = await setTokenCookie(res, user);
-        user.dataValues.token = token
+        // let token = await setTokenCookie(res, user);
+        // user.dataValues.token = token
 
         return res.json(
           {
@@ -255,7 +267,7 @@ router.post(
           "firstName": user.firstName,
           'lastName': user.lastName,
           "email": user.email,
-          "token":token
+          // "token":token
           }
         )
       // } else return res.json({});
@@ -274,7 +286,16 @@ router.post(
     const spots = await Spot.findAll({
       where: { ownerId: user.id}
     })
-    res.json({spots})
+
+    // if(spots === null) {
+    //  return res.status(401).json({
+    //     message:"Authentication required",
+    //     statusCode: 401
+    //   })
+    // }
+    // else{
+      res.json(spots)
+    // }
   })
 
   //current user reviews

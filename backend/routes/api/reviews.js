@@ -22,7 +22,15 @@ router.get('/', async (req, res) => {
 router.put(
     '/:reviewId', restoreUser, requireAuth,
     async (req, res, next) => {
-        let {review, star} = req.body;
+        let {review, stars} = req.body;
+
+        const newreviewId = req.params.reviewId
+
+        const newReview = await Review.findByPk(newreviewId);
+
+        if(!newReview) {
+         return  res.status(404).json({message: "Review couldn't be found",
+      statusCode: 404})}
 
         const error = {
             message: "Validation error",
@@ -31,23 +39,17 @@ router.put(
           }
 
           if (!review) error.errors.review = "Review text is required"
-          if (!star || star>5 || star <1) error.errors.star= "Stars must be an integer from 1 to 5"
+          if (!stars || stars>5 || stars <1) error.errors.stars= "Stars must be an integer from 1 to 5"
 
-          if (!review || !star || star>5 || star <1) {
+          if (!review || !stars || stars>5 || stars <1) {
             res.statusCode = 400;
             return res.json(error)
           }
 
-          const newreviewId = req.params.reviewId
 
-          const newReview = await Review.findByPk(newreviewId);
-
-          if(!newReview) {
-           return  res.status(404).json({message: "Review couldn't be found",
-        statusCode: 404})}
 
         newReview.review =review
-        newReview.stars = star
+        newReview.stars = stars
 
         await newReview.save()
         res.status(200).json(newReview)
@@ -65,6 +67,11 @@ router.delete(
   if(!deleteReview) {
     res.status(404).json({message: "Review couldn't be found",
 statusCode: 404})}
+
+if(deleteReview.userId != req.user.id){
+    res.status(403).json({message: "Forbidden",
+statusCode: 403})
+}
 
     await deleteReview.destroy()
     res.status(200).json({message: "Successfully deleted",
@@ -86,8 +93,8 @@ router.post(
 
 
         if(req.user.id != newreviewImage.userId) {
-          return  res.status(401).json({message: "Unauthorized",
-    statusCode: 401})
+          return  res.status(403).json({message: "Forbidden",
+    statusCode: 403})
         }
         const {url} = req.body;
 
@@ -97,14 +104,21 @@ router.post(
             statusCode: 402,
             errors: "Url is required"
           })
-
         }
-        const newImage = await Image.create({
+
+        let newImage = await Image.create({
 
           imageableId: req.params.reviewId,
           imageableType: "Review",
+          reviewId: req.params.reviewId,
           url
         });
+
+        newImage = newImage.toJSON()
+        delete newImage['spotId']
+        delete newImage['reviewId']
+        delete newImage['createdAt']
+        delete newImage['updatedAt']
 
         let imgCount = await Image.findAll({
             where: {
