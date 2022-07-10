@@ -32,6 +32,11 @@ router.put(
          return  res.status(404).json({message: "Review couldn't be found",
       statusCode: 404})}
 
+      if(newReview.userId != req.user.id){
+        res.status(403).json({message: "Forbidden",
+    statusCode: 403})
+    }
+
         const error = {
             message: "Validation error",
             statusCode: 400,
