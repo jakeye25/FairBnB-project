@@ -87,44 +87,79 @@ router.get('/', async (req, res) => {
   })
 
 //get spot by soptId
-router.get('/:id', async (req, res, next) => {
-    const spots = await Spot.findOne({
-        where:{ id: req.params.id},
-        attributes:{
-            include:[
-                [
-                    sequelize.fn("COUNT", sequelize.col("Reviews.review")), "numReviews"
-                ],
-                [
-                    sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgStarRating"
-                ]
-            ]
-        },
-        include: [{
-            model: Review,
-            // as: 'reviews',
-            attributes: []
-          },
-          {
-            model: Image,
-            // as: 'images',
-            attributes: ['url']
-          },
-          {
-            model: User,
-            as: 'Owner',
-            attributes: ['id', 'firstName', 'lastName']
-          }
-        ],
-});
+router.get('/:spotId', async (req, res, next) => {
 
-    if(!spots.id) {
-      res.status(401).json({
-            message:"Spot could't be found",
-            statusCode: 404
-          })
-    }
-    res.json(spots)
+    const spotId = req.params.spotId
+    const spots = await Spot.findByPk(spotId)
+        // where:{ spotId: req.params.spotid},
+        // attributes:{
+        //     include:[
+        //         [
+        //             sequelize.fn("COUNT", sequelize.col("Reviews.review")), "numReviews"
+        //         ],
+        //         [
+        //             sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgStarRating"
+        //         ]
+        //     ]
+        // },
+        // include: [{
+        //     model: Review,
+        //     attributes: []
+        //   },
+        //   {
+        //     model: Image,
+        //     attributes: ['url']
+        //   },
+        //   {
+        //     model: User,
+        //     as: 'Owner',
+        //     attributes: ['id', 'firstName', 'lastName']
+        //   }
+        // ],
+// });
+
+if(!spots) {
+  res.status(401).json({
+        message:"Spot could't be found",
+        statusCode: 404
+      })}
+
+  const numReviews = await Review.count({
+        where: {
+          spotId: req.params.spotId
+        }
+      })
+
+  const reviewRating = await Review.findAll({
+        where: {
+            spotId
+        },
+        attributes: [
+            [sequelize.fn("avg", sequelize.col('stars')), "avgStatRating"]
+        ],
+        raw: true,
+    })
+
+  const images = await Image.findAll({
+      where: {
+          spotId
+      },
+      attributes: ['url']
+  })
+
+  const owner = await User.findByPk(spots.ownerId, {
+      attributes: ['id', 'firstName', 'lastName']
+  })
+
+  const result = spots.toJSON()
+
+  result.numReviews = numReviews;
+  result.avgStarRating = parseFloat(reviewRating[0].avgStatRating);
+  result.Images = images;
+  result.Owner = owner
+  res.json(result);
+
+    // res.json(spots)
   })
 
 //create spot
