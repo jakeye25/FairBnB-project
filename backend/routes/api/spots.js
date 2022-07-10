@@ -414,19 +414,14 @@ router.post(
       }
     const conflitBooking = await Booking.findAll({
       where:{
-        // [Op.or]: [ {
+
         [Op.and]: [
       {startDate: req.body.startDate},
       { spotId: req.params.spotId}
         ]},
-        // {[Op.and]: [
-        //   {endDate: req.body.endDate},
-        //   { spotId: req.params.spotId}
-        //     ]}
-        //   ]
-    // }
+
   })
-      // if(!conflitBooking.id) {
+
         if(conflitBooking.length < 1) {
         const booking =  await Booking.create({
           userId: req.user.id,
