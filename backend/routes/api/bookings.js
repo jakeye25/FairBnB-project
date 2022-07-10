@@ -106,16 +106,20 @@ router.delete(
 
     const deleteBooking = await Booking.findByPk(bkId);
 
+
+
     let todayDate = new Date().toISOString().slice(0, 10)
-        // return res.json(deleteBooking.startDate)
+
     if(!deleteBooking) {
       return res.status(404).json({message: "Booking couldn't be found", statusCode: 404})}
-// console.log(deleteBooking)
-// res.send('delete booking')
+
+      const delspotBooking = await Spot.findByPk(deleteBooking.spotId);
+
     if(deleteBooking.startDate < todayDate) {
        return res.status(400).json({message: "Bookings that have been started can't be deleted",
   statusCode: 400})}
 
+  if(deleteBooking.userId === req.user.id || delspotBooking.ownerId === req.user.id) {
 //     else{
     // await deleteBooking.destroy()
     await Booking.destroy({where : {id: req.params.bookingId}})
@@ -124,6 +128,11 @@ router.delete(
          res.json({message: "Successfully deleted", statusCode: 200})
         // res.send('deleted')
 //     }
+    }
+    else {
+        
+            return  res.status(403).json({message: "Forbidden",
+         statusCode: 403})}
     }
     )
 
