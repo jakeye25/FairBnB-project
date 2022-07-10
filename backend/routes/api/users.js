@@ -345,7 +345,7 @@ router.get('/current/bookings',
         }
       ]
     })
-    res.json({bookings})
+    res.json({"Booking": bookings})
   })
 
 module.exports = router;
