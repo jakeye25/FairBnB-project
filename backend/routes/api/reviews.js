@@ -115,10 +115,10 @@ router.post(
         });
 
         newImage = newImage.toJSON()
-  delete newImage['spotId']
-  delete newImage['reviewId']
-  delete newImage['createdAt']
-  delete newImage['updatedAt']
+        delete newImage['spotId']
+        delete newImage['reviewId']
+        delete newImage['createdAt']
+        delete newImage['updatedAt']
 
         let imgCount = await Image.findAll({
             where: {

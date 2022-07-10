@@ -29,18 +29,34 @@ router.delete(
 
     if(!deleteImage) {
       return res.status(404).json({message: "Image couldn't be found", statusCode: 404})}
-// )
-//     if(deleteBooking.startDate < todayDate) {
-//        return res.status(400).json({message: "Bookings that have been started can't be deleted",
-//   statusCode: 400})}
 
+      if(deleteImage.imageableType == 'Spot'){
+      const delspotImage = await Spot.findByPk(deleteImage.imageableId);
+      if(delspotImage.ownerId === req.user.id){
+        await Image.destroy({where : {id: req.params.imageId}})
 
-    await Image.destroy({where : {id: req.params.imageId}})
-    // deleteBooking.save()
          res.status(200)
          res.json({message: "Successfully deleted", statusCode: 200})
-        // res.send('deleted')
-//     }
+      }
+      else {
+
+        return  res.status(403).json({message: "Forbidden",
+     statusCode: 403})}
+      }
+
+     if(deleteImage.imageableType == 'Review'){
+        const delreviewImage = await Spot.findByPk(deleteImage.imageableId);
+        if(delreviewImage.userId === req.user.id){
+          await Image.destroy({where : {id: req.params.imageId}})
+
+           res.status(200)
+           res.json({message: "Successfully deleted", statusCode: 200})
+        }
+        else {
+
+          return  res.status(403).json({message: "Forbidden",
+       statusCode: 403})}
     }
-    )
+
+})
   module.exports = router;

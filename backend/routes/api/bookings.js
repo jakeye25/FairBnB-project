@@ -107,7 +107,6 @@ router.delete(
     const deleteBooking = await Booking.findByPk(bkId);
 
 
-
     let todayDate = new Date().toISOString().slice(0, 10)
 
     if(!deleteBooking) {
