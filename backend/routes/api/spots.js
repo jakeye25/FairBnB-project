@@ -102,12 +102,12 @@ router.get('/:id', async (req, res, next) => {
         },
         include: [{
             model: Review,
-            as: 'reviews',
+            // as: 'reviews',
             attributes: []
           },
           {
             model: Image,
-            as: 'images',
+            // as: 'images',
             attributes: ['url']
           },
           {

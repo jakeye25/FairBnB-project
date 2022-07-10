@@ -18,17 +18,23 @@ module.exports = (sequelize, DataTypes) => {
 
       Spot.hasMany(
         models.Booking,
-        {foreignKey: 'spotId', as: 'bookings', onDelete: 'CASCADE', hooks: true}
+        {foreignKey: 'spotId',
+        // as: 'bookings',
+        onDelete: 'CASCADE', hooks: true}
       );
 
       Spot.hasMany(
         models.Review,
-        {foreignKey: 'spotId', as: 'reviews', onDelete: 'CASCADE', hooks: true}
+        {foreignKey: 'spotId',
+        // as: 'reviews',
+        onDelete: 'CASCADE', hooks: true}
       );
 
       Spot.hasMany(
         models.Image,
-        {foreignKey: 'spotId', as: 'images', onDelete: 'CASCADE', hooks: true}
+        {foreignKey: 'spotId',
+        // as: 'images',
+        onDelete: 'CASCADE', hooks: true}
       );
 
     }
