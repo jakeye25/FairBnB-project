@@ -97,18 +97,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     previewImage: {
       type: DataTypes.STRING,
-
+      omitNull: true
     },
 
   }, {
     sequelize,
     modelName: 'Spot',
-    defaultScope: {
-    //   attributes: {
-    //     exclude: ["createdAt", "updatedAt"]
-    //   }
-    option:{omitNull:true}
-    },
+    // defaultScope: {
+    // //   attributes: {
+    // //     exclude: ["createdAt", "updatedAt"]
+    // //   }
+    // option:{omitNull:true}
+    // },
   });
   return Spot;
 };
