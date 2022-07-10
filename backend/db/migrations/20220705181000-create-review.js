@@ -14,13 +14,13 @@ module.exports = {
       stars: {
         type: Sequelize.INTEGER
       },
-      imageId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Images',
-          key: 'id'
-        }
-      },
+      // imageId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'Images',
+      //     key: 'id'
+      //   }
+      // },
       userId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
