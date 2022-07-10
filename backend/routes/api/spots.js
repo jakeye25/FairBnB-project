@@ -382,7 +382,7 @@ router.post(
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
 
-  if(newspotBooking.ownerId == req.user.id) {
+  if(newspotBooking.ownerId === req.user.id) {
     return  res.status(401).json({message: "Can't rent spot to the owner",
  statusCode: 401})}
 
@@ -402,6 +402,16 @@ router.post(
       return res.json(error)
     }
 
+    let todayDate = new Date().toISOString().slice(0, 10)
+    if(startDate > endDate || startDate<todayDate || endDate< todayDate) {
+      res.status(403).json({
+          message: "Sorry, this spot is already booked for the specified dates",
+          statusCode: 403,
+          "errors": {
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an existing booking"}
+        })
+      }
     const conflitBooking = await Booking.findAll({
       where:{
         // [Op.or]: [ {
@@ -416,7 +426,8 @@ router.post(
         //   ]
     // }
   })
-      if(!conflitBooking.id) {
+      // if(!conflitBooking.id) {
+        if(conflitBooking.length < 1) {
         const booking =  await Booking.create({
           userId: req.user.id,
           spotId: req.params.spotId,

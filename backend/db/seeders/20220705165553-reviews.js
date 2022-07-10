@@ -30,7 +30,7 @@ const reviews = [
   {
     userId: 4,
     spotId: 3,
-    review: "fourth review",
+    review: "fifth review",
     stars: 4,
   },
 ];
