@@ -120,17 +120,15 @@ router.delete(
   statusCode: 400})}
 
   if(deleteBooking.userId === req.user.id || delspotBooking.ownerId === req.user.id) {
-//     else{
-    // await deleteBooking.destroy()
+
     await Booking.destroy({where : {id: req.params.bookingId}})
-    // deleteBooking.save()
+
          res.status(200)
          res.json({message: "Successfully deleted", statusCode: 200})
-        // res.send('deleted')
-//     }
+
     }
     else {
-        
+
             return  res.status(403).json({message: "Forbidden",
          statusCode: 403})}
     }

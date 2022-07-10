@@ -456,8 +456,8 @@ router.post(
   statusCode: 404})}
 
       if(req.user.id != newspotImage.ownerId) {
-        return  res.status(401).json({message: "Unauthorized",
-  statusCode: 401})
+        return  res.status(403).json({message: "Forbidden",
+  statusCode: 403})
       }
       const {url} = req.body;
 
@@ -469,13 +469,19 @@ router.post(
         })
 
       }
-      const newImage = await Image.create({
+      let newImage = await Image.create({
 
         imageableId: req.params.spotId,
         imageableType: "Spot",
+        spotId: req.params.spotId,
         url
       });
 
+      newImage = newImage.toJSON()
+  delete newImage['spotId']
+  delete newImage['reviewId']
+  delete newImage['createdAt']
+  delete newImage['updatedAt']
       res.status(200).json(newImage)
   })
 
