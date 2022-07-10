@@ -201,7 +201,7 @@ router.post(
         lng,
         name,
         description,
-        price
+        price,
       });
 
       res.status(201).json(spot);
