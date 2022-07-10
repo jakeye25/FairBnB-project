@@ -280,21 +280,7 @@ router.post(
   '/:spotId/reviews', restoreUser, requireAuth,
   async (req, res, next) => {
 
-    let {review, star} = req.body;
-
-    const error = {
-      message: "Validation error",
-      statusCode: 400,
-      errors: {}
-    }
-
-    if (!review) error.errors.review = "Review text is required"
-    if (!star || star>5 || star <1) error.errors.star= "Stars must be an integer from 1 to 5"
-
-    if (!review || !star || star>5 || star <1) {
-      res.statusCode = 400;
-      return res.json(error)
-    }
+    let {review, stars} = req.body;
 
     const newspotId = req.params.spotId
 
@@ -303,6 +289,22 @@ router.post(
     if(!newspotReview) {
      return  res.status(404).json({message: "Spot couldn't be found",
   statusCode: 404})}
+
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
+
+    if (!review) error.errors.review = "Review text is required"
+    if (!stars || stars>5 || stars <1) error.errors.stars= "Stars must be an integer from 1 to 5"
+
+    if (!review || !stars || stars>5 || stars <1) {
+      res.statusCode = 400;
+      return res.json(error)
+    }
+
+
 
   const userspotReview = await Review.findAll({
     where: {
@@ -323,7 +325,7 @@ router.post(
           userId: req.user.id,
           spotId: req.params.spotId,
           review,
-          star
+          stars
         });
 
         res.status(200).json(newReview)
