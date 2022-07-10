@@ -385,7 +385,7 @@ router.post(
     attributes: ['spotId', "startDate", "endDate"],
     where: {spotId : req.params.spotId}
   })
-  res.json(notownerBook)
+  res.json({"Bookings": notownerBook})
 }
     if(spotReview.ownerId = req.user.id){
       const ownerBook = await Booking.findAll({
@@ -398,7 +398,7 @@ router.post(
           }
         ]
       })
-      res.json( ownerBook)
+      res.json( {"Bookings" : ownerBook})
     }
 
  }
