@@ -418,8 +418,8 @@ router.post(
   statusCode: 404})}
 
   if(newspotBooking.ownerId === req.user.id) {
-    return  res.status(401).json({message: "Can't rent spot to the owner",
- statusCode: 401})}
+    return  res.status(403).json({message: "Forbidden",
+ statusCode: 403})}
 
     let {startDate, endDate} = req.body;
     const error = {
