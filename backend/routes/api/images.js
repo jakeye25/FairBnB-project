@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     res.json(images)
   })
 
-//delete booking
+//delete image
 router.delete(
     '/:imageId', restoreUser, requireAuth,
     async (req, res, next) => {
