@@ -93,7 +93,7 @@ router.post(
       const newreviewImage = await Review.findByPk(newreviewId);
 
       if(!newreviewImage) {
-       return  res.status(404).json({message: "Image couldn't be found",
+       return  res.status(404).json({message: "Review couldn't be found",
     statusCode: 404})}
 
 
