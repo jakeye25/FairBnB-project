@@ -45,7 +45,7 @@ router.delete(
       }
 
      if(deleteImage.imageableType == 'Review'){
-        const delreviewImage = await Spot.findByPk(deleteImage.imageableId);
+        const delreviewImage = await Review.findByPk(deleteImage.imageableId);
         if(delreviewImage.userId === req.user.id){
           await Image.destroy({where : {id: req.params.imageId}})
 
