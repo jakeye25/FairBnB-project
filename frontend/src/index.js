@@ -6,11 +6,26 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 
-const store = configureStore();
+// frontend/src/index.js
+// ... other imports
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
-if (process.env.NODE_ENV !== "production") {
+  const store = configureStore();
+
+if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch;
   window.store = store;
 }
+
+//...
+
+// const store = configureStore();
+
+// if (process.env.NODE_ENV !== "production") {
+//   window.store = store;
+// }
 
 function Root() {
   return (
