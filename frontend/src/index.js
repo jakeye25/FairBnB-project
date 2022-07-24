@@ -34,6 +34,7 @@ function Root() {
   return (
     <ReduxProvider store={store}>
       <BrowserRouter>
+      <h1> welcome to the fairbnb</h1>
         <App />
       </BrowserRouter>
     </ReduxProvider>
