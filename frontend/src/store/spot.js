@@ -92,10 +92,10 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GETALL_SPOT:
 
-      newState = action.spots
+      newState = action.spots.map
       return newState;
-    case REMOVE_USER:
-
+    case GETONE_SPOT:
+      console.log(action)
       newState = initialState;
       return newState;
     default:

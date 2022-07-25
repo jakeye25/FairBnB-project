@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 // frontend/src/store/index.js
 // ...
 import sessionReducer from './session';
-
+import spotReducer from "./spot";
 // const rootReducer = combineReducers({
 
 // });
@@ -13,6 +13,7 @@ import sessionReducer from './session';
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
+  spot: spotReducer,
 });
 
 let enhancer;
