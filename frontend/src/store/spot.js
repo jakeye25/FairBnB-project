@@ -1,88 +1,98 @@
-// frontend/src/store/session.js
 import { csrfFetch } from './csrf';
 
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
+const GETALL_SPOT = 'spot/getAllSpot';
+const GETONE_SPOT = 'spot/getOneSpot';
+const CREATE_SPOT = 'spot/createSpot';
+const DELETE_SPOT = 'spot/deleteSpot';
 
-const setUser = (user) => {
+const getallSpots = (spots) => {
   return {
-    type: SET_USER,
-    user,
+    type: GETALL_SPOT,
+    spots,
   };
 };
 
-const removeUser = () => {
+const getoneSpot = (spot) => {
   return {
-    type: REMOVE_USER,
+    type: GETONE_SPOT,
+    spot,
   };
 };
 
-export const login = (user) => async (dispatch) => {
-  const { email, password } = user;
-  const response = await csrfFetch('/api/users/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+const setSpot = (spot) => {
+  return {
+    type: CREATE_SPOT,
+    spot,
+  };
+};
+
+const removeSpot = () => {
+  return {
+    type: DELETE_SPOT,
+  };
+};
+
+export const getspots = () => async(dispatch) => {
+  const response = await csrfFetch("/api/spots", {
+    method: "GET",
+    headers: { 'Content-Type': 'application/json' }
   });
-  const data = await response.json();
-//   console.log(data)
-  dispatch(setUser(data));
-  return response;
-};
+  if(response.ok){
+  const data = await response.json()
+  dispatch(getallSpots(data))}
+  else throw response
+}
 
-// ...
-export const restoreUser = () => async dispatch => {
-    const response = await csrfFetch('/api/users/current');
-    if(response.ok) {
-    const data = await response.json();
-    // console.log(data)
-    dispatch(setUser(data));
-    return response;
-    }
-  };
-  // ...
-  // ...
-export const signup = (user) => async (dispatch) => {
-    const { email, firstName, lastName, password } = user;
-    const response = await csrfFetch("/api/users/signup", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        firstName,
-        lastName,
-        password,
-      }),
-    });
-    const data = await response.json();
-    dispatch(setUser(data));
-    return response;
-  };
-  // ...
-  export const logout = () => async (dispatch) => {
-    const response = await csrfFetch('/api/users', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    // console.log(response)
-    if(response.ok) {
-      dispatch(removeUser())
-    }
-    else throw response;
-  };
+export const getspotDetail = (spotId) => async(dispatch) => {
 
-  const initialState = { user: null };
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "GET",
+    headers: { 'Content-Type': 'application/json' }
+  });
+  if(response.ok){
+  const data = await response.json()
+  dispatch(getoneSpot(data))}
+  else throw response
+}
+
+// export const createspot = (spot) => async (dispatch) => {
+//     const { email, firstName, lastName, password } = user;
+//     const response = await csrfFetch("/api/users/signup", {
+//       method: "POST",
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({
+//         email,
+//         firstName,
+//         lastName,
+//         password,
+//       }),
+//     });
+//     const data = await response.json();
+//     dispatch(setUser(data));
+//     return response;
+//   };
+//   // ...
+//   export const logout = () => async (dispatch) => {
+//     const response = await csrfFetch('/api/users', {
+//       method: 'DELETE',
+//       headers: { 'Content-Type': 'application/json' },
+//     });
+//     // console.log(response)
+//     if(response.ok) {
+//       dispatch(removeUser())
+//     }
+//     else throw response;
+//   };
+
+  const initialState = {spot: null};
 
 
-const sessionReducer = (state = initialState, action) => {
+const spotReducer = (state = initialState, action) => {
   let newState={...state};
   switch (action.type) {
-    case SET_USER:
+    case GETALL_SPOT:
 
-      newState.user = action.user
+      newState = action.spots
       return newState;
     case REMOVE_USER:
 
@@ -93,4 +103,4 @@ const sessionReducer = (state = initialState, action) => {
   }
 };
 
-export default sessionReducer;
+export default spotReducer;
