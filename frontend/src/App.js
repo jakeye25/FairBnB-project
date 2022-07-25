@@ -14,9 +14,9 @@ function App() {
 
   return isLoaded && (
     <Switch>
-      <Route path="/api/users/login">
-        <LoginFormPage />
-      </Route>
+      <Route path="/api/users/login" component={LoginFormPage}/>
+        {/* <LoginFormPage />
+      </Route> */}
       <Route path="/api/users/signup">
         <SignupFormPage />
       </Route>
