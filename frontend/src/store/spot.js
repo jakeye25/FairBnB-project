@@ -26,7 +26,7 @@ const setSpot = (spot) => {
   };
 };
 
-const removeSpot = () => {
+export const removeSpot = () => {
   return {
     type: DELETE_SPOT,
   };
@@ -39,7 +39,8 @@ export const getspots = () => async(dispatch) => {
   });
   if(response.ok){
   const data = await response.json()
-  dispatch(getallSpots(data))}
+  // console.log(data.Spot)
+  dispatch(getallSpots(data.Spot))}
   else throw response
 }
 
@@ -91,13 +92,18 @@ const spotReducer = (state = initialState, action) => {
   let newState={...state};
   switch (action.type) {
     case GETALL_SPOT:
-
-      newState = action.spots.map
+    // console.log('action', action.spots)
+      newState.spotsArray = action.spots;
+      action.spots.forEach(e => newState[e.id] = e);
       return newState;
     case GETONE_SPOT:
-      console.log(action)
+      // console.log(action)
       newState = initialState;
       return newState;
+    case DELETE_SPOT:
+        console.log('action', action)
+      // delete newState[action.id]
+            return newState
     default:
       return state;
   }
