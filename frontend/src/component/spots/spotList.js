@@ -1,35 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {useEffect} from 'react'
 import { getspots } from '../../store/spot';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-const SpotIndexItem = ({ spot }) => {
+
+function SpotsList () {
   const dispatch = useDispatch();
-//   const deleteBook = (e) => {
-//     e.preventDefault();
-//     dispatch(removeBooks(book.id))
-//   };
 
-useEffect(() => {
-  dispatch(getspots());
-},[dispatch])
-    // dispatch(getspotDetail({spot.id}))
+      useEffect(() => {
+        dispatch(getspots());
+      },[dispatch])
 
-  return (<h1>spot component</h1>
-    // <section>
-    //   <ul>
-    //     {
-    //       spot.map(spot => (
-    //         <BookIndexItem
-    //           book={book}
-    //           key={book.id}
-    //         />
-    //       ))
-    //     }
-    //   </ul>
-    //   </section>
-  );
-};
+    const allspots = useSelector(state => Object.values(state.spot))
+    // console.log(state.spot)
+    return (
+      <div className="spot-container">
+          <ul>
+              {allspots && allspots.map((spot) => {
+                  return <li className="eachspot" key={spot.id}>
+                      <NavLink to={`/spots/${spot.id}`}>{spot.name}</NavLink>
+                  </li>
+              })}
 
-export default SpotIndexItem;
+          </ul>
+      </div>
+  )
+}
+export default SpotsList;
