@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SpotsList from '../spots/spotList';
+import SpotCreateFormPage from '../spots/spotCreate';
 // import SpotDetail from '../spots/spotDetail';
 
 function Navigation({ isLoaded }){
@@ -31,6 +32,7 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
         <SpotsList />
+        <SpotCreateFormPage />
         {/* <SpotDetail /> */}
       </li>
     </ul>

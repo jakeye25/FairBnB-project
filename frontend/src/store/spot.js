@@ -21,12 +21,12 @@ const getallSpots = (spots) => {
 //   };
 // };
 
-// const setSpot = (spot) => {
-//   return {
-//     type: CREATE_SPOT,
-//     payload: spot,
-//   };
-// };
+const setSpot = (spot) => {
+  return {
+    type: CREATE_SPOT,
+    spot,
+  };
+};
 
 // export const removeSpot = (spotId) => {
 //   return {
@@ -59,17 +59,23 @@ export const getspots = () => async(dispatch) => {
 //   else throw response
 // }
 
-// export const createspot = (spot) => async (dispatch) => {
-//   let { address, city, state, country, lat, lng, name, description, price } = spot;
-//     const response = await csrfFetch("/api/spots", {
-//       method: "POST",
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ address, city, state, country, lat, lng, name, description, price }),
-//     });
-//     const data = await response.json();
-//     dispatch(setSpot(data));
-//     return response;
-//   };
+export const createspot = (spot) => async (dispatch) => {
+  let { address, city, state, country, lat, lng, name, description, price } = spot;
+    const response = await csrfFetch("/api/spots", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address, city, state, country, lat, lng, name, description, price }),
+    });
+    // if(response.ok) {
+    // const data = await response.json();
+    // await dispatch(setSpot(data.Spot))};
+    // else throw response
+    if(response.ok){
+      const data = await response.json()
+      console.log(data)
+      await dispatch(setSpot(data))}
+      else throw response
+  };
 // //   // ...
 //   export const deletespot = () => async (dispatch) => {
 //     const{spotId} = useParams()
@@ -96,14 +102,15 @@ const spotReducer = (state = initialState, action) => {
       newState[spot.id] = spot
     })
 
-    return newState
+    return newState;
     // case GETONE_SPOT:
     //   // console.log(action)
     //   newState = initialState;
     //   return newState;
-    // case CREATE_SPOT:
-    //   newState[action.spot.id] = action.spot
-    //   return newState
+    case CREATE_SPOT:
+      console.log('action', action.payload)
+      newState.spot = action.spot
+      return newState
     // case DELETE_SPOT:
     //     // console.log('action', action)
     //   delete newState[action.id]
