@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 import { getSpots } from '../../store/spot';
+import SpotCreateFormPage from './spotCreate';
 import { useDispatch, useSelector } from "react-redux";
 import Fab from './Fab';
 
@@ -29,7 +30,7 @@ return (
       <Fab hidden={showForm} onClick={() => setShowForm(true)} />
       {allspots.map((spot) => {
         return (
-          <NavLink key={spot.name} to={`/spots/${spot.id}`}>
+          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
             <div
               className={
                 Number.parseInt(spotId) === spot.id
@@ -56,16 +57,23 @@ return (
         );
       })}
     </nav>
-     {/* {showForm ? (
-      <CreatePokemonForm hideForm={() => setShowForm(false)} />
-    ) : (
-      <Route path="/pokemon/:pokemonId">
-        <PokemonDetail/>
-      </Route>
-    )}} */}
+     {/* {showForm ? ( */}
+      <SpotCreateFormPage hideForm={() => setShowForm(false)} />
+    {/* ) : (
+      // <Route path="/pokemon/:pokemonId">
+      //   {/* <PokemonDetail/> */}
+      {/* // </Route> */}
+    {/* ) */}
+    {/* } */} 
   </main>
-);
-  {//   return (
+  );
+
+};
+export default SpotsBrowser;
+
+
+
+{//   return (
   //     <div className="spot-container">
   //         <ul>
   //             {allspots && allspots.map((spot) => {
@@ -78,5 +86,3 @@ return (
   //     </div>
   // )
 };
-}
-export default SpotsBrowser;
