@@ -6,7 +6,7 @@ import * as spotActions from "../../store/spot"
 
 const UserSpots = () => {
     const spotsObj = useSelector((state) => state.spot)
-
+    console.log('obj',spotsObj)
     const spots = Object.values(spotsObj)
     // console.log('spots', spots)
     const user = useSelector((state) => state.session.user)

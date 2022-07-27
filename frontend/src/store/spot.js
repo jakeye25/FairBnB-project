@@ -7,7 +7,7 @@ export const UPDATE_SPOT = "spots/UPDATE_SPOT";
 export const REMOVE_SPOT = "spots/REMOVE_SPOT";
 export const ADD_SPOT = "spots/ADD_SPOT";
 
-const loadspots = spots => ({
+const loadspots = (spots) => ({
     type: LOAD_SPOTS,
     spots,
 });
@@ -40,51 +40,38 @@ const remove= (spotId, ownerId) => ({
     ownerId
 });
 
-export const getSpots = () => async dispatch => {
-  const response = await csrfFetch("/api/spots", {
-    method: "GET",
-    headers: { 'Content-Type': 'application/json' }
-  });
+export const getSpots = () => async (dispatch) => {
+  const response = await csrfFetch("/api/spots");
+  // {
+  //   method: "GET",
+  //   headers: { 'Content-Type': 'application/json' }
+  // });
   // console.log(response)
   if(response.ok){
-  const data = await response.json()
-  // console.log(data)
-  await dispatch(loadownerspots(data.Spot))}
+  const spots = await response.json()
+  console.log(spots)
+  dispatch(loadspots(spots.Spot))}
 
 }
 
 export const getOwnerSpots = () => async (dispatch) => {
-  const response = await fetch(`/api/users/current/spots`);
+  const response = await csrfFetch(`/api/users/current/spots`);
 
   if (response.ok) {
     const spots = await response.json();
+    console.log(spots)
     dispatch(loadownerspots(spots));
   }
 };
 
-// export const getOneSpot = spotId => async dispatch => {
-
-//   const response = await csrfFetch(`/api/spots/${spotId}`, {
-//     method: "GET",
-//     headers: { 'Content-Type': 'application/json' }
-//   });
-//   if(response.ok){
-//   const data = await response.json()
-//   dispatch(getoneSpot(data.Spot))}
-// }
-
 export const createSpot = data => async dispatch => {
   try{
-  // let { address, city, state, country, lat, lng, name, description, price } = spot;
     const response = await csrfFetch("/api/spots", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-    // if(response.ok) {
-    // const data = await response.json();
-    // await dispatch(setSpot(data.Spot))};
-    // else throw response
+
     if(!response.ok){
       let error;
       let errorJSON;
@@ -154,21 +141,11 @@ const spotReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_SPOTS:
-    const allSpots={}
-    action.spots.forEach(spot => {
-      allSpots[spot.id] = spot
+    newState={};
+      action.spots.forEach(spot => {
+      newState[spot.id] = spot;
     })
-
-    return {
-      ...allSpots,
-      ...state,
-      spot: sortList(action.spots)
-    };
-    // case GETONE_SPOT:
-    //   // console.log(action)
-    //   newState = initialState;
-    //   return newState;
-
+    return newState;
     case LOAD_OWNERSPOTS:
        newState = {};
       action.spots.forEach(spot => {
@@ -213,3 +190,15 @@ const spotReducer = (state = initialState, action) => {
 };
 
 export default spotReducer;
+
+
+// export const getOneSpot = spotId => async dispatch => {
+
+//   const response = await csrfFetch(`/api/spots/${spotId}`, {
+//     method: "GET",
+//     headers: { 'Content-Type': 'application/json' }
+//   });
+//   if(response.ok){
+//   const data = await response.json()
+//   dispatch(getoneSpot(data.Spot))}
+// }

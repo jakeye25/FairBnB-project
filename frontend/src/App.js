@@ -23,9 +23,7 @@ function App() {
           <Route path="/users/signup">
             <SignupFormPage />
           </Route>
-          <Route path={["/spots"]}
-          exact
-          >
+          <Route path="/spots">
             <SpotsBrowser />
           </Route>
           <Route path= "/spots/me">

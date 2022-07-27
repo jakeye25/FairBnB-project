@@ -1,77 +1,47 @@
 import React from 'react';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import {useEffect, useState} from 'react'
-import { getSpots } from '../../store/spot';
 import SpotCreateFormPage from './spotCreate';
 import { useDispatch, useSelector } from "react-redux";
 import Fab from './Fab';
 import SpotEditFormPage from './spotEdit';
 import UserSpots from './userSpots';
+import { getSpots } from '../../store/spot';
 
 const SpotsBrowser = () => {
+
+  const spotsObj = useSelector((state) => state.spot)
+
+  const allspots = Object.values(spotsObj)
+
   const dispatch = useDispatch();
-  const {spotId} = useParams()
-  // const allspots = useSelector(state => {
-    // console.log(state)
-  //   return state.spots.list.map(spotId=> state.spot[spotId])
-  // })
-  const [showForm, setShowForm] = useState(false);
+
     useEffect(() => {
       dispatch(getSpots());
     },[dispatch])
-
-    const allspots = useSelector(state => Object.values(state.spot))
-    // console.log(state.spot)
 
     if(!allspots) {
       return null
     }
 return (
-    <main>
-    <nav>
-      <Fab hidden={showForm} onClick={() => setShowForm(true)} />
-      {allspots.map((spot) => {
-        return (
+    <>
+      <h1>testing</h1>
+       {allspots.map((spot) => {
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-            <div
-              className={
-                Number.parseInt(spotId) === spot.id
-                  ? "nav-entry is-selected"
-                  : "nav-entry"
-              }
-            >
-              <div
-                className="nav-entry-image"
-                style={{ backgroundImage: `url('${spot.url}')` }}
-              ></div>
-              <div>
-                <div className="primary-text">{spot.name}</div>
-                <div className="secondary-text">
-                  {spot.price}
-                  <div className="third-text">
-                  {spot.description}
-                  {/* {pokemon.captured && "(Captured)"} */}
-                  </div>
-                </div>
-              </div>
+          <div>
+            <img
+              className="spot-image"
+              alt={spot.previewImage}
+              src={spot.previewImage}
+            />
             </div>
+            <div>{spot.name}</div>
+            <div className="centered">{spot.description}</div>
+            <div className="centered">${spot.price}</div>
           </NavLink>
-        );
-      })}
-    </nav>
-     {/* {showForm ? ( */}
-      <SpotCreateFormPage hideForm={() => setShowForm(false)} />
-      <SpotEditFormPage hideForm={() => setShowForm(false)} />
-      <UserSpots />
-    {/* ) : (
-      // <Route path="/pokemon/:pokemonId">
-      //   {/* <PokemonDetail/> */}
-      {/* // </Route> */}
-    {/* ) */}
-    {/* } */}
-  </main>
+            })}
+  </>
   );
-
 };
 export default SpotsBrowser;
 
@@ -90,3 +60,25 @@ export default SpotsBrowser;
   //     </div>
   // )
 };
+{/* {showForm ? ( */}
+       {/* <SpotCreateFormPage hideForm={() => setShowForm(false)} /> */}
+       {/* <SpotEditFormPage hideForm={() => setShowForm(false)} /> */}
+
+     {/* ) : (
+  //     // <Route path="/pokemon/:pokemonId">
+  //     //   {/* <PokemonDetail/> */}
+       {/* // </Route> */}
+     {/* ) */}
+    {/* } */}
+
+                  {/* <div
+                className="nav-entry-image"
+                style={{ backgroundImage: `url('${spot.previewImage}')` }}
+              ></div>
+              <div>
+                <div className="primary-text">{spot.name}</div>
+                <div className="secondary-text">
+                  {spot.price}</div>
+                  <div className="third-text">
+                  {spot.description}
+                  </div> */}
