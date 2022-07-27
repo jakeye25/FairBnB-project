@@ -127,6 +127,7 @@ export const createSpot = data => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
+      console.log(spot)
       dispatch(update(spot));
       return spot;
     }

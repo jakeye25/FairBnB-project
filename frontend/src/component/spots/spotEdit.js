@@ -9,50 +9,45 @@ import {useHistory} from 'react-router-dom'
 import ErrorMessage from './ErrorMessage';
 
 function SpotEditFormPage({spotId, hideForm, ownerId}) {
-  let spot = useSelector(state => state.spots[spotId])
+  let spot = useSelector(state => Object.values(state.spot))
 
-    const history = useHistory();
   const dispatch = useDispatch();
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [address, setAddress] = useState(spot.address);
+  const [city, setCity] = useState(spot.city);
+  const [state, setState] = useState(spot.state);
+  const [country, setCountry] = useState(spot.country);
+  const [lat, setLat] = useState(spot.lat);
+  const [lng, setLng] = useState(spot.lng);
+  const [name, setName] = useState(spot.name);
+  const [description, setDescription] = useState(spot.description);
+  const [price, setPrice] = useState(spot.price);
   const [errorMessages, setErrorMessages] = useState({});
 
-//   if (sessionUser) return <Redirect to="/api/spots" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let spot = { address, city, state, country, lat, lng, name, description, price }
-    let editedSpot;
-    try{
-        editedSpot = await dispatch(spotActions.updateSpot(spot))
-    } catch (error) {
-        setErrorMessages({ overall: error.toString().slice(7) })
+    // let spot = { address, city, state, country, lat, lng, name, description, price }
+    let payload = {
+      ...spot,
+      address, city, state, country, lat, lng, name, description, price
+    };
+
+    let returnedItem = await dispatch(spotActions.updateSpot(payload))
+
+    if(returnedItem) {
+      hideForm()
     }
-    if (editedSpot) {
-        setErrorMessages({});
-        // history.push(`/spots/${editedSpot.id}`);
-      }
-    }
+  }
     const handleCancelClick = (e) => {
         e.preventDefault();
-        setErrorMessages({});
+        hideForm()
     }
 
   return (
-    <section className="new-form-holder centered middled">
+    <section className="edit-form-holder centered middled">
       <ErrorMessage message={errorMessages.overall} />
         <form className="create-spot-form" onSubmit={handleSubmit}>
-      {/* <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul> */}
         <input
           type="text"
           placeholder="Address"
@@ -121,7 +116,7 @@ function SpotEditFormPage({spotId, hideForm, ownerId}) {
           value={price}
           onChange={(e) => setPrice(e.target.value)} />
         <ErrorMessage label={"Price"} message={errorMessages.price} />
-            <button type="submit">Create New Spot</button>
+            <button type="submit">Update Spot</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>
     </section>
