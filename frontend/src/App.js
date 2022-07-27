@@ -6,6 +6,7 @@ import SignupFormPage from "./component/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./component/Navigation";
 import SpotsBrowser from "./component/spots/spotList";
+import UserSpots from "./component/spots/userSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path= "/spots/me">
+            <UserSpots />
+          </Route>
           <Route path="/api/users/signup">
             <SignupFormPage />
           </Route>
@@ -26,6 +30,9 @@ function App() {
           exact
           >
             <SpotsBrowser />
+          </Route>
+          <Route path= "/spots/me">
+            <UserSpots />
           </Route>
         </Switch>
       )}

@@ -6,6 +6,7 @@ import SpotCreateFormPage from './spotCreate';
 import { useDispatch, useSelector } from "react-redux";
 import Fab from './Fab';
 import SpotEditFormPage from './spotEdit';
+import UserSpots from './userSpots';
 
 const SpotsBrowser = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ return (
      {/* {showForm ? ( */}
       <SpotCreateFormPage hideForm={() => setShowForm(false)} />
       <SpotEditFormPage hideForm={() => setShowForm(false)} />
+      <UserSpots />
     {/* ) : (
       // <Route path="/pokemon/:pokemonId">
       //   {/* <PokemonDetail/> */}
