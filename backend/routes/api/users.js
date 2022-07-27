@@ -14,7 +14,7 @@ const router = express.Router();
 
 //...
 function checkRequiredFieldslogin(req, res, next) {
-  const {  email, password } = req.body;
+  const { email, password } = req.body;
 
   const error = {
     message: "Validation error",
@@ -27,37 +27,21 @@ function checkRequiredFieldslogin(req, res, next) {
   if (!password) error.errors.password = "Password is required"
 
 
-  if ( !email || !password) {
+  if (!email || !password) {
     res.statusCode = 400;
     return res.json(error)
   }
   next()
 };
 // ...
-// async function checkUniqueEmailsignup(req, res, next) {
 
-  // try{
-  //   let user = await User.signup({ email, username, firstName, lastName, password });
-  // } catch(err) {
-  //   if(err.name === 'SequelizeUniqueConstraintError') {
-  //     const error = Error('User already exists');
-  //     error.title = 'User already exists';
-  //     error.message = 'User with that email already exists';
-  //     error.statusCode = 403;
-  //     error.errors = 'User with that email already exists';
-  //     return next(error)
-  //   } else {
-  //     return next(err)
-  //   }
-  // }
-// }
 async function checkUniqueEmailsignup(req, res, next) {
-  const {email} = req.body;
+  const { email } = req.body;
 
   if (!email) return next();
 
   const user = await User.findOne({
-    where: {email}
+    where: { email }
   })
 
   if (user) {
@@ -93,88 +77,78 @@ function checkRequiredFieldssignup(req, res, next) {
 };
 // ...
 const validateSignup = [
-    check('email')
-      .exists({ checkFalsy: true })
-      .isEmail()
-      .withMessage('Please provide a valid email.'),
-    // check('username')
-    //   .exists({ checkFalsy: true })
-    //   .isLength({ min: 4 })
-    //   .withMessage('Please provide a username with at least 4 characters.'),
-    // check('username')
-    //   .not()
-    //   .isEmail()
-    //   .withMessage('Username cannot be an email.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
-    handleValidationErrors
-  ];
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  // check('username')
+  //   .exists({ checkFalsy: true })
+  //   .isLength({ min: 4 })
+  //   .withMessage('Please provide a username with at least 4 characters.'),
+  // check('username')
+  //   .not()
+  //   .isEmail()
+  //   .withMessage('Username cannot be an email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 6 })
+    .withMessage('Password must be 6 characters or more.'),
+  handleValidationErrors
+];
 
 // Sign up
 router.post(
-    '/signup',
-    // checkUniqueEmailsignup,
-    // checkRequiredFieldssignup,
-    // validateSignup,
-    async (req, res, next) => {
-      let { email, firstName, lastName, password } = req.body;
+  '/signup',
 
-      const error = {
-        message: "Validation error",
-        statusCode: 400,
-        errors: {}
-      }
+  async (req, res, next) => {
+    let { email, firstName, lastName, password } = req.body;
 
-      if (!email) error.errors.email = "Invalid Email"
-      if (!firstName) error.errors.firstname= "First Name is required."
-      if (!lastName) error.errors.lastname = "Last Name is required."
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
+
+    if (!email) error.errors.email = "Invalid Email"
+    if (!firstName) error.errors.firstname = "First Name is required."
+    if (!lastName) error.errors.lastname = "Last Name is required."
 
 
-      if (!email || !lastName || !firstName) {
-        res.statusCode = 400;
-        return res.json(error)
-      }
+    if (!email || !lastName || !firstName) {
+      res.statusCode = 400;
+      return res.json(error)
+    }
 
-      const uniqueEmail = await User.findOne({
-        where:{ email: req.body.email},
+    const uniqueEmail = await User.findOne({
+      where: { email: req.body.email },
+    })
+
+    if (uniqueEmail) {
+
+      res.status(403).json({
+        message: "User already exists",
+        statusCode: 403,
+        errors: {
+          "email": "User with that email already exists"
+        }
+
       })
-
-      if(uniqueEmail) {
-        // const err = new Error("User already exists");
-
-        // err.title = "User already exists";
-        // err.message = "User already exists";
-        // err.errors = {
-        //   "email": "User with that email already exists"
-        // };
-        // err.status = 403;
-        // return next(err);
-        res.status(403).json({
-          message:"User already exists",
-          statusCode: 403,
-          errors: {
-            "email": "User with that email already exists"
-          }
-
-        })
     }
 
 
-      const user = await User.signup({ email, firstName, lastName, password });
+    const user = await User.signup({ email, firstName, lastName, password });
 
 
-      let token = await setTokenCookie(res, user);
-      user.dataValues.token = token
-      if(user) {
+    let token = await setTokenCookie(res, user);
+    user.dataValues.token = token
+    if (user) {
 
       return res.json({
         "id": user.id,
         "firstName": user.firstName,
         'lastName': user.lastName,
         "email": user.email,
-        "token" : token
+        "token": token
       });
     } else {
       let err = new Error('Invalid credentials');
@@ -184,97 +158,96 @@ router.post(
       return next(err);
     }
   }
-  );
+);
 
-  const validateLogin = [
-    check('email')
-      .exists({ checkFalsy: true })
-      .notEmpty()
-      .withMessage('Please provide a valid email.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .withMessage('Please provide a password.'),
-    handleValidationErrors
-  ];
+const validateLogin = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a password.'),
+  handleValidationErrors
+];
 // Log in
 router.post(
-    '/login',
-    // checkRequiredFieldslogin,
-    // validateLogin,
-    async (req, res, next) => {
-      const { email, password } = req.body;
+  '/login',
 
-      const error = {
-        message: "Validation error",
-        statusCode: 400,
-        errors: {}
-      }
+  async (req, res, next) => {
+    const { email, password } = req.body;
 
-      if (!email) error.errors.email = "Email is required"
-      if (!password) error.errors.password = "Password is required"
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {}
+    }
 
-
-      if (!email || !password) {
-        res.statusCode = 400;
-        return res.json(error)
-      }
-
-      const user = await User.login({ email, password });
-
-      if (!user) {
-        // const err = new Error('Invalid credentials');
-        // err.status = 401;
-        // err.title = 'Invalid credentials';
-        // err.errors = ['Invalid credentials'];
-        // return next(err);
-        res.status(401).json({
-          message:"Invalid credentials",
-          statusCode: 401
-        })
-      }
-
-      let token = await setTokenCookie(res, user);
-      user.dataValues.token = token
+    if (!email) error.errors.email = "Email is required"
+    if (!password) error.errors.password = "Password is required"
 
 
-      return res.json(
-        {
+    if (!email || !password) {
+      res.statusCode = 400;
+      return res.json(error)
+    }
+
+    const user = await User.login({ email, password });
+
+    if (!user) {
+      // const err = new Error('Invalid credentials');
+      // err.status = 401;
+      // err.title = 'Invalid credentials';
+      // err.errors = ['Invalid credentials'];
+      // return next(err);
+      res.status(401).json({
+        message: "Invalid credentials",
+        statusCode: 401
+      })
+    }
+
+    let token = await setTokenCookie(res, user);
+    user.dataValues.token = token
+
+
+    return res.json(
+      {
         "id": user.id,
         "firstName": user.firstName,
         'lastName': user.lastName,
         "email": user.email,
-         "token": token
+        "token": token
       }
-      );
-    }
-  );
+    );
+  }
+);
 //get the current user
-  router.get(
-    '/current',
-    restoreUser,
-    requireAuth,
-    async (req, res) => {
-      const { user } = req;
+router.get(
+  '/current',
+  restoreUser,
+  requireAuth,
+  async (req, res) => {
+    const { user } = req;
 
-      // if (user) {
+    // if (user) {
 
-        // let token = await setTokenCookie(res, user);
-        // user.dataValues.token = token
+    // let token = await setTokenCookie(res, user);
+    // user.dataValues.token = token
 
-        return res.json(
-          {
-          "id": user.id,
-          "firstName": user.firstName,
-          'lastName': user.lastName,
-          "email": user.email,
-          // "token":token
-          }
-        )
-      // } else return res.json({});
-    }
-  );
+    return res.json(
+      {
+        "id": user.id,
+        "firstName": user.firstName,
+        'lastName': user.lastName,
+        "email": user.email,
+        // "token":token
+      }
+    )
+    // } else return res.json({});
+  }
+);
 
-  // Log out
+// Log out
 router.delete(
   '/',
   (_req, res) => {
@@ -283,36 +256,36 @@ router.delete(
   }
 );
 
-  //current user spots
+//current user spots
 
-  router.get('/current/spots',
-    restoreUser,
-    requireAuth,
-    async (req, res) => {
-      const { user } = req;
+router.get('/current/spots',
+  restoreUser,
+  requireAuth,
+  async (req, res) => {
+    const  userId  = req.user.id;
 
     const spots = await Spot.findAll({
-      where: { ownerId: user.id}
+      where: { ownerId: userId }
     })
 
-      res.json(spots)
+    res.json(spots)
     // }
   })
 
-  //current user reviews
-  router.get('/current/reviews',
-    restoreUser,
-    requireAuth,
-    async (req, res) => {
-      const { user } = req;
+//current user reviews
+router.get('/current/reviews',
+  restoreUser,
+  requireAuth,
+  async (req, res) => {
+    const { user } = req;
 
     const reviews = await Review.findAll({
-      where: { userId: user.id},
+      where: { userId: user.id },
       include: [
         {
           model: User,
 
-          attributes:['id', 'firstName', 'lastName']
+          attributes: ['id', 'firstName', 'lastName']
         },
         {
           model: Spot,
@@ -326,19 +299,19 @@ router.delete(
         }
       ]
     })
-    res.json({reviews})
+    res.json({ reviews })
   })
 
 //current user bookings
 router.get('/current/bookings',
-    restoreUser,
-    requireAuth,
-    async (req, res) => {
-      const { user } = req;
+  restoreUser,
+  requireAuth,
+  async (req, res) => {
+    const { user } = req;
 
     const bookings = await Booking.findAll({
-      where: { userId: user.id},
-      include:[
+      where: { userId: user.id },
+      include: [
         {
           model: Spot,
 
@@ -346,7 +319,7 @@ router.get('/current/bookings',
         }
       ]
     })
-    res.json({"Bookings": bookings})
+    res.json({ "Bookings": bookings })
   })
 
 module.exports = router;
