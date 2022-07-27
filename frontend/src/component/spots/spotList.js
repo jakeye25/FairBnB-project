@@ -1,11 +1,7 @@
 import React from 'react';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import {useEffect, useState} from 'react'
-import SpotCreateFormPage from './spotCreate';
 import { useDispatch, useSelector } from "react-redux";
-import Fab from './Fab';
-import SpotEditFormPage from './spotEdit';
-import UserSpots from './userSpots';
 import { getSpots } from '../../store/spot';
 
 const SpotsBrowser = () => {
@@ -13,20 +9,20 @@ const SpotsBrowser = () => {
   const spotsObj = useSelector((state) => state.spot)
 
   const allspots = Object.values(spotsObj)
-
+  console.log('allspots', allspots)
   const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(getSpots());
     },[dispatch])
 
-    if(!allspots) {
+    if(!allspots.length) {
       return null
     }
 return (
     <>
-      <h1>testing</h1>
-       {allspots.map((spot) => {
+      
+       {allspots.map((spot) => (
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
           <div>
             <img
@@ -39,7 +35,7 @@ return (
             <div className="centered">{spot.description}</div>
             <div className="centered">${spot.price}</div>
           </NavLink>
-            })}
+            ))}
   </>
   );
 };

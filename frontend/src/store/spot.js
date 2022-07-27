@@ -42,21 +42,14 @@ const remove= (spotId, ownerId) => ({
 
 export const getSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
-  // {
-  //   method: "GET",
-  //   headers: { 'Content-Type': 'application/json' }
-  // });
-  // console.log(response)
   if(response.ok){
   const spots = await response.json()
-  console.log(spots)
   dispatch(loadspots(spots.Spot))}
 
 }
 
 export const getOwnerSpots = () => async (dispatch) => {
   const response = await csrfFetch(`/api/users/current/spots`);
-
   if (response.ok) {
     const spots = await response.json();
     console.log(spots)
@@ -152,28 +145,23 @@ const spotReducer = (state = initialState, action) => {
         newState[spot.id] = spot;
       })
       return newState;
-    case ADD_SPOT:
-      // console.log('action', action.payload)
-      // newState.spot = action.spot
-      // return newState
-      if (!state[action.spot.id]) {
-        const newState = {
-          ...state,
-          [action.spot.id]: action.spot
-        };
-        console.log(newState)
-        const spotList = newState.list.map(id => newState[id]);
-        spotList.push(action.spot);
-        newState.list = sortList(spotList);
-        return newState;
-      }
-      return {
-        ...state,
-        [action.spot.id]: {
-          ...state[action.spot.id],
-          ...action.spot
-        }
-      };
+    // case ADD_SPOT:
+    //   // console.log('action', action.payload)
+    //   // newState.spot = action.spot
+    //   // return newState
+    //   newState={}
+    //     const spotList = newState.list.map(id => newState[id]);
+    //     spotList.push(action.spot);
+    //     newState.list = sortList(spotList);
+    //     return newState;
+    //   }
+    //   return {
+    //     ...state,
+    //     [action.spot.id]: {
+    //       ...state[action.spot.id],
+    //       ...action.spot
+    //     }
+    //   };
       case UPDATE_SPOT:
         return {
           ...state,
