@@ -32,7 +32,7 @@ const UserSpots = () => {
           <img
             className="spot-image"
             alt={spot.previewImage}
-            src={`https://images.pexels.com/photos/10press&cs=tinysrgb&dpr=1&w=500`}
+            src={spot.previewImage}
           />
         </div>
         <div>{spot.name}</div>
