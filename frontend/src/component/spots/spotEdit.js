@@ -43,7 +43,7 @@ function SpotEditFormPage() {
 
     if(returnedItem) {
       setErrorMessages({});
-      history.push(`/spots/${returnedItem.id}`)
+      // history.push(`/spots/${returnedItem.id}`)
     }
   }
     const handleCancelClick = (e) => {
