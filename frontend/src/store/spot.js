@@ -149,11 +149,14 @@ const spotReducer = (state = initialState, action) => {
       // console.log('action', action.payload)
       // newState.spot = action.spot
       // return newState
-      newState={}
-      const spotList = newState.list.map(id => newState[id]);
-        spotList.push(action.spot);
-        newState.list = sortList(spotList);
-        return newState;
+      // newState={}
+      // const spotList = newState.list.map(id => newState[id]);
+      // console.log('list', spotList)
+      //   spotList.push(action.spot);
+      //   newState.list = sortList(spotList);
+      //   return newState;
+      newState = { ...state, [action.spot.id]: action.spot }
+                return newState;
       case UPDATE_SPOT:
         return {
           ...state,

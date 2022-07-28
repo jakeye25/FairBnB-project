@@ -22,6 +22,7 @@ function SpotCreateFormPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [previewImage, setImageUrl] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
 
 //   if (sessionUser) return <Redirect to="/api/spots" />;
@@ -29,7 +30,7 @@ function SpotCreateFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let spot = { address, city, state, country, lat, lng, name, description, price }
+    let spot = { address, city, state, country, lat, lng, name, description, price, previewImage }
     let createdSpot;
     try{
         createdSpot = await dispatch(spotActions.createSpot(spot))
@@ -48,6 +49,7 @@ function SpotCreateFormPage() {
 
   return (
     <section className="new-form-holder centered middled">
+
       <ErrorMessage message={errorMessages.overall} />
         <form className="create-spot-form" onSubmit={handleSubmit}>
       {/* <ul>
@@ -121,6 +123,13 @@ function SpotCreateFormPage() {
           value={price}
           onChange={(e) => setPrice(e.target.value)} />
         <ErrorMessage label={"Price"} message={errorMessages.price} />
+        <input
+          type="url"
+          placeholder="Image Url"
+          required
+          value={previewImage}
+          onChange={(e) => setImageUrl(e.target.value)} />
+        <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} />
             <button type="submit">Create New Spot</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>
