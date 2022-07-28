@@ -8,6 +8,7 @@ import Navigation from "./component/Navigation";
 import SpotsBrowser from "./component/spots/spotList";
 import UserSpots from "./component/spots/userSpots";
 import SpotCreateFormPage from "./component/spots/spotCreate";
+import SpotDetail from "./component/spots/spotDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,11 +29,13 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/spots"
-          exact
-          >
+          exact>
             <SpotsBrowser />
           </Route>
-
+          <Route path="/spots/:spotId"
+          exact >
+            <SpotDetail />
+          </Route>
           <Route path= "/spots/me">
             <UserSpots />
           </Route>

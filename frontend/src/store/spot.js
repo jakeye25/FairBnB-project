@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 
 export const LOAD_SPOTS = "spots/LOAD_SPOTS";
 export const LOAD_OWNERSPOTS = "spots/LOAD_OWNERSPOTS"
+export const LOAD_ONESPOT = "spots/LOAD_ONESPOT"
 export const UPDATE_SPOT = "spots/UPDATE_SPOT";
 export const REMOVE_SPOT = "spots/REMOVE_SPOT";
 export const ADD_SPOT = "spots/ADD_SPOT";
@@ -17,12 +18,10 @@ const loadownerspots = (spots) => ({
   spots,
 });
 
-// const getoneSpot = (spot) => {
-//   return {
-//     type: GETONE_SPOT,
-//     spot,
-//   };
-// };
+const loadoneSpot = (spot) => ({
+    type: LOAD_ONESPOT,
+      spot
+});
 
 const add = spot => ({
     type: ADD_SPOT,
@@ -34,10 +33,9 @@ const update = (spot) => ({
   spot
 });
 
-const remove= (spotId, ownerId) => ({
+const remove= (spotId) => ({
     type: REMOVE_SPOT,
-    spotId,
-    ownerId
+    spotId
 });
 
 export const getSpots = () => async (dispatch) => {
@@ -45,14 +43,21 @@ export const getSpots = () => async (dispatch) => {
   if(response.ok){
   const spots = await response.json()
   dispatch(loadspots(spots.Spot))}
+}
 
+export const getOneSpot = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`);
+  if(response.ok){
+  const spot = await response.json()
+    // console.log('res', spot)
+  dispatch(loadoneSpot(spot))}
 }
 
 export const getOwnerSpots = () => async (dispatch) => {
   const response = await csrfFetch(`/api/users/current/spots`);
   if (response.ok) {
     const spots = await response.json();
-    console.log(spots)
+    // console.log(spots)
     dispatch(loadownerspots(spots));
   }
 };
@@ -70,17 +75,14 @@ export const createSpot = data => async dispatch => {
       let errorJSON;
         error = await response.text();
         try {
-          // Check if the error is JSON, i.e., from the Pokemon server. If so,
-          // don't throw error yet or it will be caught by the following catch
+
           errorJSON = JSON.parse(error);
         }
         catch {
-          // Case if server could not be reached
           throw new Error(error);
         }
         throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
       }
-
 
       const spot = await response.json()
       // console.log(data)
@@ -110,25 +112,26 @@ export const createSpot = data => async dispatch => {
     }
   };
 
-  export const deleteSpot= (spotId, ownerId) => async dispatch => {
+  export const deleteSpot= (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
       method: 'delete',
     });
 
     if (response.ok) {
-      const { id: deletedSpotId } = await response.json();
-      dispatch(remove(deletedSpotId, ownerId));
+      const { spotId: deletedSpotId } = await response.json();
+      console.log(deletedSpotId)
+      dispatch(remove(deletedSpotId));
       return deletedSpotId;
     }
   };
 
   const initialState = {};
 
-  const sortList = (list) => {
-    return list.sort((spotA, spotB) => {
-      return spotA.number - spotB.number;
-    }).map((spot) => spot.id);
-  };
+  // const sortList = (list) => {
+  //   return list.sort((spotA, spotB) => {
+  //     return spotA.number - spotB.number;
+  //   }).map((spot) => spot.id);
+  // };
 
 const spotReducer = (state = initialState, action) => {
   let newState;
@@ -145,16 +148,10 @@ const spotReducer = (state = initialState, action) => {
         newState[spot.id] = spot;
       })
       return newState;
+      case LOAD_ONESPOT:
+       newState = {...action.spot};
+      return newState;
     case ADD_SPOT:
-      // console.log('action', action.payload)
-      // newState.spot = action.spot
-      // return newState
-      // newState={}
-      // const spotList = newState.list.map(id => newState[id]);
-      // console.log('list', spotList)
-      //   spotList.push(action.spot);
-      //   newState.list = sortList(spotList);
-      //   return newState;
       newState = { ...state, [action.spot.id]: action.spot }
                 return newState;
       case UPDATE_SPOT:
