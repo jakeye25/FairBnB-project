@@ -8,7 +8,7 @@ import {useHistory} from 'react-router-dom'
 // import './SignupForm.css';
 import ErrorMessage from './ErrorMessage';
 
-function SpotEditFormPage({spotId, hideForm, ownerId}) {
+function SpotEditFormPage({spotId, hideForm}) {
   let spot = useSelector(state => Object.values(state.spot))
 
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ function SpotEditFormPage({spotId, hideForm, ownerId}) {
   const [name, setName] = useState(spot.name);
   const [description, setDescription] = useState(spot.description);
   const [price, setPrice] = useState(spot.price);
+  const [previewImage, setImage] = useState(spot.previewImage);
   const [errorMessages, setErrorMessages] = useState({});
 
 
@@ -30,7 +31,7 @@ function SpotEditFormPage({spotId, hideForm, ownerId}) {
     // let spot = { address, city, state, country, lat, lng, name, description, price }
     let payload = {
       ...spot,
-      address, city, state, country, lat, lng, name, description, price
+      address, city, state, country, lat, lng, name, description, price, previewImage
     };
 
     let returnedItem = await dispatch(spotActions.updateSpot(payload))
@@ -47,7 +48,7 @@ function SpotEditFormPage({spotId, hideForm, ownerId}) {
   return (
     <section className="edit-form-holder centered middled">
       <ErrorMessage message={errorMessages.overall} />
-        <form className="create-spot-form" onSubmit={handleSubmit}>
+        <form className="edit-spot-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Address"
@@ -116,6 +117,13 @@ function SpotEditFormPage({spotId, hideForm, ownerId}) {
           value={price}
           onChange={(e) => setPrice(e.target.value)} />
         <ErrorMessage label={"Price"} message={errorMessages.price} />
+        <input
+          type="url"
+          placeholder="Image Url"
+          required
+          value={previewImage}
+          onChange={(e) => setImage(e.target.value)} />
+        <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} />
             <button type="submit">Update Spot</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>
