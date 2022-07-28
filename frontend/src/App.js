@@ -9,6 +9,7 @@ import SpotsBrowser from "./component/spots/spotList";
 import UserSpots from "./component/spots/userSpots";
 import SpotCreateFormPage from "./component/spots/spotCreate";
 import SpotDetail from "./component/spots/spotDetail";
+import ReviewsBrowser from "./component/reviews/reviewBrowser";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,9 @@ function App() {
           exact >
             <SpotDetail />
           </Route>
-
+          <Route path= "/reviews" exact>
+            <ReviewsBrowser />
+          </Route>
         </Switch>
       )}
     </>
