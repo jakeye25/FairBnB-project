@@ -168,7 +168,7 @@ router.post(
   restoreUser,
   requireAuth,
    async (req, res, next) => {
-    let { address, city, state, country, lat, lng, name, description, price } = req.body;
+    let { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
 
     const error = {
       message: "Validation error",
@@ -202,6 +202,7 @@ router.post(
         name,
         description,
         price,
+        previewImage,
       });
 
       res.status(201).json(spot);

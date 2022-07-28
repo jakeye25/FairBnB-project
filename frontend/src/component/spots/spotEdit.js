@@ -1,17 +1,21 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import * as spotActions from "../../store/spot"
 import {useHistory} from 'react-router-dom'
 // import './SignupForm.css';
 import ErrorMessage from './ErrorMessage';
 
-function SpotEditFormPage({spotId, hideForm}) {
+function SpotEditFormPage() {
+  const history = useHistory();
   let spot = useSelector(state => Object.values(state.spot))
-
+  const {spotId} = useParams()
+  console.log(spot)
+  console.log(spotId)
   const dispatch = useDispatch();
+
   const [address, setAddress] = useState(spot.address);
   const [city, setCity] = useState(spot.city);
   const [state, setState] = useState(spot.state);
@@ -37,12 +41,12 @@ function SpotEditFormPage({spotId, hideForm}) {
     let returnedItem = await dispatch(spotActions.updateSpot(payload))
 
     if(returnedItem) {
-      hideForm()
+      // hideForm()
     }
   }
     const handleCancelClick = (e) => {
         e.preventDefault();
-        hideForm()
+        // hideForm()
     }
 
   return (
