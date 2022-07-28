@@ -9,7 +9,7 @@ const SpotsBrowser = () => {
   const spotsObj = useSelector((state) => state.spot)
 
   const allspots = Object.values(spotsObj)
-  console.log('allspots', allspots)
+  // console.log('allspots', allspots)
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const SpotsBrowser = () => {
     }
 return (
     <>
-      
+
        {allspots.map((spot) => (
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
           <div>

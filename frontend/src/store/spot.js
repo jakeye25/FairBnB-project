@@ -145,23 +145,15 @@ const spotReducer = (state = initialState, action) => {
         newState[spot.id] = spot;
       })
       return newState;
-    // case ADD_SPOT:
-    //   // console.log('action', action.payload)
-    //   // newState.spot = action.spot
-    //   // return newState
-    //   newState={}
-    //     const spotList = newState.list.map(id => newState[id]);
-    //     spotList.push(action.spot);
-    //     newState.list = sortList(spotList);
-    //     return newState;
-    //   }
-    //   return {
-    //     ...state,
-    //     [action.spot.id]: {
-    //       ...state[action.spot.id],
-    //       ...action.spot
-    //     }
-    //   };
+    case ADD_SPOT:
+      // console.log('action', action.payload)
+      // newState.spot = action.spot
+      // return newState
+      newState={}
+      const spotList = newState.list.map(id => newState[id]);
+        spotList.push(action.spot);
+        newState.list = sortList(spotList);
+        return newState;
       case UPDATE_SPOT:
         return {
           ...state,

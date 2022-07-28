@@ -10,6 +10,7 @@ import ErrorMessage from './ErrorMessage';
 
 function SpotCreateFormPage() {
     const history = useHistory();
+
   const dispatch = useDispatch();
 //   const sessionUser = useSelector((state) => state.session.user);
   const [address, setAddress] = useState("");
