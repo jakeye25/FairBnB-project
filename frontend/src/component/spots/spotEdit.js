@@ -3,29 +3,30 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
-import * as spotActions from "../../store/spot"
+
 import {useHistory} from 'react-router-dom'
+import { updateSpot } from "../../store/spot";
 // import './SignupForm.css';
 import ErrorMessage from './ErrorMessage';
 
 function SpotEditFormPage() {
   const history = useHistory();
-  let spot = useSelector(state => Object.values(state.spot))
+  // let spot = useSelector(state => Object.values(state.spot))
+
   const {spotId} = useParams()
-  console.log(spot)
-  console.log(spotId)
+
   const dispatch = useDispatch();
 
-  const [address, setAddress] = useState(spot.address);
-  const [city, setCity] = useState(spot.city);
-  const [state, setState] = useState(spot.state);
-  const [country, setCountry] = useState(spot.country);
-  const [lat, setLat] = useState(spot.lat);
-  const [lng, setLng] = useState(spot.lng);
-  const [name, setName] = useState(spot.name);
-  const [description, setDescription] = useState(spot.description);
-  const [price, setPrice] = useState(spot.price);
-  const [previewImage, setImage] = useState(spot.previewImage);
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [previewImage, setImage] = useState('');
   const [errorMessages, setErrorMessages] = useState({});
 
 
@@ -34,20 +35,24 @@ function SpotEditFormPage() {
 
     // let spot = { address, city, state, country, lat, lng, name, description, price }
     let payload = {
-      ...spot,
+      id: spotId,
       address, city, state, country, lat, lng, name, description, price, previewImage
     };
 
-    let returnedItem = await dispatch(spotActions.updateSpot(payload))
+    let returnedItem = await dispatch(updateSpot(payload))
 
     if(returnedItem) {
-      // hideForm()
+      setErrorMessages({});
+      history.push(`/spots/${returnedItem.id}`)
     }
   }
     const handleCancelClick = (e) => {
         e.preventDefault();
+        setErrorMessages({});
         // hideForm()
     }
+
+
 
   return (
     <section className="edit-form-holder centered middled">
