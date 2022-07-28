@@ -12,7 +12,7 @@ const loadreviews = (reviews) => ({
     reviews
 });
 
-const loadownerreviews = (reviews) => ({
+const loaduserreviews = (reviews) => ({
     type: LOAD_USERREVIEWS,
     reviews
   });
@@ -46,7 +46,15 @@ export const getReviews = () => async (dispatch) => {
     dispatch(loadreviews(reviews))}
   }
 
-
+export const getUserReviews = () => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/current/reviews`);
+    // console.log(response)
+    if (response.ok) {
+      const reviews = await response.json();
+        // console.log("rev",reviews)
+      dispatch(loaduserreviews(reviews.reviews));
+    }
+  };
 
   const initialState = {};
 
@@ -59,6 +67,12 @@ export const getReviews = () => async (dispatch) => {
       newState[review.id] = review;
     })
     return newState;
+    case LOAD_USERREVIEWS:
+       newState = {};
+      action.reviews.forEach(review => {
+        newState[review.id] = review;
+      })
+      return newState;
 
         default:
       return state;
