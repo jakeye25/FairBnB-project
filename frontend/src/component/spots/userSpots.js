@@ -44,7 +44,7 @@ const UserSpots = () => {
             </button>
           </div> */}
           <div className="centered">
-            <button onClick={() => dispatch(spotActions.deleteSpot(spot.id, user.id))}>
+            <button onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
               Delete
             </button>
           </div>

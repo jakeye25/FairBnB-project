@@ -22,7 +22,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path= "/createspots">
+          <Route path= "/spots/me" exact>
+            <UserSpots />
+          </Route>
+          <Route path= "/createspots" exact>
             <SpotCreateFormPage />
           </Route>
           <Route path="/users/signup">
@@ -36,9 +39,7 @@ function App() {
           exact >
             <SpotDetail />
           </Route>
-          <Route path= "/spots/me">
-            <UserSpots />
-          </Route>
+
         </Switch>
       )}
     </>
