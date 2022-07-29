@@ -123,7 +123,7 @@ export const getSpotReviews = (id) => async (dispatch) => {
       })
       return newState;
       case LOAD_SPOTREVIEWS:
-       newState = {};
+       newState = {...state};
       action.reviews.forEach(review => {
         newState[review.id] = review;
       })
