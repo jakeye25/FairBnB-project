@@ -5,11 +5,11 @@ import { NavLink, useParams } from "react-router-dom";
 
 const SpotReviews = () => {
     const reviewsObj = useSelector((state) => state.review)
-    console.log('reviewobj', reviewsObj)
-    console.log()
+    // console.log('reviewobj', reviewsObj)
+
     const reviews = Object.values(reviewsObj)
     const{spotId} = useParams()
-    console.log('spotid', spotId)
+    // console.log('spotid', spotId)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const SpotReviews = () => {
       }
 
       return (
-        
+
         <>
 
             {reviews.map((review) => (
