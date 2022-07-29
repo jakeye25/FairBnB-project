@@ -6,7 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 
 import './Navigation.css';
-import SpotsBrowser from '../spots/spotList';
+
 
 
 function Navigation({ isLoaded }){

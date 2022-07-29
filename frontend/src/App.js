@@ -44,11 +44,11 @@ function App() {
           <Route path="/users/signup" exact>
             <SignupFormPage />
           </Route>
-          <Route path= "/reviews" exact>
-            <ReviewsBrowser />
-          </Route>
           <Route path= "/reviews/me" exact>
             <UserReviews />
+          </Route>
+          <Route path= "/reviews" exact>
+            <ReviewsBrowser />
           </Route>
         </Switch>
       )}

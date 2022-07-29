@@ -27,10 +27,10 @@ const loadspotreviews = (reviews) => ({
     review
 });
 
-const updatereview = (review) => ({
-    type: UPDATE_REVIEW,
-    review
-  });
+// const updatereview = (review) => ({
+//     type: UPDATE_REVIEW,
+//     review
+//   });
 
   const removereview = (reviewId) => ({
     type: REMOVE_REVIEW,
@@ -56,6 +56,15 @@ export const getUserReviews = () => async (dispatch) => {
     }
   };
 
+  export const deleteReview= (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: 'delete',
+    });
+    if (response.ok) {
+      dispatch(removereview(reviewId));
+    }
+  };
+
   const initialState = {};
 
   const reviewReducer = (state = initialState, action) => {
@@ -72,6 +81,10 @@ export const getUserReviews = () => async (dispatch) => {
       action.reviews.forEach(review => {
         newState[review.id] = review;
       })
+      return newState;
+      case REMOVE_REVIEW:
+      newState = {...state}
+      delete newState[action.reviewId];
       return newState;
 
         default:

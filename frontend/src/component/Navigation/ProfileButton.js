@@ -38,12 +38,16 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           {/* <li>{user.username}</li> */}
+          <li>{user.firstName}</li>
           <li>{user.email}</li>
             <li>
             <Link to={`/spots/me`}>My Spots</Link>
             </li>
             <li>
             <Link to={`/spots/create`}>Create Spot</Link>
+            </li>
+            <li>
+            <Link to={`/reviews/me`}>My Review</Link>
             </li>
           <li>
             <button onClick={logout}>Log Out</button>
