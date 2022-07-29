@@ -34,7 +34,7 @@ function Navigation({ isLoaded }){
           {isLoaded && sessionLinks}
         </li>
       </ul>
-      <SpotsBrowser/>
+
     </>
   );
 }
