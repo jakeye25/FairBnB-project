@@ -21,7 +21,7 @@ const SpotReviews = () => {
       }
 
       return (
-        // <h1>testing</h1>
+        
         <>
 
             {reviews.map((review) => (
