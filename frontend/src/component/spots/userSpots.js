@@ -12,9 +12,9 @@ const UserSpots = () => {
 
     const spots = Object.values(spotsObj)
 
-    const { spotId} = useParams()
+    // const { spotId} = useParams()
     // const user = useSelector((state) => state.session.user)
-
+    console.log('spots', spots)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,14 +40,12 @@ const UserSpots = () => {
         <div>{spot.name}</div>
         <div className="centered">{spot.description}</div>
         <div className="centered">${spot.price}</div>
-
-          <div className="centered">
+        <div className="centered">
           <Link to={`/spots/${spot.id}/edit`}>Edit</Link>
-
-            <button onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
+          <button onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
               Delete
-            </button>
-          </div>
+          </button>
+        </div>
       </div>
 
         ))}

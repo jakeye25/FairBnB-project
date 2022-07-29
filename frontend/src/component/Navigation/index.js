@@ -6,10 +6,8 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 
 import './Navigation.css';
-// import SpotsList from '../spots/spotList';
-import SpotCreateFormPage from '../spots/spotCreate';
 import SpotsBrowser from '../spots/spotList';
-// import SpotDetail from '../spots/spotDetail';
+
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);

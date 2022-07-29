@@ -40,6 +40,9 @@ function ProfileButton({ user }) {
           {/* <li>{user.username}</li> */}
           <li>{user.email}</li>
             <li>
+            <Link to={`/spots/me`}>My Spots</Link>
+            </li>
+            <li>
             <Link to={`/spots/create`}>Create Spot</Link>
             </li>
           <li>
