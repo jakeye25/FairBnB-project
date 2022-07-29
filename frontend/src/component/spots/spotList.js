@@ -9,7 +9,7 @@ const SpotsBrowser = () => {
   const spotsObj = useSelector((state) => state.spot)
 
   const allspots = Object.values(spotsObj)
-  
+
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const SpotsBrowser = () => {
 return (
     <>
 
-       {allspots.map((spot) => (
+       {allspots && allspots.map((spot) => (
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
           <div>
             <img

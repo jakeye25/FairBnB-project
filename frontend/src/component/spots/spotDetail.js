@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
@@ -9,15 +9,17 @@ import SpotReviews from '../reviews/spotReviews';
 const SpotDetail = () => {
   const dispatch = useDispatch();
   const {spotId} = useParams();
+  const [isLoaded, setIsloaded] = useState(false)
   const spot = useSelector((state) => state.spot[spotId])
   // console.log('kkk', spot)
   useEffect(() => {
-    dispatch(getOneSpot(spotId));
+    dispatch(getOneSpot(spotId))
+    .then(()=>setIsloaded(true))
   }, [dispatch, spotId]);
 
   return (
-    <>
-      <div key={spot.id}>
+
+      isLoaded&&<div key={spot.id}>
         <div>
           <img
             className="spot-image"
@@ -31,8 +33,8 @@ const SpotDetail = () => {
         <div>
           <SpotReviews />
         </div>
-        </div>
-    </>
+      </div>
+
   );
 };
 
