@@ -12,7 +12,7 @@ const SpotReviews = () => {
 
     useEffect(() => {
         dispatch(getSpotReviews(id));
-      }, [dispatch]);
+      }, [dispatch, id]);
 
       if (!reviews.length) {
         return null;

@@ -28,7 +28,9 @@ const SpotDetail = () => {
         <div>{spot.name}</div>
         <div className="centered">{spot.description}</div>
         <div className="centered">${spot.price}</div>
-        <SpotReviews spot={spot}/>
+        <div>
+          <SpotReviews />
+        </div>
         </div>
     </>
   );
