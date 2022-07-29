@@ -32,19 +32,17 @@ function App() {
           <Route path= "/spots/create" exact>
             <SpotCreateFormPage />
           </Route>
-          <Route path= "/spots/:spotId/edit" exact>
+          <Route path="/spots/:spotId" >
+            <SpotDetail />
+          </Route>
+          <Route path= "/spots/:spotId/edit" >
             <SpotEditFormPage />
           </Route>
-          <Route path="/users/signup">
+          <Route path="/users/signup" exact>
             <SignupFormPage />
           </Route>
-          <Route path="/spots"
-          exact>
+          <Route path="/spots" exact>
             <SpotsBrowser />
-          </Route>
-          <Route path="/spots/:spotId"
-          exact >
-            <SpotDetail />
           </Route>
           <Route path= "/reviews" exact>
             <ReviewsBrowser />

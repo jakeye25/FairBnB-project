@@ -4,9 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+
 import './Navigation.css';
 // import SpotsList from '../spots/spotList';
 import SpotCreateFormPage from '../spots/spotCreate';
+import SpotsBrowser from '../spots/spotList';
 // import SpotDetail from '../spots/spotDetail';
 
 function Navigation({ isLoaded }){
@@ -21,21 +23,21 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/api/users/signup">Sign Up</NavLink>
+        <NavLink to="/users/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-        {/* <SpotsList /> */}
-        {/* <SpotCreateFormPage /> */}
-        {/* <SpotDetail /> */}
-      </li>
-    </ul>
+    <>
+      <ul>
+        <li>
+          <NavLink exact to="/">Home</NavLink>
+          {isLoaded && sessionLinks}
+        </li>
+      </ul>
+      <SpotsBrowser/>
+    </>
   );
 }
 
