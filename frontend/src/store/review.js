@@ -62,8 +62,9 @@ export const getSpotReviews = (id) => async (dispatch) => {
     // console.log(response)
     if (response.ok) {
       const reviews = await response.json();
-        // console.log("rev",reviews)
-      dispatch(loadspotreviews(reviews));
+        console.log("rev",reviews)
+
+      dispatch(loadspotreviews(reviews.reviews));
     }
   };
 

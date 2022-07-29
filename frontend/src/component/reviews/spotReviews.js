@@ -6,12 +6,14 @@ import { NavLink, useParams } from "react-router-dom";
 const SpotReviews = () => {
     const reviewsObj = useSelector((state) => state.review)
     console.log('reviewobj', reviewsObj)
+    console.log()
     const reviews = Object.values(reviewsObj)
-    const{id} = useParams()
+    const{spotId} = useParams()
+    console.log('spotid', spotId)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getSpotReviews(id));
+        dispatch(getSpotReviews(spotId));
       }, [dispatch]);
 
       if (!reviews.length) {
@@ -19,24 +21,25 @@ const SpotReviews = () => {
       }
 
       return (
-        <h1>testing</h1>
-        // <>
-        //     <h1>testing</h1>
-        //     {reviews.map((review) => (
-        //     <div key={review.id}>
-        //       {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
+        // <h1>testing</h1>
+        <>
 
-        //         {/* <div className="centered">spotId: {review.spotId}</div> */}
-        //         <div className="centered">Review: {review.review}</div>
-        //         <div className="centered">Stars Rating: {review.stars}</div>
-        //       {/* </NavLink> */}
+            {reviews.map((review) => (
+            <div key={review.id}>
+              {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
 
-        //         {/* <button onClick={() => dispatch(deleteReview(review.id))}>
-        //             Delete
-        //          </button> */}
-        //     </div>
-        // ))}
-        // </>
+                <div className="centered">UserId: {review.userId}</div>
+                <div className="centered">Review: {review.review}</div>
+                <div className="centered">Stars Rating: {review.stars}</div>
+                <ul></ul>
+              {/* </NavLink> */}
+
+                {/* <button onClick={() => dispatch(deleteReview(review.id))}>
+                    Delete
+                 </button> */}
+            </div>
+        ))}
+        </>
     );
 }
 
