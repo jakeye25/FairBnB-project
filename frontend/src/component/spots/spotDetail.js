@@ -27,6 +27,7 @@ const SpotDetail = () => {
         <div>{spot.name}</div>
         <div className="centered">{spot.description}</div>
         <div className="centered">${spot.price}</div>
+        
         </div>
     </>
   );

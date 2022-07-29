@@ -38,12 +38,15 @@ function SpotEditFormPage() {
       id: spotId,
       address, city, state, country, lat, lng, name, description, price, previewImage
     };
-
-    let returnedItem = await dispatch(updateSpot(payload))
-
-    if(returnedItem) {
+    let returnedSpot;
+    try{
+     returnedSpot = await dispatch(updateSpot(payload))
+    } catch (error) {
+      setErrorMessages({ overall: error.toString().slice(7) })
+    }
+    if(returnedSpot) {
       setErrorMessages({});
-      // history.push(`/spots/${returnedItem.id}`)
+      history.push(`/spots/${returnedSpot.id}`)
     }
   }
     const handleCancelClick = (e) => {
@@ -51,8 +54,6 @@ function SpotEditFormPage() {
         setErrorMessages({});
         // hideForm()
     }
-
-
 
   return (
     <section className="edit-form-holder centered middled">

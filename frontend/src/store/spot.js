@@ -95,20 +95,20 @@ export const createSpot = data => async dispatch => {
   }
 };
 
-  export const updateSpot = (data) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${data.id}`, {
+  export const updateSpot = (spot) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(spot)
     });
     console.log('res',response)
     if (response.ok) {
-      const spot = await response.json();
+      const data = await response.json();
       // console.log('lll', spot)
-      dispatch(update(spot));
-      return spot;
+      dispatch(update(data));
+      return data;
     }
   };
 

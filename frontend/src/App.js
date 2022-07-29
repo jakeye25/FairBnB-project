@@ -11,6 +11,7 @@ import SpotCreateFormPage from "./component/spots/spotCreate";
 import SpotDetail from "./component/spots/spotDetail";
 import ReviewsBrowser from "./component/reviews/reviewBrowser";
 import UserReviews from "./component/reviews/userReviews";
+import SpotEditFormPage from "./component/spots/spotEdit";
 
 
 function App() {
@@ -28,8 +29,11 @@ function App() {
           <Route path= "/spots/me" exact>
             <UserSpots />
           </Route>
-          <Route path= "/createspots" exact>
+          <Route path= "/spots/create" exact>
             <SpotCreateFormPage />
+          </Route>
+          <Route path= "/spots/:spotId/edit" exact>
+            <SpotEditFormPage />
           </Route>
           <Route path="/users/signup">
             <SignupFormPage />
