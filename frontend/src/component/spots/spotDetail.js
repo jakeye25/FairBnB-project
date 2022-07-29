@@ -3,12 +3,14 @@ import { useEffect } from "react";
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
+import SpotReviews from '../reviews/spotReviews';
+
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
   const {spotId} = useParams();
-  const spot = useSelector((state) => state.spot)
-  console.log('kkk', spot)
+  const spot = useSelector((state) => state.spot[spotId])
+  // console.log('kkk', spot)
   useEffect(() => {
     dispatch(getOneSpot(spotId));
   }, [dispatch, spotId]);
@@ -26,7 +28,7 @@ const SpotDetail = () => {
         <div>{spot.name}</div>
         <div className="centered">{spot.description}</div>
         <div className="centered">${spot.price}</div>
-
+        <SpotReviews spot={spot}/>
         </div>
     </>
   );
