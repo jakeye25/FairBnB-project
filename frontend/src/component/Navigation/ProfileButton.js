@@ -39,7 +39,7 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           {/* <li>{user.username}</li> */}
           <li>{user.firstName}</li>
-          <li>{user.email}</li>
+          {/* <li>{user.email}</li> */}
             <li>
             <Link to={`/spots/me`}>My Spots</Link>
             </li>

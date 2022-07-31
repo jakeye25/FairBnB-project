@@ -4,15 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {useHistory, useParams} from 'react-router-dom'
 import * as sessionActions from "../../store/session";
 import { createReview } from "../../store/review";
+import { Redirect } from "react-router-dom";
 import ErrorMessage from '../spots/ErrorMessage';
 
 function ReviewCreateFormPage() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector(state =>state.session.user)
-    let userId = user.id
+    const [isLoaded, setIsloaded] = useState(false)
     const {spotId} = useParams()
+    const sessionUserId = useSelector(state =>state.session.user)
+    console.log('id', sessionUserId)
+
     console.log('spotid',spotId)
     const reviews = useSelector((state) => state.review)
     console.log('rev', reviews)
@@ -21,6 +24,8 @@ function ReviewCreateFormPage() {
 
     const [errorMessages, setErrorMessages] = useState({});
 
+    // if (!sessionUser) alert("You must login to leave review!")
+    let userId = sessionUserId
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,6 +33,7 @@ function ReviewCreateFormPage() {
     let createdReview;
     try{
         createdReview = await dispatch(createReview(newReview))
+        .then(()=>setIsloaded(true))
     } catch (error) {
         setErrorMessages({ overall: error.toString().slice(7) })
     }
@@ -42,7 +48,7 @@ function ReviewCreateFormPage() {
     }
 
     return (
-        <section className="new-form-holder centered middled">
+        isLoaded&&<section className="new-form-holder centered middled">
 
       <ErrorMessage message={errorMessages.overall} />
         <form className="create-review-form" onSubmit={handleSubmit}>
