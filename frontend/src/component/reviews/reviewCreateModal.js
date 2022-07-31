@@ -1,7 +1,10 @@
 
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
 import ReviewCreateFormPage from './reviewCreate';
+
 
 function ReviewCreateModal({reviewId}) {
   const [showModal, setShowModal] = useState(false);

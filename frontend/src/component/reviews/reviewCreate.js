@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory, useParams} from 'react-router-dom'
 import { createReview } from "../../store/review";
-import ErrorMessage from "../spots/ErrorMessage";
+
 
 function ReviewCreateFormPage({reviewId, onClose}) {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.review);
-    console.log('state',reviews)
+    // console.log('state',reviews)
     const review = reviews[reviewId]
     const [reviewContent, setReviewContent] = useState(review? review.review : "")
     const [stars, setStars] = useState(review? review.stars: "")
@@ -31,10 +31,10 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
         dispatch(createReview(createPayload))
             .then(()=> onClose())
-            // .catch(async(res)=> {
-            //     const data = await res.json()
-            //     if (data && data.errors) setErrors(data.errors)
-            // })
+            .catch(async(res)=> {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
         }
 
     return (
