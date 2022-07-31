@@ -70,32 +70,19 @@ export const getSpotReviews = (id) => async (dispatch) => {
 
   export const createReview = data => async dispatch => {
     console.log('before fetching', data)
-    try{
+
       const response = await csrfFetch(`/api/spots/${data.spotId}/reviews`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
-      });
-      if(!response.ok){
-        let error;
-        let errorJSON;
-          error = await response.text();
-          try {
-            errorJSON = JSON.parse(error);
-          }
-          catch {
-            throw new Error(error);
-          }
-          throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
-        }
+      })
+      if(response.ok) {
+
         const review = await response.json()
         // console.log(data)
         dispatch(addreview(review))
         return review
-    }
-    catch (error) {
-      throw error;
-    }
+      }
   };
 
   export const deleteReview= (reviewId) => async dispatch => {
@@ -131,7 +118,9 @@ export const getSpotReviews = (id) => async (dispatch) => {
       })
       return newState;
       case ADD_REVIEW:
-      newState = { ...state, [action.review.id]: action.review}
+        newState = {...state}
+        newState[action.review.id] = {...newState[action.review.id], ...action.review}
+        return newState
                 return newState;
       case REMOVE_REVIEW:
       newState = {...state}
