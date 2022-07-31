@@ -25,7 +25,7 @@ const UserReviews = () => {
             <span>
               <NavLink key={review.id} to={`/reviews/${review.id}`}>
 
-                {/* <div className="centered">spotId: {review.spotId}</div> */}
+                <div className="centered">spotId: {review.spotId}</div>
                 <div className="centered">Review: {review.review}</div>
                 <div className="centered">Stars Rating: {review.stars}</div>
               </NavLink>

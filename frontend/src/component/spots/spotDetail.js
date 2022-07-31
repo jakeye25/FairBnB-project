@@ -11,6 +11,7 @@ const SpotDetail = () => {
   const dispatch = useDispatch();
   const {spotId} = useParams();
   const [isLoaded, setIsloaded] = useState(false)
+  const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot[spotId])
   // console.log('kkk', spot)
   useEffect(() => {
@@ -35,7 +36,7 @@ const SpotDetail = () => {
         </ul>
         <div>
           <SpotReviews />
-          <ReviewCreateModal/>
+          {user &&<ReviewCreateModal/>}
         </div>
       </div>
 
