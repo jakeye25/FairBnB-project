@@ -69,8 +69,9 @@ export const getSpotReviews = (id) => async (dispatch) => {
   };
 
   export const createReview = data => async dispatch => {
+    console.log('before fetching', data)
     try{
-      const response = await csrfFetch(`/api/spots/${data.id}/reviews`, {
+      const response = await csrfFetch(`/api/spots/${data.spotId}/reviews`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

@@ -14,7 +14,7 @@ function SpotEditFormPage() {
   // let spot = useSelector(state => Object.values(state.spot))
 
   const {spotId} = useParams()
-
+  // console.log('spotedit', ...spot)
   const dispatch = useDispatch();
 
   const [address, setAddress] = useState('');

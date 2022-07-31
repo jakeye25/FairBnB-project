@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
 import SpotReviews from '../reviews/spotReviews';
+import ReviewCreateFormPage from '../reviews/reviewCreate';
 
 
 const SpotDetail = () => {
@@ -34,6 +35,7 @@ const SpotDetail = () => {
         </ul>
         <div>
           <SpotReviews />
+          <ReviewCreateFormPage/>
         </div>
       </div>
 
