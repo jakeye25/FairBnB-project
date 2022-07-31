@@ -8,6 +8,7 @@ import LoginFormModal from '../LoginFormModal';
 
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
+import DemoUser from '../Demo User/demouser';
 
 
 
@@ -24,6 +25,7 @@ function Navigation({ isLoaded }){
       <>
         <LoginFormModal />
         <SignupFormModal />
+        <DemoUser />
         {/* <NavLink to="/users/signup">Sign Up</NavLink> */}
       </>
     );
