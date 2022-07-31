@@ -14,7 +14,7 @@ const UserSpots = () => {
 
     // const { spotId} = useParams()
     // const user = useSelector((state) => state.session.user)
-    console.log('spots', spots)
+    // console.log('spots', spots)
     const dispatch = useDispatch();
 
     useEffect(() => {

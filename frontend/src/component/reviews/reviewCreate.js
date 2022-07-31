@@ -16,8 +16,8 @@ function ReviewCreateFormPage() {
     console.log('spotid',spotId)
     const reviews = useSelector((state) => state.review)
     console.log('rev', reviews)
-    const [review, setReview] = useState();
-    const [stars, setStars] = useState();
+    const [review, setReview] = useState('');
+    const [stars, setStars] = useState('');
 
     const [errorMessages, setErrorMessages] = useState({});
 
