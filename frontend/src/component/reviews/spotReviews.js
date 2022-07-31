@@ -6,7 +6,7 @@ import { NavLink, useParams } from "react-router-dom";
 const SpotReviews = () => {
     const reviewsObj = useSelector((state) => state.review)
     // console.log('reviewobj', reviewsObj)
-    const [isLoaded, setIsloaded] = useState(false)
+
     const reviews = Object.values(reviewsObj)
     const{spotId} = useParams()
     // console.log('spotid', spotId)
