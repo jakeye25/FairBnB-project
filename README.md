@@ -2,4 +2,14 @@
 
 **Overview**
 
-FAirBnB is a AirBnB clone project. Similar to the actual app, you can create a user profile, add spot profile, add reviews and image to your spots. Additionally, you can also upload images of your spots.
+FAirBnB is a AirBnB clone project that operates an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities. The backend of FAirBnB is built on Express with a PostgreSQL database. Frontend rendering is handled with React.
+
+
+##Features
+
+* Sign up/in with email
+* Shows all spots
+* Create/Edit/Delete spots
+* Shows all spots reviews
+* Create/Edit/Delete reviews
+
