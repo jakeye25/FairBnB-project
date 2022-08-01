@@ -7,8 +7,8 @@ export default function DemoUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const email = "user2@user.io";
-    const password = "password2";
+    const email = "user5@user.io";
+    const password = "password5";
     return dispatch(sessionActions.login({ email, password }));
   };
 
