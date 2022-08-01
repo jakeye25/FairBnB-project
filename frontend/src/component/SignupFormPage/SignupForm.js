@@ -31,57 +31,82 @@ function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Firstname
-        <input
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstname(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Lastname
-        <input
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastname(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <>
+        <div className="user">
+        <header class="user__header">
+        {/* <img src="https://www.doz.com/wp-content/uploads/2015/03/airbnb-logo.png" alt="" /> */}
+        <h1 className="user__title">Welcome to FAirBnB</h1>
+        </header>
+        <form className="form"
+        onSubmit={handleSubmit}>
+
+        <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <div className="form__group">
+        <label>
+            Email
+            <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="form__input"
+            />
+        </label>
+        </div>
+        <div className="form__group">
+        <label>
+            Firstname
+            <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstname(e.target.value)}
+            required
+            className="form__input"
+            />
+        </label>
+        </div>
+        <div className="form__group">
+        <label>
+            Lastname
+            <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastname(e.target.value)}
+            required
+            className="form__input"
+            />
+        </label>
+        </div>
+        <div className="form__group">
+        <label>
+            Password
+            <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="form__input"
+            />
+        </label>
+        </div>
+        <div className="form__group">
+        <label>
+            Confirm Password
+            <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            className="form__input"
+            />
+        </label>
+        </div>
+        <button className="btn" type="submit">Sign Up</button>
+        </form>
+        </div>
+    </>
   );
 }
 

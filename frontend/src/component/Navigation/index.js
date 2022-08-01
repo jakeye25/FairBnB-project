@@ -53,7 +53,7 @@ function Navigation({ isLoaded }){
             {/* Home */}
             <img
             className = "header__icon"
-            src = "https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"
+            src = "https://ebenezersuites.com/wp-content/uploads/2016/06/airbnb-logo-266x300@2x.png"
             alt=''
             />
             </NavLink>
