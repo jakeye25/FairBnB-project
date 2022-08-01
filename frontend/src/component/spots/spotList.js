@@ -3,6 +3,7 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from '../../store/spot';
+import './spot.css';
 
 const SpotsBrowser = () => {
 
@@ -21,21 +22,24 @@ const SpotsBrowser = () => {
     }
 return (
     <>
-
+      <div className ='wrapper'>
+        <div className='card'>
        {allspots && allspots.map((spot) => (
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
           <div>
             <img
-              className="spot-image"
+              className="card__image"
               alt={spot.previewImage}
               src={spot.previewImage}
             />
             </div>
-            <div>{spot.name}</div>
-            <div className="centered">{spot.description}</div>
-            <div className="centered">${spot.price}</div>
+            <div className='card__name'>{spot.name}</div>
+            <div className="card_des">{spot.description}</div>
+            <div className="card__price">${spot.price}</div>
           </NavLink>
             ))}
+        </div>
+    </div>
   </>
   );
 };

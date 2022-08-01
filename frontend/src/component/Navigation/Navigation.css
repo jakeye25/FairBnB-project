@@ -25,3 +25,7 @@
     width: 15vw;
     margin-right: 80px;
 }
+.profile__icon{
+    display: flex;
+    margin-right: 80px;
+}
