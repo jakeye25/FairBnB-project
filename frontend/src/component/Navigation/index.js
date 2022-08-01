@@ -18,21 +18,27 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <div className='header'>
+        <div className='profile__icon'>
+          <ProfileButton user={sessionUser} />
+        </div>
+      </div>
     );
   } else {
     sessionLinks = (
       <>
-        <div>
-          <LoginFormModal />
-        </div>
-        <div>
-          <SignupFormModal />
-        </div>
-        <div>
+        <div className='header'>
+        <div className='header__middle'>
           <DemoUser />
         </div>
+        <div className='header__right'>
+          <div>
+            <SignupFormModal />
 
+            <LoginFormModal />
+          </div>
+        </div>
+        </div>
         {/* <NavLink to="/users/signup">Sign Up</NavLink> */}
       </>
     );
@@ -40,13 +46,21 @@ function Navigation({ isLoaded }){
 
   return (
     <>
-      <ul>
-        <li>
-          <NavLink exact to="/">Home</NavLink>
-          {isLoaded && sessionLinks}
-        </li>
-      </ul>
+      <div className='header'>
 
+        <div>
+          <NavLink exact to="/">
+            {/* Home */}
+            <img
+            className = "header__icon"
+            src = "https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"
+            alt=''
+            />
+            </NavLink>
+          {isLoaded && sessionLinks}
+        </div>
+
+      </div>
     </>
   );
 }
