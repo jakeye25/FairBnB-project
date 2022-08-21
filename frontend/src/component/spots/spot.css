@@ -1,4 +1,4 @@
-*,
+/* *,
 *::before,
 *::after {
     box-sizing: border-box;
@@ -44,4 +44,4 @@ body {
 
 .card__des{
     padding: 0 1rem;
-}
+} */

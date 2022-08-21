@@ -33,9 +33,9 @@ return (
               src={spot.previewImage}
             />
             </div>
-            <div className='card__name'>{spot.name}</div>
-            <div className="card_des">{spot.description}</div>
-            <div className="card__price">${spot.price}</div>
+            <div className='card__name'>{spot.city},{spot.state}</div>
+            {/* <div className="card_des">{spot.state}</div> */}
+            <div className="card__price">${spot.price} night</div>
           </NavLink>
             ))}
         </div>
