@@ -35,7 +35,8 @@ const SpotDetail = () => {
         <div className="centered">{spot.state}</div>
         <div className="centered">{spot.country}</div>
         <div className="centered">{spot.description}</div>
-        <div className="centered">${spot.price}</div>
+        <div className='spotRating'>{spot.avgStarRating}</div>
+        <div className="centered">${spot.price} night</div>
         <ul>
         </ul>
         <div>
