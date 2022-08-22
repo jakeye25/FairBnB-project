@@ -103,7 +103,7 @@ export const createSpot = data => async dispatch => {
       },
       body: JSON.stringify(spot)
     });
-    console.log('res',response)
+    // console.log('res',response)
     if (response.ok) {
       const data = await response.json();
       // console.log('lll', spot)

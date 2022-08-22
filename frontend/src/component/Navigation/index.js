@@ -9,6 +9,7 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
 import DemoUser from '../Demo User/demouser';
+import HomeRightBtn from './HomeRightBtn';
 
 
 
@@ -29,13 +30,15 @@ function Navigation({ isLoaded }){
       <>
         <div className='header'>
         <div className='header__middle'>
+          <i class="fa-duotone fa-square-user"></i>
           <DemoUser />
         </div>
         <div className='header__right'>
           <div>
-            <SignupFormModal />
+            {/* <SignupFormModal />
 
-            <LoginFormModal />
+            <LoginFormModal /> */}
+            <HomeRightBtn/>
           </div>
         </div>
         </div>

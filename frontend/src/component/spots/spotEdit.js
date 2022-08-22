@@ -11,7 +11,8 @@ import ErrorMessage from './ErrorMessage';
 
 function SpotEditFormPage() {
   const history = useHistory();
-  // let spot = useSelector(state => Object.values(state.spot))
+  let spot = useSelector(state => Object.values(state.spot))
+  console.log('editspot', spot)
 
   const {spotId} = useParams()
   // console.log('spotedit', ...spot)
