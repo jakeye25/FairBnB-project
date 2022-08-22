@@ -1,8 +1,9 @@
-body {
+/* body {
     background: linear-gradient(45deg, #FC466B, #3F5EFB);
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
   }
+*/
 
   /* .container {
     position: absolute;
@@ -11,7 +12,7 @@ body {
     left: 50%;
   } */
 
-  form {
+  /* form {
     background: white;
     padding: 3em;
     height: 5px;
@@ -55,4 +56,4 @@ body {
     font-weight: 400;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-  }
+  }  */
