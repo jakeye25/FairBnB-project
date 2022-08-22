@@ -7,7 +7,7 @@ const UserReviews = () => {
     const reviewsObj = useSelector((state) => state.review)
 
     const reviews = Object.values(reviewsObj)
-
+    // console.log('reviews', reviews)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,7 +15,9 @@ const UserReviews = () => {
       }, [dispatch]);
 
       if (!reviews.length) {
-        return null;
+        return (
+          <h1>No Reviews Left</h1>
+        );
       }
 
       return (

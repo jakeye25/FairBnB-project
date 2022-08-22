@@ -12,7 +12,7 @@ const SpotReviews = () => {
     // console.log('spotid', spotId)
     const dispatch = useDispatch();
 
-    const filteredReviews = reviews.filter(review => review?.spotId ===+spotId)
+    const filteredReviews = reviews.filter(review => review?.spotId === +spotId)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -20,7 +20,9 @@ const SpotReviews = () => {
       }, [dispatch, reviews.length]);
 
       if (!reviews.length) {
-        return null;
+        return (
+          <h2>No Current Review</h2>
+        );
       }
 
       return (

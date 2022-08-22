@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory, useParams} from 'react-router-dom'
 import { createReview } from "../../store/review";
+import { getOneSpot } from "../../store/spot";
 
 
 function ReviewCreateFormPage({reviewId, onClose}) {
@@ -15,13 +16,19 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const [errors, setErrors] = useState([]);
 
     const {spotId} = useParams()
-    const spots = useSelector(state => state.spots)
+    // const spots = useSelector(state => state.spots)
     const user = useSelector(state =>state.session.user)
 
     const userId = user.id
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setErrors([]);
+        if (!reviewContent)
+        return setErrors(['Please enter review comment'])
+        if (stars>5 || stars<1)
+        return setErrors(['Rating must be within range 1-5'])
+
         const createPayload = {
             userId,
             spotId: spotId,
@@ -35,6 +42,8 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
+        
+
         }
 
     return (
@@ -60,6 +69,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                     <label>
                         starts
                         <input value={stars}
+
                         onChange={(e)=>setStars(e.target.value)}
                         type='number'
                         placeholder='place a rating'

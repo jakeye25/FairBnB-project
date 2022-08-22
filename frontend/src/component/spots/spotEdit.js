@@ -12,22 +12,23 @@ import ErrorMessage from './ErrorMessage';
 function SpotEditFormPage() {
   const history = useHistory();
   let spot = useSelector(state => Object.values(state.spot))
-  console.log('editspot', spot)
+  // console.log('editspot', spot)
 
   const {spotId} = useParams()
-  // console.log('spotedit', ...spot)
+  let editSpot= spot.find(ele => ele.id == spotId)
+  // console.log('editspot', editSpot)
   const dispatch = useDispatch();
 
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [country, setCountry] = useState('');
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [previewImage, setImage] = useState('');
+  const [address, setAddress] = useState(editSpot.address);
+  const [city, setCity] = useState(editSpot.city);
+  const [state, setState] = useState(editSpot.state);
+  const [country, setCountry] = useState(editSpot.country);
+  const [lat, setLat] = useState(editSpot.lat);
+  const [lng, setLng] = useState(editSpot.lng);
+  const [name, setName] = useState(editSpot.name);
+  const [description, setDescription] = useState(editSpot.description);
+  const [price, setPrice] = useState(editSpot.price);
+  const [previewImage, setImage] = useState(editSpot.previewImage);
   const [errorMessages, setErrorMessages] = useState({});
 
 
@@ -53,7 +54,7 @@ function SpotEditFormPage() {
     const handleCancelClick = (e) => {
         e.preventDefault();
         setErrorMessages({});
-        // hideForm()
+        history.push(`/spots/${spotId}`);
     }
 
   return (

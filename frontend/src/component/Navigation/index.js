@@ -30,7 +30,7 @@ function Navigation({ isLoaded }){
       <>
         <div className='header'>
         <div className='header__right'>
-        
+
           <div>
             <DemoUser />
 
@@ -58,6 +58,7 @@ function Navigation({ isLoaded }){
             src = "https://ebenezersuites.com/wp-content/uploads/2016/06/airbnb-logo-266x300@2x.png"
             alt=''
             />
+            {/* <i className="fa-solid fa-hotel"></i> */}
             </NavLink>
           {isLoaded && sessionLinks}
         </div>
