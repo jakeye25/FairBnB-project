@@ -19,22 +19,21 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div className='header'>
+       /* <div className='header'>*/
         <div className='profile__icon'>
           <ProfileButton user={sessionUser} />
         </div>
-      </div>
+      /* </div> */
     );
   } else {
     sessionLinks = (
       <>
         <div className='header'>
-        <div className='header__middle'>
-
-          <DemoUser />
-        </div>
         <div className='header__right'>
+        
           <div>
+            <DemoUser />
+
             <SignupFormModal />
 
             <LoginFormModal />

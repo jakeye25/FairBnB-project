@@ -1,5 +1,5 @@
 // frontend/src/components/SignupFormPage/index.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -17,8 +17,17 @@ function SignupForm() {
 
   if (sessionUser) return <Redirect to="/" />;
 
+  // useEffect(() => {
+  //   const errors = [];
+  //   if (!email.includes("@")) errors.push("Please provide a valid Email");
+  //   setErrors(errors);
+  // }, [email]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!email.includes("@"))
+    return setErrors(['Please provide a valid email'])
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
