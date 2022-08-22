@@ -3,7 +3,7 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from '../../store/spot';
-import './spot.css';
+import './spotList.css';
 
 const SpotsBrowser = () => {
 
@@ -29,7 +29,7 @@ return (
           <div>
             <img
               className="card__image"
-              alt={spot.previewImage}
+              alt=''
               src={spot.previewImage}
             />
             </div>
