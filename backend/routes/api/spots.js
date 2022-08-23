@@ -79,8 +79,31 @@ router.get('/', async (req, res) => {
       limit: pagination.size,
     offset: pagination.size * pagination.page,
     })
+
+  let spot=[];
+
+  for (let ele of spots){
+    const reviewRating = await Review.findAll({
+          where: {
+              spotId: ele.id
+          },
+          attributes: [
+              [sequelize.fn("avg", sequelize.col('stars')), "avgStarRating"]
+          ],
+          raw: true,
+      })
+
+
+  data = {
+    ...ele.dataValues,
+    avgStarRating:  reviewRating[0].avgStarRating
+
+  }
+  spot.push(data)
+  }
+
     res.json(
-      {Spot: spots,
+      {Spot: spot,
       page: pagination.page,
       size: pagination.size}
       )
@@ -135,7 +158,7 @@ if(!spots) {
             spotId
         },
         attributes: [
-            [sequelize.fn("avg", sequelize.col('stars')), "avgStatRating"]
+            [sequelize.fn("avg", sequelize.col('stars')), "avgStarRating"]
         ],
         raw: true,
     })
@@ -154,7 +177,7 @@ if(!spots) {
   const result = spots.toJSON()
 
   result.numReviews = numReviews;
-  result.avgStarRating = parseFloat(reviewRating[0].avgStatRating);
+  result.avgStarRating = parseFloat(reviewRating[0].avgStarRating);
   result.Images = images;
   result.Owner = owner
   res.json(result);
