@@ -9,7 +9,7 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
 import DemoUser from '../Demo User/demouser';
-import HomeRightBtn from './HomeRightBtn';
+// import HomeRightBtn from './HomeRightBtn';
 
 
 
@@ -53,10 +53,11 @@ function Navigation({ isLoaded }){
         <div>
           <NavLink exact to="/">
             {/* Home */}
+
             <img
             className = "header__icon"
             src = "https://ebenezersuites.com/wp-content/uploads/2016/06/airbnb-logo-266x300@2x.png"
-            alt=''
+            alt='logo'
             />
             {/* <i className="fa-solid fa-hotel"></i> */}
             </NavLink>

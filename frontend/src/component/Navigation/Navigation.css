@@ -14,7 +14,7 @@
 }
 .header__icon{
     object-fit: contain;
-    height: 50px;
+    height: 100px;
     margin-left: 50px;
 }
 /* .header__middle{
