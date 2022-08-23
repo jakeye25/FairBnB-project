@@ -25,12 +25,14 @@ const UserReviews = () => {
 
             {reviews.map((review) => (
             <span>
-              <NavLink key={review.id} to={`/reviews/${review.id}`}>
+              <div key={review.id}
+              // to={`/reviews/${review.id}`}
+              >
 
                 <div className="centered">spotId: {review.spotId}</div>
                 <div className="centered">Review: {review.review}</div>
                 <div className="centered">Stars Rating: {review.stars}</div>
-              </NavLink>
+              </div>
 
                 <button onClick={() => dispatch(deleteReview(review.id))}>
                     Delete

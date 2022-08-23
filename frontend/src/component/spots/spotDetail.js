@@ -47,7 +47,7 @@ const SpotDetail = () => {
         <div className="centered">{spot.description}</div>
         <div className='spotRating'>
           <i className="fa-solid fa-star"></i>
-          {spot.avgStarRating? spot.avgStarRating : 0}</div>
+          {spot.avgStarRating? spot.avgStarRating.toFixed(2) : 0}</div>
         <div className="centered">${spot.price} night</div>
         <ul>
         </ul>

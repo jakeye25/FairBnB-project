@@ -10,7 +10,7 @@ const SpotsBrowser = () => {
   const spotsObj = useSelector((state) => state.spot)
 
   const allspots = Object.values(spotsObj)
-
+  console.log('allspots', allspots)
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,6 +32,10 @@ return (
               alt=''
               src={spot.previewImage}
             />
+            </div>
+            <div>
+            <i className="fa-solid fa-star"></i>
+            {spot.avgStarRating? spot.avgStarRating.toFixed(2) : 0}
             </div>
             <div className='card__name'>{spot.city},{spot.state}</div>
             {/* <div className="card_des">{spot.state}</div> */}
