@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
 import SpotReviews from '../reviews/spotReviews';
 import ReviewCreateModal from '../reviews/reviewCreateModal';
+import { getSpotReviews } from '../../store/review';
 
 
 const SpotDetail = () => {
@@ -15,13 +16,18 @@ const SpotDetail = () => {
   const spot = useSelector((state) => state.spot[spotId])
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
-  console.log('spotReview', review[spotId])
+  console.log('spot: ', spot)
+  console.log('spotReview', review)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId ))
     .then(()=>setIsloaded(true))
-  }, [dispatch, spotId]);
+  }, [dispatch, spotId, review]);
 
+  useEffect(() => {
+    dispatch(getSpotReviews(spotId))
+    .then(()=>setIsloaded(true))
+  }, [dispatch, review]);
 
   return (
 
