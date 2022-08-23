@@ -35,7 +35,7 @@ const SpotDetail = () => {
         <div>
           <img
             className="spot-image"
-            alt={spot.previewImage}
+            alt='Image'
             src={spot.previewImage}
           />
         </div>

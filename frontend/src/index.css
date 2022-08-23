@@ -8,5 +8,6 @@ body {
     color: #484848;
     background-color: #fff;
     margin: 0;
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   }
