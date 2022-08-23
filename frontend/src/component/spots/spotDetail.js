@@ -16,8 +16,8 @@ const SpotDetail = () => {
   const spot = useSelector((state) => state.spot[spotId])
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
-  console.log('spot: ', spot)
-  console.log('spotReview', review)
+  // console.log('spot: ', spot)
+  // console.log('spotReview', review)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId ))
@@ -47,7 +47,7 @@ const SpotDetail = () => {
         <div className="centered">{spot.description}</div>
         <div className='spotRating'>
           <i className="fa-solid fa-star"></i>
-          {spot.avgStarRating? spot.avgStarRating.toFixed(2) : 0}</div>
+          {spot.avgStarRating? spot.avgStarRating.toFixed(2) : 0.00}</div>
         <div className="centered">${spot.price} night</div>
         <ul>
         </ul>
