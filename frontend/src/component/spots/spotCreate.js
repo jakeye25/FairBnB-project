@@ -86,8 +86,8 @@ function SpotCreateFormPage() {
         <input
           type="number"
           placeholder="Lat"
-          min="-180"
-          max="180"
+          min="-90"
+          max="90"
           required
           value={lat}
           onChange={(e) => setLat(e.target.value)} />
@@ -125,7 +125,7 @@ function SpotCreateFormPage() {
         <ErrorMessage label={"Price"} message={errorMessages.price} />
         <input
           type="url"
-          placeholder="Image Url"
+          placeholder="Only jpg, jpeg and png Image url valid"
           required
           value={previewImage}
           onChange={(e) => setImageUrl(e.target.value)} />

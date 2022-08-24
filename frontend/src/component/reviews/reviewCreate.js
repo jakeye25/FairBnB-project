@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams} from 'react-router-dom'
 import { createReview } from "../../store/review";
 import { getOneSpot } from "../../store/spot";
+import './reviewCreate.css';
 
 
 function ReviewCreateFormPage({reviewId, onClose}) {
@@ -14,12 +15,30 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const [reviewContent, setReviewContent] = useState(review? review.review : "")
     const [stars, setStars] = useState(review? review.stars: "")
     const [errors, setErrors] = useState([]);
+    const [showReviewCreate, setshowReviewCreate] = useState(false);
 
     const {spotId} = useParams()
     // const spots = useSelector(state => state.spots)
     const user = useSelector(state =>state.session.user)
 
     const userId = user.id
+
+    const openMenu = () => {
+        if (showReviewCreate) return;
+        setshowReviewCreate(true);
+      };
+
+    useEffect(() => {
+        if (!showReviewCreate) return;
+
+        const closeMenu = () => {
+            setshowReviewCreate(false);
+        };
+
+        document.addEventListener('click', closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+      }, [showReviewCreate]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -49,34 +68,36 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     return (
 
         <section>
+                <div onClick={openMenu}>
+                    <button className="createreviewBtn">Any great experiences? Click here and leave your thoughts here!!! </button>
 
-            <form
+                </div>
+            {showReviewCreate && <form
                 onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error,index) => (
                             <li key={index}>{error}</li>
                         ))}
                     </ul>
-                    <label>
-                        Review
+
                         <input
                             value={reviewContent}
                             onChange={(e)=>setReviewContent(e.target.value)}
-                            placeholder='review'
+                            placeholder='leave your review'
                             type='text'
                             />
-                    </label>
-                    <label>
-                        starts
+
+                    <br></br>
+
                         <input value={stars}
 
                         onChange={(e)=>setStars(e.target.value)}
                         type='number'
                         placeholder='place a rating'
                         />
-                    </label>
+
                     <button type='submit'>Create</button>
-            </form>
+            </form>}
         </section>
     );
 };
