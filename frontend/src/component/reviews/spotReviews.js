@@ -4,6 +4,8 @@ import { getSpotReviews } from "../../store/review";
 import { NavLink, useParams } from "react-router-dom";
 
 const SpotReviews = () => {
+
+  const [isLoaded, setIsloaded] = useState(false)
     const reviewsObj = useSelector((state) => state.review)
     // console.log('reviewobj', reviewsObj)
 
@@ -12,24 +14,24 @@ const SpotReviews = () => {
     // console.log('spotid', spotId)
     const dispatch = useDispatch();
 
-    const filteredReviews = reviews.filter(review => review?.spotId === +spotId)
+    // const filteredReviews = reviews.filter(review => review?.spotId === +spotId)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
-        // .then(()=>setIsloaded(true));
-      }, [dispatch, reviews.length]);
+        .then(()=>setIsloaded(true));
+      }, [dispatch, spotId]);
 
-      if (!reviews.length) {
-        return (
-          <h2>No Current Review</h2>
-        );
-      }
+      // if (!reviews.length) {
+      //   return (
+      //     <h2>No Current Review</h2>
+      //   );
+      // }
 
       return (
 
-        <>
+        isLoaded &&<>
 
-            {filteredReviews && filteredReviews.map((review) => (
+          {reviews.length ? reviews.map((review) => (
             <div key={review.id}>
               {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
 
@@ -43,8 +45,11 @@ const SpotReviews = () => {
                     Delete
                  </button> */}
             </div>
-        ))}
-        </>
+
+
+          ))
+          : <h4>no current review</h4>}
+    </>
     );
 }
 

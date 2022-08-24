@@ -8,6 +8,10 @@
 
 }
 
+.spotdetail__head{
+    display: flex;
+    flex-direction: column;
+}
 .spotdetail__head1{
     font-size: 26px;
     font-weight: 600;
@@ -15,6 +19,7 @@
     height: 30px;
     color: #222222;
     margin-bottom: 10px;
+
 }
 
 .spotdetail__head2 {
@@ -25,6 +30,7 @@
     font-style: normal;
     height: 20px;
     color: #222222;
+
 }
 
 .spot-image{

@@ -35,15 +35,17 @@ const SpotDetail = () => {
 
 
       isLoaded&&<div key={spot.id} className="spotdetail__wrapper">
-        <div className='spotdetail__head1'>{spot.name}</div>
-        <div className='spotdetail__head2'>
-          <div className='spotRating'>
-            <i className="fa-solid fa-star"></i>
-            {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : '0.00'} ~ </div>
-          <div>{numReivews} reviews ~</div>
-          <div className="centered"> {spot.city}, </div>
-          <div className="centered">{spot.state}, </div>
-          <div className="centered">{spot.country}</div>
+        <div className='spotdetail__head'>
+            <div className='spotdetail__head1'>{spot.name}</div>
+              <div className='spotdetail__head2'>
+                <div className='spotRating'>
+                  <i className="fa-solid fa-star"></i>
+                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} ~ </div>
+                <div>{numReivews} reviews ~</div>
+                <div className="centered"> {spot.city}, </div>
+                <div className="centered">{spot.state}, </div>
+                <div className="centered">{spot.country}</div>
+              </div>
         </div>
         <div>
           <img

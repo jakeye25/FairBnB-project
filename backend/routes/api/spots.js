@@ -305,7 +305,6 @@ statusCode: 200})
 
 //get all reviews by spot id
 router.get('/:spotId/reviews',
-  requireAuth,
   async (req, res, next) => {
     const spotId = req.params.spotId
 
