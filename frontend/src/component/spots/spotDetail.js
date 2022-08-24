@@ -60,7 +60,15 @@ const SpotDetail = () => {
         <div className="centered">${spot.price} night</div>
         <ul>
         </ul>
-        <div>
+
+        <div className='sd__review__container'>
+          <h2>
+            <div className='spotRating'>
+                  <i className="fa-solid fa-star"></i>
+                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} ~ </div>
+                <div>{numReivews} reviews</div>
+          </h2>
+          <br></br>
           <SpotReviews />
           {user &&<ReviewCreateModal/>}
         </div>
@@ -107,7 +115,7 @@ const SpotDetail = () => {
               <li>Gift cards</li>
             </ul>
           </div>
-          
+
         </div>
 
       </div>

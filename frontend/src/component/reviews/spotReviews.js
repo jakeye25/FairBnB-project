@@ -13,7 +13,7 @@ const SpotReviews = () => {
     const{spotId} = useParams()
     // console.log('spotid', spotId)
     const dispatch = useDispatch();
-
+  console.log('spotdetailreview', reviews)
     // const filteredReviews = reviews.filter(review => review?.spotId === +spotId)
 
     useEffect(() => {
@@ -29,10 +29,13 @@ const SpotReviews = () => {
             <div key={review.id}>
               {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
 
-                <div className="centered">UserId: {review.userId}</div>
+                <div className="centered">Annoymous{review.userId}</div>
+                <div>{review.createdAt.slice(0, 10)}</div>
                 <div className="centered">Review: {review.review}</div>
-                <div className="centered">Stars Rating: {review.stars}</div>
-                <ul></ul>
+                {/* <div className="centered">Stars Rating: {review.stars}</div> */}
+                <div>
+                  <br></br>
+                </div>
               {/* </NavLink> */}
 
                 {/* <button onClick={() => dispatch(deleteReview(review.id))}>
