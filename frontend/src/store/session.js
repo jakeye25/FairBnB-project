@@ -63,11 +63,12 @@ export const signup = (user) => async (dispatch) => {
   };
   // ...
   export const logout = () => async (dispatch) => {
+    // console.log('before logout action')
     const response = await csrfFetch('/api/users', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     });
-    // console.log(response)
+    // console.log('logout res', response)
     if(response.ok) {
       dispatch(removeUser())
     }

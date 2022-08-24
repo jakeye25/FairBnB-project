@@ -39,7 +39,7 @@ const SpotDetail = () => {
         <div className='spotdetail__head2'>
           <div className='spotRating'>
             <i className="fa-solid fa-star"></i>
-            {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} ~ </div>
+            {spot.avgStarRating? spot.avgStarRating : '0.00'} ~ </div>
           <div>{numReivews} reviews ~</div>
           <div className="centered"> {spot.city}, </div>
           <div className="centered">{spot.state}, </div>

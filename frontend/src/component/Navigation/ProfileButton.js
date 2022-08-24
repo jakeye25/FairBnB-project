@@ -53,7 +53,7 @@ function ProfileButton({ user }) {
             <Link to={`/reviews/me`}>My Review</Link>
             </li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <div onClick={logout}>Log Out</div>
           </li>
         </ul>
       )}

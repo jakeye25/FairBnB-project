@@ -39,7 +39,7 @@ const UserSpots = () => {
         </div>
         <div>{spot.name}</div>
         <div className="centered">{spot.description}</div>
-        <div className="centered">${spot.price}</div>
+        <div className="centered">${spot.price} night</div>
         <div className="centered">
           <Link to={`/spots/${spot.id}/edit`}>Edit</Link>
           <button onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>

@@ -43,7 +43,7 @@ return (
               </div>
                 <div className='card__rating'>
                 <i className="fa-solid fa-star"></i>
-                {spot.avgStarRating? spot.avgStarRating.toFixed(2) : "0.00"}
+                {spot.avgStarRating? spot.avgStarRating : "0.00"}
                 </div>
             </div>
 
