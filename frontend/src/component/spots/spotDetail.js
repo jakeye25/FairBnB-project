@@ -4,7 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
 import SpotReviews from '../reviews/spotReviews';
-import ReviewCreateModal from '../reviews/reviewCreateModal';
+// import ReviewCreateModal from '../reviews/reviewCreateModal';
+import ReviewCreateFormPage from '../reviews/reviewCreate'
 // import { getSpotReviews } from '../../store/review';
 import './spotDetail.css';
 
@@ -70,7 +71,7 @@ const SpotDetail = () => {
           </h2>
           <br></br>
           <SpotReviews />
-          {user &&<ReviewCreateModal/>}
+          {user &&<ReviewCreateFormPage/>}
         </div>
         </div>
         <div className='spotdetail__footer'>

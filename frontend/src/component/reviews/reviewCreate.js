@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {useHistory, useParams} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import { createReview } from "../../store/review";
 import { getOneSpot } from "../../store/spot";
 
@@ -42,7 +42,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
-        
+
 
         }
 
