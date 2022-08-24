@@ -37,3 +37,29 @@
     border-radius: 20px;
     max-width: 500px;
 }
+
+.spotdetail__footer{
+    margin-top: 30px;
+    /* border: #222222 solid; */
+}
+
+.sd__footer__block{
+    float: left;
+    width: 22%;
+    list-style: inside;
+    font-size: 14px;
+    font-style: normal;
+    color: #222222;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+
+}
+
+.sd__footer__block_ul{
+    list-style: none;
+}
+
+.sd__footer__block_li1{
+    font-weight: bold;
+    margin-bottom:  10px;
+}

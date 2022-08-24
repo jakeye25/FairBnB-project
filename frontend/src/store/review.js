@@ -112,7 +112,7 @@ export const getSpotReviews = (id) => async (dispatch) => {
       })
       return newState;
       case LOAD_SPOTREVIEWS:
-       newState = {...state};
+       newState = {};
       action.reviews.forEach(review => {
         newState[review.id] = review;
       })
@@ -120,7 +120,6 @@ export const getSpotReviews = (id) => async (dispatch) => {
       case ADD_REVIEW:
         newState = {...state}
         newState[action.review.id] = {...newState[action.review.id], ...action.review}
-        return newState
                 return newState;
       case REMOVE_REVIEW:
       newState = {...state}

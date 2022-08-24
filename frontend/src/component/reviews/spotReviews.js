@@ -21,12 +21,6 @@ const SpotReviews = () => {
         .then(()=>setIsloaded(true));
       }, [dispatch, spotId]);
 
-      // if (!reviews.length) {
-      //   return (
-      //     <h2>No Current Review</h2>
-      //   );
-      // }
-
       return (
 
         isLoaded &&<>

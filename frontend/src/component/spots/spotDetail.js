@@ -46,14 +46,15 @@ const SpotDetail = () => {
                 <div className="centered">{spot.state}, </div>
                 <div className="centered">{spot.country}</div>
               </div>
+                  <div>
+                    <img
+                      className="spot-image"
+                      alt='Image'
+                      src={spot.previewImage}
+                    />
+                  </div>
         </div>
-        <div>
-          <img
-            className="spot-image"
-            alt='Image'
-            src={spot.previewImage}
-          />
-        </div>
+        <div className='spotdetail__body'>
         <p className="centered">{spot.description}</p>
 
         <div className="centered">${spot.price} night</div>
@@ -63,6 +64,52 @@ const SpotDetail = () => {
           <SpotReviews />
           {user &&<ReviewCreateModal/>}
         </div>
+        </div>
+        <div className='spotdetail__footer'>
+          <div className='sd__footer__block'>
+            <ul className='sd__footer__block_ul'>
+              <li className='sd__footer__block_li1'>Support</li>
+              <li>Help Center</li>
+              <li>AirCover</li>
+              <li>Safety information</li>
+              <li>Supporting people with disabilities</li>
+              <li>Cancellation options</li>
+              <li>Our COVID-19 Response</li>
+              <li>Report a neighborhood concern</li>
+            </ul>
+          </div>
+          <div className='sd__footer__block'>
+            <ul className='sd__footer__block_ul'>
+              <li className='sd__footer__block_li1'>Community</li>
+              <li>Airbnb.org: disaster relief housing</li>
+              <li>Support Afghan refugees</li>
+              <li>Combating discrimination</li>
+            </ul>
+          </div>
+          <div className='sd__footer__block'>
+            <ul className='sd__footer__block_ul'>
+              <li className='sd__footer__block_li1'>Hosting</li>
+              <li>Try hosting</li>
+              <li>AirCover for Hosts</li>
+              <li>Explore hosting resources</li>
+              <li>Visit our community forum</li>
+              <li>How to host responsibly</li>
+            </ul>
+          </div>
+          <div className='sd__footer__block'>
+            <ul className='sd__footer__block_ul'>
+              <li className='sd__footer__block_li1'>Airbnb</li>
+              <li>Newsroom</li>
+              <li>Learn about new features</li>
+              <li>Letter from our founders</li>
+              <li>Careers</li>
+              <li>Investors</li>
+              <li>Gift cards</li>
+            </ul>
+          </div>
+          
+        </div>
+
       </div>
 
   );
