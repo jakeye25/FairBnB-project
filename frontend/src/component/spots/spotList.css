@@ -28,6 +28,8 @@ body {
     justify-content: space-around;
     /* align-items: center; */
     /* padding: 40px; */
+    width: 85%;
+    margin: auto;
 }
 
 .card__container{
@@ -46,7 +48,8 @@ body {
     /* max-width: 20%; */
     max-width: 300px;
     padding: 10px;
-
+    margin: 5px 10px 5px 10px;
+    /* float: left; */
 }
 
 .text__container{

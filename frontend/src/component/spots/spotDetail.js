@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
 import SpotReviews from '../reviews/spotReviews';
 import ReviewCreateModal from '../reviews/reviewCreateModal';
-import { getSpotReviews } from '../../store/review';
-
+// import { getSpotReviews } from '../../store/review';
+import './spotDetail.css';
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
@@ -17,12 +17,14 @@ const SpotDetail = () => {
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
   // console.log('spot: ', spot)
-  console.log('spotReview', Object.values(review).length)
-
+  const numReivewsArray = Object.values(review).filter(ele => ele.spotId == spotId)
+  // console.log('numreviews', numReivews.length)
+  // console.log('spotReview', Object.values(review).length)
+  const numReivews = numReivewsArray.length
   useEffect(() => {
     dispatch(getOneSpot(spotId ))
     .then(()=>setIsloaded(true))
-  }, [dispatch, spotId, review]);
+  }, [dispatch, spotId, review, numReivews]);
 
   // useEffect(() => {
   //   dispatch(getSpotReviews(spotId))
@@ -31,8 +33,18 @@ const SpotDetail = () => {
 
   return (
 
-      isLoaded&&<div key={spot.id}>
-        <div className='spotdetail__head'>{spot.name}</div>
+
+      isLoaded&&<div key={spot.id} className="spotdetail__wrapper">
+        <div className='spotdetail__head1'>{spot.name}</div>
+        <div className='spotdetail__head2'>
+          <div className='spotRating'>
+            <i className="fa-solid fa-star"></i>
+            {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} ~ </div>
+          <div>{numReivews} reviews ~</div>
+          <div className="centered"> {spot.city}, </div>
+          <div className="centered">{spot.state}, </div>
+          <div className="centered">{spot.country}</div>
+        </div>
         <div>
           <img
             className="spot-image"
@@ -40,15 +52,8 @@ const SpotDetail = () => {
             src={spot.previewImage}
           />
         </div>
-        <div>{spot.name}</div>
-        <div className="centered">{spot.address}</div>
-        <div className="centered">{spot.city}</div>
-        <div className="centered">{spot.state}</div>
-        <div className="centered">{spot.country}</div>
-        <div className="centered">{spot.description}</div>
-        <div className='spotRating'>
-          <i className="fa-solid fa-star"></i>
-          {spot.avgStarRating? spot.avgStarRating.toFixed(2) : 0.00}</div>
+        <p className="centered">{spot.description}</p>
+
         <div className="centered">${spot.price} night</div>
         <ul>
         </ul>
