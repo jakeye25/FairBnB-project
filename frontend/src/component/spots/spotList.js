@@ -25,23 +25,25 @@ return (
       <div className ='wrapper'>
 
         {allspots && allspots.map((spot) => (
-          <div className='card__container'>
-          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-          <div className='image__container'>
-            <img
-              className="card__image"
-              alt=''
-              src={spot.previewImage}
-            />
+          <div key={spot.id} className='card__container'>
+            <NavLink  to={`/spots/${spot.id}`}>
+            <div className='image__container'>
+              <img
+                className="card__image"
+                alt=''
+                src={spot.previewImage}
+              />
             </div>
             </NavLink>
             <div className='card__des'>
-                <div className='card__name'>{spot.city},{spot.state}</div>
+              <div className='text__container'>
+                <div className='card__city'>{spot.city}, {spot.state}</div>
                 {/* <div className="card_des">{spot.state}</div> */}
-                <div className="card__price">${spot.price}{' '}night</div>
+                <div className="card__price">{`$${spot.price} night`} </div>
+              </div>
                 <div className='card__rating'>
                 <i className="fa-solid fa-star"></i>
-                {spot.avgStarRating? spot.avgStarRating.toFixed(2) : 0.00}
+                {spot.avgStarRating? spot.avgStarRating.toFixed(2) : "0.00"}
                 </div>
             </div>
 

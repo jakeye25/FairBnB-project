@@ -26,8 +26,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    font-family: Oxygen, sans-serif;
-    margin: 2rem;
     /* align-items: center; */
     /* padding: 40px; */
 }
@@ -46,47 +44,54 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     /* max-width: 20%; */
-    max-width: 250px;
+    max-width: 300px;
+    padding: 10px;
+
+}
+
+.text__container{
+    display: flex;
+    flex-direction: column;
 }
 
 .card__image{
-    box-sizing: border-box;
-    /* position: absolute !important; */
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: cover;
-    vertical-align: bottom;
+    display: flex;
+    height: 240px;
+    width: 290px;
+    margin: 5px;
+    border-radius: 12px;
+    margin-top: 30px;
 }
 
 .card__des{
     display: flex;
-    width: 200px;
+    width: 300px;
     justify-content: space-between;
-    margin: 0px 10px;
+    margin: 0px 3px;
 
 }
 
-.card__name{
-    padding: 1rem;
+.card__city{
+    /* padding: 1rem; */
     font-weight: bold;
+    font-size: large;
+
 }
 
 .card__price{
+    margin-top: 10px;
     font-weight: bold;
-    padding: 1rem;
+    /* padding: 1rem; */
+    font-size: medium;
 }
 
 .card__rating{
     display: flex;
     justify-content: end;
+    /* padding:  1.5rem; */
 }
 
 .image__container {
-    display: flex;
-    height: 200px;
-    width: 240px;
-    margin: 10px;
-    border-radius: 12px;
-    margin-top: 30px;
+    width: 280px;
 
 }

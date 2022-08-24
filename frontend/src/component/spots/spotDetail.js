@@ -17,21 +17,22 @@ const SpotDetail = () => {
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
   // console.log('spot: ', spot)
-  // console.log('spotReview', review)
+  console.log('spotReview', Object.values(review).length)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId ))
     .then(()=>setIsloaded(true))
   }, [dispatch, spotId, review]);
 
-  useEffect(() => {
-    dispatch(getSpotReviews(spotId))
-    .then(()=>setIsloaded(true))
-  }, [dispatch, review]);
+  // useEffect(() => {
+  //   dispatch(getSpotReviews(spotId))
+  //   .then(()=>setIsloaded(true))
+  // }, [dispatch, review]);
 
   return (
 
       isLoaded&&<div key={spot.id}>
+        <div className='spotdetail__head'>{spot.name}</div>
         <div>
           <img
             className="spot-image"
