@@ -11,3 +11,7 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   }
+
+  ul,ol,li{ list-style: none;}
+
+  
