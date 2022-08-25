@@ -20,18 +20,23 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
        /* <div className='header'>*/
+       <div>
+        <NavLink exact to='/spots/create'>Become a Host</NavLink>
         <div className='profile__icon'>
           <ProfileButton user={sessionUser} />
         </div>
-      /* </div> */
+       </div>
     );
   } else {
     sessionLinks = (
       <>
+      <div onClick={()=> {alert('You have to login or signup first.')}}>
+        Become a Host
+      </div>
         <div className='drop'>
             <span>
               <i className="fa-solid fa-bars fa-lg"></i>
-              
+
               <i className="fas fa-user-circle fa-xl" />
             </span>
           <div className='droplist'>

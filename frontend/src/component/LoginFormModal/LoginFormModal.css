@@ -1,14 +1,23 @@
 
-
   .login__container {
     position: absolute;
     transform: translate(-50%,-50%);
     top: 10%;
     left: 50%;
     border-radius: 20px;
-  }
 
- form {
+    /* background-color: aquamarine; */
+  }
+.login__head{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  line-height: 14px;
+  height: 14px;
+
+}
+
+ .loginform {
     background: white;
     padding: 3em;
     /* height: 5px; */
@@ -22,7 +31,7 @@
     /* transition: all 0.2s ease-in-out; */
   }
 
-  input {
+  .logininput  {
     background: transparent;
     width: 200px;
     padding: 1em;
@@ -40,7 +49,12 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   }
 
-  button{
+  /* ul{
+    font-size: 10px;
+
+  } */
+
+  .loginbutton{
 
         margin-top: 10px;
         width: 150px;
@@ -50,6 +64,14 @@
   ::placeholder {
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    color: #fff;
+    color: rgb(50, 50, 104);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  }
+
+  .login__demouser{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }

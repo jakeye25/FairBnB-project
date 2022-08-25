@@ -36,7 +36,7 @@ function LoginForm() {
   return (
     <>
       <div className="login__container">
-        <h3>Welcome to FairBnB</h3>
+        <h3 className="login__head">Welcome to FairBnB</h3>
         {errors.length > 0 && (
         <div>
           {/* <ul>
@@ -46,7 +46,7 @@ function LoginForm() {
           </ul> */}
         </div>
         )}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="loginform">
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -55,6 +55,7 @@ function LoginForm() {
           <label>
             Email
             <input
+            className="logininput"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -64,16 +65,17 @@ function LoginForm() {
           <label>
             Password
             <input
+            className="logininput"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
-          <button type="submit">Continue</button>
+          <button type="submit" className="loginbutton">Continue</button>
         </form>
 
-            <div>
+            <div className="login__demouser">
               <DemoUser/>
             </div>
         </div>
