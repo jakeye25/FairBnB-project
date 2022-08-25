@@ -10,7 +10,7 @@ import './reviewCreate.css';
 function ReviewCreateFormPage({reviewId, onClose}) {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.review);
-    console.log('reviewstate',reviews)
+    // console.log('reviewstate',reviews)
     const review = reviews[reviewId]
     const [reviewContent, setReviewContent] = useState(review? review.review : "")
     const [stars, setStars] = useState(review? review.stars: "")
@@ -23,29 +23,38 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
     const userId = user.id
 
+    console.log('check review state', reviews)
+    const userReview = Object.values(reviews).filter(ele => ele.userId = userId)
+    console.log('check user review state', userReview)
+
+    const check = userReview.length === 1
+    console.log('check', check)
     // if(reviews){let userReivew = Object.values(reviews).find(ele=> ele.userId = userId)}
+    const toggleReview =() => {
+        setshowReviewCreate(!showReviewCreate)
+    }
 
+    // const openMenu = () => {
+    //     console.log('showReviewCreate before ', showReviewCreate)
+    //     console.log('setshowReviewCreate before ', setshowReviewCreate)
+    //     if (showReviewCreate) return;
+    //     setshowReviewCreate(true);
+    //     console.log('showReviewCreate after ', showReviewCreate)
+    //     console.log('setshowReviewCreate after ', setshowReviewCreate)
+    //   };
 
-    const openMenu = () => {
-        console.log('showReviewCreate before ', showReviewCreate)
-        console.log('setshowReviewCreate before ', setshowReviewCreate)
-        if (showReviewCreate) return;
-        setshowReviewCreate(true);
-        console.log('showReviewCreate after ', showReviewCreate)
-        console.log('setshowReviewCreate after ', setshowReviewCreate)
-      };
+    // useEffect(() => {
+    //     console.log('hit useeffect')
+    //     if (!showReviewCreate) return;
 
-    useEffect(() => {
-        if (!showReviewCreate) return;
+    //     const closeMenu = () => {
+    //         setshowReviewCreate(!showReviewCreate);
+    //     };
 
-        const closeMenu = () => {
-            setshowReviewCreate(!showReviewCreate);
-        };
+    //     document.addEventListener('click', closeMenu);
 
-        document.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-      }, [showReviewCreate]);
+    //     return () => document.removeEventListener("click", closeMenu);
+    //   }, [showReviewCreate]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -63,7 +72,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
         }
 
         dispatch(createReview(createPayload))
-            .then(()=> onClose())
+            .then(toggleReview)
             .catch(async(res)=> {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
@@ -75,11 +84,11 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     return (
 
         <section>
-                <button onClick={openMenu } className="createreviewBtn">
+                {!check && <button onClick={toggleReview } className="createreviewBtn">
                     Any great experiences? Click here and leave your thoughts !!!
 
-                </button>
-            {showReviewCreate && <form className="reviewCreateform"
+                </button>}
+            {showReviewCreate && !check && <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error,index) => (
@@ -90,7 +99,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         <input
                             value={reviewContent}
                             onChange={(e)=>setReviewContent(e.target.value)}
-                            placeholder='leave your review'
+                            placeholder='Leave your review'
                             type='text'
                             />
 
@@ -100,7 +109,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
                         onChange={(e)=>setStars(e.target.value)}
                         type='number'
-                        placeholder='place a rating'
+                        placeholder='Place a rating'
                         />
                     <span> </span>
                     <button type='submit'>Create</button>
