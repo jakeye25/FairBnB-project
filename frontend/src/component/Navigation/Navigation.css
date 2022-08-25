@@ -8,8 +8,9 @@
     background-color: white;
     z-index: 100;
     width: 100%; */
-    height: 70ph;
+    height: 80ph;
     width: 100%;
+    box-shadow: 0 1px 2px #bbb;
 
 }
 .header__icon{
@@ -32,7 +33,8 @@
     margin-top: 5px;
     position:absolute;
     top: 10px;
-    right: 0
+    right: 0;
+    width: 20%;
 
 }
 .profile__icon{
@@ -44,3 +46,79 @@
    top:0;
    right:0;
 }
+
+.drop{
+
+    /* 让它靠右 */
+
+    float: right;
+
+    /* 设置行高 */
+
+    line-height: 40px;
+
+    /* 设置宽 */
+
+    width: 80px;
+
+    /* 设置背景色 */
+
+    background: #fff;
+
+    /* 设置水平居中 */
+
+    text-align: center;
+
+    /* 右边距 */
+
+    margin-right: 10px;
+
+
+
+    }
+
+
+
+    .droplist{
+
+    /* 给下拉菜单阴影 */
+
+    box-shadow:0 1px 2px #bbb;
+
+    /* 把它隐藏起来 */
+
+    display: none;
+
+    }
+
+    /* 鼠标移到上方时显示 */
+
+    .drop:hover .droplist{
+
+    display: block;
+
+    }
+
+    /* 我们修改一下超链接样式 */
+
+    .droplist a{
+
+    color: #000;
+
+    /* 去掉下划线 */
+
+    text-decoration: none;
+
+    /* 改变超链接不可调宽高的显示状态 */
+
+    display: block;
+
+    }
+
+    /* 超链接要鼠标悬停的时候变色 */
+
+    .droplist a:hover{
+
+    background: #bbb;
+
+    }

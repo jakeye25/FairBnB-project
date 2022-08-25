@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginFormModal.css'
+import DemoUser from '../Demo User/demouser';
+
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -70,6 +72,10 @@ function LoginForm() {
           </label>
           <button type="submit">Continue</button>
         </form>
+
+            <div>
+              <DemoUser/>
+            </div>
         </div>
     </>
   );

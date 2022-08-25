@@ -28,18 +28,21 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <div >
-        <div >
-
-          <div>
-            <DemoUser />
-
+        <div className='drop'>
+            <span>
+              <i className="fa-solid fa-bars"></i>
+              <i className="fas fa-user-circle" />
+            </span>
+          <div className='droplist'>
+          <a href="#">
             <SignupFormModal />
-
+          </a>
+          <a href="#">
             <LoginFormModal />
+          </a>
             {/* <HomeRightBtn/> */}
           </div>
-        </div>
+
         </div>
         {/* <NavLink to="/users/signup">Sign Up</NavLink> */}
       </>
@@ -63,9 +66,10 @@ function Navigation({ isLoaded }){
             </NavLink>
           <div className='header__right'>
             <div>
-              <NavLink excat to="/spots/create">
-              Becaome a Host
-              </NavLink>
+              {/* <div>
+                Becaome a Host
+                <LoginFormModal />
+              </div> */}
               </div>
             {isLoaded && sessionLinks}
           </div>
