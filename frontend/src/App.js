@@ -12,6 +12,8 @@ import SpotDetail from "./component/spots/spotDetail";
 import ReviewsBrowser from "./component/reviews/reviewBrowser";
 import UserReviews from "./component/reviews/userReviews";
 import SpotEditFormPage from "./component/spots/spotEdit";
+import LoginForm from "./component/LoginFormModal/LoginForm";
+import LoginFormModal from "./component/LoginFormModal";
 
 
 function App() {
@@ -41,8 +43,11 @@ function App() {
           <Route exact path="/">
             <SpotsBrowser />
           </Route>
-          <Route path="/users/signup" exact>
+          <Route path="/signup" exact>
             <SignupFormPage />
+          </Route>
+          <Route path="/login" exact>
+            <LoginFormModal />
           </Route>
           <Route path= "/reviews/me" exact>
             <UserReviews />

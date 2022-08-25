@@ -28,8 +28,8 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <div className='header'>
-        <div className='header__right'>
+        <div >
+        <div >
 
           <div>
             <DemoUser />
@@ -50,7 +50,7 @@ function Navigation({ isLoaded }){
     <>
       <div className='header'>
 
-        <div>
+        <div className='header__left'>
           <NavLink exact to="/">
             {/* Home */}
 
@@ -61,7 +61,14 @@ function Navigation({ isLoaded }){
             />
             {/* <i className="fa-solid fa-hotel"></i> */}
             </NavLink>
-          {isLoaded && sessionLinks}
+          <div className='header__right'>
+            <div>
+              <NavLink excat to="/spots/create">
+              Becaome a Host
+              </NavLink>
+              </div>
+            {isLoaded && sessionLinks}
+          </div>
         </div>
 
       </div>

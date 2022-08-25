@@ -29,8 +29,9 @@
     justify-content: space-between;
     width: 15vw;
     margin-right: 80px;
+    margin-top: 5px;
     position:absolute;
-    top: 0;
+    top: 10px;
     right: 0
 
 }

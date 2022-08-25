@@ -31,7 +31,7 @@ const SpotReviews = () => {
 
                 <div className="centered">Annoymous{review.userId}</div>
                 <div>{review.createdAt.slice(0, 10)}</div>
-                <div className="centered">Review: {review.review}</div>
+                <div className="centered">{review.review}</div>
                 {/* <div className="centered">Stars Rating: {review.stars}</div> */}
                 <div>
                   <br></br>
