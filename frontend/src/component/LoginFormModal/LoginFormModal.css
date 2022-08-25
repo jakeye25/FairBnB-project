@@ -1,29 +1,25 @@
-/* body {
-    background: linear-gradient(45deg, #FC466B, #3F5EFB);
-    height: 100vh;
-    font-family: 'Montserrat', sans-serif;
-  }
-*/
 
-  /* .container {
+
+  .login__container {
     position: absolute;
     transform: translate(-50%,-50%);
     top: 10%;
     left: 50%;
-  } */
+    border-radius: 20px;
+  }
 
-  /* form {
+ form {
     background: white;
     padding: 3em;
-    height: 5px;
+    /* height: 5px; */
     border-radius: 20px;
     border-left: 1px solid white;
     border-top: 1px solid white;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
     text-align: center;
-    position: relative;
-    transition: all 0.2s ease-in-out;
+    /* position: relative; */
+    /* transition: all 0.2s ease-in-out; */
   }
 
   input {
@@ -56,4 +52,4 @@
     font-weight: 400;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-  }  */
+  }

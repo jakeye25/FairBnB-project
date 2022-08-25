@@ -35,7 +35,7 @@ function LoginForm() {
 
   return (
     <>
-      <div className="container">
+      <div className="login__container">
         <h3>Welcome to FairBnB</h3>
         {errors.length > 0 && (
         <div>

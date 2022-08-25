@@ -49,49 +49,52 @@
 
 .drop{
 
-    /* 让它靠右 */
+
 
     float: right;
 
-    /* 设置行高 */
 
-    line-height: 40px;
+    line-height: 70px;
 
-    /* 设置宽 */
 
     width: 80px;
 
-    /* 设置背景色 */
 
     background: #fff;
 
-    /* 设置水平居中 */
 
     text-align: center;
 
-    /* 右边距 */
-
-    margin-right: 10px;
-
+    margin-right: 0px;
 
 
     }
 
+    .drop span{
+        border: solid #bbb;
 
+        border-radius: 50px;
+
+        padding: 5px;
+        /* border-spacing: 20px; */
+    }
 
     .droplist{
 
-    /* 给下拉菜单阴影 */
 
-    box-shadow:0 1px 2px #bbb;
 
-    /* 把它隐藏起来 */
+    box-shadow:1px 1px 2px #bbb;
+
 
     display: none;
 
+    border: #bbb solid;
+
+    border-radius: 10px;
+
     }
 
-    /* 鼠标移到上方时显示 */
+
 
     .drop:hover .droplist{
 
@@ -99,23 +102,20 @@
 
     }
 
-    /* 我们修改一下超链接样式 */
 
     .droplist a{
 
     color: #000;
 
-    /* 去掉下划线 */
 
     text-decoration: none;
 
-    /* 改变超链接不可调宽高的显示状态 */
 
     display: block;
 
     }
 
-    /* 超链接要鼠标悬停的时候变色 */
+
 
     .droplist a:hover{
 

@@ -30,8 +30,9 @@ function Navigation({ isLoaded }){
       <>
         <div className='drop'>
             <span>
-              <i className="fa-solid fa-bars"></i>
-              <i className="fas fa-user-circle" />
+              <i className="fa-solid fa-bars fa-lg"></i>
+              
+              <i className="fas fa-user-circle fa-xl" />
             </span>
           <div className='droplist'>
           <a href="#">
