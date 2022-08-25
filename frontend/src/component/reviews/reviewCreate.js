@@ -23,38 +23,17 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
     const userId = user.id
 
-    console.log('check review state', reviews)
+    // console.log('check review state', reviews)
     const userReview = Object.values(reviews).filter(ele => ele.userId = userId)
-    console.log('check user review state', userReview)
+    // console.log('check user review state', userReview)
 
     const check = userReview.length === 1
-    console.log('check', check)
+    // console.log('check', check)
     // if(reviews){let userReivew = Object.values(reviews).find(ele=> ele.userId = userId)}
     const toggleReview =() => {
         setshowReviewCreate(!showReviewCreate)
     }
 
-    // const openMenu = () => {
-    //     console.log('showReviewCreate before ', showReviewCreate)
-    //     console.log('setshowReviewCreate before ', setshowReviewCreate)
-    //     if (showReviewCreate) return;
-    //     setshowReviewCreate(true);
-    //     console.log('showReviewCreate after ', showReviewCreate)
-    //     console.log('setshowReviewCreate after ', setshowReviewCreate)
-    //   };
-
-    // useEffect(() => {
-    //     console.log('hit useeffect')
-    //     if (!showReviewCreate) return;
-
-    //     const closeMenu = () => {
-    //         setshowReviewCreate(!showReviewCreate);
-    //     };
-
-    //     document.addEventListener('click', closeMenu);
-
-    //     return () => document.removeEventListener("click", closeMenu);
-    //   }, [showReviewCreate]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
