@@ -10,7 +10,7 @@ import './reviewCreate.css';
 function ReviewCreateFormPage({reviewId, onClose}) {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.review);
-    // console.log('state',reviews)
+    console.log('reviewstate',reviews)
     const review = reviews[reviewId]
     const [reviewContent, setReviewContent] = useState(review? review.review : "")
     const [stars, setStars] = useState(review? review.stars: "")
@@ -23,16 +23,23 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
     const userId = user.id
 
+    // if(reviews){let userReivew = Object.values(reviews).find(ele=> ele.userId = userId)}
+
+
     const openMenu = () => {
+        console.log('showReviewCreate before ', showReviewCreate)
+        console.log('setshowReviewCreate before ', setshowReviewCreate)
         if (showReviewCreate) return;
         setshowReviewCreate(true);
+        console.log('showReviewCreate after ', showReviewCreate)
+        console.log('setshowReviewCreate after ', setshowReviewCreate)
       };
 
     useEffect(() => {
         if (!showReviewCreate) return;
 
         const closeMenu = () => {
-            setshowReviewCreate(false);
+            setshowReviewCreate(!showReviewCreate);
         };
 
         document.addEventListener('click', closeMenu);
@@ -68,11 +75,11 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     return (
 
         <section>
-                <div onClick={openMenu}>
-                    <button className="createreviewBtn">Any great experiences? Click here and leave your thoughts here!!! </button>
+                <button onClick={openMenu } className="createreviewBtn">
+                    Any great experiences? Click here and leave your thoughts !!!
 
-                </div>
-            {showReviewCreate && <form
+                </button>
+            {showReviewCreate && <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error,index) => (
@@ -87,7 +94,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                             type='text'
                             />
 
-                    <br></br>
+                    <span>  </span>
 
                         <input value={stars}
 
@@ -95,7 +102,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         type='number'
                         placeholder='place a rating'
                         />
-
+                    <span> </span>
                     <button type='submit'>Create</button>
             </form>}
         </section>

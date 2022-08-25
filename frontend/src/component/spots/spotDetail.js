@@ -18,6 +18,13 @@ const SpotDetail = () => {
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
   // console.log('spot: ', spot)
+  // console.log('checkuser', user)
+  // console.log('checkreview', review)
+
+  // if(user) { let userReview= Object.values(review).filter(ele => ele.userId == user.id)}
+  // console.log('userReview', userReview? userReview : null)
+
+
   const numReivewsArray = Object.values(review).filter(ele => ele.spotId == spotId)
   // console.log('numreviews', numReivews.length)
   // console.log('spotReview', Object.values(review).length)
