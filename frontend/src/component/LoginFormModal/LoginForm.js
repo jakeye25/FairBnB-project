@@ -36,42 +36,33 @@ function LoginForm() {
   return (
     <>
       <div className="login__container">
-        <h3 className="login__head">Welcome to FairBnB</h3>
-        {errors.length > 0 && (
-        <div>
-          {/* <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul> */}
-        </div>
-        )}
+        <h1 className="login__head">Welcome to FairBnB</h1>
+
         <form onSubmit={handleSubmit} className="loginform">
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx}  className="loginerror">{error}</li>
             ))}
           </ul>
-          <label>
-            Email
+
             <input
             className="logininput"
               type="text"
               value={email}
+              placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-          </label>
-          <label>
-            Password
+
             <input
             className="logininput"
               type="password"
               value={password}
+              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </label>
+
           <button type="submit" className="loginbutton">Continue</button>
         </form>
 

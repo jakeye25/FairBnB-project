@@ -49,10 +49,19 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   }
 
-  /* ul{
-    font-size: 10px;
-
-  } */
+ .loginerror{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  line-height: 10px;
+  height: fit-content;
+  width: max-content;
+  /* float: left; */
+  margin-bottom: 20px;
+  /* font-size: 11px; */
+  /* margin-left: 5px; */
+ }
 
   .loginbutton{
 

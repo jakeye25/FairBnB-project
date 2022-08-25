@@ -41,78 +41,67 @@ function SignupForm() {
 
   return (
     <>
-        <div className="user">
-        <header class="user__header">
+        <div className="signup__container">
+        {/* <header class="user__header"> */}
         {/* <img src="https://www.doz.com/wp-content/uploads/2015/03/airbnb-logo.png" alt="" /> */}
-        <h1 className="user__title">Welcome to FAirBnB</h1>
-        </header>
-        <form className="form"
+        <h1 className="signup__head">Welcome to FAirBnB</h1>
+        {/* </header> */}
+        <form className="signupform"
         onSubmit={handleSubmit}>
 
         <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            {errors.map((error, idx) => <li key={idx} className="signuperror">{error}</li>)}
         </ul>
-        <div className="form__group">
-        <label>
-            Email
+
             <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="form__input"
+            className="signupinput"
+            placeholder="Email"
             />
-        </label>
-        </div>
-        <div className="form__group">
-        <label>
-            Firstname
+
+
+
             <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstname(e.target.value)}
             required
-            className="form__input"
+            placeholder="Firstname"
+            className="signupinput"
             />
-        </label>
-        </div>
-        <div className="form__group">
-        <label>
-            Lastname
+
             <input
             type="text"
             value={lastName}
             onChange={(e) => setLastname(e.target.value)}
             required
-            className="form__input"
+            placeholder="Lastname"
+            className="signupinput"
             />
-        </label>
-        </div>
-        <div className="form__group">
-        <label>
-            Password
+
             <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="form__input"
+            placeholder="Password"
+            className="signupinput"
             />
-        </label>
-        </div>
-        <div className="form__group">
-        <label>
-            Confirm Password
+
             <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            className="form__input"
+            placeholder="Confirm Password"
+            className="signupinput"
             />
-        </label>
-        </div>
-        <button className="btn" type="submit">Sign Up</button>
+
+
+        <button className="signupbuttion" type="submit">Sign Up</button>
         </form>
         </div>
     </>
