@@ -6,8 +6,8 @@ import { Redirect, useParams } from "react-router-dom";
 
 import {useHistory} from 'react-router-dom'
 import { updateSpot } from "../../store/spot";
-// import './SignupForm.css';
-import ErrorMessage from './ErrorMessage';
+
+// import ErrorMessage from './ErrorMessage';
 
 function SpotEditFormPage() {
   const history = useHistory();
@@ -28,67 +28,79 @@ function SpotEditFormPage() {
   const [name, setName] = useState(editSpot.name);
   const [description, setDescription] = useState(editSpot.description);
   const [price, setPrice] = useState(editSpot.price);
-  const [previewImage, setImage] = useState(editSpot.previewImage);
-  const [errorMessages, setErrorMessages] = useState({});
-
+  const [previewImage, setpreviewImage] = useState(editSpot.previewImage);
+  // const [errorMessages, setErrorMessages] = useState({});
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrors([]);
     // let spot = { address, city, state, country, lat, lng, name, description, price }
     let payload = {
       id: spotId,
       address, city, state, country, lat, lng, name, description, price, previewImage
     };
+    console.log('checkimageurl', payload.previewImage)
+    console.log('checkimageurl', payload.previewImage.includes('jpg'))
+    if (!payload.previewImage.includes('jpg') && !payload.previewImage.includes('jpeg') && !payload.previewImage.includes('png'))
+    return setErrors(['Only jpg, jpeg and png Image url valid'])
+
     let returnedSpot;
-    try{
+    // try{
      returnedSpot = await dispatch(updateSpot(payload))
-    } catch (error) {
-      setErrorMessages({ overall: error.toString().slice(7) })
-    }
+    // } catch (error) {
+    //   setErrorMessages({ overall: error.toString().slice(7) })
+    // }
+    // if (!returnedSpot.previewImage.includes('jpg') || !returnedSpot.previewImage.includes('jpeg') || !returnedSpot.previewImage.includes('png'))
+    // return setErrors(['Only jpg, jpeg and png Image url valid'])
+
     if(returnedSpot) {
-      setErrorMessages({});
+      // setErrorMessages({});
       history.push(`/spots/${returnedSpot.id}`)
     }
   }
     const handleCancelClick = (e) => {
         e.preventDefault();
-        setErrorMessages({});
+        // setErrorMessages({});
+        setErrors([]);
         history.push(`/spots/${spotId}`);
     }
 
   return (
     <section className="edit-form-holder centered middled">
-      <ErrorMessage message={errorMessages.overall} />
+      {/* <ErrorMessage message={errorMessages.overall} /> */}
         <form className="edit-spot-form" onSubmit={handleSubmit}>
+        <ul>
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
         <input
           type="text"
           placeholder="Address"
           required
           value={address}
           onChange={(e) => setAddress(e.target.value)} />
-        <ErrorMessage label={"Address"} message={errorMessages.address} />
+        {/* <ErrorMessage label={"Address"} message={errorMessages.address} /> */}
         <input
           type="text"
           placeholder="City"
           required
           value={city}
           onChange={(e) => setCity(e.target.value)} />
-        <ErrorMessage label={"City"} message={errorMessages.city} />
+        {/* <ErrorMessage label={"City"} message={errorMessages.city} /> */}
         <input
           type="text"
           placeholder="State"
           required
           value={state}
           onChange={(e) => setState(e.target.value)} />
-        <ErrorMessage label={"State"} message={errorMessages.state} />
+        {/* <ErrorMessage label={"State"} message={errorMessages.state} /> */}
         <input
           type="text"
           placeholder="Country"
           required
           value={country}
           onChange={(e) => setCountry(e.target.value)} />
-        <ErrorMessage label={"Country"} message={errorMessages.country} />
+        {/* <ErrorMessage label={"Country"} message={errorMessages.country} /> */}
         <input
           type="number"
           placeholder="Lat"
@@ -97,7 +109,7 @@ function SpotEditFormPage() {
           required
           value={lat}
           onChange={(e) => setLat(e.target.value)} />
-        <ErrorMessage label={"Lat"} message={errorMessages.lat} />
+        {/* <ErrorMessage label={"Lat"} message={errorMessages.lat} /> */}
         <input
           type="number"
           placeholder="Lng"
@@ -106,21 +118,21 @@ function SpotEditFormPage() {
           required
           value={lng}
           onChange={(e) => setLng(e.target.value)} />
-        <ErrorMessage label={"Lng"} message={errorMessages.lng} />
+        {/* <ErrorMessage label={"Lng"} message={errorMessages.lng} /> */}
         <input
           type="text"
           placeholder="Name"
           required
           value={name}
           onChange={(e) => setName(e.target.value)} />
-        <ErrorMessage label={"Name"} message={errorMessages.name} />
+        {/* <ErrorMessage label={"Name"} message={errorMessages.name} /> */}
         <input
           type="text"
           placeholder="Description"
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)} />
-        <ErrorMessage label={"Description"} message={errorMessages.description} />
+        {/* <ErrorMessage label={"Description"} message={errorMessages.description} /> */}
         <input
           type="number"
           placeholder="Price"
@@ -128,14 +140,14 @@ function SpotEditFormPage() {
           required
           value={price}
           onChange={(e) => setPrice(e.target.value)} />
-        <ErrorMessage label={"Price"} message={errorMessages.price} />
+        {/* <ErrorMessage label={"Price"} message={errorMessages.price} /> */}
         <input
           type="url"
           placeholder="Image Url"
           required
           value={previewImage}
-          onChange={(e) => setImage(e.target.value)} />
-        <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} />
+          onChange={(e) => setpreviewImage(e.target.value)} />
+        {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
             <button type="submit">Update Spot</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>

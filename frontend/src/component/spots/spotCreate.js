@@ -22,7 +22,7 @@ function SpotCreateFormPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [previewImage, setImageUrl] = useState("");
+  const [previewImage, setpreviewImage] = useState("");
   // const [errorMessages, setErrorMessages] = useState({});
   const [errors, setErrors] = useState([]);
 //   if (sessionUser) return <Redirect to="/api/spots" />;
@@ -31,14 +31,19 @@ function SpotCreateFormPage() {
     e.preventDefault();
     setErrors([]);
     let spot = { address, city, state, country, lat, lng, name, description, price, previewImage }
+    // console.log('checkimageurl', spot.previewImage)
+    if (!spot.previewImage.includes('jpg') && !spot.previewImage.includes('jpeg') && !spot.previewImage.includes('png'))
+    return setErrors(['Please enter a valid image url'])
+
     let createdSpot;
     // try{
         createdSpot = await dispatch(spotActions.createSpot(spot))
     // } catch (error) {
     //     setErrorMessages({ overall: error.toString().slice(7) })
     // }
-    if (!previewImage.includes('jpg') || !previewImage.includes('jpeg') || !previewImage.includes('png'))
-    return setErrors(['Please enter a valid image url'])
+    // console.log('checkimageurl', createdSpot.previewImage.includes('jpeg'))
+    // if (!createdSpot.previewImage.includes('jpg') && !createdSpot.previewImage.includes('jpeg') && !createdSpot.previewImage.includes('png'))
+    // return setErrors(['Please enter a valid image url'])
 
     if (createdSpot) {
         // setErrorMessages({});
@@ -132,7 +137,7 @@ function SpotCreateFormPage() {
           placeholder="Only jpg, jpeg and png Image url valid"
           required
           value={previewImage}
-          onChange={(e) => setImageUrl(e.target.value)} />
+          onChange={(e) => setpreviewImage(e.target.value)} />
         {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
             <button type="submit">Create New Spot</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>

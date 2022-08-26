@@ -20,10 +20,10 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const {spotId} = useParams()
     const userspot = useSelector(state => state.spot[spotId])
     const user = useSelector(state =>state.session.user)
-    console.log('checkuserspot', userspot)
+    // console.log('checkuserspot', userspot)
     const userId = user.id
     const checkOwner = userspot.ownerId == userId
-    console.log('checkowner', checkOwner)
+    // console.log('checkowner', checkOwner)
     // console.log('check review state', reviews)
     const userReview = Object.values(reviews).filter(ele => ele.userId == +userId)
     // console.log('check user review state', userReview)
