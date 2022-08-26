@@ -61,7 +61,6 @@ function SpotCreateFormPage() {
       <div className="leftspotform">
         <h1 className="spotform__head">Where's your place located?</h1>
         </div>
-      {/* <ErrorMessage message={errorMessages.overall} /> */}
       <div className="rightspotform">
           <form className="spotform__info" onSubmit={handleSubmit}>
         <ul>
@@ -74,7 +73,6 @@ function SpotCreateFormPage() {
             required
             value={address}
             onChange={(e) => setAddress(e.target.value)} />
-          {/* <ErrorMessage label={"Address"} message={errorMessages.address} /> */}
           <input
             type="text"
             placeholder="City"
@@ -82,7 +80,6 @@ function SpotCreateFormPage() {
             required
             value={city}
             onChange={(e) => setCity(e.target.value)} />
-          {/* <ErrorMessage label={"City"} message={errorMessages.city} /> */}
           <input
             type="text"
             placeholder="State"
@@ -90,7 +87,6 @@ function SpotCreateFormPage() {
             required
             value={state}
             onChange={(e) => setState(e.target.value)} />
-          {/* <ErrorMessage label={"State"} message={errorMessages.state} /> */}
           <input
             type="text"
             placeholder="Country"
@@ -98,7 +94,6 @@ function SpotCreateFormPage() {
             required
             value={country}
             onChange={(e) => setCountry(e.target.value)} />
-          {/* <ErrorMessage label={"Country"} message={errorMessages.country} /> */}
           <input
             type="number"
             placeholder="Lat"
@@ -108,7 +103,6 @@ function SpotCreateFormPage() {
             required
             value={lat}
             onChange={(e) => setLat(e.target.value)} />
-          {/* <ErrorMessage label={"Lat"} message={errorMessages.lat} /> */}
           <input
             type="number"
             placeholder="Lng"
@@ -118,7 +112,6 @@ function SpotCreateFormPage() {
             required
             value={lng}
             onChange={(e) => setLng(e.target.value)} />
-          {/* <ErrorMessage label={"Lng"} message={errorMessages.lng} /> */}
           <input
             type="text"
             placeholder="Name"
@@ -126,7 +119,6 @@ function SpotCreateFormPage() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)} />
-          {/* <ErrorMessage label={"Name"} message={errorMessages.name} /> */}
           <input
             type="text"
             placeholder="Description"
@@ -134,7 +126,6 @@ function SpotCreateFormPage() {
             required
             value={description}
             onChange={(e) => setDescription(e.target.value)} />
-          {/* <ErrorMessage label={"Description"} message={errorMessages.description} /> */}
           <input
             type="number"
             placeholder="Price"
@@ -143,7 +134,6 @@ function SpotCreateFormPage() {
             required
             value={price}
             onChange={(e) => setPrice(e.target.value)} />
-          {/* <ErrorMessage label={"Price"} message={errorMessages.price} /> */}
           <input
             type="url"
             placeholder="Only jpg, jpeg and png Image url valid"
@@ -151,7 +141,6 @@ function SpotCreateFormPage() {
             required
             value={previewImage}
             onChange={(e) => setpreviewImage(e.target.value)} />
-          {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
             <div className="spotformbutton">
               <button type="submit" className="spotformbutton__btn">Create New Spot</button>
               <span></span>
