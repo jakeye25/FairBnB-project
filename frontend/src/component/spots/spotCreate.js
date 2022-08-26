@@ -5,8 +5,8 @@ import { Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import * as spotActions from "../../store/spot"
 import {useHistory} from 'react-router-dom'
-// import './SignupForm.css';
-// import ErrorMessage from './ErrorMessage';
+import './spotForm.css';
+
 
 function SpotCreateFormPage() {
     const history = useHistory();
