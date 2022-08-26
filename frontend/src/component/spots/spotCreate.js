@@ -152,8 +152,11 @@ function SpotCreateFormPage() {
             value={previewImage}
             onChange={(e) => setpreviewImage(e.target.value)} />
           {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
-              <button type="submit" className="spotformbutton">Create New Spot</button>
-              <button type="button" className="spotformbutton" onClick={handleCancelClick}>Cancel</button>
+            <div className="spotformbutton">
+              <button type="submit" className="spotformbutton__btn">Create New Spot</button>
+              <span></span>
+              <button type="button"  className="spotformbutton__btn" onClick={handleCancelClick}>Cancel</button>
+            </div>
           </form>
         </div>
     </section>

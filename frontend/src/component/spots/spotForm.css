@@ -19,14 +19,29 @@
     position: relative !important;
     float:left;
     justify-content: center !important;
+    background: linear-gradient(#e66465, #9198e5);
 
 }
 
-spotform__head{
+.spotform__head{
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
+    font-size: x-large;
+    margin-top: 300px;
+    background: none;
+    z-index: 0;
+}
+
+.spotform__head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50%;
+ color: white;
+ line-height: 20px;
+ height: 20px;
 }
 
 .rightspotform{
@@ -48,15 +63,18 @@ spotform__head{
 
 }
 
- .spotform {
+ .spotform__info {
     background: white;
     padding: 3em;
     /* height: 5px; */
+    margin-right: 50%;
+    float:right;
+    width:30%;
     border-radius: 20px;
     border-left: 1px solid white;
     border-top: 1px solid white;
     /* backdrop-filter: blur(10px); */
-    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+    /* box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2); */
     text-align: center;
     /* position: relative; */
     /* transition: all 0.2s ease-in-out; */
@@ -64,7 +82,7 @@ spotform__head{
 
   .spotforminput  {
     background: transparent;
-    width: 200px;
+    width: 400px;
     padding: 1em;
     margin-bottom: 2em;
     border: none;
@@ -95,11 +113,28 @@ spotform__head{
  }
 
   .spotformbutton{
-
+        display: flex;
+        flex-direction: row;
         margin-top: 10px;
-        width: 150px;
+        width: 400px;
         font-size: 1rem;
+        justify-content: center;
+        align-items: center;
+
+
   }
+
+.spotformbutton__btn{
+  display: flex;
+  background-color: #e66465;
+  color: aliceblue;
+  border: none;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+  font-size: large;
+}
 
   ::placeholder {
     font-family: Montserrat, sans-serif;

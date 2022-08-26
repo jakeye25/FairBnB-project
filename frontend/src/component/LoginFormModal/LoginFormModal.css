@@ -70,6 +70,8 @@
         margin-top: 10px;
         width: 150px;
         font-size: 1rem;
+        background-color: #df1760;
+        color: white;
   }
 
   ::placeholder {
@@ -85,4 +87,6 @@
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    /* background-color: #df1760;
+    color: white; */
   }
