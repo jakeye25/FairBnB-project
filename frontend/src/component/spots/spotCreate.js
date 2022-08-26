@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import * as spotActions from "../../store/spot"
 import {useHistory} from 'react-router-dom'
 // import './SignupForm.css';
-import ErrorMessage from './ErrorMessage';
+// import ErrorMessage from './ErrorMessage';
 
 function SpotCreateFormPage() {
     const history = useHistory();
@@ -23,66 +23,70 @@ function SpotCreateFormPage() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [previewImage, setImageUrl] = useState("");
-  const [errorMessages, setErrorMessages] = useState({});
-
+  // const [errorMessages, setErrorMessages] = useState({});
+  const [errors, setErrors] = useState([]);
 //   if (sessionUser) return <Redirect to="/api/spots" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrors([]);
     let spot = { address, city, state, country, lat, lng, name, description, price, previewImage }
     let createdSpot;
-    try{
+    // try{
         createdSpot = await dispatch(spotActions.createSpot(spot))
-    } catch (error) {
-        setErrorMessages({ overall: error.toString().slice(7) })
-    }
+    // } catch (error) {
+    //     setErrorMessages({ overall: error.toString().slice(7) })
+    // }
+    if (!previewImage.includes('jpg') || !previewImage.includes('jpeg') || !previewImage.includes('png'))
+    return setErrors(['Please enter a valid image url'])
+
     if (createdSpot) {
-        setErrorMessages({});
+        // setErrorMessages({});
         history.push(`/spots/${createdSpot.id}`);
       }
     }
     const handleCancelClick = (e) => {
         e.preventDefault();
-        setErrorMessages({});
+        // setErrorMessages({});
+        setErrors([]);
     }
 
   return (
     <section className="new-form-holder centered middled">
 
-      <ErrorMessage message={errorMessages.overall} />
+      {/* <ErrorMessage message={errorMessages.overall} /> */}
         <form className="create-spot-form" onSubmit={handleSubmit}>
-      {/* <ul>
+      <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul> */}
+      </ul>
         <input
           type="text"
           placeholder="Address"
           required
           value={address}
           onChange={(e) => setAddress(e.target.value)} />
-        <ErrorMessage label={"Address"} message={errorMessages.address} />
+        {/* <ErrorMessage label={"Address"} message={errorMessages.address} /> */}
         <input
           type="text"
           placeholder="City"
           required
           value={city}
           onChange={(e) => setCity(e.target.value)} />
-        <ErrorMessage label={"City"} message={errorMessages.city} />
+        {/* <ErrorMessage label={"City"} message={errorMessages.city} /> */}
         <input
           type="text"
           placeholder="State"
           required
           value={state}
           onChange={(e) => setState(e.target.value)} />
-        <ErrorMessage label={"State"} message={errorMessages.state} />
+        {/* <ErrorMessage label={"State"} message={errorMessages.state} /> */}
         <input
           type="text"
           placeholder="Country"
           required
           value={country}
           onChange={(e) => setCountry(e.target.value)} />
-        <ErrorMessage label={"Country"} message={errorMessages.country} />
+        {/* <ErrorMessage label={"Country"} message={errorMessages.country} /> */}
         <input
           type="number"
           placeholder="Lat"
@@ -91,7 +95,7 @@ function SpotCreateFormPage() {
           required
           value={lat}
           onChange={(e) => setLat(e.target.value)} />
-        <ErrorMessage label={"Lat"} message={errorMessages.lat} />
+        {/* <ErrorMessage label={"Lat"} message={errorMessages.lat} /> */}
         <input
           type="number"
           placeholder="Lng"
@@ -100,21 +104,21 @@ function SpotCreateFormPage() {
           required
           value={lng}
           onChange={(e) => setLng(e.target.value)} />
-        <ErrorMessage label={"Lng"} message={errorMessages.lng} />
+        {/* <ErrorMessage label={"Lng"} message={errorMessages.lng} /> */}
         <input
           type="text"
           placeholder="Name"
           required
           value={name}
           onChange={(e) => setName(e.target.value)} />
-        <ErrorMessage label={"Name"} message={errorMessages.name} />
+        {/* <ErrorMessage label={"Name"} message={errorMessages.name} /> */}
         <input
           type="text"
           placeholder="Description"
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)} />
-        <ErrorMessage label={"Description"} message={errorMessages.description} />
+        {/* <ErrorMessage label={"Description"} message={errorMessages.description} /> */}
         <input
           type="number"
           placeholder="Price"
@@ -122,14 +126,14 @@ function SpotCreateFormPage() {
           required
           value={price}
           onChange={(e) => setPrice(e.target.value)} />
-        <ErrorMessage label={"Price"} message={errorMessages.price} />
+        {/* <ErrorMessage label={"Price"} message={errorMessages.price} /> */}
         <input
           type="url"
           placeholder="Only jpg, jpeg and png Image url valid"
           required
           value={previewImage}
           onChange={(e) => setImageUrl(e.target.value)} />
-        <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} />
+        {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
             <button type="submit">Create New Spot</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>

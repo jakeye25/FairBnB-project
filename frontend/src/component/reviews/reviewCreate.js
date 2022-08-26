@@ -18,17 +18,18 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const [showReviewCreate, setshowReviewCreate] = useState(false);
 
     const {spotId} = useParams()
-    // const spots = useSelector(state => state.spots)
+    const userspot = useSelector(state => state.spot[spotId])
     const user = useSelector(state =>state.session.user)
-
+    console.log('checkuserspot', userspot)
     const userId = user.id
-
+    const checkOwner = userspot.ownerId == userId
+    console.log('checkowner', checkOwner)
     // console.log('check review state', reviews)
-    const userReview = Object.values(reviews).filter(ele => ele.userId = userId)
+    const userReview = Object.values(reviews).filter(ele => ele.userId == +userId)
     // console.log('check user review state', userReview)
 
-    const check = userReview.length === 1
-    // console.log('check', check)
+    const checkUserfirstReview = userReview.length === 1
+    // console.log('check', checkUserfirstReview)
     // if(reviews){let userReivew = Object.values(reviews).find(ele=> ele.userId = userId)}
     const toggleReview =() => {
         setshowReviewCreate(!showReviewCreate)
@@ -63,11 +64,11 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     return (
 
         <section>
-                {!check && <button onClick={toggleReview } className="createreviewBtn">
+                {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
                     Any great experiences? Click here and leave your thoughts !!!
 
                 </button>}
-            {showReviewCreate && !check && <form className="reviewCreateform"
+            {showReviewCreate && !checkUserfirstReview && <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error,index) => (
