@@ -24,11 +24,15 @@ function LoginForm() {
     setErrors([]);
     if (!email.includes("@"))
     return setErrors(['Please provide a valid email'])
-    return dispatch(sessionActions.login({ email, password })).catch(
-      async (res) => {
+    return dispatch(sessionActions.login({ email, password }))
+    .catch(async (res) => {
+      // console.log('res',res)
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-
+        // if (data && data.errors) setErrors(data.errors);
+        // console.log('logindata', data)
+        const err = Object.values(data)
+        // console.log('loginerror', err)
+        if(err) setErrors(['Invalid Credential']);
       }
     );
   };
@@ -40,9 +44,7 @@ function LoginForm() {
 
         <form onSubmit={handleSubmit} className="loginform">
           <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}  className="loginerror">{error}</li>
-            ))}
+          {errors.map((error, idx) => <li key={idx} className="loginerror">{error}</li>)}
           </ul>
 
             <input

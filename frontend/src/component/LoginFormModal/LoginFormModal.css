@@ -55,13 +55,14 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  line-height: 10px;
+  line-height: 5px;
+  height: 5px;
   height: fit-content;
   width: max-content;
-  /* float: left; */
+
   margin-bottom: 20px;
-  /* font-size: 11px; */
-  /* margin-left: 5px; */
+
+  margin-left: 5px;
  }
 
   .loginbutton{

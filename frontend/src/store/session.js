@@ -28,8 +28,9 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-//   console.log(data)
+  // console.log('storelogin', data)
   dispatch(setUser(data));
+
   return response;
 };
 
