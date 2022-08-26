@@ -57,91 +57,105 @@ function SpotCreateFormPage() {
     }
 
   return (
-    <section className="new-form-holder centered middled">
-
+    <section className="spotform__container">
+      <div className="leftspotform">
+        <h1 className="spotform__head">Where's your place located?</h1>
+        </div>
       {/* <ErrorMessage message={errorMessages.overall} /> */}
-        <form className="create-spot-form" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-        <input
-          type="text"
-          placeholder="Address"
-          required
-          value={address}
-          onChange={(e) => setAddress(e.target.value)} />
-        {/* <ErrorMessage label={"Address"} message={errorMessages.address} /> */}
-        <input
-          type="text"
-          placeholder="City"
-          required
-          value={city}
-          onChange={(e) => setCity(e.target.value)} />
-        {/* <ErrorMessage label={"City"} message={errorMessages.city} /> */}
-        <input
-          type="text"
-          placeholder="State"
-          required
-          value={state}
-          onChange={(e) => setState(e.target.value)} />
-        {/* <ErrorMessage label={"State"} message={errorMessages.state} /> */}
-        <input
-          type="text"
-          placeholder="Country"
-          required
-          value={country}
-          onChange={(e) => setCountry(e.target.value)} />
-        {/* <ErrorMessage label={"Country"} message={errorMessages.country} /> */}
-        <input
-          type="number"
-          placeholder="Lat"
-          min="-90"
-          max="90"
-          required
-          value={lat}
-          onChange={(e) => setLat(e.target.value)} />
-        {/* <ErrorMessage label={"Lat"} message={errorMessages.lat} /> */}
-        <input
-          type="number"
-          placeholder="Lng"
-          min="-180"
-          max="180"
-          required
-          value={lng}
-          onChange={(e) => setLng(e.target.value)} />
-        {/* <ErrorMessage label={"Lng"} message={errorMessages.lng} /> */}
-        <input
-          type="text"
-          placeholder="Name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)} />
-        {/* <ErrorMessage label={"Name"} message={errorMessages.name} /> */}
-        <input
-          type="text"
-          placeholder="Description"
-          required
-          value={description}
-          onChange={(e) => setDescription(e.target.value)} />
-        {/* <ErrorMessage label={"Description"} message={errorMessages.description} /> */}
-        <input
-          type="number"
-          placeholder="Price"
-          min="1"
-          required
-          value={price}
-          onChange={(e) => setPrice(e.target.value)} />
-        {/* <ErrorMessage label={"Price"} message={errorMessages.price} /> */}
-        <input
-          type="url"
-          placeholder="Only jpg, jpeg and png Image url valid"
-          required
-          value={previewImage}
-          onChange={(e) => setpreviewImage(e.target.value)} />
-        {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
-            <button type="submit">Create New Spot</button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
-        </form>
+      <div className="rightspotform">
+          <form className="spotform__info" onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <li className="spotformerror" key={idx}>{error}</li>)}
+        </ul>
+          <input
+            type="text"
+            placeholder="Address"
+            className="spotforminput"
+            required
+            value={address}
+            onChange={(e) => setAddress(e.target.value)} />
+          {/* <ErrorMessage label={"Address"} message={errorMessages.address} /> */}
+          <input
+            type="text"
+            placeholder="City"
+            className="spotforminput"
+            required
+            value={city}
+            onChange={(e) => setCity(e.target.value)} />
+          {/* <ErrorMessage label={"City"} message={errorMessages.city} /> */}
+          <input
+            type="text"
+            placeholder="State"
+            className="spotforminput"
+            required
+            value={state}
+            onChange={(e) => setState(e.target.value)} />
+          {/* <ErrorMessage label={"State"} message={errorMessages.state} /> */}
+          <input
+            type="text"
+            placeholder="Country"
+            className="spotforminput"
+            required
+            value={country}
+            onChange={(e) => setCountry(e.target.value)} />
+          {/* <ErrorMessage label={"Country"} message={errorMessages.country} /> */}
+          <input
+            type="number"
+            placeholder="Lat"
+            className="spotforminput"
+            min="-90"
+            max="90"
+            required
+            value={lat}
+            onChange={(e) => setLat(e.target.value)} />
+          {/* <ErrorMessage label={"Lat"} message={errorMessages.lat} /> */}
+          <input
+            type="number"
+            placeholder="Lng"
+            className="spotforminput"
+            min="-180"
+            max="180"
+            required
+            value={lng}
+            onChange={(e) => setLng(e.target.value)} />
+          {/* <ErrorMessage label={"Lng"} message={errorMessages.lng} /> */}
+          <input
+            type="text"
+            placeholder="Name"
+            className="spotforminput"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)} />
+          {/* <ErrorMessage label={"Name"} message={errorMessages.name} /> */}
+          <input
+            type="text"
+            placeholder="Description"
+            className="spotforminput"
+            required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)} />
+          {/* <ErrorMessage label={"Description"} message={errorMessages.description} /> */}
+          <input
+            type="number"
+            placeholder="Price"
+            className="spotforminput"
+            min="1"
+            required
+            value={price}
+            onChange={(e) => setPrice(e.target.value)} />
+          {/* <ErrorMessage label={"Price"} message={errorMessages.price} /> */}
+          <input
+            type="url"
+            placeholder="Only jpg, jpeg and png Image url valid"
+            className="spotforminput"
+            required
+            value={previewImage}
+            onChange={(e) => setpreviewImage(e.target.value)} />
+          {/* <ErrorMessage label={"Image Url"} message={errorMessages.previewImage} /> */}
+              <button type="submit" className="spotformbutton">Create New Spot</button>
+              <button type="button" className="spotformbutton" onClick={handleCancelClick}>Cancel</button>
+          </form>
+        </div>
     </section>
   );
 }

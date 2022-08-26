@@ -1,0 +1,109 @@
+.spotform__container {
+    /* position: absolute; */
+    /* transform: translate(-50%,-50%); */
+    /* top: 10%;
+    left: 50%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10%; */
+    display: flex;
+    flex-direction: row;
+    /* background-color: aquamarine; */
+  }
+
+.leftspotform{
+    flex-direction: column !important;
+    width: 50% !important;
+    height: 100vh !important;
+    max-height: 100% !important;
+    position: relative !important;
+    float:left;
+    justify-content: center !important;
+
+}
+
+spotform__head{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.rightspotform{
+    flex-direction: column !important;
+    width: 50% !important;
+    height: 100vh !important;
+    max-height: 100%;
+    float: right;
+    position: relative
+}
+
+
+.spotform__head{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  line-height: 14px;
+  height: 14px;
+
+}
+
+ .spotform {
+    background: white;
+    padding: 3em;
+    /* height: 5px; */
+    border-radius: 20px;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    /* backdrop-filter: blur(10px); */
+    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+    text-align: center;
+    /* position: relative; */
+    /* transition: all 0.2s ease-in-out; */
+  }
+
+  .spotforminput  {
+    background: transparent;
+    width: 200px;
+    padding: 1em;
+    margin-bottom: 2em;
+    border: none;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-radius: 5000px;
+    backdrop-filter: blur(5px);
+    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
+    color: black;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+
+ .spotformerror{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  line-height: 10px;
+  height: fit-content;
+  width: max-content;
+  /* float: left; */
+  margin-bottom: 20px;
+  /* font-size: 11px; */
+  /* margin-left: 5px; */
+ }
+
+  .spotformbutton{
+
+        margin-top: 10px;
+        width: 150px;
+        font-size: 1rem;
+  }
+
+  ::placeholder {
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    color: rgb(50, 50, 104);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  }
