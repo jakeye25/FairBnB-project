@@ -119,19 +119,19 @@ const spots = [
     price: 14950,
     previewImage: "https://a0.muscache.com/im/pictures/6d21a3be-3114-4cdd-ab8b-75c02a6812b4.jpg?im_w=720"
   },
-  {
-    ownerId: 5,
-    address: "8 Disney Lane",
-    city: "Chino",
-    state: "California",
-    country: "United States of America",
-    lat: 45.7645358,
-    lng: -125.4730327,
-    name: "Sunny Pool house 2BR 1BA 4bed for Family/ Business",
-    description: " This is the main house with 2 BR, 3 queen beds.",
-    price: 150,
-    previewImage: "https://a0.muscache.com/im/pictures/e0b6bb01-151b-42f6-b512-5667c3f6ab22.jpg?im_w=720"
-  },
+  // {
+  //   ownerId: 5,
+  //   address: "8 Disney Lane",
+  //   city: "Chino",
+  //   state: "California",
+  //   country: "United States of America",
+  //   lat: 45.7645358,
+  //   lng: -125.4730327,
+  //   name: "Sunny Pool house 2BR 1BA 4bed for Family/ Business",
+  //   description: " This is the main house with 2 BR, 3 queen beds.",
+  //   price: 150,
+  //   previewImage: "https://a0.muscache.com/im/pictures/e0b6bb01-151b-42f6-b512-5667c3f6ab22.jpg?im_w=720"
+  // },
 ];
 
 module.exports = {

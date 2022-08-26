@@ -16,7 +16,7 @@ const UserReviews = () => {
 
       if (!reviews.length) {
         return (
-          <h1>No Reviews Left</h1>
+          <h1>you haven't left us a review on FairBnB yet!</h1>
         );
       }
 
