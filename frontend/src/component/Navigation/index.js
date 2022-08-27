@@ -9,7 +9,7 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
 import DemoUser from '../Demo User/demouser';
-// import HomeRightBtn from './HomeRightBtn';
+
 
 
 
@@ -20,19 +20,23 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
        /* <div className='header'>*/
-       <div>
-        <NavLink exact to='/spots/create'>Become a Host</NavLink>
-        <div className='profile__icon'>
-          <ProfileButton user={sessionUser} />
-        </div>
-       </div>
+      <>
+        <div>
+            <p>
+              <NavLink exact to='/spots/create'>Become a Host</NavLink>
+              </p>
+              <div className='profile__icon'>
+                <ProfileButton user={sessionUser} />
+              </div>
+          </div>
+     </>
     );
   } else {
     sessionLinks = (
       <>
-      <div onClick={()=> {alert('You have to login or signup first.')}}>
+      <p onClick={()=> {alert('You have to login or signup first.')}}>
         Become a Host
-      </div>
+      </p>
         <div className='drop'>
             <span>
               <i className="fa-solid fa-bars fa-lg"></i>
@@ -46,7 +50,7 @@ function Navigation({ isLoaded }){
           <a href="#">
             <LoginFormModal />
           </a>
-            {/* <HomeRightBtn/> */}
+
           </div>
 
         </div>
