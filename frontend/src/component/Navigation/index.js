@@ -54,7 +54,7 @@ function Navigation({ isLoaded }){
           </div>
 
         </div>
-        {/* <NavLink to="/users/signup">Sign Up</NavLink> */}
+
       </>
     );
   }
@@ -72,15 +72,10 @@ function Navigation({ isLoaded }){
             src = "https://user-images.githubusercontent.com/77218939/186223244-9ba08f47-ccf9-4c21-b999-c3a09b4d6108.png"
             alt='logo'
             />
-            {/* <i className="fa-solid fa-hotel"></i> */}
+
             </NavLink>
           <div className='header__right'>
-            <div>
-              {/* <div>
-                Becaome a Host
-                <LoginFormModal />
-              </div> */}
-              </div>
+
             {isLoaded && sessionLinks}
           </div>
         </div>
