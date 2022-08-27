@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { getSpotReviews } from "../../store/review";
 import { NavLink, useParams } from "react-router-dom";
+import './reviewBrowser.css';
+
 
 const SpotReviews = () => {
 
@@ -26,21 +28,17 @@ const SpotReviews = () => {
         isLoaded &&<>
 
           {reviews.length ? reviews.map((review) => (
-            <div key={review.id}>
+            <div  className="reviewspot__container" key={review.id}>
               {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
 
                 <div className="centered">Annoymous</div>
                 <div>{review.createdAt.slice(0, 10)}</div>
                 <div className="centered">{review.review}</div>
+                <span></span>
                 {/* <div className="centered">Stars Rating: {review.stars}</div> */}
                 <div>
-                  <br></br>
-                </div>
-              {/* </NavLink> */}
+              </div>
 
-                {/* <button onClick={() => dispatch(deleteReview(review.id))}>
-                    Delete
-                 </button> */}
             </div>
 
 

@@ -1,8 +1,29 @@
+.reviewspot__container{
+    margin-bottom: 10px;
+}
+
+
+
+
 .reviewlist__container{
     width:500px;
-    height: 300px;
-    background: #eee;
-    border-radius: 10px;
+    height: 70px;
+    /* background: #eee; */
+    /* border-radius: 10px; */
     margin: 100px auto;
     margin-left: 100px;
+    /* border: 1px solid; */border-bottom: 2px solid silver;
+    border-top: 2px solid silver;
+    font-size: large;
+}
+
+.reviewlist__noreview{
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+}
+
+.reviewlist__delbtn{
+    margin-top: 15px;
+    border-radius: 20px;
 }
