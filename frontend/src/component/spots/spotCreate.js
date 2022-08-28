@@ -59,7 +59,9 @@ function SpotCreateFormPage() {
   return (
     <section className="spotform__container">
       <div className="leftspotform">
-        <h1 className="spotform__head">Where's your place located?</h1>
+        <h1 className="spotform__head"
+        // style={{backgroundColor: "lightblue",}}
+        >Where's your place located?</h1>
         </div>
       <div className="rightspotform">
           <form className="spotform__info" onSubmit={handleSubmit}>
@@ -88,12 +90,20 @@ function SpotCreateFormPage() {
             value={state}
             onChange={(e) => setState(e.target.value)} />
           <input
-            type="text"
+            type="country"
             placeholder="Country"
             className="spotforminput"
             required
             value={country}
             onChange={(e) => setCountry(e.target.value)} />
+          {/* <select
+            className="spotforminput"
+            required
+          >
+            <option value="Afghanistan">United States</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albania">Albania</option>
+          </select> */}
           <input
             type="number"
             placeholder="Lat"

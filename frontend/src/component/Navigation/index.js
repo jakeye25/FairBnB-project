@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
        /* <div className='header'>*/
       <>
         <div>
-            <p>
+            <p className='becomehost'>
               <NavLink exact to='/spots/create'>Become a Host</NavLink>
               </p>
               <div className='profile__icon'>
@@ -33,29 +33,30 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <>
-      <p onClick={()=> {alert('You have to login or signup first.')}}>
-        Become a Host
-      </p>
-        <div className='drop'>
-            <span>
-              <i className="fa-solid fa-bars fa-lg"></i>
+      <div>
 
-              <i className="fas fa-user-circle fa-xl" />
-            </span>
-          <div className='droplist'>
-          <a href="#">
-            <SignupFormModal />
-          </a>
-          <a href="#">
-            <LoginFormModal />
-          </a>
+          <p className='becomehost' onClick={()=> {alert('You have to login or signup first.')}}>
+            Become a Host
+          </p>
+            <div className='drop'>
+                <span>
+                  <i className="fa-solid fa-bars fa-lg"></i>
 
-          </div>
+                  <i className="fas fa-user-circle fa-xl" />
+                </span>
+              <div className='droplist'>
+              <a href="#">
+                <SignupFormModal />
+              </a>
+              <a href="#">
+                <LoginFormModal />
+              </a>
 
-        </div>
+              </div>
 
-      </>
+            </div>
+
+      </div>
     );
   }
 
@@ -74,11 +75,11 @@ function Navigation({ isLoaded }){
             />
 
             </NavLink>
+        </div>
           <div className='header__right'>
 
             {isLoaded && sessionLinks}
           </div>
-        </div>
 
       </div>
     </>

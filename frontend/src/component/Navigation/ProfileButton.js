@@ -34,10 +34,10 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <div onClick={openMenu}>
         <i className="fas fa-user-circle" />
         {/* <i className="fas fa-duotone fa-square-user" /> */}
-      </button>
+      </div>
       {showMenu && (
         <ul className="profile-dropdown">
           {/* <li>{user.username}</li> */}

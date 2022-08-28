@@ -25,13 +25,13 @@ body {
     color: white; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-around, flex-start;
     /* align-items: center; */
     /* padding: 40px; */
     width: 85%;
     margin: auto;
     margin-top: 40px;
-    
+
 }
 
 .card__container{
