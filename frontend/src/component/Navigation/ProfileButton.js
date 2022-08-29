@@ -35,7 +35,8 @@ function ProfileButton({ user }) {
   return (
     <>
       <div onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <i className="fa-solid fa-bars fa-lg"></i>
+        <i className="fas fa-user-circle fa-xl" />
         {/* <i className="fas fa-duotone fa-square-user" /> */}
       </div>
       {showMenu && (

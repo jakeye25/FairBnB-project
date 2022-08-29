@@ -52,8 +52,28 @@
     width: 20px;
     height: 20px; */
     position:absolute;
-   top:0;
-   right:0;
+    /* float: right; */
+
+
+    line-height: 70px;
+
+
+    /* width: 80px; */
+    top:0;
+    right:0;
+
+    background: #fff;
+    border: 1px solid #bbb;
+
+    border-radius: 10px;
+
+    padding: 5px;
+
+    /* text-align: center; */
+}
+
+.profile__dropdown li{
+    width: 50%;
 }
 
 .drop{
@@ -87,7 +107,7 @@
 
 
     .drop span{
-        border: solid #bbb;
+        border: 1px solid #bbb;
 
         border-radius: 50px;
 
