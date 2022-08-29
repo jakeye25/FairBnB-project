@@ -6,6 +6,7 @@ import SpotEditFormPage from "./spotEdit";
 import { useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal'
 import { Link } from "react-router-dom";
+import './spotList.css';
 
 const UserSpots = () => {
     const spotsObj = useSelector((state) => state.spot)
@@ -27,28 +28,39 @@ const UserSpots = () => {
 
     return (
         <>
-
+          <div className ='wrapper'>
         {spots.map((spot) => (
-      <div key={spot.id}>
-        <div>
-          <img
-            className="spot-image"
-            alt={spot.previewImage}
-            src={spot.previewImage}
-          />
-        </div>
-        <div>{spot.name}</div>
-        <div className="centered">{spot.description}</div>
-        <div className="centered">${spot.price} night</div>
-        <div className="centered">
-          <Link to={`/spots/${spot.id}/edit`}>Edit</Link>
-          <button onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
-              Delete
-          </button>
-        </div>
+      <div key={spot.id} className='card__container'>
+              <div className='image__container'>
+                <img
+                  className="card__image"
+                  alt=''
+                  src={spot.previewImage}
+                />
+              </div>
+        <div className="userspot__bottomcontainer" >
+
+                    <div className="userspot__container1">{spot.name}</div>
+                    <div className="userspot__container1">{spot.description}</div>
+                    <div className="userspot__container1">${spot.price} night</div>
+
+              <div className="userspot__container2">
+                    <div className="userspotbtn">
+                      <Link to={`/spots/${spot.id}/edit`}>
+                      <i className="fa-solid fa-pen-to-square"></i>
+                      </Link>
+                    </div>
+                    <span> &nbsp;</span>
+                      <div className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
+                      <i className="fa-solid fa-trash-can"></i>
+                      </div>
+
+              </div>
+          </div>
       </div>
 
         ))}
+        </div>
         </>
     );
   };

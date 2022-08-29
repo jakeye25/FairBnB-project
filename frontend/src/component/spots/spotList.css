@@ -100,3 +100,28 @@ body {
     width: 280px;
 
 }
+
+.userspot__bottomcontainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    /* text-decoration: none; */
+}
+
+.userspot__container2{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+.userspotbtn{
+    border: 1px solid #7f7f7f;
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+
+.userspotdltbtn:hover{
+    background: #7f7f7f;
+}
