@@ -81,7 +81,7 @@ const SpotDetail = () => {
           {user &&<ReviewCreateFormPage/>}
         </div>
         </div>
-        <div className='spotdetail__footer'>
+        {/* <div className='spotdetail__footer'>
           <div className='sd__footer__block'>
             <ul className='sd__footer__block_ul'>
               <li className='sd__footer__block_li1'>Support</li>
@@ -124,7 +124,7 @@ const SpotDetail = () => {
             </ul>
           </div>
 
-        </div>
+        </div> */}
 
       </div>
 

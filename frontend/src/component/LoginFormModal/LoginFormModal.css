@@ -1,11 +1,15 @@
 
   .login__container {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 10%;
+    /* position: absolute; */
+    /* transform: translate(-50%,-50%); */
+    /* top: 10%;
     left: 50%;
-    border-radius: 20px;
-    overflow: hidden;
+    border-radius: 20px; */
+    /* overflow: hidden; */
+    /* width: 50%;
+    height: 80%; */
+    /* border-radius: 10px; */
+    /* margin: 100px auto; */
 
     /* background-color: aquamarine; */
   }
@@ -22,7 +26,7 @@
     background: white;
     padding: 3em;
     /* height: 5px; */
-    border-radius: 20px;
+    border-radius: 8px;
     border-left: 1px solid white;
     border-top: 1px solid white;
     /* backdrop-filter: blur(10px); */
@@ -30,17 +34,21 @@
     text-align: center;
     /* position: relative; */
     /* transition: all 0.2s ease-in-out; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .logininput  {
     background: transparent;
-    width: 200px;
+    width: 380px;
+    line-height: 20px;
     padding: 1em;
     margin-bottom: 2em;
     border: none;
     border-left: 1px solid white;
     border-top: 1px solid white;
-    border-radius: 5000px;
+    border-radius: 8px;
     backdrop-filter: blur(5px);
     box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
     color: black;
@@ -59,7 +67,7 @@
   height: 5px;
   height: fit-content;
   width: max-content;
-
+  color: #df1760;
   margin-bottom: 20px;
 
   margin-left: 5px;
@@ -68,10 +76,13 @@
   .loginbutton{
 
         margin-top: 10px;
-        width: 150px;
+        width: 380px;
+        /* line-height: 20px; */
+        height: 40px;
         font-size: 1rem;
         background-color: #df1760;
         color: white;
+        border-radius: 8px;
   }
 
   ::placeholder {
@@ -82,11 +93,19 @@
   }
 
   .login__demouser{
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    /* background-color: #df1760;
-    color: white; */
+
+    margin-top: 66px;
+    width: 380px;
+
+    height: 40px;
+    line-height: 40px;
+    font-size: 1rem;
+    background-color: #df1760;
+    color: white;
+    border-radius: 8px;
+    /* margin-right: 5px; */
+    /* padding-right: 5px; */
+    left: 20px;
+    outline: none;
+
   }

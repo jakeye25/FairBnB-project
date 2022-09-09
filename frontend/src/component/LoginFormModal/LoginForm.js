@@ -22,7 +22,7 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    if (!email.includes("@"))
+    if (!email.includes("@") || email.length<6 )
     return setErrors(['Please provide a valid email'])
     return dispatch(sessionActions.login({ email, password }))
     .catch(async (res) => {
@@ -66,11 +66,11 @@ function LoginForm() {
             />
 
           <button type="submit" className="loginbutton">Continue</button>
-        </form>
-
-            <div className="login__demouser">
+            <div >
               <DemoUser/>
             </div>
+        </form>
+
         </div>
     </>
   );
