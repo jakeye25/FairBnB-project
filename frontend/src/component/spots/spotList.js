@@ -13,6 +13,10 @@ const SpotsBrowser = () => {
   // console.log('allspots', allspots)
   const dispatch = useDispatch();
 
+  useEffect (() => {
+    document.title = "Vacation Homes & Condo Rentals - FAirBnB"
+  }, [])
+
     useEffect(() => {
       dispatch(getSpots());
     },[dispatch])

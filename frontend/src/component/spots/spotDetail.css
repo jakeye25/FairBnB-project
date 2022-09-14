@@ -61,6 +61,15 @@
 
 }
 
+.sd__footerline2{
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+.sd__footerspace{
+    margin-left: 5px;
+}
+
 .sd__footer__block_ul{
     list-style: none;
 }
@@ -74,4 +83,24 @@
     margin-top: 7%;
     border-top: solid #f7f7f7;
 
+}
+
+#sd__ratinghead{
+    display: flex;
+    flex-direction: row;
+
+}
+
+#spotreviewRating{
+    position: relative;
+    font-weight: 600;
+    line-height: 26px;
+    font-size: 22px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont,  Roboto,   'Helvetica Neue', sans-serif;
+}
+
+
+#sd__image__container{
+    display: grid;
+    
 }

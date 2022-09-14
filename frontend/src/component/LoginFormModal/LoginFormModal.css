@@ -94,7 +94,8 @@
 
   .login__demouser{
 
-    margin-top: 66px;
+    /* margin-top: 66px; */
+    margin-left: 41px;
     width: 380px;
 
     height: 40px;
@@ -105,7 +106,7 @@
     border-radius: 8px;
     /* margin-right: 5px; */
     /* padding-right: 5px; */
-    left: 20px;
+
     outline: none;
 
   }

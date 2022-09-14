@@ -29,10 +29,17 @@ const SpotDetail = () => {
   // console.log('numreviews', numReivews.length)
   // console.log('spotReview', Object.values(review).length)
   const numReivews = numReivewsArray.length
+
+  useEffect(() => {
+    document.title = spot.name
+  }, [])
+
   useEffect(() => {
     dispatch(getOneSpot(spotId ))
     .then(()=>setIsloaded(true))
   }, [dispatch, spotId, review, numReivews]);
+
+
 
   // useEffect(() => {
   //   dispatch(getSpotReviews(spotId))
@@ -48,18 +55,40 @@ const SpotDetail = () => {
               <div className='spotdetail__head2'>
                 <div className='spotRating'>
                   <i className="fa-solid fa-star"></i>
-                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} ~ </div>
-                <div>{numReivews} reviews ~</div>
-                <div className="centered"> {spot.city}, </div>
-                <div className="centered">{spot.state}, </div>
-                <div className="centered">{spot.country}</div>
+                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} </div>
+                <span className='sd__footerspace'> · </span>
+                <div className="sd__footerline2">{numReivews} reviews </div>
+                <span className='sd__footerspace'> · </span>
+                <div className="sd__footerline2"> {spot.city}, </div>
+                <div className="sd__footerline2">{spot.state}, </div>
+                <div className="sd__footerline2">{spot.country}</div>
               </div>
-                  <div>
+                  <div id='sd__image__container'>
                     <img
                       className="spot-image"
                       alt='Image'
                       src={spot.previewImage}
                     />
+                    {/* <img
+                      className="spot-image"
+                      alt='Image'
+                      src={spot.previewImage}
+                    />
+                    <img
+                      className="spot-image"
+                      alt='Image'
+                      src={spot.previewImage}
+                    />
+                    <img
+                      className="spot-image"
+                      alt='Image'
+                      src={spot.previewImage}
+                    />
+                    <img
+                      className="spot-image"
+                      alt='Image'
+                      src={spot.previewImage}
+                    /> */}
                   </div>
         </div>
         <div className='spotdetail__body'>
@@ -70,12 +99,14 @@ const SpotDetail = () => {
         </ul>
 
         <div className='sd__review__container'>
-          <h2>
-            <div className='spotRating'>
-                  <i className="fa-solid fa-star"></i>
-                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} ~ </div>
-                <div>{numReivews} reviews</div>
-          </h2>
+          <h1 id="sd__ratinghead" >
+            <div id='spotreviewRating'>
+                  <i className="fa-solid fa-star fa-1x" style={{left:"5px"}}></i>
+                  <span> </span>
+                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} · {numReivews} reviews</div>
+                  {/* <span className='sd__footerspace'> · </span>
+                <div >{numReivews} reviews</div> */}
+          </h1>
           <br></br>
           <SpotReviews />
           {user &&<ReviewCreateFormPage/>}

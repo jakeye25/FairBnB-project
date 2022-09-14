@@ -1,13 +1,14 @@
 
   .signup__container {
-    position: absolute;
+    /* position: absolute;
     transform: translate(-50%,-50%);
     top: 10%;
     left: 50%;
     border-radius: 20px;
     overflow: hidden;
-    /* background-color: aquamarine; */
+    background-color: aquamarine; */
   }
+
 .signup__head{
   display: flex;
   justify-content: center;
@@ -29,17 +30,21 @@
     text-align: center;
     /* position: relative; */
     /* transition: all 0.2s ease-in-out; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .signupinput  {
     background: transparent;
-    width: 200px;
+    width: 380px;
+    line-height: 20px;
     padding: 1em;
     margin-bottom: 1em;
     border: none;
     border-left: 1px solid white;
     border-top: 1px solid white;
-    border-radius: 5000px;
+    border-radius: 8px;
     backdrop-filter: blur(5px);
     box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
     color: black;
@@ -61,15 +66,21 @@
   width: max-content;
   /* float: left; */
   margin-bottom: 30px;
+  color: #df1760;
   /* font-size: 11px; */
   /* margin-left: 5px; */
  }
 
   .signupbutton{
 
-        margin-top: 10px;
-        width: 150px;
-        font-size: 1rem;
+    margin-top: 10px;
+    width: 380px;
+    /* line-height: 20px; */
+    height: 40px;
+    font-size: 1rem;
+    background-color: #df1760;
+    color: white;
+    border-radius: 8px;
   }
 
   ::placeholder {

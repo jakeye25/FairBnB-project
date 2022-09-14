@@ -66,10 +66,9 @@ function LoginForm() {
             />
 
           <button type="submit" className="loginbutton">Continue</button>
-            <div >
-              <DemoUser/>
-            </div>
         </form>
+
+              <DemoUser/>
 
         </div>
     </>

@@ -8,7 +8,7 @@ import LoginFormModal from '../LoginFormModal';
 
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
-import DemoUser from '../Demo User/demouser';
+// import DemoUser from '../Demo User/demouser';
 
 
 
@@ -40,7 +40,7 @@ function Navigation({ isLoaded }){
           </p>
             <div className='drop'>
                 <span>
-                  <i className="fa-solid fa-bars fa-lg"></i>
+                  <i className="fa-solid fa-bars"></i>
 
                   <i className="fas fa-user-circle fa-xl" />
                 </span>
