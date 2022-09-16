@@ -83,6 +83,7 @@
         background-color: #df1760;
         color: white;
         border-radius: 8px;
+        cursor: pointer;
   }
 
   ::placeholder {
@@ -106,7 +107,7 @@
     border-radius: 8px;
     /* margin-right: 5px; */
     /* padding-right: 5px; */
-
+    cursor: pointer;
     outline: none;
 
   }
