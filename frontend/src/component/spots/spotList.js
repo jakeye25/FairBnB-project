@@ -30,7 +30,7 @@ return (
 
         {allspots && allspots.map((spot) => (
           <div key={spot.id} className='card__container'>
-            <NavLink  to={`/spots/${spot.id}`}>
+            <NavLink  to={`/spots/${spot.id}`} className= "spotlistlink">
             <div className='image__container'>
               <img
                 className="card__image"
@@ -38,8 +38,8 @@ return (
                 src={spot.previewImage}
               />
             </div>
-            </NavLink>
-            <div className='card__des'>
+
+              <div className='card__des'>
               <div className='text__container'>
                 <div className='card__city'>{spot.city}, {spot.state}</div>
                 {/* <div className="card_des">{spot.state}</div> */}
@@ -49,8 +49,8 @@ return (
                 <i className="fa-solid fa-star"></i>
                 {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "0.00"}
                 </div>
-            </div>
-
+              </div>
+            </NavLink>
           </div>
             ))}
 

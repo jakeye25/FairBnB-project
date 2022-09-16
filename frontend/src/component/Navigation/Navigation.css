@@ -20,7 +20,7 @@
     z-index: 100;
     width: 100%;
     justify-content: space-between;
-    border-bottom: #bbb;
+    border-bottom: solid 1px #bbb;
 }
 .header__icon{
     object-fit: contain;

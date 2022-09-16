@@ -25,13 +25,22 @@ body {
     color: white; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around, flex-start;
-    /* align-items: center; */
-    /* padding: 40px; */
-    width: 85%;
+    justify-content: space-between, first baseline;
+    column-gap: 20px;
+    width: 90%;
     margin: auto;
     margin-top: 40px;
+    vertical-align: top;
 
+
+
+    /* display: grid;
+    grid-gap: var(--breakpoint-grid_row-gap,0) var(--breakpoint-grid_column-gap,0);
+    grid-template-columns: var( --breakpoint-grid_column-template, repeat(var(--breakpoint-grid_columns,1),minmax(0,1fr)) );
+    align-items: normal;
+    justify-items: normal;
+    align-content: normal;
+    justify-content: normal; */
 }
 
 .card__container{
@@ -43,15 +52,26 @@ body {
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in; */
-    box-sizing: border-box;
+
+    /* box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     /* max-width: 20%; */
-    max-width: 300px;
+    /* min-width: 20%;
     padding: 10px;
-    margin: 5px 10px 5px 10px;
+    margin: 5px 10px 5px 10px; */
+
+    /* display: grid;
+    grid-gap: var(--breakpoint-grid_row-gap,0) var(--breakpoint-grid_column-gap,0);
+    grid-template-columns: var( --breakpoint-grid_column-template, repeat(var(--breakpoint-grid_columns,1),minmax(0,1fr)) ); */
     /* float: left; */
+}
+
+.spotlistlink{
+    text-decoration: none;
+    width: 20%;
+    height: auto;
 }
 
 .text__container{
@@ -62,7 +82,7 @@ body {
 .card__image{
     display: flex;
     height: 240px;
-    width: 290px;
+    width: 300px;
     margin: 5px;
     border-radius: 12px;
     margin-top: 30px;
@@ -79,7 +99,8 @@ body {
 .card__city{
     /* padding: 1rem; */
     font-weight: bold;
-    font-size: large;
+    font-size: 16px;
+    line-height: 20px;
 
 }
 
