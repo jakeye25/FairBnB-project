@@ -59,6 +59,7 @@ function SpotCreateFormPage() {
   return (
     <section className="spotform__container">
       <div className="leftspotform">
+ 
         <h1 className="spotform__head"
         // style={{backgroundColor: "lightblue",}}
         >Where's your place located?</h1>

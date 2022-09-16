@@ -20,7 +20,7 @@
     z-index: 100;
     width: 100%;
     justify-content: space-between;
-    border-bottom: solid 1px #bbb;
+    border-bottom: solid 1px rgb(209, 207, 207, 0.5);
 }
 .header__icon{
     object-fit: contain;
@@ -97,15 +97,23 @@
 
     /* margin-right: 0px; */
     }
+
 .becomehost{
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
     margin-top: 30px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 13px;
+    border-radius: 18px;
+
     /* margin-left: ; */
 }
 
-
+.becomehost:hover{
+    background-color: rgb(245, 243, 243, 0.5);
+}
     .drop span{
         border: 1px solid #bbb;
 
@@ -116,7 +124,6 @@
     }
 
     .droplist{
-
 
 
     box-shadow:1px 1px 2px #bbb;

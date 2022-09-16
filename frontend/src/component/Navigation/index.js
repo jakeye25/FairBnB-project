@@ -42,7 +42,7 @@ function Navigation({ isLoaded }){
                 <span>
                   <i className="fa-solid fa-bars"></i>
 
-                  <i className="fas fa-user-circle fa-xl" />
+                  <i className="fas fa-user-circle fa-2x" />
                 </span>
               <div className='droplist'>
               <a href="#">
