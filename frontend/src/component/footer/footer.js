@@ -3,22 +3,32 @@ import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
 
-export default function Footer (){
+export default function Footer(){
 
 
     return (
         <>
-            <div>
-                <p>
-                    
+            {/* <h1>Footer</h1> */}
+            <div id="footer_wrapper">
+                <p id='footer__text'>
+                    © 2022 Fairbnb, Inc.
                 </p>
+                <span>Contact: </span>
+            <NavLink
+            className="footer__logo"
+            to="https://www.linkedin.com/in/jake-ye-a2365250/" >
+                <img src='https://img.icons8.com/fluency/452/linkedin-circled.png'
+                alt='linkedin logo'></img>
+                <span>LinkedIn</span>
+            </NavLink>
+            <NavLink
+                className="footer__logo"
+            to="https://github.com/jakeye25/FairBnB-project">
+                <img src='https://img.icons8.com/glyph-neue/452/github.png'
+                alt='github logo'></img>
+                <span>Github</span>
+            </NavLink>
             </div>
-            <NavLink>
-                <img src='https://icons8.com/icon/qNUNvR9aEWql/linkedin-circled' alt='linkedin logo'></img>
-            </NavLink>
-            <NavLink>
-                <img src='https://icons8.com/icon/3tC9EQumUAuq/github' alt='github logo'></img>
-            </NavLink>
         </>
     )
 }

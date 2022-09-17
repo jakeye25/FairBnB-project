@@ -14,6 +14,7 @@ import UserReviews from "./component/reviews/userReviews";
 import SpotEditFormPage from "./component/spots/spotEdit";
 import LoginForm from "./component/LoginFormModal/LoginForm";
 import LoginFormModal from "./component/LoginFormModal";
+import Footer from "./component/footer/footer";
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
