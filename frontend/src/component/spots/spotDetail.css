@@ -82,6 +82,7 @@
 .sd__review__container{
     margin-top: 7%;
     border-top: solid #f7f7f7;
+    margin-bottom: 7%;
 
 }
 
@@ -102,5 +103,5 @@
 
 #sd__image__container{
     display: grid;
-    
+
 }

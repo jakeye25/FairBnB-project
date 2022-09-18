@@ -43,7 +43,7 @@ const SpotReviews = () => {
 
 
           ))
-          : <h4>no current review</h4>}
+          : <h3>No current review</h3>}
     </>
     );
 }
