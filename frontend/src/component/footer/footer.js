@@ -10,24 +10,26 @@ export default function Footer(){
         <>
             {/* <h1>Footer</h1> */}
             <div id="footer_wrapper">
-                <p id='footer__text'>
-                    © 2022 Fairbnb, Inc.
-                </p>
-                <span>Contact: </span>
-            <NavLink
-            className="footer__logo"
-            to="https://www.linkedin.com/in/jake-ye-a2365250/" >
-                <img src='https://img.icons8.com/fluency/452/linkedin-circled.png'
-                alt='linkedin logo'></img>
-                <span>LinkedIn</span>
-            </NavLink>
-            <NavLink
-                className="footer__logo"
-            to="https://github.com/jakeye25/FairBnB-project">
-                <img src='https://img.icons8.com/glyph-neue/452/github.png'
-                alt='github logo'></img>
-                <span>Github</span>
-            </NavLink>
+                <div id='footer__text'>
+                    © 2022 FairBnB, Inc.
+                </div>
+                <div id='footer__contact'>
+                <span id='footer__des'>Contact: </span>
+                <NavLink
+                to="https://www.linkedin.com/in/jake-ye-a2365250/" >
+                    <img className="footer__logo"
+                    src='https://img.icons8.com/fluency/452/linkedin-circled.png'
+                    alt='linkedin logo'></img>
+                    <span>LinkedIn</span>
+                </NavLink>
+                <NavLink
+                to="https://github.com/jakeye25/FairBnB-project">
+                    <img className="footer__logo"
+                    src='https://img.icons8.com/glyph-neue/452/github.png'
+                    alt='github logo'></img>
+                    <span>Github</span>
+                </NavLink>
+                </div>
             </div>
         </>
     )

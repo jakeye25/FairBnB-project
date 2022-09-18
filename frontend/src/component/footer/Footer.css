@@ -1,0 +1,44 @@
+#footer_wrapper{
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    height: 8vh;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#footer__text{
+    font-size: medium;
+    font-weight: bold;
+
+}
+
+#footer__contact{
+    display: flex;
+    width: 28%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer__contact a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+#footer__des{
+    font-size: medium;
+    font-weight: bold;
+}
+
+#footer__contact a span{
+    font-size: 16px;
+    margin-left: 3px;
+}
+
+.footer__logo{
+    width: 35px;
+    height: 35px;
+}
