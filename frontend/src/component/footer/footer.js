@@ -15,20 +15,20 @@ export default function Footer(){
                 </div>
                 <div id='footer__contact'>
                 <span id='footer__des'>Contact: </span>
-                <NavLink
-                to="https://www.linkedin.com/in/jake-ye-a2365250/" >
+                <a
+                href="https://www.linkedin.com/in/jake-ye-a2365250/" target='_blank'>
                     <img className="footer__logo"
                     src='https://img.icons8.com/fluency/452/linkedin-circled.png'
                     alt='linkedin logo'></img>
                     <span>LinkedIn</span>
-                </NavLink>
-                <NavLink
-                to="https://github.com/jakeye25/FairBnB-project">
+                </a>
+                <a
+                href="https://github.com/jakeye25" target='_blank'>
                     <img className="footer__logo"
                     src='https://img.icons8.com/glyph-neue/452/github.png'
                     alt='github logo'></img>
                     <span>Github</span>
-                </NavLink>
+                </a>
                 </div>
             </div>
         </>
