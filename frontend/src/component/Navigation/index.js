@@ -1,5 +1,5 @@
 // frontend/src/components/Navigation/index.js
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -15,6 +15,11 @@ import SignupFormModal from '../SignupFormPage';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+
+  const [showloginMenu, setshowloginMenu] = useState(false);
+  const toggleloginMenu =() => {
+    setshowloginMenu(!showloginMenu)
+}
 
   let sessionLinks;
   if (sessionUser) {
@@ -38,13 +43,13 @@ function Navigation({ isLoaded }){
           <p className='becomehost' onClick={()=> {alert('You have to login or signup first.')}}>
             Become a Host
           </p>
-            <div className='drop'>
+            <div className='drop' onClick={toggleloginMenu}>
                 <span>
                   <i className="fa-solid fa-bars"></i>
 
                   <i className="fas fa-user-circle fa-2x" />
                 </span>
-              <div className='droplist'>
+                {showloginMenu && <div className='droplist'>
               <a href="#">
                 <SignupFormModal />
               </a>
@@ -52,7 +57,7 @@ function Navigation({ isLoaded }){
                 <LoginFormModal />
               </a>
 
-              </div>
+              </div>}
 
             </div>
 

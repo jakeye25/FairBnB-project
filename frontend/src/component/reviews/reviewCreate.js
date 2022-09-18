@@ -101,40 +101,4 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
 export default ReviewCreateFormPage;
 
-//const history = useHistory();
-    // const dispatch = useDispatch();
-    // // const [isLoaded, setIsloaded] = useState(false)
-    // const {spotId} = useParams()
-    // const sessionUserId = useSelector(state =>state.session.user)
-    // // console.log('id', sessionUserId)
-    // const spots = useSelector(state => state.spots)
-    // // console.log('spotid',spotId)
-    // const reviews = useSelector((state) => state.review)
-    // console.log('rev', reviews)
-    // const [review, setReview] = useState('');
-    // const [stars, setStars] = useState('');
 
-    // const [errorMessages, setErrorMessages] = useState({});
-
-    // // if (!sessionUser) alert("You must login to leave review!")
-    // let userId = sessionUserId
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    // let newReview = { userId, spotId, review, stars }
-    // let createdReview;
-    // try{
-    //     createdReview = await dispatch(createReview(newReview))
-
-    // } catch (error) {
-    //     setErrorMessages({ overall: error.toString().slice(7) })
-    // }
-    // if (createReview) {
-    //     setErrorMessages({});
-
-    //   }
-    // }
-    // const handleCancelClick = (e) => {
-    //     e.preventDefault();
-    //     setErrorMessages({});
-    // }
