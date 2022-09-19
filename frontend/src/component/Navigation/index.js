@@ -102,12 +102,7 @@ const[showloginForm, setShowloginForm] = useState(false)
           {showsignupForm && <SignupForm/>}
         </Modal>)
         }
-        {/* {showModal &&
-          (<Modal onClose={() => setShowModal(false)}>
-          {showloginForm && <LoginForm />}
-          {showsignupForm && <SignupForm/>}
-        </Modal>)
-        } */}
+
       </div>
     </>
   );
