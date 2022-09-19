@@ -51,7 +51,8 @@ const[showloginForm, setShowloginForm] = useState(false)
           <p className='becomehost' onClick={()=> {alert('You have to login or signup first.')}}>
             Become a Host
           </p>
-          <ProfileButton user={sessionUser} setShowModal={setShowModal} setShowloginForm={setShowloginForm} setShowsignupForm={setShowsignupForm}/>
+          <ProfileButton user={sessionUser} setShowModal={setShowModal}
+          setShowloginForm={setShowloginForm} setShowsignupForm={setShowsignupForm}/>
 
             {/* <div className='drop' >
                 <span>
@@ -99,7 +100,14 @@ const[showloginForm, setShowloginForm] = useState(false)
           (<Modal onClose={() => setShowModal(false)}>
           {showloginForm && <LoginForm />}
           {showsignupForm && <SignupForm/>}
-        </Modal>)}
+        </Modal>)
+        }
+        {/* {showModal &&
+          (<Modal onClose={() => setShowModal(false)}>
+          {showloginForm && <LoginForm />}
+          {showsignupForm && <SignupForm/>}
+        </Modal>)
+        } */}
       </div>
     </>
   );
