@@ -129,19 +129,19 @@
     .droplist{
 
 
-    /* box-shadow:1px 1px 2px #bbb;
+    box-shadow:1px 1px 2px #bbb;
 
 
-    display: none;
+    /* display: none; */
 
     border: #bbb solid;
 
-    border-radius: 10px; */
+    border-radius: 10px;
 
     }
 
 
-/* 
+/*
     .drop:hover .droplist{
 
     display: block;

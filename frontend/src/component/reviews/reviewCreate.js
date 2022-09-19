@@ -90,6 +90,8 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         onChange={(e)=>setStars(e.target.value)}
                         type='number'
                         placeholder='Place a rating'
+                        // min="1"
+                        // max="5"
                         />
                     <span> </span>
                     <button type='submit'>Create</button>
@@ -100,5 +102,3 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
 
 export default ReviewCreateFormPage;
-
-

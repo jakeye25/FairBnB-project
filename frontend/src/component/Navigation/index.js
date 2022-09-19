@@ -49,17 +49,17 @@ function Navigation({ isLoaded }){
 
                   <i className="fas fa-user-circle fa-2x" />
                 </span>
-                {showloginMenu && <div className='droplist'>
-              <a href="#">
-                <SignupFormModal />
-              </a>
-              <a href="#">
-                <LoginFormModal />
-              </a>
-
-              </div>}
-
             </div>
+                {showloginMenu && <div className='droplist'>
+              {/* <a href="#"> */}
+
+                <SignupFormModal />
+              {/* </a> */}
+              {/* <a href="#"> */}
+                <LoginFormModal />
+              {/* </a> */}
+
+            </div>}
 
       </div>
     );
