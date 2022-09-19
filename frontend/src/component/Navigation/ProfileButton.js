@@ -3,8 +3,11 @@ import React, { useState, useEffect} from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { NavLink, Link, useHistory } from "react-router-dom";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormPage";
 
-function ProfileButton({ user }) {
+
+function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm }) {
   const history= useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -39,25 +42,43 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle fa-2x" />
         {/* <i className="fas fa-duotone fa-square-user" /> */}
       </div>
-      {showMenu && (
-        <ul className="profile-dropdown">
+      {user ? showMenu &&  (
+        <div className="profile-dropdown">
           {/* <li>{user.username}</li> */}
-          <li>{user.firstName}</li>
+          <div>{user.firstName}</div>
           {/* <li>{user.email}</li> */}
-            <li>
+            <div>
             <Link to={`/spots/me`}>My Spots</Link>
-            </li>
-            <li>
+            </div>
+            <div>
             <Link to={`/spots/create`}>Create Spot</Link>
-            </li>
-            <li>
+            </div>
+            <div>
             <Link to={`/reviews/me`}>My Review</Link>
-            </li>
-          <li>
+            </div>
+          <div>
             <div onClick={logout}>Log Out</div>
-          </li>
-        </ul>
-      )}
+          </div>
+        </div>
+      )
+        : showMenu && (
+          <>
+              <button onClick={() => {
+                        setShowModal(true)
+                        setShowloginForm(true)
+                        }}>
+                {/* <LoginFormModal /> */}
+                login
+              </button>
+              <button onClick={() => {
+                        setShowModal(true)
+                        setShowsignupForm(true)
+                        }}>
+                    signup
+              </button>
+          </>
+        )
+    }
     </>
   );
 }

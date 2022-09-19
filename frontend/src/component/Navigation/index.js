@@ -8,6 +8,9 @@ import LoginFormModal from '../LoginFormModal';
 
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
+import { Modal } from '../../context/Modal';
+import LoginForm from '../LoginFormModal/LoginForm';
+import SignupForm from '../SignupFormPage/SignupForm';
 // import DemoUser from '../Demo User/demouser';
 
 
@@ -16,10 +19,15 @@ import SignupFormModal from '../SignupFormPage';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  const [showloginMenu, setshowloginMenu] = useState(false);
-  const toggleloginMenu =() => {
-    setshowloginMenu(!showloginMenu)
-}
+  // const [showloginMenu, setshowloginMenu] = useState(false);
+//   const toggleloginMenu =() => {
+//     setshowloginMenu(!showloginMenu)
+// }
+const [showModal, setShowModal] = useState(false)
+
+const[showsignupForm, setShowsignupForm] = useState(false)
+const[showloginForm, setShowloginForm] = useState(false)
+
 
   let sessionLinks;
   if (sessionUser) {
@@ -30,9 +38,9 @@ function Navigation({ isLoaded }){
             <p className='becomehost'>
               <NavLink exact to='/spots/create'>Become a Host</NavLink>
               </p>
-              <div className='profile__icon'>
+
                 <ProfileButton user={sessionUser} />
-              </div>
+
           </div>
      </>
     );
@@ -43,23 +51,25 @@ function Navigation({ isLoaded }){
           <p className='becomehost' onClick={()=> {alert('You have to login or signup first.')}}>
             Become a Host
           </p>
-            <div className='drop' onClick={toggleloginMenu}>
+          <ProfileButton user={sessionUser} setShowModal={setShowModal} setShowloginForm={setShowloginForm} setShowsignupForm={setShowsignupForm}/>
+
+            {/* <div className='drop' >
                 <span>
                   <i className="fa-solid fa-bars"></i>
 
                   <i className="fas fa-user-circle fa-2x" />
                 </span>
             </div>
-                {showloginMenu && <div className='droplist'>
+                {showloginMenu &&  <div className='droplist'> */}
               {/* <a href="#"> */}
 
-                <SignupFormModal />
+                {/* <SignupFormModal /> */}
               {/* </a> */}
               {/* <a href="#"> */}
-                <LoginFormModal />
+                {/* <LoginFormModal /> */}
               {/* </a> */}
 
-            </div>}
+            {/* </div>} */}
 
       </div>
     );
@@ -85,7 +95,11 @@ function Navigation({ isLoaded }){
 
             {isLoaded && sessionLinks}
           </div>
-
+          {showModal &&
+          (<Modal onClose={() => setShowModal(false)}>
+          {showloginForm && <LoginForm />}
+          {showsignupForm && <SignupForm/>}
+        </Modal>)}
       </div>
     </>
   );
