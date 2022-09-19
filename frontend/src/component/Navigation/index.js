@@ -75,7 +75,9 @@ const[showloginForm, setShowloginForm] = useState(false)
       </div>
     );
   }
-
+  console.log('showing loginform', showloginForm)
+  console.log('showing signupform', showsignupForm)
+  console.log('showing model', showModal)
   return (
     <>
       <div className='header'>
@@ -98,8 +100,8 @@ const[showloginForm, setShowloginForm] = useState(false)
           </div>
           {showModal &&
           (<Modal onClose={() => setShowModal(false)}>
-          {showloginForm && <LoginForm />}
-          {showsignupForm && <SignupForm/>}
+          {showloginForm && <LoginForm setShowloginForm={setShowloginForm} setShowModal={setShowModal}/>}
+          {showsignupForm && <SignupForm setShowsignupForm={setShowsignupForm} setShowModal={setShowModal} />}
         </Modal>)
         }
 

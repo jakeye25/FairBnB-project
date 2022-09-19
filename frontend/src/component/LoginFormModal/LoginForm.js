@@ -4,9 +4,10 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginFormModal.css'
 import DemoUser from '../Demo User/demouser';
+import { useHistory } from "react-router-dom";
 
-
-function LoginForm() {
+function LoginForm({setShowloginForm, setShowModal}) {
+  // const history = useHistory()
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +25,12 @@ function LoginForm() {
     setErrors([]);
     if (!email.includes("@") || email.length<6 )
     return setErrors(['Please provide a valid email'])
+
+    setShowloginForm(false)
+    setShowModal(false)
+
     return dispatch(sessionActions.login({ email, password }))
+    // .then(() => setShowloginForm(false))
     .catch(async (res) => {
       // console.log('res',res)
         const data = await res.json();
@@ -33,6 +39,7 @@ function LoginForm() {
         const err = Object.values(data)
         // console.log('loginerror', err)
         if(err) setErrors(['Invalid Credential']);
+
       }
     );
   };
@@ -68,7 +75,7 @@ function LoginForm() {
           <button type="submit" className="loginbutton">Continue</button>
         </form>
 
-              <DemoUser/>
+              <DemoUser setShowloginForm={setShowloginForm} setShowModal={setShowModal}/>
 
         </div>
     </>
