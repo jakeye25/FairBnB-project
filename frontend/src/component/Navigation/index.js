@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
+// import LoginFormModal from '../LoginFormModal';
 
 
 import './Navigation.css';
-import SignupFormModal from '../SignupFormPage';
+// import SignupFormModal from '../SignupFormPage';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupForm from '../SignupFormPage/SignupForm';
@@ -34,19 +34,19 @@ const[showloginForm, setShowloginForm] = useState(false)
     sessionLinks = (
        /* <div className='header'>*/
       <>
-        <div>
+        
             <p className='becomehost'>
               <NavLink exact to='/spots/create'>Become a Host</NavLink>
               </p>
 
                 <ProfileButton user={sessionUser} />
 
-          </div>
+
      </>
     );
   } else {
     sessionLinks = (
-      <div>
+      <>
 
           <p className='becomehost' onClick={()=> {alert('You have to login or signup first.')}}>
             Become a Host
@@ -72,7 +72,7 @@ const[showloginForm, setShowloginForm] = useState(false)
 
             {/* </div>} */}
 
-      </div>
+        </>
     );
   }
   // console.log('showing loginform', showloginForm)
@@ -80,14 +80,13 @@ const[showloginForm, setShowloginForm] = useState(false)
   // console.log('showing model', showModal)
   return (
     <>
-      <div className='header'>
+      <nav id='header'>
 
-        <div className='header__left'>
+        <div id='header__left'>
           <NavLink exact to="/">
             {/* Home */}
-
             <img
-            className = "header__icon"
+            id = "header__icon"
             src = "https://user-images.githubusercontent.com/77218939/186223244-9ba08f47-ccf9-4c21-b999-c3a09b4d6108.png"
             alt='logo'
             />
@@ -107,7 +106,7 @@ const[showloginForm, setShowloginForm] = useState(false)
         </Modal>)
         }
 
-      </div>
+      </nav>
     </>
   );
 }
