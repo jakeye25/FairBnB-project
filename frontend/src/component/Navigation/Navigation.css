@@ -38,7 +38,15 @@
     border-radius: 18px;
 }
 
+.becomehost a{
+    text-decoration: none;
+}
+
 .becomehost:hover{
+    background-color: rgb(245, 243, 243, 0.7);
+}
+
+.becomehost a:hover{
     background-color: rgb(245, 243, 243, 0.7);
 }
 
@@ -78,8 +86,19 @@
     font-size: 14px;
     font-weight: 600;
 
-    /* border-bottom:1px solid rgba(109, 106, 106, 0.3) ; */
+}
 
+.menu-item1{
+    text-align: left;
+    line-height: 34px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.menu-item a{
+    text-decoration: none;
 }
 
 .menu-item:hover{
