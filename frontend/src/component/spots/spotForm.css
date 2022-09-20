@@ -33,7 +33,7 @@
     font-size: 40px;
     margin-top: 300px;
     background: none;
-    z-index: 0;
+
 }
 
 .spotform__head {
@@ -47,12 +47,13 @@
 }
 
 .rightspotform{
-    flex-direction: column !important;
-    width: 50% !important;
-    height: 100vh !important;
+    flex-direction: column;
+    width: 50% ;
+    height: 100vh ;
     max-height: 100%;
     float: right;
-    position: relative
+    position: relative;
+    z-index: 0;
 }
 
 
