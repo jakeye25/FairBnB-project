@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
 import SpotReviews from '../reviews/spotReviews';
@@ -98,21 +98,25 @@ const SpotDetail = () => {
         <div className="centered">${spot.price} night</div>
         <ul>
         </ul>
+        </div>
+          <div className='sd__review__container'>
+            <h1 id="sd__ratinghead" >
+              <div id='spotreviewRating'>
+                    <i className="fa-solid fa-star fa-1x" style={{left:"5px"}}></i>
+                    <span> </span>
+                    {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} · {numReivews} reviews</div>
+                    {/* <span className='sd__footerspace'> · </span>
+                  <div >{numReivews} reviews</div> */}
+            </h1>
+          </div>
 
-        <div className='sd__review__container'>
-          <h1 id="sd__ratinghead" >
-            <div id='spotreviewRating'>
-                  <i className="fa-solid fa-star fa-1x" style={{left:"5px"}}></i>
-                  <span> </span>
-                  {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} · {numReivews} reviews</div>
-                  {/* <span className='sd__footerspace'> · </span>
-                <div >{numReivews} reviews</div> */}
-          </h1>
           <br></br>
+
+
           <SpotReviews />
           {user &&<ReviewCreateFormPage/>}
-        </div>
-        </div>
+
+
         {/* <div className='spotdetail__footer'>
           <div className='sd__footer__block'>
             <ul className='sd__footer__block_ul'>

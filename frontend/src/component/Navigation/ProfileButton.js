@@ -57,7 +57,7 @@ function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm
             <Link to={`/reviews/me`}>My Review</Link>
             </div>
           {/* <div className="menu-item"> */}
-            <div className="menu-item" onClick={logout}>Log Out</div>
+            <div className="menu-item" onClick={logout}>Log out</div>
           {/* </div> */}
         </div>
       )
@@ -77,7 +77,7 @@ function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm
                         setShowsignupForm(true)
                         setShowloginForm(false)
                         }}>
-                    Sign Up
+                    Sign up
               </div>
               </div>
           </>
