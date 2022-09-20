@@ -34,9 +34,9 @@ const[showloginForm, setShowloginForm] = useState(false)
     sessionLinks = (
        /* <div className='header'>*/
       <>
-        
+
             <p className='becomehost'>
-              <NavLink exact to='/spots/create'>Become a Host</NavLink>
+              <NavLink exact to='/spots/create'>Switch to hosting</NavLink>
               </p>
 
                 <ProfileButton user={sessionUser} />
