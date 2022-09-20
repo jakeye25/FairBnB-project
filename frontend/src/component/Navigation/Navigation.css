@@ -1,3 +1,4 @@
+
 #header{
     display: flex;
     flex-direction: row;
@@ -15,11 +16,17 @@
 
 .header__right{
     display: flex;
-    margin-right: 83px;
-    width: 20%;
-    justify-content:  space-between;
+    margin-right: 17%;
+    width: 30%;
+    justify-content:  flex-end;
     align-items: center;
 
+
+}
+
+.becomehost{
+    position: relative;
+    margin-right: 30px;
 }
 
 .profile_button{
@@ -31,6 +38,18 @@
     padding: 5px 5px 5px 15px;
     border: 1px solid rgba(109, 106, 106, 0.3);
     border-radius: 20px;
+    position: relative
+}
+
+.profile-dropdown{
+    width: 285px;
+    padding: 28px;
+    top:13vh;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 100px;
+
 }
 
 /* .header {

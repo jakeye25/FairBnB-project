@@ -45,39 +45,41 @@ function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm
       {user ? showMenu &&  (
         <div className="profile-dropdown">
           {/* <li>{user.username}</li> */}
-          <div>{user.firstName}</div>
+          <div className="menu-item">{user.firstName}</div>
           {/* <li>{user.email}</li> */}
-            <div>
+            <div className="menu-item">
             <Link to={`/spots/me`}>My Spots</Link>
             </div>
-            <div>
+            <div className="menu-item">
             <Link to={`/spots/create`}>Create Spot</Link>
             </div>
-            <div>
+            <div className="menu-item">
             <Link to={`/reviews/me`}>My Review</Link>
             </div>
-          <div>
+          <div className="menu-item">
             <div onClick={logout}>Log Out</div>
           </div>
         </div>
       )
         : showMenu && (
           <>
-              <button onClick={() => {
+            <div className="profile-dropdown">
+              <div className="menu-item" onClick={() => {
                         setShowModal(true)
                         setShowloginForm(true)
                         setShowsignupForm(false)
                         }}>
                 {/* <LoginFormModal /> */}
                 Log in
-              </button>
-              <button onClick={() => {
+              </div>
+              <div className="menu-item" onClick={() => {
                         setShowModal(true)
                         setShowsignupForm(true)
                         setShowloginForm(false)
                         }}>
                     Sign Up
-              </button>
+              </div>
+              </div>
           </>
         )
     }
