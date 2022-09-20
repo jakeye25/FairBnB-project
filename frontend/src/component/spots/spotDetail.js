@@ -15,6 +15,7 @@ const SpotDetail = () => {
   const [isLoaded, setIsloaded] = useState(false)
   const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot[spotId])
+  console.log('single spot', spot)
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
   // console.log('spot: ', spot)
