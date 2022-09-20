@@ -75,9 +75,9 @@ const[showloginForm, setShowloginForm] = useState(false)
       </div>
     );
   }
-  console.log('showing loginform', showloginForm)
-  console.log('showing signupform', showsignupForm)
-  console.log('showing model', showModal)
+  // console.log('showing loginform', showloginForm)
+  // console.log('showing signupform', showsignupForm)
+  // console.log('showing model', showModal)
   return (
     <>
       <div className='header'>

@@ -1,10 +1,10 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginFormModal.css'
 import DemoUser from '../Demo User/demouser';
-import { useHistory } from "react-router-dom";
+
 
 function LoginForm({setShowloginForm, setShowModal}) {
   // const history = useHistory()

@@ -69,14 +69,14 @@ function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm
                         setShowsignupForm(false)
                         }}>
                 {/* <LoginFormModal /> */}
-                login
+                Log in
               </button>
               <button onClick={() => {
                         setShowModal(true)
                         setShowsignupForm(true)
                         setShowloginForm(false)
                         }}>
-                    signup
+                    Sign Up
               </button>
           </>
         )

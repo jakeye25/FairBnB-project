@@ -20,6 +20,7 @@
     width: 28%;
     justify-content: space-between;
     align-items: center;
+    background-color: #F6F7F8;
 }
 
 #footer__contact a{
@@ -27,19 +28,24 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    background-color: #F6F7F8;
 }
 
 #footer__des{
     font-size: medium;
     font-weight: bold;
+    background-color: #F6F7F8;
 }
 
 #footer__contact a span{
     font-size: 16px;
     margin-left: 3px;
+    background-color: #F6F7F8;
+
 }
 
 .footer__logo{
     width: 35px;
     height: 35px;
+    background-color: #F6F7F8;
 }
