@@ -94,7 +94,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         // max="5"
                         />
                     <span> </span>
-                    <button type='submit'>Create</button>
+                    <button id="reviewcreateBtn" type='submit'>Create</button>
             </form>}
         </section>
     );

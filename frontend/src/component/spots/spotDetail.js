@@ -52,7 +52,8 @@ const SpotDetail = () => {
 
       isLoaded&&<div key={spot.id} className="spotdetail__wrapper">
         <div className='spotdetail__head'>
-            <div className='spotdetail__head1'>{spot.name}</div>
+            <div className='spotdetail__head1'>{spot.name}
+            </div>
               <div className='spotdetail__head2'>
                 <div className='spotRating'>
                   <i className="fa-solid fa-star"></i>
@@ -63,6 +64,7 @@ const SpotDetail = () => {
                 <div className="sd__footerline2"> {spot.city}, </div>
                 <div className="sd__footerline2">{spot.state}, </div>
                 <div className="sd__footerline2">{spot.country}</div>
+              </div>
               </div>
                   <div id='sd__image__container'>
                     <img
@@ -91,7 +93,7 @@ const SpotDetail = () => {
                       src={spot.previewImage}
                     /> */}
                   </div>
-        </div>
+
         <div className='spotdetail__body'>
         <p className="centered">{spot.description}</p>
 

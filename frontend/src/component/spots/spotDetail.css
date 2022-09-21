@@ -12,6 +12,8 @@
 }
 
 .spotdetail__head{
+    width: 100%;
+    margin-left: 16%;
     display: flex;
     flex-direction: column;
 }
@@ -21,7 +23,7 @@
     font-style: normal;
     height: 30px;
     color: #222222;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
 
 }
 
@@ -35,10 +37,17 @@
     color: #222222;
 
 }
+#sd__image__container{
+    height:30em;
+    margin-bottom: 10em;
+}
 
 .spot-image{
     border-radius: 20px;
-    max-width: 500px;
+    margin-left: 16%;
+    width:70%;
+    height: 30em;
+    
 }
 
 .spotdetail__footer{
@@ -63,7 +72,7 @@
 
 .sd__footerline2{
     margin-left: 5px;
-    text-decoration: underline;
+
 }
 
 .sd__footerspace{
