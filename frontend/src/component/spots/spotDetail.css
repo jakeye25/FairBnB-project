@@ -47,7 +47,11 @@
     margin-left: 16%;
     width:70%;
     height: 30em;
-    
+
+}
+
+#spotdetail__body{
+    margin-left: 16%;
 }
 
 .spotdetail__footer{
