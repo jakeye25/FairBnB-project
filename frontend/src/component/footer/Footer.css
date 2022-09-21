@@ -6,7 +6,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: #F6F7F8;
-
+    z-index: 0;
 }
 
 #footer__text{

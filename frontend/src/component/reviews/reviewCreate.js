@@ -13,7 +13,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     // console.log('reviewstate',reviews)
     const review = reviews[reviewId]
     const [reviewContent, setReviewContent] = useState(review? review.review : "")
-    const [stars, setStars] = useState(review? review.stars: "")
+    const [stars, setStars] = useState(review? review.stars : "")
     const [errors, setErrors] = useState([]);
     const [showReviewCreate, setshowReviewCreate] = useState(false);
 
