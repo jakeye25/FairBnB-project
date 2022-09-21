@@ -110,8 +110,6 @@ const SpotDetail = () => {
             </h1>
           </div>
 
-          <br></br>
-
 
           <SpotReviews />
           {user &&<ReviewCreateFormPage/>}
