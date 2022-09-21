@@ -40,8 +40,8 @@ function SpotEditFormPage() {
       id: spotId,
       address, city, state, country, lat, lng, name, description, price, previewImage
     };
-    console.log('checkimageurl', payload.previewImage)
-    console.log('checkimageurl', payload.previewImage.includes('jpg'))
+    // console.log('checkimageurl', payload.previewImage)
+    // console.log('checkimageurl', payload.previewImage.includes('jpg'))
     if (!payload.previewImage.includes('jpg') && !payload.previewImage.includes('jpeg') && !payload.previewImage.includes('png'))
     return setErrors(['Only jpg, jpeg and png Image url valid'])
 
