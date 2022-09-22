@@ -26,7 +26,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email.includes("@"))
+    if (!email.includes("@") || email.length<6 )
     return setErrors(['Please provide a valid email'])
     if (password === confirmPassword) {
       setErrors([]);
@@ -55,8 +55,8 @@ function SignupForm({setShowsignupForm, setShowModal}) {
         <form className="signupform"
         onSubmit={handleSubmit}>
 
-        <ul>
-            {errors.map((error, idx) => <li key={idx} className="signuperror">{error}</li>)}
+        <ul id="signuperror">
+            {errors.map((error, idx) => <li key={idx} >{error}</li>)}
         </ul>
 
             <input

@@ -33,6 +33,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    outline: none;
   }
 
   .signupinput  {
@@ -55,9 +56,10 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   }
 
- .signuperror{
+ #signuperror{
   display: flex;
   text-align: center;
+  padding: 2px;
   justify-content: center;
   align-items: center;
   line-height: 5px;
@@ -65,10 +67,16 @@
   height: fit-content;
   width: max-content;
   /* float: left; */
+
   margin-bottom: 30px;
-  color: #df1760;
+
   /* font-size: 11px; */
   /* margin-left: 5px; */
+ }
+
+ #signuperror li{
+  color: #df1760;
+  font-size: 12px;
  }
 
   .signupbutton{
