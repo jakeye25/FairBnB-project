@@ -16,6 +16,7 @@ const SpotReviews = () => {
     // console.log('spotid', spotId)
     const dispatch = useDispatch();
   // console.log('spotdetailreview', reviews)
+  // console.log('spotdetailreviewreview', reviews.review)
     // const filteredReviews = reviews.filter(review => review?.spotId === +spotId)
 
     useEffect(() => {

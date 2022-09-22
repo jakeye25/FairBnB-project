@@ -51,7 +51,9 @@ const SpotDetail = () => {
   ownerLastname = spot.Owner.lastName
  }
   // console.log('ownername', ownerName)
-
+let cleanFee= 100;
+// let typeClean=typeof(cleanFee)
+// console.log("typeClean", typeClean)
   // useEffect(() => {
   //   dispatch(getSpotReviews(spotId))
   //   .then(()=>setIsloaded(true))
@@ -86,18 +88,42 @@ const SpotDetail = () => {
         <div id='spotdetail__body'>
           <div id='spotdetail__leftbody'>
             <p id='hosted'>{spot.name} hosted by {ownerFirstname? ownerFirstname:"John"} {ownerLastname? ownerLastname:"Cena"}.</p>
-            <div id='aircover'>
-              <img src='https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg'
-              alt='aircover'></img>
-              <p>
-              Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.
-              </p>
-            </div>
+
             <p id="spotdes">{spot.description}</p>
           </div>
           <div id='spotdetail__rightbody'>
             <div id='sd-bookingbox'>
-              <span id='sd-bookingprice'>${spot.price} night</span>
+              <div id='sd-boxhead'>
+                <div id='sd-boxheadleft'>
+                  <span id='sd-bookingprice'>${spot.price}</span>
+                  <span id='sd-bookingnight'>night</span>
+                </div>
+                <div id='sd-boxheadrught'>
+                <i className="fa-solid fa-star"></i>
+                  <span id='sd-boxrating'>
+                      {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} </span>
+                  <span > · </span>
+                  <span id='sd-boxreviews'>{numReivews} reviews </span>
+                </div>
+              </div>
+              <section id='sd-boxtail'>
+                <div className='fee-container'>
+                  <div className='fee-containertext'>${spot.price}x5 nights</div>
+                  <span className='fee-containertext'>${spot.price? spot.price*5 :null}</span>
+                </div >
+                <div className='fee-container'>
+                  <div className='fee-containertext'>Cleaning fee</div>
+                  <span className='fee-containertext'>${spot.price? Number.parseFloat(spot.price*0.1).toFixed(0) :null}</span>
+                </div>
+                <div className='fee-container'>
+                  <div className='fee-containertext'>Service fee</div>
+                  <span className='fee-containertext'>${spot.price?  Number.parseFloat(spot.price*0.15).toFixed(0) :null}</span>
+                </div>
+                <div className='fee-containertotal'>
+                  <div className='fee-containertotaltext'>Total before taxes</div>
+                  <span className='fee-containertotaltext'>${spot.price? Number.parseFloat(spot.price*5+spot.price*0.1+spot.price*0.15).toFixed(0) :null}</span>
+                </div>
+              </section>
             </div>
           </div>
         </div>
@@ -111,57 +137,11 @@ const SpotDetail = () => {
                     {/* <span className='sd__footerspace'> · </span>
                   <div >{numReivews} reviews</div> */}
             </h1>
+
+
             <SpotReviews />
             {user &&<ReviewCreateFormPage/>}
           </div>
-
-
-
-
-        {/* <div className='spotdetail__footer'>
-          <div className='sd__footer__block'>
-            <ul className='sd__footer__block_ul'>
-              <li className='sd__footer__block_li1'>Support</li>
-              <li>Help Center</li>
-              <li>AirCover</li>
-              <li>Safety information</li>
-              <li>Supporting people with disabilities</li>
-              <li>Cancellation options</li>
-              <li>Our COVID-19 Response</li>
-              <li>Report a neighborhood concern</li>
-            </ul>
-          </div>
-          <div className='sd__footer__block'>
-            <ul className='sd__footer__block_ul'>
-              <li className='sd__footer__block_li1'>Community</li>
-              <li>Airbnb.org: disaster relief housing</li>
-              <li>Support Afghan refugees</li>
-              <li>Combating discrimination</li>
-            </ul>
-          </div>
-          <div className='sd__footer__block'>
-            <ul className='sd__footer__block_ul'>
-              <li className='sd__footer__block_li1'>Hosting</li>
-              <li>Try hosting</li>
-              <li>AirCover for Hosts</li>
-              <li>Explore hosting resources</li>
-              <li>Visit our community forum</li>
-              <li>How to host responsibly</li>
-            </ul>
-          </div>
-          <div className='sd__footer__block'>
-            <ul className='sd__footer__block_ul'>
-              <li className='sd__footer__block_li1'>Airbnb</li>
-              <li>Newsroom</li>
-              <li>Learn about new features</li>
-              <li>Letter from our founders</li>
-              <li>Careers</li>
-              <li>Investors</li>
-              <li>Gift cards</li>
-            </ul>
-          </div>
-
-        </div> */}
 
       </div>
 
