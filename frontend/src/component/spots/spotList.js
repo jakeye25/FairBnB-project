@@ -47,7 +47,9 @@ return (
               </div>
                 <div className='card__rating'>
                 <i className="fa-solid fa-star"></i>
+                <span id='card__ratingnum'>
                 {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "0.00"}
+                </span>
                 </div>
               </div>
             </NavLink>

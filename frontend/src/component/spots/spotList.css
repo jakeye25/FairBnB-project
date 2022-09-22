@@ -118,6 +118,10 @@ body {
     /* padding:  1.5rem; */
 }
 
+#card__ratingnum{
+    margin-left: 5px;
+}
+
 .image__container {
     width: 280px;
 
