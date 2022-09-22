@@ -97,11 +97,11 @@ const SpotDetail = () => {
                     {/* <span className='sd__footerspace'> · </span>
                   <div >{numReivews} reviews</div> */}
             </h1>
+            <SpotReviews />
+            {user &&<ReviewCreateFormPage/>}
           </div>
 
 
-          <SpotReviews />
-          {user &&<ReviewCreateFormPage/>}
 
 
         {/* <div className='spotdetail__footer'>

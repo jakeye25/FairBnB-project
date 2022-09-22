@@ -105,7 +105,9 @@
 }
 
 .sd__review__container{
+    margin-left: 16%;
     margin-top: 7%;
+    width: 70%;
     border-top: solid #f7f7f7;
     margin-bottom: 7%;
 
