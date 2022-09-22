@@ -96,7 +96,9 @@ const SpotDetail = () => {
             <p id="spotdes">{spot.description}</p>
           </div>
           <div id='spotdetail__rightbody'>
-            <div >${spot.price} night</div>
+            <div id='sd-bookingbox'>
+              <span id='sd-bookingprice'>${spot.price} night</span>
+            </div>
           </div>
         </div>
 
