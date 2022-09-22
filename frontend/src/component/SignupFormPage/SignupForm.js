@@ -37,8 +37,12 @@ function SignupForm({setShowsignupForm, setShowModal}) {
       return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
         .catch(async (res) => {
           const data = await res.json();
+          console.log('signupformerror', data)
+          console.log('signupformerrormsg', data.errors)
         //   if (data && data.errors) setErrors(data.errors);
-        const err = Object.values(data.errors)
+        if(data){
+        const err = Object.values(data.errors)}
+        console.log('err', err)
         if(err) setErrors(err);
         });
     }
