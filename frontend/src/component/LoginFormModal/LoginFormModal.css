@@ -41,7 +41,7 @@
 
   .logininput  {
     background: transparent;
-    width: 380px;
+    width: 360px;
     line-height: 20px;
     padding: 1em;
     margin-bottom: 2em;
@@ -76,7 +76,7 @@
   .loginbutton{
 
         margin-top: 10px;
-        width: 380px;
+        width: 360px;
         /* line-height: 20px; */
         height: 40px;
         font-size: 1rem;
@@ -97,7 +97,7 @@
 
     /* margin-top: 66px; */
     margin-left: 41px;
-    width: 380px;
+    width: 360px;
 
     height: 40px;
     line-height: 40px;

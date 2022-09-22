@@ -38,7 +38,7 @@
 
   .signupinput  {
     background: transparent;
-    width: 380px;
+    width: 360px;
     line-height: 20px;
     padding: 1em;
     margin-bottom: 1em;
@@ -82,7 +82,7 @@
   .signupbutton{
 
     margin-top: 10px;
-    width: 380px;
+    width: 360px;
     /* line-height: 20px; */
     height: 40px;
     font-size: 1rem;
