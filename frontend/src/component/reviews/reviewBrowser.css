@@ -4,14 +4,14 @@
 
 
 .reviewlist__container{
-    width:500px;
+    width:70%;
     height: 70px;
     /* background: #eee; */
     /* border-radius: 10px; */
-    margin: 100px auto;
-    margin-left: 100px;
-    /* border: 1px solid; */border-bottom: 2px solid silver;
-    border-top: 2px solid silver;
+    margin: 5% 15% 5% 15%;
+    /* margin-left: 100px; */
+    /* border: 1px solid; */border-bottom: 1px solid #717171;
+    /* border-top: 2px solid silver; */
     font-size: large;
 }
 
@@ -46,4 +46,5 @@
 .reviewlist__delbtn{
     margin-top: 15px;
     border-radius: 20px;
+    cursor: pointer;
 }

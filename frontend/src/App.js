@@ -53,9 +53,9 @@ function App() {
           <Route path= "/reviews/me" exact>
             <UserReviews />
           </Route>
-          <Route path= "/reviews" exact>
+          {/* <Route path= "/reviews" exact>
             <ReviewsBrowser />
-          </Route>
+          </Route> */}
         </Switch>
       )}
       <Footer />
