@@ -139,7 +139,7 @@ function SpotCreateFormPage() {
             onChange={(e) => setDescription(e.target.value)} />
           <input
             type="number"
-            placeholder="Price"
+            placeholder="Price per night"
             className="spotforminput"
             min="1"
             required

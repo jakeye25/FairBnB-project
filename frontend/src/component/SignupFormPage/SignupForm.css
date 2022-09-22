@@ -89,6 +89,7 @@
     background-color: #df1760;
     color: white;
     border-radius: 8px;
+    cursor: pointer;
   }
 
   ::placeholder {
