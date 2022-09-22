@@ -41,9 +41,14 @@ const SpotDetail = () => {
     .then(()=>setIsloaded(true))
   }, [dispatch, spotId, review, numReivews]);
 
- let ownerName;
+ let ownerFirstname;
  if(spot.Owner) {
-  ownerName = spot.Owner.firstName
+  ownerFirstname = spot.Owner.firstName
+ }
+
+ let ownerLastname;
+ if(spot.Owner) {
+  ownerLastname = spot.Owner.lastName
  }
   // console.log('ownername', ownerName)
 
@@ -80,8 +85,15 @@ const SpotDetail = () => {
 
         <div id='spotdetail__body'>
           <div id='spotdetail__leftbody'>
-            <p >{spot.name} Hosted by {ownerName? ownerName:"John"}.</p>
-            <p >{spot.description}</p>
+            <p id='hosted'>{spot.name} hosted by {ownerFirstname? ownerFirstname:"John"} {ownerLastname? ownerLastname:"Cena"}.</p>
+            <div id='aircover'>
+              <img src='https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg'
+              alt='aircover'></img>
+              <p>
+              Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.
+              </p>
+            </div>
+            <p id="spotdes">{spot.description}</p>
           </div>
           <div id='spotdetail__rightbody'>
             <div >${spot.price} night</div>
