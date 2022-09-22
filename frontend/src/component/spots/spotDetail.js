@@ -16,6 +16,7 @@ const SpotDetail = () => {
   const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot[spotId])
   // console.log('single spot', spot)
+
   // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
   // console.log('spot: ', spot)
@@ -33,14 +34,18 @@ const SpotDetail = () => {
 
   useEffect(() => {
     document.title = spot.name
-  }, [])
+  }, [spot.name])
 
   useEffect(() => {
     dispatch(getOneSpot(spotId ))
     .then(()=>setIsloaded(true))
   }, [dispatch, spotId, review, numReivews]);
 
-
+ let ownerName;
+ if(spot.Owner) {
+  ownerName = spot.Owner.firstName
+ }
+  // console.log('ownername', ownerName)
 
   // useEffect(() => {
   //   dispatch(getSpotReviews(spotId))
@@ -74,11 +79,15 @@ const SpotDetail = () => {
                   </div>
 
         <div id='spotdetail__body'>
-        <p className="centered">{spot.description}</p>
-
-        <div className="centered">${spot.price} night</div>
-
+          <div id='spotdetail__leftbody'>
+            <p >{spot.name} Hosted by {ownerName? ownerName:"John"}.</p>
+            <p >{spot.description}</p>
+          </div>
+          <div id='spotdetail__rightbody'>
+            <div >${spot.price} night</div>
+          </div>
         </div>
+
           <div className='sd__review__container'>
             <h1 id="sd__ratinghead" >
               <div id='spotreviewRating'>
