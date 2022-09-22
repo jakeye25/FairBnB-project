@@ -3,8 +3,6 @@
 }
 
 
-
-
 .reviewlist__container{
     width:500px;
     height: 70px;
@@ -15,6 +13,28 @@
     /* border: 1px solid; */border-bottom: 2px solid silver;
     border-top: 2px solid silver;
     font-size: large;
+}
+
+#reviewowner{
+    font-size: 16px;
+    line-height: 20px;
+    color: #222222;
+    font-weight: 600;
+}
+
+#reviewdate{
+    font-size: 14px;
+    line-height: 20px;
+    color: #717171;
+    font-weight: 400;
+}
+
+#reviewcontent{
+    margin-top: 1em;
+    font-size: 16px;
+    line-height: 24px;
+    color: #222222;
+    font-weight: 400;
 }
 
 .reviewlist__noreview{

@@ -43,12 +43,20 @@
     margin-bottom: 10em;
 }
 
+.sd__footerline2{
+    margin: 0 5px 0 5px;
+}
+
+.sd__footerspace{
+    margin-left: 5px;
+}
+
 .spot-image{
     border-radius: 20px;
     margin: 0 15%;
     width:70%;
     height: 34em;
-    object-fit: fill;
+    object-fit: contain;
 
 }
 
@@ -128,6 +136,7 @@
     font-weight: 600;
     line-height: 18px;
     color: #222222;
+    margin-left: 5px;
 }
 
 #sd-boxreviews{
@@ -188,6 +197,7 @@
     font-weight: 600;
     line-height: 26px;
     font-size: 22px;
+    margin-bottom: 1em;
     font-family: Circular, -apple-system, BlinkMacSystemFont,  Roboto,   'Helvetica Neue', sans-serif;
 }
 

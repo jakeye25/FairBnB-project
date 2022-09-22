@@ -68,6 +68,7 @@ let cleanFee= 100;
               <div className='spotdetail__head2'>
                 <div className='spotRating'>
                   <i className="fa-solid fa-star"></i>
+                  <span> </span>
                   {spot.avgStarRating? spot.avgStarRating.toFixed(2) : '0.00'} </div>
                 <span className='sd__footerspace'> · </span>
                 <div className="sd__footerline2">{numReivews} reviews </div>

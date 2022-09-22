@@ -15,7 +15,7 @@ const SpotReviews = () => {
     const{spotId} = useParams()
     // console.log('spotid', spotId)
     const dispatch = useDispatch();
-  // console.log('spotdetailreview', reviews)
+  console.log('spotdetailreview', reviews)
   // console.log('spotdetailreviewreview', reviews.review)
     // const filteredReviews = reviews.filter(review => review?.spotId === +spotId)
 
@@ -32,9 +32,9 @@ const SpotReviews = () => {
             <div  className="reviewspot__container" key={review.id}>
               {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
 
-                <div className="centered">Annoymous</div>
-                <div>{review.createdAt.slice(0, 10)}</div>
-                <div className="centered">{review.review}</div>
+                <div id='reviewowner'>Annoymous</div>
+                <div id='reviewdate'>{review.createdAt.slice(0, 10)}</div>
+                <div id="reviewcontent">{review.review}</div>
                 <span></span>
                 {/* <div className="centered">Stars Rating: {review.stars}</div> */}
                 <div>
