@@ -9,7 +9,56 @@
 .reviewCreateform{
     /* margin-top: 5vh; */
     margin-bottom: 5vh;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
 }
+
+#createreviewtext{
+    height: 8em;
+    margin-bottom: 10px;
+    width: 20em;
+    border: 1px solid #717171;
+    border-radius: 8px;
+}
+
+#createreviewrating{
+    width: 20em;
+    height: 3em;
+    margin-bottom: 10px;
+    border: 1px solid #717171;
+    border-radius: 8px;
+}
+
+.reviewCreateform button{
+    width: 20em;
+    border: 1px solid #717171;
+    border-radius: 8px;
+}
+
+#reviewcreateerror{
+    display: flex;
+    text-align: center;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    line-height: 5px;
+    height: 5px;
+    height: fit-content;
+    width: max-content;
+    /* float: left; */
+
+    margin-bottom: 30px;
+
+    /* font-size: 11px; */
+    /* margin-left: 5px; */
+   }
+
+   #reviewcreateerror li{
+    color: #df1760;
+    font-size: 16px;
+   }
 
 #reviewcreateBtn{
     cursor: pointer;

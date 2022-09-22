@@ -70,14 +70,15 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                 </button>}
             {showReviewCreate && !checkUserfirstReview && <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
-                    <ul>
+                    <ul id="reviewcreateerror">
                         {errors.map((error,index) => (
                             <li key={index}>{error}</li>
                         ))}
                     </ul>
 
-                        <input
+                        <textarea
                             value={reviewContent}
+                            id='createreviewtext'
                             onChange={(e)=>setReviewContent(e.target.value)}
                             placeholder='Leave your review'
                             type='text'
@@ -86,10 +87,10 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                     <span>  </span>
 
                         <input value={stars}
-
+                        id='createreviewrating'
                         onChange={(e)=>setStars(e.target.value)}
                         type='number'
-                        placeholder='Place a rating'
+                        placeholder='Place a rating range withn 1-5'
                         // min="1"
                         // max="5"
                         />
