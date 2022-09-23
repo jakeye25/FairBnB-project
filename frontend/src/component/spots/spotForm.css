@@ -25,25 +25,20 @@
 
 }
 
-.spotform__head{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    font-size: 40px;
-    margin-top: 300px;
-    background: none;
-
-}
-
 .spotform__head {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50%;
+  /* margin-top: 50%; */
  color: white;
  line-height: 20px;
  height: 20px;
+ text-align: center;
+ font-size: 40px;
+ padding-bottom: 5vh;
+ padding-right: 2vh;
+ /* margin-top: 300px; */
+ background: none;
 }
 
 .rightspotform{
@@ -54,6 +49,7 @@
     float: right;
     position: relative;
     z-index: 0;
+    margin: 0, 10%;
 }
 
 
@@ -76,10 +72,7 @@
     height: 100vh ;
     max-height: 100%;
     border-radius: 20px;
-    border-left: 1px solid white;
-    border-top: 1px solid white;
-    /* backdrop-filter: blur(10px); */
-    /* box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2); */
+
     text-align: center;
     z-index: auto;
     /* position: relative; */
@@ -95,10 +88,10 @@
     height: 4vh;
     padding: 1em;
     margin-bottom: 2em;
-    border: 1px solid white;
+    border: 1px solid gray;
     border-radius: 10px;
     backdrop-filter: blur(5px);
-    box-shadow: 1em 1em 3em rgba(0,0,0,0.2);
+
     color: black;
     font-family: Montserrat, sans-serif;
     font-weight: 500;
@@ -117,6 +110,7 @@
   height: fit-content;
   width: max-content;
   /* float: left; */
+  margin-top: 20px;
   margin-bottom: 20px;
   font-size: 18px;
   color: #e66465;
@@ -126,12 +120,13 @@
 
   .spotformbutton{
         display: flex;
-        flex-direction: row;
-
+        flex-direction: column;
+        border: none;
         width: 50em;
+        height: 10vh;
         font-size: 1rem;
-        justify-content: flex-start;
-        align-items: center;
+        justify-content: space-between;
+        align-items: flex-start;
 
 
   }
@@ -139,7 +134,7 @@
 .spotformbutton__btn{
   display: flex;
   background-color: #e66465;
-  width: 20vh;
+  width: 50vh;
   height: 4vh;
   cursor: pointer;
   color: aliceblue;
