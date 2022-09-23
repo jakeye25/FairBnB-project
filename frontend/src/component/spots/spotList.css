@@ -122,6 +122,23 @@
     margin-left: 5px;
 }
 
+#userspot-container{
+    display: flex;
+    /* height: 80vh; */
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between, first baseline;
+    column-gap: 20px;
+    width: 100%;
+    height: 75vh;
+    padding-left: 15vh;
+    /* padding-right: 10vh; */
+    margin: auto;
+    margin-top: 40px;
+    vertical-align: top;
+    margin-bottom: 40px;
+}
+
 .image__container {
     width: 280px;
 

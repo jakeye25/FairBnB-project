@@ -28,7 +28,7 @@ const UserSpots = () => {
 
     return (
         <>
-          <div className ='wrapper'>
+          <div id ='userspot-container'>
         {spots.map((spot) => (
       <div key={spot.id} className='card__container'>
               <div className='image__container'>
@@ -47,12 +47,12 @@ const UserSpots = () => {
               <div className="userspot__container2">
                     <div className="userspotbtn">
                       <Link to={`/spots/${spot.id}/edit`}>
-                      <i className="fa-solid fa-pen-to-square"></i>
+                      Edit
                       </Link>
                     </div>
                     <span> &nbsp;</span>
                       <div className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
-                      <i className="fa-solid fa-trash-can"></i>
+                      Delete
                       </div>
 
               </div>
