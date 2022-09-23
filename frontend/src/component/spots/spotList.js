@@ -45,7 +45,7 @@ return (
                   <div className='card__rating'>
                   <i className="fa-solid fa-star"></i>
                   <span id='card__ratingnum'>
-                  {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "0.00"}
+                  {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "New"}
                   </span>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ return (
                 </div>
                 <div id='card__des_3container'>
                   <div className="card__price">${spot.price} </div>
-                  
+
                   <span> night</span>
                 </div>
               </div>

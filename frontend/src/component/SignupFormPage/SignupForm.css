@@ -12,7 +12,7 @@
 .signup__head{
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 15px;
   line-height: 14px;
   height: 14px;
 
@@ -21,15 +21,11 @@
  .signupform {
     background: white;
     padding: 3em;
-    /* height: 5px; */
-    border-radius: 20px;
-    border-left: 1px solid white;
-    border-top: 1px solid white;
-    /* backdrop-filter: blur(10px); */
-    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+
+    border-radius: 8px;
+
     text-align: center;
-    /* position: relative; */
-    /* transition: all 0.2s ease-in-out; */
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,12 +38,13 @@
     line-height: 20px;
     padding: 1em;
     margin-bottom: 1em;
-    border: none;
-    border-left: 1px solid white;
-    border-top: 1px solid white;
+    border: 1px solid gray;
+    height: 50px;
+    /* border-left: 1px solid white;
+    border-top: 1px solid white; */
     border-radius: 8px;
     backdrop-filter: blur(5px);
-    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
+    /* box-shadow: 4px 4px 60px rgba(0,0,0,0.2); */
     color: black;
     font-family: Montserrat, sans-serif;
     font-weight: 500;
@@ -68,7 +65,7 @@
   width: max-content;
   /* float: left; */
 
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   /* font-size: 11px; */
   /* margin-left: 5px; */
@@ -84,12 +81,13 @@
     margin-top: 10px;
     width: 360px;
     /* line-height: 20px; */
-    height: 40px;
+    height: 50px;
     font-size: 1rem;
     background-color: #df1760;
     color: white;
     border-radius: 8px;
     cursor: pointer;
+    border: none;
   }
 
   ::placeholder {
