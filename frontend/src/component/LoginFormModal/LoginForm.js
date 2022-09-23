@@ -49,8 +49,8 @@ function LoginForm({setShowloginForm, setShowModal}) {
         <h1 className="login__head">Welcome to FairBnB</h1>
 
         <form onSubmit={handleSubmit} className="loginform">
-          <ul>
-          {errors.map((error, idx) => <li key={idx} className="loginerror">{error}</li>)}
+          <ul className="loginerror">
+          {errors.map((error, idx) => <li key={idx} >{error}</li>)}
           </ul>
 
             <input

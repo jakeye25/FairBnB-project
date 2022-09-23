@@ -60,6 +60,7 @@
  .loginerror{
   display: flex;
   text-align: center;
+  padding: 2px;
   justify-content: center;
   align-items: center;
   line-height: 5px;
@@ -69,7 +70,11 @@
   color: #df1760;
   margin-bottom: 20px;
 
-  margin-left: 5px;
+ }
+
+ .loginerror li{
+  color: #df1760;
+  font-size: 12px;
  }
 
   .loginbutton{
