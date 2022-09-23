@@ -65,8 +65,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
         <section>
                 {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
-                    Any great experiences? Click here and leave your thoughts !!!
-
+                    Write a public review
                 </button>}
             {showReviewCreate && !checkUserfirstReview && <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
