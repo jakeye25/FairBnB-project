@@ -31,25 +31,31 @@ return (
         {allspots && allspots.map((spot) => (
           <div key={spot.id} className='card__container'>
             <NavLink  to={`/spots/${spot.id}`} className= "spotlistlink">
-            <div className='image__container'>
-              <img
-                className="card__image"
-                alt=''
-                src={spot.previewImage}
-              />
-            </div>
+              <div className='image__container'>
+                <img
+                  className="card__image"
+                  alt=''
+                  src={spot.previewImage}
+                />
+              </div>
 
               <div className='card__des'>
-              <div className='text__container'>
-                <div className='card__city'>{spot.city}, {spot.state}</div>
-                {/* <div className="card_des">{spot.state}</div> */}
-                <div className="card__price">{`$${spot.price} night`} </div>
-              </div>
-                <div className='card__rating'>
-                <i className="fa-solid fa-star"></i>
-                <span id='card__ratingnum'>
-                {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "0.00"}
-                </span>
+                <div id='card__des_1container'>
+                  <div className='card__city'>{spot.city}, {spot.state}</div>
+                  <div className='card__rating'>
+                  <i className="fa-solid fa-star"></i>
+                  <span id='card__ratingnum'>
+                  {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "0.00"}
+                  </span>
+                  </div>
+                </div>
+                <div id='card__des_2container'>
+                  <span>{spot.country}</span>
+                </div>
+                <div id='card__des_3container'>
+                  <div className="card__price">${spot.price} </div>
+                  
+                  <span> night</span>
                 </div>
               </div>
             </NavLink>
