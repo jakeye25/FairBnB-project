@@ -1,9 +1,14 @@
 .createreviewBtn{
-    border:thin #222;
+    border:none;
+    color: white;
+    background-color:  #df1760;
+    border-radius: 10px;
     font-weight: bold;
     margin-bottom: 5vh;
     margin-top: 5vh;
+    padding: 10px;
     cursor: pointer;
+    width: 20em;
 }
 
 .reviewCreateform{
@@ -61,6 +66,10 @@
    }
 
 #reviewcreateBtn{
+    height: 3em;
+    border: none;
+    background-color: #df1760;
+    color:white;
     cursor: pointer;
 }
 
