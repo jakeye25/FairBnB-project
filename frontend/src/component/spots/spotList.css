@@ -131,12 +131,20 @@
     row-gap: 5vh;
     width: 85%;
     height: auto;
-    padding-left: 15vh;
+    padding-left: 20vh;
     /* padding-right: 10vh; */
     margin: auto;
     margin-top: 50px;
     vertical-align: top;
     margin-bottom: 50px;
+}
+
+#userspot-listing{
+    width: 80%;
+    font-size:x-large;
+    /* font-weight: 600; */
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 }
 
 #userspot__ind-container{
@@ -146,6 +154,8 @@
    height: 40%; */
     /* height: 300px; */
     width: 80%;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 }
 
 #userspotimg__container img{
@@ -160,23 +170,34 @@
 #userspot__rightcontainer{
     display: flex;
     flex-direction: column;
-    margin-left: 5vh;
+    margin-left: 20vh;
+    justify-content: space-around;
     /* text-decoration: none; */
 }
 
-.userspot__container2{
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
+#userspot__textline1{
+    font-size: large;
+    font-weight: bold;
+    width: 20em;
 }
+
+
 
 .userspotbtn{
-    border: 1px solid #7f7f7f;
-    padding: 8px;
+    /* border: 1px solid #7f7f7f; */
+    padding: 6px;
     border-radius: 5px;
+    border: none;
+    background-color: #df1760;
+    color: white;
+    height: 3em;
 
 }
 
+.userspotbtn a{
+    text-decoration: none;
+    color: white;
+}
 
 .userspotdltbtn:hover{
     background: #7f7f7f;

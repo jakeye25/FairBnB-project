@@ -29,6 +29,7 @@ const UserSpots = () => {
     return (
         <>
           <div id ='userspot-container'>
+          <h1 id="userspot-listing"> Listing</h1>
         {spots.map((spot) => (
       <div key={spot.id} id='userspot__ind-container'>
               <div id='userspotimg__container'>
@@ -39,23 +40,24 @@ const UserSpots = () => {
                 />
               </div>
         <div id="userspot__rightcontainer" >
-                    <div className="userspot__container1">{spot.city}</div>
+
+                    <div id="userspot__textline1">{spot.city}</div>
                     <div className="userspot__container1">{spot.name}</div>
                     <div className="userspot__container1">{spot.description}</div>
                     <div className="userspot__container1">${spot.price} night</div>
 
 
-                    <div className="userspotbtn">
+                    <button className="userspotbtn">
                       <Link to={`/spots/${spot.id}/edit`}>
                       Edit
                       </Link>
-                    </div>
-                    <span> &nbsp;</span>
-                      <div className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
-                      Delete
-                      </div>
+                    </button>
 
-              
+                      <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
+                      Delete
+                      </button>
+
+
           </div>
       </div>
 

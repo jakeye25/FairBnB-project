@@ -34,8 +34,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
 
       return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
       .then(
-        setShowsignupForm(false)
-      ).then(
+        setShowsignupForm(false),
         setShowModal(false)
       )
       .catch(async (res) => {
