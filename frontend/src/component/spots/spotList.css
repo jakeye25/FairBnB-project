@@ -128,15 +128,15 @@
     /* flex-wrap: wrap; */
     flex-direction: column;
     justify-content: space-between, first baseline;
-    row-gap: 3vh;
-    width: 100%;
+    row-gap: 5vh;
+    width: 85%;
     height: auto;
     padding-left: 15vh;
     /* padding-right: 10vh; */
     margin: auto;
-    margin-top: 40px;
+    margin-top: 50px;
     vertical-align: top;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 #userspot__ind-container{
@@ -150,17 +150,17 @@
 
 #userspotimg__container img{
     height: 300px;
-    width: 300px;
+    width: 400px;
     /* margin: 5px; */
     border-radius: 15px;
 }
 
 
 
-.userspot__bottomcontainer{
+#userspot__rightcontainer{
     display: flex;
     flex-direction: column;
-    margin-left: 5px;
+    margin-left: 5vh;
     /* text-decoration: none; */
 }
 

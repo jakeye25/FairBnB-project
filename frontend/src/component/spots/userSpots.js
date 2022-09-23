@@ -38,13 +38,13 @@ const UserSpots = () => {
                   src={spot.previewImage}
                 />
               </div>
-        <div className="userspot__bottomcontainer" >
-
+        <div id="userspot__rightcontainer" >
+                    <div className="userspot__container1">{spot.city}</div>
                     <div className="userspot__container1">{spot.name}</div>
                     <div className="userspot__container1">{spot.description}</div>
                     <div className="userspot__container1">${spot.price} night</div>
 
-              <div className="userspot__container2">
+
                     <div className="userspotbtn">
                       <Link to={`/spots/${spot.id}/edit`}>
                       Edit
@@ -55,7 +55,7 @@ const UserSpots = () => {
                       Delete
                       </div>
 
-              </div>
+              
           </div>
       </div>
 
