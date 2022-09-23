@@ -30,7 +30,7 @@ const UserReviews = () => {
       if (!reviews.length) {
         return (
           <div id="userreview-container">
-            <h1>Reviews</h1>
+            <h1 id="userreview-listing">Reviews</h1>
             <h2 className="reviewlist__noreview">You haven't left us a review on FairBnB yet!</h2>
           </div>
         );
@@ -39,7 +39,7 @@ const UserReviews = () => {
       return (
         <>
           <div id="userreview-container">
-            <h1>Reviews</h1>
+            <h1 id="userreview-listing">Reviews</h1>
             {reviews.map((review) => (
             <div className="reviewlist__container">
               <div  key={review.id}
@@ -47,8 +47,9 @@ const UserReviews = () => {
               >
 
                 {/* <div>{singlespot.name}</div> */}
-                <div className="centered">Review: {review.review}</div>
-                <div className="centered">Stars Rating: {review.stars}</div>
+                <div className="userreviewtext">Review: {review.review}</div>
+                <div className="userreviewtext">Stars Rating: {review.stars}</div>
+                <div className="userreviewtext">{review.createdAt.slice(0, 10)}</div>
               </div>
 
                 <button className="reviewlist__delbtn" onClick={() => dispatch(deleteReview(review.id))}>

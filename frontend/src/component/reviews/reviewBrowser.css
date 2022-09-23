@@ -44,8 +44,33 @@
     margin-bottom: 50px;
 }
 
-.reviewlist__container{
+#userreview-listing{
+    width: 80%;
+    font-size:x-large;
+    /* font-weight: 600; */
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
 
+.reviewlist__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+   /* width: 20%;
+   height: 40%; */
+    /* height: 300px; */
+    width: 80%;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.userreviewtext{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #222222;
+    width: 50%;
 }
 
 .reviewlist__noreview{
@@ -55,10 +80,16 @@
 }
 
 .reviewlist__delbtn{
+    padding: 6px;
+    margin-top: 10px;
+    border-radius: 10px;
     border: none;
     background-color: #df1760;
     color: white;
-    margin-top: 15px;
-    border-radius: 20px;
+    height: 3em;
+    width: 50%;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
     cursor: pointer;
 }
