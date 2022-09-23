@@ -57,7 +57,7 @@
     margin: 0 15%;
     width:70%;
     height: 34em;
-    object-fit: contain;
+    object-fit: fill;
 
 }
 

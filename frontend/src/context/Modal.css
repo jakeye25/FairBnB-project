@@ -15,7 +15,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
 
     /* background:scroll; */
   }
@@ -24,7 +24,7 @@
     position: absolute;
     background-color:white;
     width: 450px;
-    height: 523px;
+    /* height: 523px; */
     border: 1px solid transparent;
     border-radius: 10px;
 

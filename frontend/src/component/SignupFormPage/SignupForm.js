@@ -31,20 +31,26 @@ function SignupForm({setShowsignupForm, setShowModal}) {
     if (password === confirmPassword) {
       setErrors([]);
 
-    setShowsignupForm(false)
-    setShowModal(false)
 
       return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
-        .catch(async (res) => {
-          const data = await res.json();
-          console.log('signupformerror', data)
-          console.log('signupformerrormsg', data.errors)
+      .then(
+        setShowsignupForm(false)
+      ).then(
+        setShowModal(false)
+      )
+      .catch(async (res) => {
+        const data = await res.json();
+        console.log('signupformerror', data)
+        console.log('signupformerrormsg', data.errors)
         //   if (data && data.errors) setErrors(data.errors);
-        if(data){
-        const err = Object.values(data.errors)}
-        console.log('err', err)
-        if(err) setErrors(err);
-        });
+
+          const err = Object.values(data.errors)
+          console.log('err', err)
+          if(err) setErrors(err);
+      })
+
+
+
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
