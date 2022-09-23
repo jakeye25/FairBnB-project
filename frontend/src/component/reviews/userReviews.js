@@ -29,8 +29,9 @@ const UserReviews = () => {
 
       if (!reviews.length) {
         return (
-          <div className="reviewlist__container">
-            <h1 className="reviewlist__noreview">You haven't left us a review on FairBnB yet!</h1>
+          <div id="userreview-container">
+            <h1>Reviews</h1>
+            <h2 className="reviewlist__noreview">You haven't left us a review on FairBnB yet!</h2>
           </div>
         );
       }

@@ -26,11 +26,10 @@ function LoginForm({setShowloginForm, setShowModal}) {
     if (!email.includes("@") || email.length<6 )
     return setErrors(['Please provide a valid email'])
 
-    setShowloginForm(false)
-    setShowModal(false)
 
     return dispatch(sessionActions.login({ email, password }))
-    // .then(() => setShowloginForm(false))
+    .then(() => {setShowloginForm(false)})
+    .then(()=> {setShowModal(false)})
     .catch(async (res) => {
       // console.log('res',res)
         const data = await res.json();
