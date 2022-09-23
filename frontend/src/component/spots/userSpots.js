@@ -30,10 +30,10 @@ const UserSpots = () => {
         <>
           <div id ='userspot-container'>
         {spots.map((spot) => (
-      <div key={spot.id} className='card__container'>
-              <div className='image__container'>
+      <div key={spot.id} id='userspot__ind-container'>
+              <div id='userspotimg__container'>
                 <img
-                  className="card__image"
+                  id="userspotimg"
                   alt=''
                   src={spot.previewImage}
                 />
