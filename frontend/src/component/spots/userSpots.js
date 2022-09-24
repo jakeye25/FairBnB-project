@@ -23,7 +23,12 @@ const UserSpots = () => {
     }, [dispatch]);
 
     if (!spots.length) {
-      return null;
+      return (
+        <div id ='userspot-container'>
+          <h1 id="userspot-listing"> Listing</h1>
+          <h2 id="spotlist__nospot">You haven't created a listing on FairBnB yet!</h2>
+        </div>
+      );
     }
 
     return (

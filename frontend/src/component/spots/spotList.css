@@ -147,6 +147,17 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 }
 
+#spotlist__nospot{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #222222;
+    width: 50%;
+    word-wrap: break-word;
+}
+
 #userspot__ind-container{
     display: flex;
     flex-direction: row;
@@ -199,4 +210,3 @@
     text-decoration: none;
     color: white;
 }
-
