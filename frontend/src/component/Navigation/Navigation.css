@@ -8,11 +8,17 @@
     border-bottom: solid 1px rgb(209, 207, 207, 0.5)
 }
 
+#header__left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #header__icon{
-    width: 7em;
-    height: 4em;
+    width: 8em;
+    height: 3em;
     float: left;
-    margin-top:1.5vh;
+    /* margin-top:1.5vh; */
     margin-left: 14vh
 }
 
