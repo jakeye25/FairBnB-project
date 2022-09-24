@@ -32,7 +32,7 @@ const UserReviews = () => {
         return (
           <div id="userreview-container">
             <h1 id="userreview-listing">Reviews</h1>
-            <h2 className="reviewlist__noreview">You haven't left us a review on FairBnB yet!</h2>
+            <h2 className="reviewlist__noreview">You haven't left a review on FairBnB yet!</h2>
           </div>
         );
       }
@@ -47,7 +47,7 @@ const UserReviews = () => {
               // to={`/reviews/${review.id}`}
               >
 
-                <div >{review.Spot? review.Spot.name : ''}</div>
+                <div id="userreviewtexthead">{review.Spot? review.Spot.name : ''}</div>
                 {/* <div>{review.Spot? review.Spot.city : 'no'}</div> */}
                 <div className="userreviewtext">Review: {review.review}</div>
                 <div className="userreviewtext">Stars Rating: {review.stars}</div>
