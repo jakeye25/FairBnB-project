@@ -26,4 +26,4 @@ This Project is built with:
 ## Home Page Demo User:
 
 You will be able to test the features without sign up by click on the "Demo User" button. -
-![image](https://user-images.githubusercontent.com/77218939/187137214-0d552bc2-816b-4bd3-ad6c-bf0f4a9cf40f.png)
+![image](https://user-images.githubusercontent.com/77218939/192122603-8ce4674c-1963-4321-8ea8-0f007f8344b7.PNG)
