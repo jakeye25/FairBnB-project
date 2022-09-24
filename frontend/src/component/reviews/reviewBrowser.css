@@ -71,6 +71,7 @@
     line-height: 20px;
     color: #222222;
     width: 50%;
+    word-wrap: break-word;
 }
 
 .reviewlist__noreview{

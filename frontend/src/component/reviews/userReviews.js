@@ -9,10 +9,11 @@ const UserReviews = () => {
     const reviewsObj = useSelector((state) => state.review)
 
     const reviews = Object.values(reviewsObj)
+    console.log('userreview', reviews)
     // const spotObj = useSelector((state) => state.spot)
     // const spots= Object.values(spotObj)
-    // let spotId = reviews.map((review)=> review.spotId)
-    // console.log('userreviews', spotId)
+    let spotId = reviews.map((review)=> review.spotId)
+    console.log('userreviewspotid', spotId)
     // console.log('userreviewspot',spots)
     // const singlespot= spots.find(ele => ele.id == +spotId)
     // console.log('siglespot', singlespot.name)
@@ -46,7 +47,8 @@ const UserReviews = () => {
               // to={`/reviews/${review.id}`}
               >
 
-                {/* <div>{singlespot.name}</div> */}
+                <div >{review.Spot? review.Spot.name : ''}</div>
+                {/* <div>{review.Spot? review.Spot.city : 'no'}</div> */}
                 <div className="userreviewtext">Review: {review.review}</div>
                 <div className="userreviewtext">Stars Rating: {review.stars}</div>
                 <div className="userreviewtext">{review.createdAt.slice(0, 10)}</div>
