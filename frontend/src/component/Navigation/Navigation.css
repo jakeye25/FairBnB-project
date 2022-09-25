@@ -74,7 +74,7 @@
 }
 
 .profile-dropdown{
-    width: 250px;
+    width: 180px;
     padding: 10px;
     top:7vh;
     border: 1px solid #ccc;
@@ -82,9 +82,30 @@
     position: absolute;
     border-radius: 10px;
     z-index: 1;
-    background-color: #ffffff
-    ;
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
     /* right: 17%; */
+
+}
+
+.menu-item-button{
+    margin: 0;
+    border: none;
+    background-color: none;
+    text-align: left;
+    width: 100%;
+}
+
+.menu-item-button a{
+
+    text-decoration: none;
+    background-color: none;
+    line-height: 34px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
 
 }
 
