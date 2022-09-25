@@ -43,7 +43,7 @@ return (
                 <div id='card__des_1container'>
                   <div className='card__city'>{spot.city}, {spot.state}</div>
                   <div className='card__rating'>
-                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star "></i>
                   <span id='card__ratingnum'>
                   {spot.avgStarRating? Number.parseFloat(spot.avgStarRating).toFixed(2) : "New"}
                   </span>
