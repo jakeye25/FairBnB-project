@@ -115,7 +115,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 18px;
-  color: #e66465;
+  color: #df1760;
   /* font-size: 11px; */
   /* margin-left: 5px; */
  }
@@ -140,7 +140,7 @@
 
 .spotformbutton__btn{
   display: flex;
-  background-color: #e66465;
+  background-color: #df1760;
   width: 50vh;
   height: 4vh;
   cursor: pointer;
