@@ -32,7 +32,7 @@ const SpotReviews = () => {
             <div  className="reviewspot__container" key={review.id}>
               {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
 
-                <div id='reviewowner'>Annoymous</div>
+                <div id='reviewowner'>{review.User? review.User.firstName: 'Annoymous'}</div>
                 <div id='reviewdate'>{review.createdAt.slice(0, 10)}</div>
                 <div id="reviewcontent">{review.review}</div>
                 <span></span>
