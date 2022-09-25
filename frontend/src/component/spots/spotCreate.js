@@ -66,8 +66,8 @@ function SpotCreateFormPage() {
         </div>
       <div className="rightspotform">
           <form className="spotform__info" onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li className="spotformerror" key={idx}>{error}</li>)}
+        <ul className="spotformerror">
+          {errors.map((error, idx) => <li  key={idx}>{error}</li>)}
         </ul>
           <input
             type="text"

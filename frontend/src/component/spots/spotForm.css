@@ -110,6 +110,7 @@
   line-height: 10px;
   height: fit-content;
   width: max-content;
+  padding: 2px;
   /* float: left; */
   margin-top: 20px;
   margin-bottom: 20px;
@@ -119,12 +120,17 @@
   /* margin-left: 5px; */
  }
 
+ .spotformerror li{
+  color: #df1760;
+  font-size: 20px;
+ }
+
   .spotformbutton{
         display: flex;
         flex-direction: column;
         border: none;
         width: 50em;
-        height: 11vh;
+        height: 10vh;
         font-size: 1rem;
         justify-content: space-between;
         align-items: flex-start;
