@@ -42,7 +42,7 @@ function SpotEditFormPage() {
     };
     // console.log('checkimageurl', payload.previewImage)
     // console.log('checkimageurl', payload.previewImage.includes('jpg'))
-    if (!payload.previewImage.includes('jpg') && !payload.previewImage.includes('jpeg') && !payload.previewImage.includes('png'))
+    if (!payload.previewImage.includes('.jpg') && !payload.previewImage.includes('.jpeg') && !payload.previewImage.includes('.png'))
     return setErrors(['Only jpg, jpeg and png Image url valid'])
 
     let returnedSpot;
@@ -107,6 +107,7 @@ function SpotEditFormPage() {
           <input
             type="number"
             placeholder="Lat"
+            step="any"
             className="spotforminput"
             min="-90"
             max="90"
@@ -115,6 +116,7 @@ function SpotEditFormPage() {
             onChange={(e) => setLat(e.target.value)} />
           <input
             type="number"
+            step="any"
             placeholder="Lng"
             className="spotforminput"
             min="-180"

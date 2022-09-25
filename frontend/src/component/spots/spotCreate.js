@@ -32,7 +32,7 @@ function SpotCreateFormPage() {
     setErrors([]);
     let spot = { address, city, state, country, lat, lng, name, description, price, previewImage }
     // console.log('checkimageurl', spot.previewImage)
-    if (!spot.previewImage.includes('jpg') && !spot.previewImage.includes('jpeg') && !spot.previewImage.includes('png'))
+    if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
     return setErrors(['Please enter a valid image url'])
 
     let createdSpot;
@@ -107,6 +107,7 @@ function SpotCreateFormPage() {
           </select> */}
           <input
             type="number"
+            step="any"
             placeholder="Lat"
             className="spotforminput"
             min="-90"
@@ -116,6 +117,7 @@ function SpotCreateFormPage() {
             onChange={(e) => setLat(e.target.value)} />
           <input
             type="number"
+            step="any"
             placeholder="Lng"
             className="spotforminput"
             min="-180"
