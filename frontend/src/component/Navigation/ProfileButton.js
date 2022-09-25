@@ -48,13 +48,13 @@ function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm
           <div className="menu-item1">Hi, {user.firstName}</div>
           {/* <li>{user.email}</li> */}
             <div className="menu-item">
-            <Link to={`/spots/me`}>Manage my listings</Link>
+            <Link to={`/spots/me`}>Manage listings</Link>
             </div>
             <div className="menu-item">
             <Link to={`/spots/create`}>Host an experience</Link>
             </div>
             <div className="menu-item">
-            <Link to={`/reviews/me`}>Manage my reviews</Link>
+            <Link to={`/reviews/me`}>Manage reviews</Link>
             </div>
           {/* <div className="menu-item"> */}
             <div className="menu-item" onClick={logout}>Log out</div>
