@@ -54,6 +54,7 @@ function SpotCreateFormPage() {
         e.preventDefault();
         // setErrorMessages({});
         setErrors([]);
+        history.push(`/`);
     }
 
   return (
