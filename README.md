@@ -4,6 +4,10 @@
 
 FAirBnB is a AirBnB clone project that operates an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities. The backend of FAirBnB is built on Express with a PostgreSQL database. Frontend rendering is handled with React. [Click here to view FairBnB Live Site](https://aa-fairbnb-0819.herokuapp.com/)
 
+##Find me
+
+*Want to connect? [link](https://www.linkedin.com/in/jake-ye-a2365250/)
+
 
 ##Features
 
