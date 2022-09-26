@@ -52,11 +52,11 @@ const UserSpots = () => {
                     <div className="userspot__container1">${spot.price} night</div>
 
 
-                    <button className="userspotbtn">
-                      <Link to={`/spots/${spot.id}/edit`}>
+                    {/* <button > */}
+                      <Link id="userspoteditbtn" to={`/spots/${spot.id}/edit`}>
                       Edit
                       </Link>
-                    </button>
+                    {/* </button> */}
 
                       <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
                       Delete
