@@ -37,13 +37,22 @@ const UserSpots = () => {
           <h1 id="userspot-listing"> Listing</h1>
         {spots.map((spot) => (
       <div key={spot.id} id='userspot__ind-container'>
-              <div id='userspotimg__container'>
+              {/* <div id='userspotimg__container'>
                 <img
                   id="userspotimg"
                   alt=''
                   src={spot.previewImage}
                 />
-              </div>
+              </div> */}
+
+              <Link id="userspotimg__container" to={`/spots/${spot.id}`}>
+              <img
+                  id="userspotimg"
+                  alt=''
+                  src={spot.previewImage}
+                />
+              </Link>
+
         <div id="userspot__rightcontainer" >
 
                     <div id="userspot__textline1">{spot.city}</div>
