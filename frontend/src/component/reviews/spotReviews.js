@@ -27,7 +27,7 @@ const SpotReviews = () => {
       return (
 
         isLoaded &&<>
-
+            <div id="spotreview-wholecontainer">
           {reviews.length ? reviews.map((review) => (
             <div  className="reviewspot__container" key={review.id}>
               {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
@@ -45,6 +45,7 @@ const SpotReviews = () => {
 
           ))
           : <h3>No current review</h3>}
+          </div>
     </>
     );
 }
