@@ -6,7 +6,7 @@ FAirBnB is a AirBnB clone project that operates an online marketplace for lodgin
 
 ##Find me
 
-*Want to connect? [link](https://www.linkedin.com/in/jake-ye-a2365250/)
+*Want to connect? [Linkedin](https://www.linkedin.com/in/jake-ye-a2365250/)
 
 
 ##Features
