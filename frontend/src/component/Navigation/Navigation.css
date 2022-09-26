@@ -74,7 +74,7 @@
 }
 
 .profile-dropdown{
-    width: 180px;
+    width: 250px;
     padding: 10px;
     top:7vh;
     border: 1px solid #ccc;
@@ -127,12 +127,21 @@
 
 }
 
+.menu-item-link{
+    text-decoration: none;
+    text-align: left;
+    line-height: 34px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .menu-item a{
     width: 100%;
     text-decoration: none;
 }
 
-.menu-item a:hover{
+.menu-item-link:hover{
     background-color: rgb(245, 243, 243, 0.7);
 }
 
