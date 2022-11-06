@@ -15,6 +15,7 @@ import SpotEditFormPage from "./component/spots/spotEdit";
 import LoginForm from "./component/LoginFormModal/LoginForm";
 import LoginFormModal from "./component/LoginFormModal";
 import Footer from "./component/footer/footer";
+import MyBookingListing from "./component/bookings/userBookings";
 
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route path= "/reviews/me" exact>
             <UserReviews />
+          </Route>
+          <Route path= "/mybookings" exact>
+            <MyBookingListing />
           </Route>
           {/* <Route path= "/reviews" exact>
             <ReviewsBrowser />

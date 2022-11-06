@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import bookingReducer from "./booking";
 import reviewReducer from "./review";
 
 // frontend/src/store/index.js
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   spot: spotReducer,
-  review: reviewReducer
+  review: reviewReducer,
+  booking: bookingReducer
 });
 
 let enhancer;
