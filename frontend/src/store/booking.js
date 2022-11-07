@@ -17,9 +17,10 @@ const loadospotbookings = (bookings) => ({
 
 export const getOwnerBookings = () => async (dispatch) => {
     const response = await csrfFetch(`/api/users/current/bookings`);
+    console.log('checking for ownerbooking response', response)
     if (response.ok) {
         const data = await response.json();
-        // console.log(spots)
+        console.log("ownerbooking", data)
         dispatch(loadownerbookings(data));
     }
 };
@@ -37,15 +38,19 @@ const initialState = {}
 const bookingReducer =(state= initialState, action) => {
     let newState = {...state}
     switch (action.type) {
-        case getOwnerBookings:
+        case LOAD_OWNERBOOKINGS:
             newState={};
-            action.Bookings.forEach((booking) => {
-                newState[booking.id] = booking
+            console.log('actionbooking', action.Bookings)
+            action.bookings.Bookings.forEach((booking) => {
+
+                newState[booking.id] = booking;
+
             });
+            console.log('newState',newState)
             return newState
-        case getSpotBookings:
+        case LOAD_SPOTBOOKINGS:
             newState={}
-            action.Bookings.forEach((booking) => {
+            action.bookings.Bookings.forEach((booking) => {
                 newState[booking.id] = booking
             });
             return newState
