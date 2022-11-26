@@ -2,7 +2,9 @@ import { csrfFetch } from './csrf';
 
 export const LOAD_OWNERBOOKINGS = "bookings/LOAD_OWNERBOOKINGS";
 export const LOAD_SPOTBOOKINGS = "bookings/LOAD_SPOTBOOKINGS"
-export const CREATE_SPOTBOOKINGS ="bookings/const CREATE_SPOTBOOKINGS"
+export const CREATE_SPOTBOOKINGS ="bookings/CREATE_SPOTBOOKINGS"
+export const EDIT_SPOTBOOKINGS ="bookings/EDIT_SPOTBOOKINGS"
+export const DELETE_SPOTBOOKINGS ="bookings/DELETE_SPOTBOOKINGS"
 
 const loadownerbookings = (bookings) => ({
     type: LOAD_OWNERBOOKINGS,
@@ -18,6 +20,20 @@ const createspotbookings = (booking) => {
     return{
         type:CREATE_SPOTBOOKINGS,
         booking
+    }
+}
+
+const editspotbookings = (booking) => {
+    return{
+        type:EDIT_SPOTBOOKINGS,
+        booking
+    }
+}
+
+const deletespotbookings = (id) => {
+    return{
+        type:DELETE_SPOTBOOKINGS,
+        id
     }
 }
 
