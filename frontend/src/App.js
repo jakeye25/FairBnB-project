@@ -16,6 +16,7 @@ import LoginForm from "./component/LoginFormModal/LoginForm";
 import LoginFormModal from "./component/LoginFormModal";
 import Footer from "./component/footer/footer";
 import MyBookingListing from "./component/bookings/userBookings";
+import ReviewCreateFormPage from "./component/reviews/reviewCreate";
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
         <Switch>
           <Route exact path= "/spots/me">
             <UserSpots />
+          </Route>
+          <Route path= "/spots/:spotId/newreview" exact>
+            <ReviewCreateFormPage />
           </Route>
           <Route path= "/spots/:spotId/edit" exact>
             <SpotEditFormPage />
