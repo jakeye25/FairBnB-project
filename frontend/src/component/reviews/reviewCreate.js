@@ -1,11 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams} from 'react-router-dom'
 import { createReview } from "../../store/review";
 // import { getOneSpot } from "../../store/spot";
 import './reviewCreate.css';
-
+// import {Rating} from 'react-simple-star-rating';
+import ReactStars from "react-rating-stars-component"
 
 function ReviewCreateFormPage({reviewId, onClose}) {
     const history = useHistory()
@@ -13,10 +14,16 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const reviews = useSelector((state) => state.review);
     // console.log('reviewstate',reviews)
     const review = reviews[reviewId]
-    const [reviewContent, setReviewContent] = useState(review? review.review : "")
-    const [stars, setStars] = useState(review? review.stars : "")
-    const [errors, setErrors] = useState([]);
-    const [showReviewCreate, setshowReviewCreate] = useState(false);
+    // const [reviewContent, setReviewContent] = useState(review? review.review : "")
+    // const [stars, setStars] = useState(review? review.stars : "")
+    // const [errors, setErrors] = useState([]);
+    // const [showReviewCreate, setshowReviewCreate] = useState(false);
+
+    const [rating, setRating] = useState(0);
+    const [createdReview, setCreatedReview] = useState('');
+    // const [createdReviewImg, setcreatedReviewImg] = useState(review.reviewImg)
+    // const [submit, setSubmit] = useState(false);
+    const [validations, setValidations] = useState(false);
 
     const {spotId} = useParams()
     const userspot = useSelector(state => state.spot[spotId])
@@ -35,43 +42,59 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     // const toggleReview =() => {
     //     setshowReviewCreate(!showReviewCreate)
     // }
+    const starsClick = (rate) => {
+        setRating(rate);
+      };
 
+      useEffect(() => {
+        const errors = [];
+        if (rating <= 0 || rating > 5)
+          errors.push("Stars must be greater than 0 and less than 5");
+        if (createdReview.length < 20)
+          errors.push("Please add a review more than 20 characters long");
+          setValidations(errors);
+        }, [rating, createdReview]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setErrors([]);
-        if (!reviewContent)
-        return setErrors(['Please enter review comment'])
-        if (stars>5 || stars<1)
-        return setErrors(['Rating must be within range 1-5'])
+        // setSubmit(!submit);
 
         const createPayload = {
             userId,
             spotId: spotId,
-            stars,
-            review: reviewContent
+            stars: rating,
+            review: createdReview
         }
 
-        let createdReview = dispatch(createReview(createPayload))
+        let newReview = dispatch(createReview(createPayload))
             // .then(toggleReview)
-            .catch(async(res)=> {
-                const data = await res.json()
-                if (data && data.errors) setErrors(data.errors)
-            })
+            // .catch(async(res)=> {
+            //     const data = await res.json()
+            //     if (data && data.errors) setErrors(data.errors)
+            // })
 
-            if (createdReview) {history.push(`/spots/${createPayload?.spotId}`)}
+            if (newReview) {history.push(`/spots/${createPayload?.spotId}`)}
+        }
+
+        const handleCancelClick = (e) => {
+            e.preventDefault();
+            // setErrorMessages({});
+            // setErrors([]);
+            history.push(`/spots/${spotId}`);
         }
 
     return (
 
-        <section>
+        <div className="create_review_main">
+            <div className="create_review_div">
                 {/* {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
                     Write a public review
                 </button>} */}
             {/* {showReviewCreate && !checkUserfirstReview && */}
             <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
-                    <ul id="reviewcreateerror">
+                    <div className="create_review_header">My review</div>
+                    {/* <ul id="reviewcreateerror">
                         {errors.map((error,index) => (
                             <li key={index}>{error}</li>
                         ))}
@@ -92,13 +115,46 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         onChange={(e)=>setStars(e.target.value)}
                         type='number'
                         placeholder='Place a rating range withn 1-5'
-                        // min="1"
-                        // max="5"
                         />
-                    <span> </span>
-                    <button id="reviewcreateBtn" type='submit'>Create</button>
+                    <span> </span> */}
+                    <div style={{ display: "flex" }}>
+                        <ReactStars
+                            onChange={starsClick}
+                            isHalf={false}
+                            count={5}
+                            value={rating}
+                            size={25}
+                            activeColor={'gold'}
+
+                        />
+                    </div>
+                    <textarea
+                        type="text-area"
+                        name="review"
+                        value={createdReview}
+                        className="create_review_input_inner_reviews"
+                        onChange={(event) => setCreatedReview(event.target.value)}
+                    ></textarea>
+                    <div className="create_review_reviewby_text">
+                        <div>Reviewed by</div>
+                        <div>{user?.firstName}</div>
+                    </div>
+                    {validations.length > 0 ? (
+                        <div className="create_review_empty">
+                        <div className="create_review_error">
+                            {validations.map((error, i) => (
+                            <div key={i}>{error}</div>
+                            ))}
+                        </div>
+                        </div>
+                    ) : (
+                        <div className="create_review_empty"></div>
+                    )}
+                    <button id="reviewcreateBtn" disabled={validations.length > 0 } type='submit'>Create</button>
+                    <button type="button"  className="spotformbutton__btn" onClick={handleCancelClick}>Cancel</button>
             </form>
-        </section>
+            </div>
+        </div>
     );
 };
 
