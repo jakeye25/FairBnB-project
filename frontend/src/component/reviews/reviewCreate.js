@@ -1,13 +1,14 @@
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams} from 'react-router-dom'
+import { useHistory, useParams} from 'react-router-dom'
 import { createReview } from "../../store/review";
 // import { getOneSpot } from "../../store/spot";
 import './reviewCreate.css';
 
 
 function ReviewCreateFormPage({reviewId, onClose}) {
+    const history = useHistory()
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.review);
     // console.log('reviewstate',reviews)
@@ -20,7 +21,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const {spotId} = useParams()
     const userspot = useSelector(state => state.spot[spotId])
     const user = useSelector(state =>state.session.user)
-    // console.log('checkuserspot', userspot)
+
     const userId = user.id
     const checkOwner = userspot.ownerId == userId
     // console.log('checkowner', checkOwner)
@@ -31,9 +32,9 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     const checkUserfirstReview = userReview.length === 1
     // console.log('check', checkUserfirstReview)
     // if(reviews){let userReivew = Object.values(reviews).find(ele=> ele.userId = userId)}
-    const toggleReview =() => {
-        setshowReviewCreate(!showReviewCreate)
-    }
+    // const toggleReview =() => {
+    //     setshowReviewCreate(!showReviewCreate)
+    // }
 
 
     const handleSubmit = (e) => {
@@ -51,23 +52,24 @@ function ReviewCreateFormPage({reviewId, onClose}) {
             review: reviewContent
         }
 
-        dispatch(createReview(createPayload))
-            .then(toggleReview)
+        let createdReview = dispatch(createReview(createPayload))
+            // .then(toggleReview)
             .catch(async(res)=> {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
 
-
+            if (createdReview) {history.push(`/spots/${createPayload?.spotId}`)}
         }
 
     return (
 
         <section>
-                {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
+                {/* {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
                     Write a public review
-                </button>}
-            {showReviewCreate && !checkUserfirstReview && <form className="reviewCreateform"
+                </button>} */}
+            {/* {showReviewCreate && !checkUserfirstReview && */}
+            <form className="reviewCreateform"
                 onSubmit={handleSubmit}>
                     <ul id="reviewcreateerror">
                         {errors.map((error,index) => (
@@ -95,7 +97,7 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         />
                     <span> </span>
                     <button id="reviewcreateBtn" type='submit'>Create</button>
-            </form>}
+            </form>
         </section>
     );
 };

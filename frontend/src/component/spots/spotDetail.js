@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spot';
 import SpotReviews from '../reviews/spotReviews';
@@ -15,22 +15,14 @@ const SpotDetail = () => {
   const [isLoaded, setIsloaded] = useState(false)
   const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot[spotId])
-  // console.log('single spot', spot)
-
-  // console.log('kkk', spot.avgStarRating)
   const review = useSelector((state) => state.review)
-  // console.log('spot: ', spot)
-  // console.log('checkuser', user)
-  // console.log('checkreview', review)
-
-  // if(user) { let userReview= Object.values(review).filter(ele => ele.userId == user.id)}
-  // console.log('userReview', userReview? userReview : null)
-
-
   const numReivewsArray = Object.values(review).filter(ele => ele.spotId == spotId)
-  // console.log('numreviews', numReivews.length)
-  // console.log('spotReview', Object.values(review).length)
   const numReivews = numReivewsArray.length
+
+  const userId = user?.id
+  const checkOwner = spot?.ownerId == userId
+  const userReview = Object.values(review).filter(ele => ele.userId == +userId)
+  const checkUserfirstReview = userReview?.length === 1
 
   useEffect(() => {
     document.title = spot.name
@@ -141,7 +133,8 @@ let cleanFee= 100;
 
 
             <SpotReviews />
-            {user &&<ReviewCreateFormPage/>}
+            {/* {user &&<ReviewCreateFormPage/>} */}
+           {user && !checkOwner && !checkUserfirstReview && <NavLink to={`/spots/${spotId}/newreview`}>Write a public review</NavLink>}
           </div>
 
       </div>
