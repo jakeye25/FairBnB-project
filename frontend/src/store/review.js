@@ -27,10 +27,10 @@ const loadspotreviews = (reviews) => ({
     review
 });
 
-// const updatereview = (review) => ({
-//     type: UPDATE_REVIEW,
-//     review
-//   });
+const updatereview = (review) => ({
+    type: UPDATE_REVIEW,
+    review
+  });
 
   const removereview = (reviewId) => ({
     type: REMOVE_REVIEW,
@@ -85,6 +85,23 @@ export const getSpotReviews = (id) => async (dispatch) => {
       }
   };
 
+  export const editReview = data => async dispatch => {
+    console.log('before fetching', data)
+
+      const response = await csrfFetch(`/api/reviews/${data.id}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if(response.ok) {
+
+        const review = await response.json()
+        // console.log(data)
+        dispatch(updatereview(review))
+        return review
+      }
+  };
+
   export const deleteReview= (reviewId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
       method: 'delete',
@@ -120,6 +137,10 @@ export const getSpotReviews = (id) => async (dispatch) => {
       case ADD_REVIEW:
         newState = {...state}
         newState[action.review.id] = {...newState[action.review.id], ...action.review}
+                return newState;
+      case UPDATE_REVIEW:
+        newState = { ...state }
+        newState[action.review.id] = { ...newState[action.review.id], ...action.review }
                 return newState;
       case REMOVE_REVIEW:
       newState = {...state}

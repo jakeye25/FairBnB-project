@@ -44,9 +44,10 @@ router.put(
           }
 
           if (!review) error.errors.review = "Review text is required"
+          if (review.length<20) error.errors.review = "Review text must be more than 20 characters"
           if (!stars || stars>5 || stars <1) error.errors.stars= "Stars must be an integer from 1 to 5"
 
-          if (!review || !stars || stars>5 || stars <1) {
+          if (!review || !stars || stars>5 || stars <1 || review.length<20) {
             res.statusCode = 400;
             return res.json(error)
           }
