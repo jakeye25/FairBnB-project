@@ -24,6 +24,13 @@
     height: 100px;
 }
 
+.edit_reviewcontent{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 100px;
+}
+
 .create_review_reviewby_text{
     font-size: 13px;
     font-weight: 500;

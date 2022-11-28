@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { getUserReviews, deleteReview } from "../../store/review";
 import { NavLink } from "react-router-dom";
 import './reviewBrowser.css'
+import ReviewEditModal from "./reviewEditModal";
 
 
 const UserReviews = () => {
@@ -53,7 +54,9 @@ const UserReviews = () => {
                 <div className="userreviewtext">Stars Rating: {review.stars}</div>
                 <div className="userreviewtext">{review.createdAt.slice(0, 10)}</div>
               </div>
-
+              <div style={{ "margin-top": "10px" }}>
+                        <ReviewEditModal review={review} />
+              </div>
                 <button className="reviewlist__delbtn" onClick={() => dispatch(deleteReview(review.id))}>
                     Delete
                  </button>
