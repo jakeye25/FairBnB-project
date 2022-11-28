@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import ReviewEditFormPage from "./reviewEdit";
+import './reviewCreate.css'
 
 function ReviewEditModal({review}) {
     const [showModal, setShowModal] = useState(false);

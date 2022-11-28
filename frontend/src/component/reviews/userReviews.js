@@ -44,22 +44,23 @@ const UserReviews = () => {
             <h1 id="userreview-listing">Reviews</h1>
             {reviews.map((review) => (
             <div className="reviewlist__container">
-              <div  key={review.id}
+              <div  key={review.id} className='userreview-left'
               // to={`/reviews/${review.id}`}
               >
-
                 <div id="userreviewtexthead">{review.Spot? review.Spot.name : ''}</div>
                 {/* <div>{review.Spot? review.Spot.city : 'no'}</div> */}
                 <div className="userreviewtext">Review: {review.review}</div>
                 <div className="userreviewtext">Stars Rating: {review.stars}</div>
                 <div className="userreviewtext">{review.createdAt.slice(0, 10)}</div>
               </div>
-              <div style={{ "margin-top": "10px" }}>
-                        <ReviewEditModal review={review} />
-              </div>
+              <div className='userreview-right'>
+              {/* <div style={{ "margin-top": "10px" }}> */}
+                  <ReviewEditModal review={review} />
+              {/* </div> */}
                 <button className="reviewlist__delbtn" onClick={() => dispatch(deleteReview(review.id))}>
                     Delete
                  </button>
+                 </div>
             </div>
             ))}
           </div>
