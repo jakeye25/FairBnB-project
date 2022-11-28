@@ -49,7 +49,8 @@ const UserSpots = () => {
               <img
                   id="userspotimg"
                   alt=''
-                  src={spot.previewImage}
+                  src={spot?.previewImage}
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}
                 />
               </Link>
 

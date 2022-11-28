@@ -51,6 +51,7 @@ function ProfileButton({ user, setShowModal, setShowloginForm, setShowsignupForm
             <Link className="menu-item-link" to={`/spots/me`}>Manage listings</Link>
             {/* </div> */}
             {/* <div className="menu-item"> */}
+            <Link className="menu-item-link" to={`/mybookings`}>Manage bookings</Link>
             <Link className="menu-item-link" to={`/spots/create`}>Host an experience</Link>
             {/* </div> */}
             {/* <div className="menu-item"> */}
