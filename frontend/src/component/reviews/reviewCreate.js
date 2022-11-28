@@ -85,15 +85,15 @@ function ReviewCreateFormPage({reviewId, onClose}) {
 
     return (
 
-        <div className="create_review_main">
+
             <div className="create_review_div">
                 {/* {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
                     Write a public review
                 </button>} */}
             {/* {showReviewCreate && !checkUserfirstReview && */}
-            <form className="reviewCreateform"
-                onSubmit={handleSubmit}>
-                    <div className="create_review_header">My review</div>
+                <div className="create_review_header">My review</div>
+                <form className="reviewCreateform"
+                    onSubmit={handleSubmit}>
                     {/* <ul id="reviewcreateerror">
                         {errors.map((error,index) => (
                             <li key={index}>{error}</li>
@@ -123,27 +123,26 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                             isHalf={false}
                             count={5}
                             value={rating}
-                            size={25}
+                            size={30}
                             activeColor={'gold'}
-
+                            emptyStarColor={'lightgrey'}
                         />
                     </div>
                     <textarea
                         type="text-area"
                         name="review"
                         value={createdReview}
-                        className="create_review_input_inner_reviews"
+                        className="create_reviewcontent"
                         onChange={(event) => setCreatedReview(event.target.value)}
                     ></textarea>
                     <div className="create_review_reviewby_text">
-                        <div>Reviewed by</div>
-                        <div>{user?.firstName}</div>
+                        <div>Reviewed by {user?.firstName}</div>
                     </div>
                     {validations.length > 0 ? (
                         <div className="create_review_empty">
                         <div className="create_review_error">
                             {validations.map((error, i) => (
-                            <div key={i}>{error}</div>
+                            <div key={i} className='create_review_errortext'>{error}</div>
                             ))}
                         </div>
                         </div>
@@ -151,10 +150,10 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                         <div className="create_review_empty"></div>
                     )}
                     <button id="reviewcreateBtn" disabled={validations.length > 0 } type='submit'>Create</button>
-                    <button type="button"  className="spotformbutton__btn" onClick={handleCancelClick}>Cancel</button>
+                    <button type="button"  id="reviewcancelBtn" onClick={handleCancelClick}>Cancel</button>
             </form>
             </div>
-        </div>
+
     );
 };
 
