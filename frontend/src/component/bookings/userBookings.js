@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { getOwnerBookings } from "../../store/booking";
+import BookingDeleteFormModal from "./bookingDelete";
 
 
 function MyBookingListing() {
@@ -12,7 +13,8 @@ function MyBookingListing() {
     const userBookingsArr = Object.values(userBookings)
     console.log('userbookingsArr', userBookingsArr)
 
-
+    let today = new Date();
+    let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
 
     useEffect(() => {
         dispatch(getOwnerBookings())
@@ -33,7 +35,7 @@ function MyBookingListing() {
                     <div key={i} id='userspot__ind-container'>
 
                         {/* <div>{booking}</div> */}
-                        <Link id="userspotimg__container" to={`/spots/${booking?.Spot?.id}`}>
+                        <Link id="userspotimg__container" to={`/spots/${booking?.Spot?.spotId}`}>
                             <img
                             src={booking?.Spot?.previewImage}
                             alt='pic'
@@ -47,7 +49,9 @@ function MyBookingListing() {
                             <div className="userspot__container1">{booking?.endDate}</div>
                             <div>Edit</div>
                             {/* <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}> */}
-                                <div>Delete</div>
+                            { date < booking?.startDate ?
+                                <div><BookingDeleteFormModal booking={booking}/></div>
+                            : <div></div>}
                             {/* </button> */}
                         </div>
                     </div>
