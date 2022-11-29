@@ -16,12 +16,11 @@ const loadospotbookings = (bookings) => ({
     bookings
 })
 
-const createspotbookings = (booking) => {
-    return{
+const createspotbookings = (booking) => ({
         type:CREATE_SPOTBOOKINGS,
         booking
-    }
-}
+    })
+
 
 const editspotbookings = (booking) => {
     return{
@@ -57,12 +56,13 @@ export const getSpotBookings = () => async (dispatch) => {
 };
 
 export const createSpotBookings = (payload) => async dispatch => {
-    const response = await csrfFetch(`api/spots/:spotId/bookings`, {
+    console.log("before fetching", payload)
+    const response = await csrfFetch(`/api/spots/${payload.spotId}/bookings`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        // headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-
+      console.log("checking response", response)
       if(response.ok) {
           const data = await response.json()
           dispatch(createspotbookings(data))
@@ -77,13 +77,13 @@ const bookingReducer =(state= initialState, action) => {
     switch (action.type) {
         case LOAD_OWNERBOOKINGS:
             newState={};
-            console.log('actionbooking', action.Bookings)
+            // console.log('actionbooking', action.Bookings)
             action.bookings.Bookings.forEach((booking) => {
 
                 newState[booking.id] = booking;
 
             });
-            console.log('newState',newState)
+            // console.log('newState',newState)
             return newState
         case LOAD_SPOTBOOKINGS:
             newState={}

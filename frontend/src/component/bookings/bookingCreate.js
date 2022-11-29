@@ -16,9 +16,12 @@ function BookingCreateFormPage() {
 
     let today = new Date();
 
-    let date=today.getDate() + "-"+ parseInt(today.getMonth()+1) +"-"+today.getFullYear();
+    let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
 
-    console.log(date)
+    let minStartDate = date
+    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+1);
+    // console.log("today",date)
+    // console.log("minenddate", minEndDate)
 
     const[startDate, setStartDate] = useState('')
     const[endDate, setEndDate] = useState('')
@@ -52,6 +55,7 @@ function BookingCreateFormPage() {
                         type='date'
                         value={startDate}
                         required
+                        min={minStartDate}
                         onChange={(e) => setStartDate(e.target.value)}
                         ></input>
                     </div>
@@ -61,6 +65,7 @@ function BookingCreateFormPage() {
                         type='date'
                         value={endDate}
                         required
+                        min={minEndDate}
                         onChange={(e) => setEndDate(e.target.value)}
                         ></input>
                     </div>

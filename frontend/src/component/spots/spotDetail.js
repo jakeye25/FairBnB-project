@@ -8,6 +8,7 @@ import SpotReviews from '../reviews/spotReviews';
 import ReviewCreateFormPage from '../reviews/reviewCreate'
 // import { getSpotReviews } from '../../store/review';
 import './spotDetail.css';
+import BookingCreateFormPage from '../bookings/bookingCreate';
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
@@ -99,6 +100,7 @@ let cleanFee= 100;
                   <span id='sd-boxreviews'>{numReivews} reviews </span>
                 </div>
               </div>
+              <BookingCreateFormPage />
               <section id='sd-boxtail'>
                 <div className='fee-container'>
                   <div className='fee-containertext'>${spot.price}x5 nights</div>
