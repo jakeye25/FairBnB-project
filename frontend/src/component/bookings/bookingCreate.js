@@ -21,6 +21,8 @@ function BookingCreateFormPage() {
     console.log("check spotbooking", spotBookings)
     const spotBookingsArr = Object.values(spotBookings)
     console.log("========", spotBookingsArr)
+
+
     let today = new Date();
 
     let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
@@ -45,9 +47,9 @@ function BookingCreateFormPage() {
 
     let day= new Date(startDate)
     let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
-      console.log("check max end date", maxEndDate)
+    //   console.log("check max end date", maxEndDate)
 
-      console.log("check mix end date====", minEndDate)
+    //   console.log("check mix end date====", minEndDate)
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([]);
@@ -58,6 +60,17 @@ function BookingCreateFormPage() {
             startDate,
             endDate
         }
+
+        for (let i of spotBookingsArr) {
+            if (
+                (new Date(startDate).toISOString().slice(0, 10) >= i.startDate ||
+                new Date(endDate).toISOString().slice(0, 10) >= i.startDate) &&
+                (i.endDate >= new Date(endDate).toISOString().slice(0, 10) ||
+                i.endDate >= new Date(startDate).toISOString().slice(0, 10))
+              ) {
+                return setErrors(["Sorry, this spot is already booked for the specified dates"])
+        }
+    }
 
         if(createPayload?.startDate>=createPayload.endDate)
         return setErrors(['Please enter a valid check out date.'])
@@ -72,6 +85,8 @@ function BookingCreateFormPage() {
         let newBooking = dispatch(createSpotBookings(createPayload))
             .catch (async (res) => {
             const data = await res.json()
+            // console.log("ressssssssssss", res)
+            // if(res.status ==403) return setErrors(["chech"])
             let errors = []
             if (data && data.message) {
               errors.push(data.message)
