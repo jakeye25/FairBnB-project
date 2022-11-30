@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams} from 'react-router-dom'
-import { createSpotBookings } from "../../store/booking";
+import { createSpotBookings, getSpotBookings } from "../../store/booking";
+import { getOneSpot } from "../../store/spot";
+
 
 import './bookingCreate.css'
 
@@ -13,25 +15,43 @@ function BookingCreateFormPage() {
 
     const currUser = useSelector((state) => state.session.user)
     const userId = currUser?.id
-
+    const currSpot = useSelector((state) => state.spot[spotId])
+    console.log('check spot==========', currSpot)
+    const spotBookings = useSelector((state) => state.booking)
+    console.log("check spotbooking", spotBookings)
+    const spotBookingsArr = Object.values(spotBookings)
+    console.log("========", spotBookingsArr)
     let today = new Date();
 
     let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
 
     let minStartDate = date
     let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+1);
+
     // console.log("today",date)
     // console.log("minenddate", minEndDate)
+    useEffect(() => {
+        dispatch(getSpotBookings(spotId))
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getOneSpot(spotId))
+      }, [dispatch]);
 
     const[startDate, setStartDate] = useState('')
     const[endDate, setEndDate] = useState('')
     // const [validations, setValidations] = useState(false);
     const [errors, setErrors] = useState([]);
 
+    let day= new Date(startDate)
+    let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
+      console.log("check max end date", maxEndDate)
+
+      console.log("check mix end date====", minEndDate)
     const handleSubmit = (e) => {
         e.preventDefault()
-
-
+        setErrors([]);
+        // console.log("====================", spotBookingsArr)
         const createPayload = {
             userId,
             spotId,
@@ -39,7 +59,30 @@ function BookingCreateFormPage() {
             endDate
         }
 
+        if(createPayload?.startDate>=createPayload.endDate)
+        return setErrors(['Please enter a valid check out date.'])
+
+        if(currSpot?.ownerId == userId)
+        return setErrors(["You can't book your spot."])
+
+        // const checkingconflitdate = spotBookingsArr.filter(checkindate => checkindate?.startDate == startDate)
+        // console.log('check conflit date', checkingconflitdate)
+        // if (checkingconflitdate) setErrors(['confilt start date.'])
+
         let newBooking = dispatch(createSpotBookings(createPayload))
+            .catch (async (res) => {
+            const data = await res.json()
+            let errors = []
+            if (data && data.message) {
+              errors.push(data.message)
+            }
+            setErrors(errors)
+          })
+
+            // .catch(async(res)=> {
+            //     const data = await res.json()
+
+            //     if (data && data.errors)  return setErrors(data.message)})
 
         if (newBooking) {history.push(`/mybookings`)}
 
@@ -66,10 +109,13 @@ function BookingCreateFormPage() {
                         value={endDate}
                         required
                         min={minEndDate}
+                        max={maxEndDate}
                         onChange={(e) => setEndDate(e.target.value)}
                         ></input>
                     </div>
                 </div>
+                {errors.length > 0 &&
+                    errors.map((error) => <div key={error}>{error}</div>)}
                 <button type="submit" className="spotformbutton__btn">Reserve</button>
             </form>
         </div>

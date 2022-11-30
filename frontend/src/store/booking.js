@@ -38,7 +38,7 @@ const deletespotbookings = (id) => {
 
 export const getOwnerBookings = () => async (dispatch) => {
     const response = await csrfFetch(`/api/users/current/bookings`);
-    console.log('checking for ownerbooking response', response)
+    // console.log('checking for ownerbooking response', response)
     if (response.ok) {
         const data = await response.json();
         console.log("ownerbooking", data)
@@ -46,8 +46,8 @@ export const getOwnerBookings = () => async (dispatch) => {
     }
 };
 
-export const getSpotBookings = () => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/:spotId/bookings`);
+export const getSpotBookings = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${id}/bookings`);
     if (response.ok) {
         const data = await response.json();
         // console.log(spots)
