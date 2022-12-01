@@ -10,6 +10,7 @@
 }
 
 
+
 .del-modal-container{
     display: flex;
     flex-direction: column;
@@ -46,4 +47,8 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+}
+
+.delete-modal-item:disabled{
+    cursor: not-allowed;
 }

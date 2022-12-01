@@ -22,7 +22,7 @@ function BookingEdit ({ booking, setShowModal }){
     const currSpotBookings = allspotBookingsArr.filter(e=> e.spotId==bookingSpotId)
     // console.log("check spot booking edit", currSpotBookings)
     const currBookings= currSpotBookings.filter(e=> e.id != booking?.id)
-    console.log("--------------", currBookings)
+    // console.log("--------------", currBookings)
     let today = new Date();
 
     let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
@@ -30,16 +30,22 @@ function BookingEdit ({ booking, setShowModal }){
     let minStartDate = date
     let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
 
+
+
     // useEffect(() => {
     //     dispatch(getSpotBookings(spotId))
     // }, [dispatch])
 
-    const[startDate, setStartDate] = useState(booking?.startDate)
-    const[endDate, setEndDate] = useState(booking?.endDate)
+    const[editstartDate, setEditStartDate] = useState(booking?.startDate)
+    const[editendDate, setEditEndDate] = useState(booking?.endDate)
     // const [validations, setValidations] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    let day= new Date(startDate)
+    console.log("editbooking", booking)
+    console.log("check start date", editstartDate)
+    console.log("check end date", editendDate)
+
+    let day= new Date(editstartDate)
     let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
 
     const handleSubmit = (e) => {
@@ -48,21 +54,21 @@ function BookingEdit ({ booking, setShowModal }){
 
         const createPayload = {
             id: booking?.id,
-            startDate,
-            endDate
+            startDate: editstartDate,
+            endDate: editendDate
         }
 
-        if(createPayload?.startDate>=createPayload.endDate)
+        if(createPayload?.startDate>=createPayload?.endDate)
         return setErrors(['Please enter a valid check out date.'])
 
         // if(currSpot?.ownerId == userId)
         // return setErrors(["You can't book your spot."])
         for (let i of currBookings) {
             if (
-                (new Date(startDate).toISOString().slice(0, 10) >= i.startDate ||
-                new Date(endDate).toISOString().slice(0, 10) >= i.startDate) &&
-                (i.endDate >= new Date(endDate).toISOString().slice(0, 10) ||
-                i.endDate >= new Date(startDate).toISOString().slice(0, 10))
+                (new Date(editstartDate).toISOString().slice(0, 10) >= i.startDate ||
+                new Date(editendDate).toISOString().slice(0, 10) >= i.startDate) &&
+                (i.endDate >= new Date(editendDate).toISOString().slice(0, 10) ||
+                i.endDate >= new Date(editstartDate).toISOString().slice(0, 10))
               ) {
                 return setErrors(["Sorry, this spot is already booked for the specified dates"])
         }
@@ -88,35 +94,40 @@ function BookingEdit ({ booking, setShowModal }){
 
 
     return(
-        <div className="create-booking-div" >
-            <form className="bookingcreateform" onSubmit={handleSubmit}>
-                <div className="bookingcreatedate-container">
-                    <div className="bookingcreatedate-left">
+        <div className="edit-booking-div" >
+            <form className="bookingeditform" onSubmit={handleSubmit}>
+                <div className="bookingeditdate-container">
+                    <div className="bookingeditdate-left">
                         <label>CHECK-IN</label>
                         <input
+                        className="bookingeditdateinput"
                         type='date'
-                        value={startDate}
+                        value={editstartDate}
                         required
                         min={minStartDate}
-                        onChange={(e) => setStartDate(e.target.value)}
+                        onChange={(e) => setEditStartDate(e.target.value)}
                         ></input>
                     </div>
-                    <div className="bookingcreatedate-right">
+                    <div className="bookingeditdate-right">
                         <label>CHECK-OUT</label>
                         <input
+                        className="bookingeditdateinput"
                         type='date'
-                        value={endDate}
+                        value={editendDate}
                         required
                         min={minEndDate}
                         max={maxEndDate}
-                        onChange={(e) => setEndDate(e.target.value)}
+                        onChange={(e) => setEditEndDate(e.target.value)}
                         ></input>
                     </div>
                 </div>
                 {errors.length > 0 &&
-                    errors.map((error) => <div key={error}>{error}</div>)}
-                <div className="delete-modal-item" onClick={() => setShowModal(false)}>Cancel</div>
-                <button type="submit" className="spotformbutton__btn">Reserve</button>
+                    errors.map((error) => <div key={error} className='edit_booking_errortext'>{error}</div>)}
+
+                <div className="del-modal-container-bot">
+                    <div className="delete-modal-item" onClick={() => setShowModal(false)}>Cancel</div>
+                    <button div type="submit" className="delete-modal-item-btn">Change</button>
+                </div>
             </form>
         </div>
     )
