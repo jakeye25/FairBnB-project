@@ -13,7 +13,7 @@
 .del-modal-container{
     display: flex;
     flex-direction: column;
-    width: 400px;
+    /* width: 400px; */
     height: 160px;
 }
 
@@ -38,9 +38,12 @@
 }
 
 .delete-modal-item{
-    background-color: red;
+    background-color: #df1760;
+    width: 40%;
     color: white;
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
