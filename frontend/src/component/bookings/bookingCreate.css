@@ -1,0 +1,82 @@
+.bookingcreatedate-container{
+    border: 1px solid rgba(128, 128, 128, 0.8);
+    border-radius: 12px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.bookingcreatedate-left{
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+    padding: 5px 10px;
+}
+
+.bookingcreatedatetext{
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 18px;
+    color: #222222;
+}
+
+.bookingcreatedate-right{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+
+    padding: 5px 10px;
+    border-left: 1px solid rgba(128, 128, 128, 0.8);
+}
+
+.bookingcreatedateinput{
+    border: none;
+    box-sizing: border-box;
+    outline: 0;
+    /* padding: .75rem; */
+    position: relative;
+    width: 100%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.bookingformbutton__btn{
+    display: flex;
+    background-color: #df1760;
+    width: 100%;
+    /* height: 4vh; */
+    padding: 10px;
+    cursor: pointer;
+    color: aliceblue;
+    border: none;
+    border-radius: 13px;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: 3%; */
+    font-size: medium;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  .create_booking_errortext{
+    color: #df1760;
+    line-height: 15px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}

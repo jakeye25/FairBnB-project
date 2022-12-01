@@ -101,7 +101,7 @@ let cleanFee= 100;
                 </div>
               </div>
               <BookingCreateFormPage />
-              <section id='sd-boxtail'>
+              {/* <section id='sd-boxtail'>
                 <div className='fee-container'>
                   <div className='fee-containertext'>${spot.price}x5 nights</div>
                   <span className='fee-containertext'>${spot.price? spot.price*5 :null}</span>
@@ -118,7 +118,7 @@ let cleanFee= 100;
                   <div className='fee-containertotaltext'>Total before taxes</div>
                   <span className='fee-containertotaltext'>${spot.price? Number.parseFloat(spot.price*5+spot.price*0.1+spot.price*0.15).toFixed(0) :null}</span>
                 </div>
-              </section>
+              </section> */}
             </div>
           </div>
         </div>

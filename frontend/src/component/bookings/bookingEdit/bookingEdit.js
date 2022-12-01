@@ -28,7 +28,7 @@ function BookingEdit ({ booking, setShowModal }){
     let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
 
     let minStartDate = date
-    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+1);
+    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
 
     // useEffect(() => {
     //     dispatch(getSpotBookings(spotId))

@@ -101,7 +101,7 @@
 
 #sd-bookingbox{
     width: 80%;
-    height: 400px;
+    /* height: 400px; */
     padding: 2em;
     border: 1px solid #dddddd;
     border-radius: 20px;
@@ -109,6 +109,8 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 5px 8px 20px -6px rgba(0,0,0,0.2);
+    position: sticky;
+    right:0
 }
 
 #sd-boxhead{

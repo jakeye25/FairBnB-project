@@ -28,7 +28,7 @@ function BookingCreateFormPage() {
     let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
 
     let minStartDate = date
-    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+1);
+    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
 
     // console.log("today",date)
     // console.log("minenddate", minEndDate)
@@ -48,7 +48,11 @@ function BookingCreateFormPage() {
     let day= new Date(startDate)
     let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
     //   console.log("check max end date", maxEndDate)
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
+    const secondDate = new Date(endDate);
+
+    const diffDays = Math.round(Math.abs((day - secondDate) / oneDay))
     //   console.log("check mix end date====", minEndDate)
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -73,7 +77,7 @@ function BookingCreateFormPage() {
     }
 
         if(createPayload?.startDate>=createPayload.endDate)
-        return setErrors(['Please enter a valid check out date.'])
+        return setErrors(['Please verify your selected date.'])
 
         if(currSpot?.ownerId == userId)
         return setErrors(["You can't book your spot."])
@@ -108,9 +112,11 @@ function BookingCreateFormPage() {
             <form className="bookingcreateform" onSubmit={handleSubmit}>
                 <div className="bookingcreatedate-container">
                     <div className="bookingcreatedate-left">
-                        <label>CHECK-IN</label>
+                        <label className="bookingcreatedatetext">CHECK-IN</label>
                         <input
+                        className="bookingcreatedateinput"
                         type='date'
+                        placeholder="Add date"
                         value={startDate}
                         required
                         min={minStartDate}
@@ -118,11 +124,13 @@ function BookingCreateFormPage() {
                         ></input>
                     </div>
                     <div className="bookingcreatedate-right">
-                        <label>CHECK-OUT</label>
+                        <label className="bookingcreatedatetext">CHECK-OUT</label>
                         <input
+                        className="bookingcreatedateinput"
                         type='date'
                         value={endDate}
                         required
+                        placeholder="Add date"
                         min={minEndDate}
                         max={maxEndDate}
                         onChange={(e) => setEndDate(e.target.value)}
@@ -130,8 +138,30 @@ function BookingCreateFormPage() {
                     </div>
                 </div>
                 {errors.length > 0 &&
-                    errors.map((error) => <div key={error}>{error}</div>)}
-                <button type="submit" className="spotformbutton__btn">Reserve</button>
+                    errors.map((error) => <div key={error} className='create_booking_errortext'>{error}</div>)}
+                <button type="submit" className="bookingformbutton__btn">Reserve</button>
+                <div>
+                    <div>
+                        <div className='fee-container'>
+                            <div className='fee-containertext'>${currSpot?.price}x{diffDays? diffDays:1}&nbsp;nights</div>
+                            <div ></div>
+                        </div >
+                        <div className='fee-containertext'>${currSpot?.price * (diffDays? diffDays:1)}</div>
+                    </div>
+                    <div className='fee-container'>
+                        <div className='fee-containertext'>Cleaning fee</div>
+                        <div className='fee-containertext'>$80</div>
+                    </div>
+                    <div className='fee-container'>
+                        <div className='fee-containertext'>Service fee</div>
+                        <div className='fee-containertext'>${((currSpot?.price * (diffDays? diffDays:1))*0.15).toFixed(0)}</div>
+                    </div>
+                    <div className='fee-container1'>
+                        <div className='fee-containertotaltext'>Total before taxes</div>
+                        <div className='fee-containertotaltext'>${(currSpot?.price * (diffDays? diffDays:1)+ 80 + Number.parseFloat((currSpot?.price * (diffDays? diffDays:1))*0.15)).toFixed(0)}</div>
+                    </div>
+                </div>
+
             </form>
         </div>
     )
