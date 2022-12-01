@@ -11,7 +11,7 @@ function BookingDeleteFormModal({booking}) {
 
     return (
       <>
-         <div id='delansbtn' onClick={() => setShowModal(true)}><i class="fa-regular fa-trash-can"></i>&nbsp;Delete </div>
+         <div className='userbookingbtn' onClick={() => setShowModal(true)}>Delete </div>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
 

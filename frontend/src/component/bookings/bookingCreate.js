@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams} from 'react-router-dom'
-import { createSpotBookings, getSpotBookings } from "../../store/booking";
+import { createSpotBookings, getOwnerBookings, getSpotBookings } from "../../store/booking";
 import { getOneSpot } from "../../store/spot";
 
 
@@ -103,7 +103,8 @@ function BookingCreateFormPage() {
 
             //     if (data && data.errors)  return setErrors(data.message)})
 
-        if (newBooking) {history.push(`/mybookings`)}
+        if (newBooking) {history.push(`/mybookings`)
+    dispatch(getOwnerBookings())}
 
     }
 

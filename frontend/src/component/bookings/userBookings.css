@@ -1,0 +1,101 @@
+.userbooking-container{
+    display: flex;
+    /* height: 80vh; */
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    justify-content: space-between, first baseline;
+    row-gap: 5vh;
+    width: 85%;
+    height: auto;
+    padding-left: 20vh;
+    /* padding-right: 10vh; */
+    margin: auto;
+    margin-top: 50px;
+    vertical-align: top;
+    margin-bottom: 50px;
+}
+
+#userbooking-listing{
+    width: 80%;
+    font-size:x-large;
+    /* font-weight: 600; */
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+#bookinglist__nobooking{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #222222;
+    width: 50%;
+    word-wrap: break-word;
+}
+
+#userbooking__ind-container{
+    display: flex;
+    flex-direction: row;
+   /* width: 20%;
+   height: 40%; */
+    /* height: 300px; */
+    width: 80%;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+#userbookingimg__container img{
+    height: 300px;
+    width: 400px;
+    /* margin: 5px; */
+    border-radius: 15px;
+}
+
+
+
+#userbooking__rightcontainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20vh;
+    justify-content: space-around;
+    /* text-decoration: none; */
+}
+
+#userbooking__textline1{
+    font-size: large;
+    font-weight: bold;
+    width: 20em;
+}
+
+
+
+.userbookingbtn{
+    /* border: 1px solid #7f7f7f; */
+    padding: 6px;
+    border-radius: 8px;
+    border: none;
+    background-color: #df1760;
+    color: white;
+    height: 3em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#userbookingeditbtn{
+    display: flex;
+    padding: 6px;
+    border-radius: 8px;
+    border: none;
+    background-color: #df1760;
+    color: white;
+    height: 3em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}

@@ -11,7 +11,7 @@ function BookingEditFormModal({booking}) {
 
     return (
       <>
-         <div id='delansbtn' onClick={() => setShowModal(true)}><i class="fa-regular fa-pen-to-square"></i>&nbsp; Edit </div>
+         <div className='userbookingbtn' onClick={() => setShowModal(true)}>Edit </div>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
 
