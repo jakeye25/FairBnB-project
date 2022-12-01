@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { getOwnerBookings } from "../../store/booking";
 import BookingDeleteFormModal from "./bookingDelete";
+import BookingEditFormModal from "./bookingEdit";
 
 
 function MyBookingListing() {
@@ -47,7 +48,9 @@ function MyBookingListing() {
                             <div className="userspot__container1">{booking?.Spot?.price}</div>
                             <div className="userspot__container1">{booking?.startDate}</div>
                             <div className="userspot__container1">{booking?.endDate}</div>
-                            <div>Edit</div>
+                            { date < booking?.startDate ?
+                            <div><BookingEditFormModal booking={booking}/></div>
+                            : <div>You can't edit past booking.</div>}
                             {/* <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}> */}
                             { date < booking?.startDate ?
                                 <div><BookingDeleteFormModal booking={booking}/></div>
