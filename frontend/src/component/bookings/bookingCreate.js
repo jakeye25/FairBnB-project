@@ -140,13 +140,14 @@ function BookingCreateFormPage() {
                 {errors.length > 0 &&
                     errors.map((error) => <div key={error} className='create_booking_errortext'>{error}</div>)}
                 <button type="submit" className="bookingformbutton__btn">Reserve</button>
+                    <div className="not-charge-text">You won't be charged yet</div>
                 <div>
                     <div>
                         <div className='fee-container'>
                             <div className='fee-containertext'>${currSpot?.price}x{diffDays? diffDays:1}&nbsp;nights</div>
-                            <div ></div>
-                        </div >
+
                         <div className='fee-containertext'>${currSpot?.price * (diffDays? diffDays:1)}</div>
+                        </div >
                     </div>
                     <div className='fee-container'>
                         <div className='fee-containertext'>Cleaning fee</div>
@@ -156,7 +157,7 @@ function BookingCreateFormPage() {
                         <div className='fee-containertext'>Service fee</div>
                         <div className='fee-containertext'>${((currSpot?.price * (diffDays? diffDays:1))*0.15).toFixed(0)}</div>
                     </div>
-                    <div className='fee-container1'>
+                    <div className='fee-containertotal'>
                         <div className='fee-containertotaltext'>Total before taxes</div>
                         <div className='fee-containertotaltext'>${(currSpot?.price * (diffDays? diffDays:1)+ 80 + Number.parseFloat((currSpot?.price * (diffDays? diffDays:1))*0.15)).toFixed(0)}</div>
                     </div>

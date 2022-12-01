@@ -1,6 +1,6 @@
 .bookingcreatedate-container{
     border: 1px solid rgba(128, 128, 128, 0.8);
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     margin-bottom: 10px;
 }
@@ -79,4 +79,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
     justify-content: center;
     align-content: center;
+}
+
+.not-charge-text{
+    display: flex;
+    /* align-items: center; */
+    /* align-content: center; */
+    justify-content: center;
+    margin-bottom: 15px;
 }
