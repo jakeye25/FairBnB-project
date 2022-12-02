@@ -11,6 +11,7 @@ import './Navigation.css';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupForm from '../SignupFormPage/SignupForm';
+import Searchbar from '../Search/Searchbar';
 // import DemoUser from '../Demo User/demouser';
 
 
@@ -92,6 +93,11 @@ const[showloginForm, setShowloginForm] = useState(false)
             />
 
             </NavLink>
+        </div>
+        <div id="search_bar_container">
+          <div id="search_bar">
+            <Searchbar />
+          </div>
         </div>
           <div className='header__right'>
 
