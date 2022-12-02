@@ -22,7 +22,7 @@ function MyBookingListing() {
     }, [dispatch])
 
     if(!userBookingsArr.length) return(
-    <div id ='userbooking-container'>
+    <div className ='userbooking-container'>
         <h1 id="userbooking-listing"> My Bookings</h1>
         <h2 id="bookinglist__nobooking">Please check out our spots to start booking.</h2>
   </div>)
