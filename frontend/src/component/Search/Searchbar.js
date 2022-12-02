@@ -79,8 +79,8 @@ function Searchbar(){
       <img src={spot?.previewImage} alt="product" className='search_dropdown_img'/>
       </div>
 
-        <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div>
-
+        {/* <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div> */}
+        <div className='search_dropdown_text' >{spot.description.slice(0,270)}</div>
       </div>
       </NavLink>
     ))
