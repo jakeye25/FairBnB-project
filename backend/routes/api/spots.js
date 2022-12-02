@@ -191,7 +191,7 @@ router.post(
   restoreUser,
   requireAuth,
    async (req, res, next) => {
-    let { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
+    let { address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4 } = req.body;
 
     const error = {
       message: "Validation error",
@@ -226,6 +226,10 @@ router.post(
         description,
         price,
         previewImage,
+        imageUrl1,
+        imageUrl2,
+        imageUrl3,
+        imageUrl4
       });
 
       res.status(201).json(spot);
@@ -235,7 +239,7 @@ router.post(
 router.put(
   '/:spotId', restoreUser,
   async (req, res, next) => {
-    let { address, city, state, country, lat, lng, name, description, price } = req.body;
+    let { address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4  } = req.body;
 
     let spotId = req.params.spotId;
 
@@ -277,6 +281,11 @@ router.put(
   editSpot.name = name
   editSpot.description = description
   editSpot.price = price
+  editSpot.previewImage = previewImage
+  editSpot.imageUrl1 = imageUrl1
+  editSpot.imageUrl2 = imageUrl2
+  editSpot.imageUrl3 = imageUrl3
+  editSpot.imageUrl4 = imageUrl4
 
   await editSpot.save()
   res.status(200).json(editSpot);

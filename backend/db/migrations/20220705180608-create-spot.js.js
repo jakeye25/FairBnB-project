@@ -56,6 +56,22 @@ module.exports = {
         type: Sequelize.STRING,
 
       },
+      imageUrl1: {
+        type: Sequelize.STRING,
+
+      },
+      imageUrl2: {
+        type: Sequelize.STRING,
+
+      },
+      imageUrl3: {
+        type: Sequelize.STRING,
+
+      },
+      imageUrl4: {
+        type: Sequelize.STRING,
+
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

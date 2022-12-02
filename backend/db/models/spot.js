@@ -80,12 +80,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[1,49]
+        len:[1,200]
       }
     },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        len:[1,1000]
+      }
     },
     price: {
       type: DataTypes.INTEGER,
@@ -97,7 +100,23 @@ module.exports = (sequelize, DataTypes) => {
     },
     previewImage: {
       type: DataTypes.STRING,
-      // omitNull: true
+
+    },
+    imageUrl1: {
+      type: DataTypes.STRING,
+
+    },
+    imageUrl2: {
+      type: DataTypes.STRING,
+
+    },
+    imageUrl3: {
+      type: DataTypes.STRING,
+
+    },
+    imageUrl4: {
+      type: DataTypes.STRING,
+
     },
 
   }, {
