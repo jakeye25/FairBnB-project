@@ -7,8 +7,8 @@ export default function DemoUser({setShowloginForm, setShowModal}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const email = "user5@user.io";
-    const password = "password5";
+    const email = "demo@user.io";
+    const password = "password";
     setShowloginForm(false)
     setShowModal(false)
     return dispatch(sessionActions.login({ email, password }))

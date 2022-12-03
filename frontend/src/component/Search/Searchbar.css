@@ -70,20 +70,27 @@
  }
  .search_dropdown_text{
     word-wrap:break-word;
-    width:68%;
+    /* width:68%; */
  }
 
  .search_dropdown_info{
 
    display: flex;
    flex-direction: row;
-   justify-content: space-between;
+   /* justify-content: space-; */
    padding-top:10px;
    font-size: 16;
-   width:80%;
+   width:100%;
    font-weight:700px;
 
  }
  .dropdown_image_container{
    width:22%;
+ }
+
+ .search_dropdown_text_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 20%;
  }

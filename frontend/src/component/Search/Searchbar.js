@@ -58,7 +58,7 @@ function Searchbar(){
    <input
       type = 'text'
       className='searchinput'
-      placeholder='Search for anything'
+      placeholder='Search for Los Angeles / San Francisco / New York etc.'
       onChange={(e)=>setSearchWord(e.target.value)}
       value={searchWord}
    />
@@ -76,11 +76,15 @@ function Searchbar(){
       <div className='search_dropdown_info'>
 
       <div className='dropdown_image_container'>
-      <img src={spot?.previewImage} alt="product" className='search_dropdown_img'/>
+      <img src={spot?.previewImage} alt="spot" className='search_dropdown_img'/>
       </div>
 
         {/* <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div> */}
-        <div className='search_dropdown_text' >{spot.description.slice(0,270)}</div>
+        <div className='search_dropdown_text_container'>
+          <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div>
+          <div className='search_dropdown_text' >{spot.city.slice(0,270)}</div>
+          <div className='search_dropdown_text' >{spot.state.slice(0,270)}</div>
+        </div>
       </div>
       </NavLink>
     ))
