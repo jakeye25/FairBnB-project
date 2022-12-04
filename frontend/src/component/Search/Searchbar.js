@@ -58,7 +58,7 @@ function Searchbar(){
    <input
       type = 'text'
       className='searchinput'
-      placeholder='Search for Los Angeles / San Francisco / New York etc.'
+      placeholder='Start your search'
       onChange={(e)=>setSearchWord(e.target.value)}
       value={searchWord}
    />
