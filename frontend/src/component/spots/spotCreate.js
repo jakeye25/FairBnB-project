@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 // import { Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
@@ -16,12 +16,12 @@ function SpotCreateFormPage() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("United States");
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("Take it easy at this unique and tranquil getaway.");
+  const [price, setPrice] = useState(150);
   const [previewImage, setpreviewImage] = useState("");
   const [imageUrl1, setimageUrl1] = useState("");
   const [imageUrl2, setimageUrl2] = useState("");
@@ -30,6 +30,16 @@ function SpotCreateFormPage() {
   // const [errorMessages, setErrorMessages] = useState({});
   const [errors, setErrors] = useState([]);
   //   if (sessionUser) return <Redirect to="/api/spots" />;
+
+  const [nameChar, setNameChar] = useState(0);
+  useEffect(() => {
+    setNameChar(name.length);
+  }, [name]);
+
+  const [descriptionChar, setDescriptionChar] = useState(0);
+  useEffect(() => {
+    setDescriptionChar(description.length);
+  }, [description]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,208 +81,305 @@ function SpotCreateFormPage() {
 
   return (
     <section className="spotform__container">
-      <div className="leftspotform">
+      {/* <div className="leftspotform">
 
         <h1 className="spotform__head"
         // style={{backgroundColor: "lightblue",}}
         >Where's your place located?</h1>
-      </div>
-      <div className="rightspotform">
-        <form className="spotform__info" onSubmit={handleSubmit}>
+      </div> */}
+      {/* <div className="middlespotform"> */}
+      <form
+        // className="spotform__info"
+        className="spotform"
+        onSubmit={handleSubmit}>
+        <div className="spotform-left">
+          <div className="spotform-name-container" >
+            <div className="spotform-name-toptext">Now, let's give your house a title</div>
+            <div className="spotform-name-middletext">Short titles work best. Have fun with it—you can always change it later.</div>
+            <textarea
+              type="text"
+              // placeholder="Name"
+              minLength='3'
+              maxLength='49'
+
+              className="spotform-textarea"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)} />
+            <div className="spotform-name-bottomtext">{nameChar}/49</div>
+          </div>
+          <div className="spotform-name-container">
+            <div className="spotform-name-toptext">Create your description</div>
+            <div className="spotform-name-middletext">Share what makes your place special.</div>
+            <textarea
+              type="text"
+              placeholder="Description"
+              minLength='20'
+              maxLength='500'
+              required
+              className="spotform-textarea"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)} />
+            <div className="spotform-name-bottomtext">{descriptionChar}/500</div>
+          </div>
+          <div className="spotform-name-container">
+            <div className="spotform-name-toptext">Now, set your price</div>
+            <div className="spotform-name-middletext">You can change it anytime.</div>
+            <input
+              type="number"
+              // placeholder="Price per night"
+              className="spotforminput"
+              min="1"
+              max="10000"
+              required
+              value={price}
+              onChange={(e) => setPrice(e.target.value)} />
+            <div className="spotform-name-middletext">Places like yours in your area usually range from $75 to $258 per night</div>
+          </div>
+        </div>
+        <div className="spotform-right">
+          <div>
+            <div className="spotform-name-toptext">Choose at least 5 photos</div>
+            <div className="spotform-coverimage-container">
+              <input
+                type="url"
+                placeholder="Cover Photo"
+                value={previewImage}
+                // type="file"
+                // accept="image/*"
+                // name="previewImage"
+                className="spotformimageinput"
+                required
+                onChange={(e) => setpreviewImage(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl1}
+                onChange={(e) => setimageUrl1(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl2}
+                onChange={(e) => setimageUrl2(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl3}
+                onChange={(e) => setimageUrl3(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl4}
+                onChange={(e) => setimageUrl4(e.target.value)}
+              />
+
+            </div>
+            <div className="spotform-image-container">
+
+
+            </div>
+            <div className="spotform-image-container">
+              {previewImage ?
+                <img src={previewImage}
+                  className='spotform-preview'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+              <div className="spotform-image12">
+
+              {imageUrl1 ?
+                <img src={imageUrl1}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+              {imageUrl2 ?
+                <img src={imageUrl2}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+                  </div>
+                  <div className="spotform-image12">
+
+              {imageUrl3 ?
+                <img src={imageUrl3}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+              {imageUrl4 ?
+                <img src={imageUrl4}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+            </div>
+                  </div>
+          </div>
+        </div>
+        <div className="spotform-button">
+          <div className="spotform-name-toptext">Where's your place located?</div>
+          <div className="spotform-name-middletext">Your address is only shared with guests after they’ve made a reservation.</div>
+          <div className="addressform" >
+            <div className="addressform-street" id="addressform-top">
+              <label className="addressform-label">Street</label>
+              <input
+                type="text"
+
+                className="addressforminput"
+                required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)} />
+            </div>
+            <div className="addressform-street">
+
+              <label className="addressform-label">City</label>
+              <input
+                type="text"
+
+                className="addressforminput"
+                required
+                value={city}
+                onChange={(e) => setCity(e.target.value)} />
+            </div>
+            <div className="addressform-state-container">
+              <div className="addressform-state" id="addressform-inputleft">
+
+                <label className="addressform-label">State</label>
+                <select
+                  className="addressforminput"
+
+                  required
+
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}>
+                  <option disabled value=''>State</option>
+                  <option value="Alabama">Alabama</option>
+                  <option value="Alaska">Alaska</option>
+                  <option value="Arizona">Arizona</option>
+                  <option value="Arkansas">Arkansas</option>
+                  <option value="California">California</option>
+                  <option value="Colorado">Colorado</option>
+                  <option value="Connecticut">Connecticut</option>
+                  <option value="Delaware">Delaware</option>
+                  <option value="District Of Columbia">District Of Columbia</option>
+                  <option value="Florida">Florida</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Hawaii">Hawaii</option>
+                  <option value="Idaho">Idaho</option>
+                  <option value="Illinois">Illinois</option>
+                  <option value="Indiana">Indiana</option>
+                  <option value="Iowa">Iowa</option>
+                  <option value="Kansas">Kansas</option>
+                  <option value="Kentucky">Kentucky</option>
+                  <option value="Louisiana">Louisiana</option>
+                  <option value="Maine">Maine</option>
+                  <option value="Maryland">Maryland</option>
+                  <option value="Massachusetts">Massachusetts</option>
+                  <option value="Michigan">Michigan</option>
+                  <option value="Minnesota">Minnesota</option>
+                  <option value="Mississippi">Mississippi</option>
+                  <option value="Missouri">Missouri</option>
+                  <option value="Montana">Montana</option>
+                  <option value="Nebraska">Nebraska</option>
+                  <option value="Nevada">Nevada</option>
+                  <option value="New Hampshire">New Hampshire</option>
+                  <option value="New Jersey">New Jersey</option>
+                  <option value="New Mexico">New Mexico</option>
+                  <option value="New York">New York</option>
+                  <option value="North Carolina">North Carolina</option>
+                  <option value="North Dakota">North Dakota</option>
+                  <option value="Ohio">Ohio</option>
+                  <option value="Oklahoma">Oklahoma</option>
+                  <option value="Oregon">Oregon</option>
+                  <option value="Pennsylvania">Pennsylvania</option>
+                  <option value="Rhode Island">Rhode Island</option>
+                  <option value="South Carolina">South Carolina</option>
+                  <option value="South Dakota">South Dakota</option>
+                  <option value="Tennessee">Tennessee</option>
+                  <option value="Texas">Texas</option>
+                  <option value="Utah">Utah</option>
+                  <option value="Vermont">Vermont</option>
+                  <option value="Virginia">Virginia</option>
+                  <option value="Washington">Washington</option>
+                  <option value="West Virginia">West Virginia</option>
+                  <option value="Wisconsin">Wisconsin</option>
+                  <option value="Wyoming">Wyoming</option>
+                </select>
+              </div>
+              <div className="addressform-state">
+                <label className="addressform-label">Country</label>
+                <select
+                  // placeholder="Country"
+                  className="addressforminput"
+                  required
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}>
+                  <option disabled value=''></option>
+                  <option value="Canada">Canada</option>
+                  <option value="Mexico">Mexico</option>
+                  <option value="Puerto Rico">Puerto Rico</option>
+                  <option value="United States">United States</option>
+                </select>
+              </div>
+            </div>
+            <div className="addressform-lat-container">
+              <div className="addressform-state" id="addressform-inputleft">
+
+                <label className="addressform-label">Latitude</label>
+                <input
+                  type="number"
+                  step="any"
+
+                  className="addressforminput"
+                  min="-90"
+                  max="90"
+                  required
+                  value={lat}
+                  onChange={(e) => setLat(e.target.value)} />
+              </div>
+              <div className="addressform-state">
+
+                <label className="addressform-label">Longitude</label>
+                <input
+                  type="number"
+                  step="any"
+
+                  className="addressforminput"
+                  min="-180"
+                  max="180"
+                  required
+                  value={lng}
+                  onChange={(e) => setLng(e.target.value)} />
+              </div>
+            </div>
+
+          </div>
+          <button type="submit"
+          className="spotformbtn"
+          >Create New Spot</button>
+          <span></span>
+          <button type="button"
+            className="spotformbtn"
+            onClick={handleCancelClick}>Cancel</button>
+
           <ul className="spotformerror">
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <input
-            type="text"
-            placeholder="Address"
-            className="spotforminput"
-            required
-            value={address}
-            onChange={(e) => setAddress(e.target.value)} />
-          <input
-            type="text"
-            placeholder="City"
-            className="spotforminput"
-            required
-            value={city}
-            onChange={(e) => setCity(e.target.value)} />
-          {/* <input
-            type="text"
-            placeholder="State"
-            className="spotforminput"
-            required
-            value={state}
-            onChange={(e) => setState(e.target.value)} /> */}
-          <select
-            className="spotforminput"
-            required
-            value={state}
-            onChange={(e) => setState(e.target.value)}>
-            <option disabled value=''></option>
-            <option value="Alabama">Alabama</option>
-            <option value="Alaska">Alaska</option>
-            <option value="Arizona">Arizona</option>
-            <option value="Arkansas">Arkansas</option>
-            <option value="California">California</option>
-            <option value="Colorado">Colorado</option>
-            <option value="Connecticut">Connecticut</option>
-            <option value="Delaware">Delaware</option>
-            <option value="District Of Columbia">District Of Columbia</option>
-            <option value="Florida">Florida</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Hawaii">Hawaii</option>
-            <option value="Idaho">Idaho</option>
-            <option value="Illinois">Illinois</option>
-            <option value="Indiana">Indiana</option>
-            <option value="Iowa">Iowa</option>
-            <option value="Kansas">Kansas</option>
-            <option value="Kentucky">Kentucky</option>
-            <option value="Louisiana">Louisiana</option>
-            <option value="Maine">Maine</option>
-            <option value="Maryland">Maryland</option>
-            <option value="Massachusetts">Massachusetts</option>
-            <option value="Michigan">Michigan</option>
-            <option value="Minnesota">Minnesota</option>
-            <option value="Mississippi">Mississippi</option>
-            <option value="Missouri">Missouri</option>
-            <option value="Montana">Montana</option>
-            <option value="Nebraska">Nebraska</option>
-            <option value="Nevada">Nevada</option>
-            <option value="New Hampshire">New Hampshire</option>
-            <option value="New Jersey">New Jersey</option>
-            <option value="New Mexico">New Mexico</option>
-            <option value="New York">New York</option>
-            <option value="North Carolina">North Carolina</option>
-            <option value="North Dakota">North Dakota</option>
-            <option value="Ohio">Ohio</option>
-            <option value="Oklahoma">Oklahoma</option>
-            <option value="Oregon">Oregon</option>
-            <option value="Pennsylvania">Pennsylvania</option>
-            <option value="Rhode Island">Rhode Island</option>
-            <option value="South Carolina">South Carolina</option>
-            <option value="South Dakota">South Dakota</option>
-            <option value="Tennessee">Tennessee</option>
-            <option value="Texas">Texas</option>
-            <option value="Utah">Utah</option>
-            <option value="Vermont">Vermont</option>
-            <option value="Virginia">Virginia</option>
-            <option value="Washington">Washington</option>
-            <option value="West Virginia">West Virginia</option>
-            <option value="Wisconsin">Wisconsin</option>
-            <option value="Wyoming">Wyoming</option>
-          </select>
-          <select
-            // placeholder="Country"
-            className="spotforminput"
-            required
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}>
-            <option disabled value=''>Country</option>
-            <option value="Canada">Canada</option>
-            <option value="Mexico">Mexico</option>
-            <option value="Puerto Rico">Puerto Rico</option>
-            <option value="United States">United States</option>
-          </select>
-          {/* <input
-            type="country"
-            placeholder="Country"
-            className="spotforminput"
-            required
-            value={country}
-            onChange={(e) => setCountry(e.target.value)} /> */}
-          {/* <select
-            className="spotforminput"
-            required
-          >
-            <option value="Afghanistan">United States</option>
-            <option value="Afghanistan">Afghanistan</option>
-            <option value="Albania">Albania</option>
-          </select> */}
-          <input
-            type="number"
-            step="any"
-            placeholder="Lat"
-            className="spotforminput"
-            min="-90"
-            max="90"
-            required
-            value={lat}
-            onChange={(e) => setLat(e.target.value)} />
-          <input
-            type="number"
-            step="any"
-            placeholder="Lng"
-            className="spotforminput"
-            min="-180"
-            max="180"
-            required
-            value={lng}
-            onChange={(e) => setLng(e.target.value)} />
-          <input
-            type="text"
+        </div>
+      </form>
+      {/* </div> */}
+      {/* <div className="rightspotform">
 
-            placeholder="Name"
-            className="spotforminput"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)} />
-          <input
-            type="textarea"
-            placeholder="Description"
-            className="spotforminput"
-            required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)} />
-          <input
-            type="number"
-            placeholder="Price per night"
-            className="spotforminput"
-            min="1"
-            required
-            value={price}
-            onChange={(e) => setPrice(e.target.value)} />
-          <input
-            type="url"
-            placeholder="Preview Image"
-            className="spotforminput"
-            required
-            value={previewImage}
-            onChange={(e) => setpreviewImage(e.target.value)} />
-          <input
-            type="url"
-            placeholder="Image for display"
-            className="spotforminput"
-            required
-            value={imageUrl1}
-            onChange={(e) => setimageUrl1(e.target.value)} />
-          <input
-            type="url"
-            placeholder="Image for display"
-            className="spotforminput"
-            required
-            value={imageUrl2}
-            onChange={(e) => setimageUrl2(e.target.value)} />
-          <input
-            type="url"
-            placeholder="Image for display"
-            className="spotforminput"
-            required
-            value={imageUrl3}
-            onChange={(e) => setimageUrl3(e.target.value)} />
-          <input
-            type="url"
-            placeholder="Image for display"
-            className="spotforminput"
-            required
-            value={imageUrl4}
-            onChange={(e) => setimageUrl4(e.target.value)} />
-          <div className="spotformbutton">
-            <button type="submit" className="spotformbutton__btn">Create New Spot</button>
-            <span></span>
-            <button type="button" className="spotformbutton__btn" onClick={handleCancelClick}>Cancel</button>
-          </div>
-        </form>
-      </div>
+      </div> */}
     </section>
   );
 }
