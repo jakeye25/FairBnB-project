@@ -110,9 +110,108 @@ const SpotDetail = () => {
 
       <div id='spotdetail__body'>
         <div id='spotdetail__leftbody'>
-          <p id='hosted'>{spot.name} hosted by {ownerFirstname ? ownerFirstname : "John"} {ownerLastname ? ownerLastname : "Cena"}.</p>
+          <div className='sd-container1'>
 
-          <p id="spotdes">{spot.description}</p>
+            <p id='hosted' className='sd-container1-text'>{spot.name} hosted by {ownerFirstname ? ownerFirstname : "John"} {ownerLastname ? ownerLastname : "Cena"}.</p>
+
+            <div>
+              <img
+                className='sd-container1-pic'
+                src='https://bklyner.com/content/images/avatar/93f233539890aaad33a641b86b34161e.jpeg'
+                alt='profile'
+                onError={e => { e.currentTarget.src = "https://bklyner.com/content/images/avatar/93f233539890aaad33a641b86b34161e.jpeg"; }}
+              ></img>
+            </div>
+          </div>
+
+          <div className='sd-container2'>
+            <div className="sd-container2-1">
+              <div>
+                <i className="fa-solid fa-door-open fa-xl"></i>
+              </div>
+              <div className="sd-container2text">Self Check In</div>
+            </div>
+            <div className="sd-container2-1">
+              <div>
+                <i class="fa-solid fa-location-dot fa-xl"></i>
+              </div>
+              <div className="sd-container2text">Great location
+              </div>
+            </div>
+            <div className="sd-container2-13">
+              <div>
+                <i className="fa-solid fa-calendar fa-xl"></i>
+              </div>
+              <div className="sd-container2text">Free cancellation for 48 hours
+              </div>
+            </div>
+          </div>
+          <div className='sd-container3'>
+
+            <p id="spotdes">{spot.description}</p>
+          </div>
+          <div className='sd-container4'>
+            <div className='sd-container4text'>What this place offers</div>
+            <div className="sd-container4_icon">
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-utensils fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Kitchen</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-car fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Parking</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-paw fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Pets allowed</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-wifi fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Wifi</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-regular fa-snowflake fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Air Conditioning</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-tv fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">TV</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-charging-station fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">EV charger</div>
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                  <i className="fa-solid fa-video fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Security Camera</div>
+
+              </div>
+              <div className="sd-container4-feature">
+                <div>
+                <i class="fa-solid fa-fan fa-xl"></i>
+                </div>
+                <div className="sd-container4-featuretext">Backyard</div>
+
+              </div>
+
+            </div>
+          </div>
         </div>
         <div id='spotdetail__rightbody'>
           <div id='sd-bookingbox'>

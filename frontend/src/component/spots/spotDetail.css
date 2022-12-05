@@ -66,14 +66,7 @@
     flex-direction: column;
 }
 
-#hosted{
-    font-size: 22px;
-    line-height: 26px;
-    color: #222222;
-    font-weight: 600;
-    padding-bottom: 2em;
-    border-bottom: 1px solid #dddddd;
-}
+
 
 
 
@@ -90,11 +83,14 @@
     width: 40%;
     display: flex;
     justify-content: flex-end;
+    position: relative;
 }
 
 #sd-bookingbox{
-    width: 80%;
+    /* width: 80%; */
     /* height: 400px; */
+    /* top:20px; */
+    height: 450px;
     padding: 2em;
     border: 1px solid #dddddd;
     border-radius: 20px;
@@ -103,6 +99,7 @@
     justify-content: space-between;
     box-shadow: 5px 8px 20px -6px rgba(0,0,0,0.2);
     position: sticky;
+    top: 128px;
     right:0
 }
 
@@ -260,4 +257,92 @@
     height: 22vh;
     border-bottom-right-radius: 13px;
     grid-area: spot-image5;
+}
+
+.sd-container1{
+    display: flex;
+    border-bottom: 1px solid #dddddd;
+}
+
+#hosted{
+    font-size: 22px;
+    line-height: 26px;
+    color: #222222;
+    font-weight: 600;
+    padding-bottom: 2em;
+
+}
+
+.sd-container1-text{
+    width: 80%;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+.sd-container1-pic{
+    width: 50px;
+    height: 50px;
+    margin-left: 40px;
+    /* padding-left: 30px; */
+    border-radius: 500px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.sd-container2{
+    padding-left: 5px;
+    border-bottom: 1px solid #dddddd;
+    /* margin-bottom: 30px; */
+}
+.sd-container2-1{
+    display: flex;
+    margin-top: 20px;
+}
+
+.sd-container2-13{
+    display: flex;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.sd-container2text{
+    margin-left: 50px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #222222;
+    font-weight: 600;
+}
+
+
+.sd-container3{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #dddddd;
+}
+.sd-container4text{
+    font-size: 22px;
+    line-height: 26px;
+    color: #222222;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.sd-container4_icon{
+    height:140px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.sd-container4-feature{
+    display: flex;
+    margin: 10px 0;
+}
+
+.sd-container4-featuretext{
+    margin-left: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #222222;
 }
