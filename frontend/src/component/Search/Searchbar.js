@@ -20,7 +20,8 @@ function Searchbar(){
     const str =[];
     for (let i =0; i<spots.length; i++){
       let spot = spots[i];
-      if (spot.address.toLowerCase().includes(word.toLowerCase())||
+      if (
+        // spot.address.toLowerCase().includes(word.toLowerCase())||
          spot.city.toLowerCase().includes(word.toLowerCase()) ||
          spot.state.toLowerCase().includes(word.toLowerCase()) ||
          spot.country.toLowerCase().includes(word.toLowerCase())

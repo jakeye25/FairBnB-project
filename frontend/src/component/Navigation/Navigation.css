@@ -3,9 +3,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 8vh;
+    align-items: center;
+    height: 80px;
     width: 100%;
-    border-bottom: solid 1px rgb(209, 207, 207, 0.5)
+    border-bottom: solid 1px rgb(209, 207, 207, 0.5);
+    min-width: 1265px;
 }
 
 #header__left{

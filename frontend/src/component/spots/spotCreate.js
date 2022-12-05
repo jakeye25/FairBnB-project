@@ -100,7 +100,7 @@ function SpotCreateFormPage() {
               type="text"
               // placeholder="Name"
               minLength='3'
-              maxLength='49'
+              maxLength='50'
 
               className="spotform-textarea"
               required
@@ -233,7 +233,8 @@ function SpotCreateFormPage() {
               <label className="addressform-label">Street</label>
               <input
                 type="text"
-
+                minLength='6'
+                maxLength='100'
                 className="addressforminput"
                 required
                 value={address}
@@ -244,7 +245,8 @@ function SpotCreateFormPage() {
               <label className="addressform-label">City</label>
               <input
                 type="text"
-
+                minLength='6'
+                maxLength='50'
                 className="addressforminput"
                 required
                 value={city}

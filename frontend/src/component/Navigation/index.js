@@ -17,45 +17,45 @@ import Searchbar from '../Search/Searchbar';
 
 
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   // const [showloginMenu, setshowloginMenu] = useState(false);
-//   const toggleloginMenu =() => {
-//     setshowloginMenu(!showloginMenu)
-// }
-const [showModal, setShowModal] = useState(false)
+  //   const toggleloginMenu =() => {
+  //     setshowloginMenu(!showloginMenu)
+  // }
+  const [showModal, setShowModal] = useState(false)
 
-const[showsignupForm, setShowsignupForm] = useState(false)
-const[showloginForm, setShowloginForm] = useState(false)
+  const [showsignupForm, setShowsignupForm] = useState(false)
+  const [showloginForm, setShowloginForm] = useState(false)
 
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-       /* <div className='header'>*/
+      /* <div className='header'>*/
       <>
 
-            <p className='becomehost'>
-              <NavLink exact to='/spots/create'>Switch to hosting</NavLink>
-              </p>
+        <p className='becomehost'>
+          <NavLink exact to='/spots/create'>Switch to hosting</NavLink>
+        </p>
 
-                <ProfileButton user={sessionUser} />
+        <ProfileButton user={sessionUser} />
 
 
-     </>
+      </>
     );
   } else {
     sessionLinks = (
       <>
 
-          <p className='becomehost' onClick={()=> {alert('You have to login or signup first.')}}>
-            Become a Host
-          </p>
-          <ProfileButton user={sessionUser} setShowModal={setShowModal}
-          setShowloginForm={setShowloginForm} setShowsignupForm={setShowsignupForm}/>
+        <p className='becomehost' onClick={() => { alert('You have to login or signup first.') }}>
+          Become a Host
+        </p>
+        <ProfileButton user={sessionUser} setShowModal={setShowModal}
+          setShowloginForm={setShowloginForm} setShowsignupForm={setShowsignupForm} />
 
-            {/* <div className='drop' >
+        {/* <div className='drop' >
                 <span>
                   <i className="fa-solid fa-bars"></i>
 
@@ -63,17 +63,17 @@ const[showloginForm, setShowloginForm] = useState(false)
                 </span>
             </div>
                 {showloginMenu &&  <div className='droplist'> */}
-              {/* <a href="#"> */}
+        {/* <a href="#"> */}
 
-                {/* <SignupFormModal /> */}
-              {/* </a> */}
-              {/* <a href="#"> */}
-                {/* <LoginFormModal /> */}
-              {/* </a> */}
+        {/* <SignupFormModal /> */}
+        {/* </a> */}
+        {/* <a href="#"> */}
+        {/* <LoginFormModal /> */}
+        {/* </a> */}
 
-            {/* </div>} */}
+        {/* </div>} */}
 
-        </>
+      </>
     );
   }
   // console.log('showing loginform', showloginForm)
@@ -87,29 +87,55 @@ const[showloginForm, setShowloginForm] = useState(false)
           <NavLink exact to="/">
             {/* Home */}
             <img
-            id = "header__icon"
-            src = "https://user-images.githubusercontent.com/77218939/192109460-9d6b0966-9190-4b02-beb0-8deeafca0257.PNG"
-            alt='logo'
+              id="header__icon"
+              src="https://user-images.githubusercontent.com/77218939/192109460-9d6b0966-9190-4b02-beb0-8deeafca0257.PNG"
+              alt='logo'
             />
 
-            </NavLink>
+          </NavLink>
         </div>
         <div id="search_bar_container">
           <div id="search_bar">
             <Searchbar />
           </div>
         </div>
-          <div className='header__right'>
 
-            {isLoaded && sessionLinks}
+        <div className='header__right'>
+          <div className='aboutlink'>
+            <a
+              className="more_info_text"
+              href="https://www.linkedin.com/in/jake-ye-a2365250/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-linkedin fa-2xl">&nbsp;</i>
+            </a>
+            <a
+              className="more_info_text"
+              href="https://github.com/jakeye25"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-square-github fa-2xl">&nbsp;</i>
+            </a>
+            <a
+              className="email_link"
+              href="mailto:kebonkim@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-solid fa-envelope fa-2xl"></i>
+            </a>
           </div>
-          {showModal &&
+          {isLoaded && sessionLinks}
+        </div>
+        {showModal &&
           (<Modal onClose={() => setShowModal(false)}>
-          {showloginForm && <LoginForm setShowloginForm={setShowloginForm}
-          setShowModal={setShowModal}/>}
-          {showsignupForm && <SignupForm setShowsignupForm={setShowsignupForm}
-          setShowModal={setShowModal} />}
-        </Modal>)
+            {showloginForm && <LoginForm setShowloginForm={setShowloginForm}
+              setShowModal={setShowModal} />}
+            {showsignupForm && <SignupForm setShowsignupForm={setShowsignupForm}
+              setShowModal={setShowModal} />}
+          </Modal>)
         }
 
       </nav>
