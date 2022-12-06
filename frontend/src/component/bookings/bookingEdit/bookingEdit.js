@@ -6,6 +6,7 @@ import { editSpotBookings, getOwnerBookings, getSpotBookings } from "../../../st
 import './bookingEdit.css'
 
 function BookingEdit ({ booking, setShowModal }){
+    const history = useHistory()
     const dispatch = useDispatch()
     const bookingSpotId = booking.spotId
     // console.log("check booking spot Id", bookingSpotId)
@@ -25,11 +26,22 @@ function BookingEdit ({ booking, setShowModal }){
     // console.log("--------------", currBookings)
     let today = new Date();
 
-    let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+    if(parseInt(today.getDate()) >= 10){
 
-    let minStartDate = date
-    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
+        var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+        var minStartDate = date
 
+    } else {
+        var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
+        var minStartDate = date
+
+    }
+
+    if(parseInt(today.getDate()) >= 8){
+        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
+    } else {
+        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-0"+parseInt(today.getDate()+2);
+    }
 
 
     // useEffect(() => {
@@ -41,9 +53,13 @@ function BookingEdit ({ booking, setShowModal }){
     // const [validations, setValidations] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    console.log("editbooking", booking)
-    console.log("check start date", editstartDate)
-    console.log("check end date", editendDate)
+    // console.log("editbooking", booking)
+    // console.log("check start date", editstartDate)
+    // console.log("check end date", editendDate)
+
+    useEffect(() => {
+        dispatch(getOwnerBookings())
+    }, [dispatch])
 
     let day= new Date(editstartDate)
     let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
@@ -74,7 +90,8 @@ function BookingEdit ({ booking, setShowModal }){
         }
     }
 
-        let newBooking = dispatch(editSpotBookings(createPayload))
+        let newBooking =  dispatch(editSpotBookings(createPayload))
+        .then(dispatch(getOwnerBookings()))
         .catch (async (res) => {
         const data = await res.json()
         // console.log("ressssssssssss", res)
@@ -87,6 +104,7 @@ function BookingEdit ({ booking, setShowModal }){
       })
 
       if (newBooking) {
+        history.push('/mybookings')
         dispatch(getOwnerBookings())
         setShowModal(false)}
 

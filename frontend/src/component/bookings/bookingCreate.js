@@ -25,10 +25,23 @@ function BookingCreateFormPage() {
 
     let today = new Date();
 
-    let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+    if(parseInt(today.getDate()) >= 10){
 
-    let minStartDate = date
-    let minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
+        var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+        var minStartDate = date
+
+    } else {
+        var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
+        var minStartDate = date
+
+    }
+
+    if(parseInt(today.getDate()) >= 8){
+        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
+    } else {
+        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-0"+parseInt(today.getDate()+2);
+    }
+
 
     // console.log("today",date)
     // console.log("minenddate", minEndDate)

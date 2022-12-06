@@ -140,6 +140,7 @@ function SpotCreateFormPage() {
         <div className="spotform-right">
           <div>
             <div className="spotform-name-toptext">Choose at least 5 photos</div>
+            <div className="spotform-name-middletext">The image url you input must be JPEG, JPG or PNG files.</div>
             <div className="spotform-coverimage-container">
               <input
                 type="url"

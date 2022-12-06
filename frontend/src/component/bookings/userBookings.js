@@ -10,12 +10,18 @@ function MyBookingListing() {
     const dispatch = useDispatch()
     const user =useSelector((state) => state.session.user)
     const userBookings = useSelector((state) => state.booking)
-    console.log('userbookings', userBookings)
+    // console.log('userbookings', userBookings)
     const userBookingsArr = Object.values(userBookings)
-    console.log('userbookingsArr', userBookingsArr)
+    // console.log('userbookingsArr', userBookingsArr)
 
     let today = new Date();
-    let date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+    // console.log("parseInt(today.getDate())", typeof(parseInt(today.getDate())))
+    if(parseInt(today.getDate()) >= 10){
+
+        var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+    } else {
+        var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
+    }
 
     useEffect(() => {
         dispatch(getOwnerBookings())
@@ -26,6 +32,9 @@ function MyBookingListing() {
         <h1 id="userbooking-listing"> My Bookings</h1>
         <h2 id="bookinglist__nobooking">Please check out our spots to start booking.</h2>
   </div>)
+//   console.log("date edit booking", date)
+//   console.log("compare date ======", "2022-10-1">"2022-10-02")
+//   console.log("compare date +++++++", "2022-10-01"<"2022-10-02")
 
     return(
 
@@ -36,7 +45,7 @@ function MyBookingListing() {
                     <div key={i} id='userbooking__ind-container'>
 
                         {/* <div>{booking}</div> */}
-                        <Link id="userbookingimg__container" to={`/spots/${booking?.Spot?.spotId}`}>
+                        <Link id="userbookingimg__container" to={`/spots/${booking?.Spot?.id}`}>
                             <img
                             src={booking?.Spot?.previewImage}
                             alt='pic'
@@ -48,11 +57,11 @@ function MyBookingListing() {
                             <div className="userbooking__container1">{booking?.Spot?.description}</div>
                             <div className="userbooking__container1">Check in: {booking?.startDate}</div>
                             <div className="userbooking__container1">Check out: {booking?.endDate}</div>
-                            { date < booking?.startDate ?
+                            { (date< booking?.startDate) ?
                             <div><BookingEditFormModal booking={booking}/></div>
                             : <div>You can't edit past booking.</div>}
                             {/* <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}> */}
-                            { (date < booking?.startDate) ?
+                            { (date< booking?.startDate) ?
                                 <div><BookingDeleteFormModal booking={booking}/></div>
                             : <div></div>}
                             {/* </button> */}
