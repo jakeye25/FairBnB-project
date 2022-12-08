@@ -42,6 +42,11 @@ function ReviewCreateFormPage({reviewId, onClose}) {
     // const toggleReview =() => {
     //     setshowReviewCreate(!showReviewCreate)
     // }
+    const [reviewChar, setReviewChar] = useState(0);
+    useEffect(() => {
+      setReviewChar(createdReview.length);
+    }, [createdReview]);
+
     const starsClick = (rate) => {
         setRating(rate);
       };
@@ -131,10 +136,13 @@ function ReviewCreateFormPage({reviewId, onClose}) {
                     <textarea
                         type="text-area"
                         name="review"
+                        minLength='20'
+                        maxLength='500'
                         value={createdReview}
                         className="create_reviewcontent"
                         onChange={(event) => setCreatedReview(event.target.value)}
                     ></textarea>
+                    <div className="spotform-name-bottomtext">{reviewChar}/500</div>
                     <div className="create_review_reviewby_text">
                         <div>Reviewed by {user?.firstName}</div>
                     </div>
