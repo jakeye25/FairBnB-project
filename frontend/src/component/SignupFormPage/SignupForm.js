@@ -68,7 +68,9 @@ function SignupForm({setShowsignupForm, setShowModal}) {
         <ul id="signuperror">
             {errors.map((error, idx) => <li key={idx} >{error}</li>)}
         </ul>
+        <div>
 
+            <label className="signuplabel">Email</label>
             <input
             type="text"
             value={email}
@@ -77,9 +79,11 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             className="signupinput"
             placeholder="Email"
             />
+        </div>
 
 
-
+<div>
+<label className="signuplabel">Firstname</label>
             <input
             type="text"
             value={firstName}
@@ -88,7 +92,10 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             placeholder="Firstname"
             className="signupinput"
             />
+            </div>
+            <div>
 
+<label className="signuplabel">Lastname</label>
             <input
             type="text"
             value={lastName}
@@ -97,16 +104,23 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             placeholder="Lastname"
             className="signupinput"
             />
+            </div>
+            <div>
 
+<label className="signuplabel">Password</label>
             <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            minLength='6'
             placeholder="Password"
             className="signupinput"
             />
+            </div>
+            <div>
 
+<label className="signuplabel">Confirm Password</label>
             <input
             type="password"
             value={confirmPassword}
@@ -115,6 +129,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             placeholder="Confirm Password"
             className="signupinput"
             />
+            </div>
 
 
           <button className="signupbutton" type="submit">Sign Up</button>
