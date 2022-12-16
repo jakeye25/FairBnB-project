@@ -68,7 +68,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
         <ul id="signuperror">
             {errors.map((error, idx) => <li key={idx} >{error}</li>)}
         </ul>
-        <div>
+        <div className="signup-input-div">
 
             <label className="signuplabel">Email</label>
             <input
@@ -82,7 +82,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
         </div>
 
 
-<div>
+<div className="signup-input-div">
 <label className="signuplabel">Firstname</label>
             <input
             type="text"
@@ -93,7 +93,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             className="signupinput"
             />
             </div>
-            <div>
+            <div className="signup-input-div">
 
 <label className="signuplabel">Lastname</label>
             <input
@@ -105,7 +105,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             className="signupinput"
             />
             </div>
-            <div>
+            <div className="signup-input-div">
 
 <label className="signuplabel">Password</label>
             <input
@@ -118,7 +118,7 @@ function SignupForm({setShowsignupForm, setShowModal}) {
             className="signupinput"
             />
             </div>
-            <div>
+            <div className="signup-input-div">
 
 <label className="signuplabel">Confirm Password</label>
             <input
