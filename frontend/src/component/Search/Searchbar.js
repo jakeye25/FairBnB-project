@@ -31,7 +31,7 @@ function Searchbar(){
       }
     }
     // console.log(str);
-    let newStr = str.slice(0,8)
+    let newStr = str.slice(0,6)
     return newStr;
   }
   const resultstore = results;
