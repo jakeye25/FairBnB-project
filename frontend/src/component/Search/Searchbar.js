@@ -23,14 +23,16 @@ function Searchbar(){
       if (
         // spot.address.toLowerCase().includes(word.toLowerCase())||
          spot.city.toLowerCase().includes(word.toLowerCase()) ||
-         spot.state.toLowerCase().includes(word.toLowerCase()) ||
-         spot.country.toLowerCase().includes(word.toLowerCase())
+         spot.state.toLowerCase().includes(word.toLowerCase())
+        //  ||
+        //  spot.country.toLowerCase().includes(word.toLowerCase())
       ){
         str.push(spot)
       }
     }
     // console.log(str);
-    return str;
+    let newStr = str.slice(0,8)
+    return newStr;
   }
   const resultstore = results;
   //console.log(resultstore);
