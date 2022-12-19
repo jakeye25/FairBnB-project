@@ -49,7 +49,7 @@
 }
 
 .search_dropdown {
-  height: auto;
+  height: 50vh;
   width: 600px;
   overflow: scroll;
   display: flex;
@@ -70,7 +70,7 @@
 
 .search_dropdown_img {
   height: 100px;
-  width: 100%;
+  width: 100px;
   object-fit: cover;
 }
 
