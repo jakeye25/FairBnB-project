@@ -69,7 +69,7 @@ export const getSpotReviews = (id) => async (dispatch) => {
   };
 
   export const createReview = data => async dispatch => {
-    console.log('before fetching', data)
+    // console.log('before fetching', data)
 
       const response = await csrfFetch(`/api/spots/${data.spotId}/reviews`, {
         method: "POST",
@@ -86,7 +86,7 @@ export const getSpotReviews = (id) => async (dispatch) => {
   };
 
   export const editReview = data => async dispatch => {
-    console.log('before fetching', data)
+    // console.log('before fetching', data)
 
       const response = await csrfFetch(`/api/reviews/${data.id}`, {
         method: "PUT",

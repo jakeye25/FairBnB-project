@@ -75,9 +75,12 @@ router.get('/', async (req, res) => {
   pagination.size = size;
   pagination.page = page;
 
+    // const spots = await Spot.findAll({
+    //   limit: pagination.size,
+    // offset: pagination.size * pagination.page,
+    // })
     const spots = await Spot.findAll({
-      limit: pagination.size,
-    offset: pagination.size * pagination.page,
+      order: [[sequelize.literal('"createdAt"'), 'DESC']]
     })
 
   let spot=[];
@@ -102,11 +105,14 @@ router.get('/', async (req, res) => {
   spot.push(data)
   }
 
-    res.json(
-      {Spot: spot,
-      page: pagination.page,
-      size: pagination.size}
-      )
+    // res.json(
+    //   {Spot: spot,
+    //   page: pagination.page,
+    //   size: pagination.size}
+    //   )
+      res.json(
+        {Spot: spot}
+        )
   })
 
 //get spot by soptId

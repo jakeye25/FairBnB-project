@@ -41,7 +41,7 @@ export const getOwnerBookings = () => async (dispatch) => {
     // console.log('checking for ownerbooking response', response)
     if (response.ok) {
         const data = await response.json();
-        console.log("ownerbooking", data)
+        // console.log("ownerbooking", data)
         dispatch(loadownerbookings(data));
     }
 };
@@ -62,7 +62,7 @@ export const createSpotBookings = (payload) => async dispatch => {
         // headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
     });
-    console.log("checking response", response)
+    // console.log("checking response", response)
     if (response.ok) {
         const data = await response.json()
         dispatch(editspotbookings(data))
@@ -77,7 +77,7 @@ export const editSpotBookings = (payload) => async dispatch => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
     });
-    console.log("checking response", response)
+    // console.log("checking response", response)
     if (response.ok) {
         const data = await response.json()
         dispatch(editspotbookings(data))

@@ -10,7 +10,10 @@ const SpotsBrowser = () => {
   const spotsObj = useSelector((state) => state.spot)
 
   const allspots = Object.values(spotsObj)
-  // console.log('allspots', allspots)
+
+  const allspotsRev = allspots.sort(function(a, b){return b.id - a.id})
+  // console.log('allspot======', allspots)
+  // console.log('allspotsrev', allspotsRev)
   const dispatch = useDispatch();
 
   useEffect (() => {

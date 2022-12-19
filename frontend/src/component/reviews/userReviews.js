@@ -10,11 +10,11 @@ const UserReviews = () => {
     const reviewsObj = useSelector((state) => state.review)
 
     const reviews = Object.values(reviewsObj)
-    console.log('userreview', reviews)
+    // console.log('userreview', reviews)
     // const spotObj = useSelector((state) => state.spot)
     // const spots= Object.values(spotObj)
     let spotId = reviews.map((review)=> review.spotId)
-    console.log('userreviewspotid', spotId)
+    // console.log('userreviewspotid', spotId)
     // console.log('userreviewspot',spots)
     // const singlespot= spots.find(ele => ele.id == +spotId)
     // console.log('siglespot', singlespot.name)

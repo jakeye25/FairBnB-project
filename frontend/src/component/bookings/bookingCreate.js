@@ -16,11 +16,11 @@ function BookingCreateFormPage() {
     const currUser = useSelector((state) => state.session.user)
     const userId = currUser?.id
     const currSpot = useSelector((state) => state.spot[spotId])
-    console.log('check spot==========', currSpot)
+    // console.log('check spot==========', currSpot)
     const spotBookings = useSelector((state) => state.booking)
-    console.log("check spotbooking", spotBookings)
+    // console.log("check spotbooking", spotBookings)
     const spotBookingsArr = Object.values(spotBookings)
-    console.log("========", spotBookingsArr)
+    // console.log("========", spotBookingsArr)
 
 
     let today = new Date();
