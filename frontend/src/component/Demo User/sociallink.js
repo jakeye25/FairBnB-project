@@ -7,7 +7,7 @@ import "./sociallinks.css"
 const SocialLinks = () => {
 
     return (
-        <>
+        <div className="sociallinks-container">
             <div className="top-to-btm">
                 <a
                     className="more_info_text"
@@ -15,7 +15,7 @@ const SocialLinks = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FaLinkedin  className="icon-position icon-style"/>
+                    <FaLinkedin  className="icon-position1 icon-style2"/>
                 </a>
             </div>
             <div className="top-to-btm">
@@ -25,7 +25,7 @@ const SocialLinks = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FaGithub  className="icon-position icon-style" />
+                    <FaGithub  className="icon-position2 icon-style2" />
                 </a>
             </div>
             <div className="top-to-btm">
@@ -35,10 +35,10 @@ const SocialLinks = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <ImMail2 className="icon-position icon-style"/>
+                    <ImMail2 className="icon-position3 icon-style2"/>
                 </a>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -19,6 +19,8 @@ import MyBookingListing from "./component/bookings/userBookings";
 import ReviewCreateFormPage from "./component/reviews/reviewCreate";
 import ReviewEditFormPage from "./component/reviews/reviewEdit";
 import ScrollToTop from "./component/Scroll/Scroll";
+import SocialLinks from "./component/Demo User/sociallink";
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <ScrollToTop/>
+      <SocialLinks/>
       {isLoaded && (
         <Switch>
           <Route exact path= "/spots/me">

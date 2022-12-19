@@ -1,0 +1,62 @@
+.sociallinks-container{
+
+}
+
+.top-to-btm{
+    position: relative;
+  }
+
+  .icon-position1{
+    position: fixed;
+    bottom: 400px;
+    right: 25px;
+    z-index: 20;
+  }
+  .icon-position2{
+    position: fixed;
+    bottom: 350px;
+    right: 25px;
+    z-index: 20;
+  }
+  .icon-position3{
+    position: fixed;
+    bottom: 300px;
+    right: 25px;
+    z-index: 20;
+  }
+  .icon-style2{
+    /* background-color: #df1760; */
+    border: 2px solid #fff;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    cursor: pointer;
+/* animation: movebtn 3s ease-in-out infinite; */
+    transition: all .5s ease-in-out;
+  }
+  .icon-style2:hover{
+    animation: none;
+    background: #fff;
+    color: #df1760;
+    /* border: 2px solid #df1760; */
+    animation: movebtn 1s ease-in-out;
+    transition: all .5s ease-in-out;
+  }
+  @keyframes movebtn {
+    0%{
+      transform: translateY(0px);
+    }
+    25%{
+      transform: translateY(-10px);
+    }
+    50%{
+      transform: translateY(0px);
+    }
+    75%{
+      transform: translateY(0px);
+    }
+    100%{
+      transform: translateY(0px);
+    }
+  }
