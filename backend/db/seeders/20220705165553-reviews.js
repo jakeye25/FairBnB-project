@@ -81,6 +81,48 @@ const reviews = [
     review: "Fantastic place, can’t wait to stay here again.",
     stars: 4,
   },
+  {
+    userId: 1,
+    spotId: 40,
+    review: "Great place, close to lots of activities & restaurants. Appreciate the place being pet friendly.",
+    stars: 5,
+  },
+  {
+    userId: 2,
+    spotId: 40,
+    review: "An unexpected work trip meant needing a place to stay in short notice, and I was extremely lucky to find Carlos’s little home! From check-in to check-out it was a great stay, and I’m bookmarking for further trips.",
+    stars: 4,
+  },
+  {
+    userId: 3,
+    spotId: 40,
+    review: "It was a great stay!",
+    stars: 3,
+  },
+  {
+    userId: 4,
+    spotId: 40,
+    review: "Had a wonderful stay at Carlos's! The central location was great, and the place was easy to access, functional, and very clean & tidy. Perfect for two and our dog!",
+    stars: 4,
+  },
+  {
+    userId: 1,
+    spotId: 39,
+    review: "Place was very clean and quiet! Would definitely recommend!",
+    stars: 4,
+  },
+  {
+    userId: 2,
+    spotId: 39,
+    review: "Such an awesome space and perfect location! :)",
+    stars: 3,
+  },
+  {
+    userId: 3,
+    spotId: 39,
+    review: "Such a great stay, my girlfriend and I needed a getaway and it was perfect.",
+    stars: 5,
+  },
 ];
 
 module.exports = {
