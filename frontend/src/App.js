@@ -18,6 +18,7 @@ import Footer from "./component/footer/footer";
 import MyBookingListing from "./component/bookings/userBookings";
 import ReviewCreateFormPage from "./component/reviews/reviewCreate";
 import ReviewEditFormPage from "./component/reviews/reviewEdit";
+import ScrollToTop from "./component/Scroll/Scroll";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <ScrollToTop/>
       {isLoaded && (
         <Switch>
           <Route exact path= "/spots/me">
