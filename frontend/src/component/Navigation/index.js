@@ -101,7 +101,7 @@ function Navigation({ isLoaded }) {
         </div>
 
         <div className='header__right'>
-          <div className='aboutlink'>
+          {/* <div className='aboutlink'>
             <a
               className="more_info_text"
               href="https://www.linkedin.com/in/jake-ye-a2365250/"
@@ -126,7 +126,7 @@ function Navigation({ isLoaded }) {
             >
               <i className="fa-solid fa-envelope fa-2xl"></i>
             </a>
-          </div>
+          </div> */}
           {isLoaded && sessionLinks}
         </div>
         {showModal &&
