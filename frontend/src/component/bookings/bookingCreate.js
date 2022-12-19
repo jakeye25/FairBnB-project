@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams} from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { createSpotBookings, getOwnerBookings, getSpotBookings } from "../../store/booking";
 import { getOneSpot } from "../../store/spot";
 
@@ -11,7 +11,7 @@ import './bookingCreate.css'
 function BookingCreateFormPage() {
     const history = useHistory()
     const dispatch = useDispatch();
-    const {spotId} = useParams()
+    const { spotId } = useParams()
 
     const currUser = useSelector((state) => state.session.user)
     const userId = currUser?.id
@@ -21,25 +21,27 @@ function BookingCreateFormPage() {
     // console.log("check spotbooking", spotBookings)
     const spotBookingsArr = Object.values(spotBookings)
     // console.log("========", spotBookingsArr)
-
+    const review = useSelector((state) => state.review)
+    const numReivewsArray = Object.values(review).filter(ele => ele.spotId == spotId)
+    const numReivews = numReivewsArray.length
 
     let today = new Date();
 
-    if(parseInt(today.getDate()) >= 10){
+    if (parseInt(today.getDate()) >= 10) {
 
-        var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+        var date = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
         var minStartDate = date
 
     } else {
-        var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
+        var date = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-0" + today.getDate()
         var minStartDate = date
 
     }
 
-    if(parseInt(today.getDate()) >= 8){
-        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
+    if (parseInt(today.getDate()) >= 8) {
+        var minEndDate = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-" + parseInt(today.getDate() + 2);
     } else {
-        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-0"+parseInt(today.getDate()+2);
+        var minEndDate = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-0" + parseInt(today.getDate() + 2);
     }
 
 
@@ -51,15 +53,15 @@ function BookingCreateFormPage() {
 
     useEffect(() => {
         dispatch(getOneSpot(spotId))
-      }, [dispatch]);
+    }, [dispatch]);
 
-    const[startDate, setStartDate] = useState('')
-    const[endDate, setEndDate] = useState('')
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
     // const [validations, setValidations] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    let day= new Date(startDate)
-    let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
+    let day = new Date(startDate)
+    let maxEndDate = day.getFullYear() + "-" + parseInt(day.getMonth() + 1) + "-" + parseInt(day.getDate() + 6);
     //   console.log("check max end date", maxEndDate)
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
@@ -81,86 +83,101 @@ function BookingCreateFormPage() {
         for (let i of spotBookingsArr) {
             if (
                 (new Date(startDate).toISOString().slice(0, 10) >= i.startDate ||
-                new Date(endDate).toISOString().slice(0, 10) >= i.startDate) &&
+                    new Date(endDate).toISOString().slice(0, 10) >= i.startDate) &&
                 (i.endDate >= new Date(endDate).toISOString().slice(0, 10) ||
-                i.endDate >= new Date(startDate).toISOString().slice(0, 10))
-              ) {
+                    i.endDate >= new Date(startDate).toISOString().slice(0, 10))
+            ) {
                 return setErrors(["Sorry, this spot is already booked for the specified dates"])
+            }
         }
-    }
 
-        if(createPayload?.startDate>=createPayload.endDate)
-        return setErrors(['Please verify your selected date.'])
+        if (createPayload?.startDate >= createPayload.endDate)
+            return setErrors(['Please verify your selected date.'])
 
-        if(currSpot?.ownerId == userId)
-        return setErrors(["You can't book your spot."])
+        if (currSpot?.ownerId == userId)
+            return setErrors(["You can't book your spot."])
 
         // const checkingconflitdate = spotBookingsArr.filter(checkindate => checkindate?.startDate == startDate)
         // console.log('check conflit date', checkingconflitdate)
         // if (checkingconflitdate) setErrors(['confilt start date.'])
 
         let newBooking = dispatch(createSpotBookings(createPayload))
-            .catch (async (res) => {
-            const data = await res.json()
-            // console.log("ressssssssssss", res)
-            // if(res.status ==403) return setErrors(["chech"])
-            let errors = []
-            if (data && data.message) {
-              errors.push(data.message)
-            }
-            setErrors(errors)
-          })
+            .catch(async (res) => {
+                const data = await res.json()
+                // console.log("ressssssssssss", res)
+                // if(res.status ==403) return setErrors(["chech"])
+                let errors = []
+                if (data && data.message) {
+                    errors.push(data.message)
+                }
+                setErrors(errors)
+            })
 
-            // .catch(async(res)=> {
-            //     const data = await res.json()
+        // .catch(async(res)=> {
+        //     const data = await res.json()
 
-            //     if (data && data.errors)  return setErrors(data.message)})
+        //     if (data && data.errors)  return setErrors(data.message)})
 
-        if (newBooking) {history.push(`/mybookings`)
-    dispatch(getOwnerBookings())}
+        if (newBooking) {
+            history.push(`/mybookings`)
+            dispatch(getOwnerBookings())
+        }
 
     }
 
-    return(
+    return (
         <div className="create-booking-div" >
             <form className="bookingcreateform" onSubmit={handleSubmit}>
+                <div id='sd-boxhead'>
+                    <div id='sd-boxheadleft'>
+                        <span id='sd-bookingprice'>${currSpot.price}</span>
+                        <span id='sd-bookingnight'>night</span>
+                    </div>
+                    <div id='sd-boxheadrught'>
+                        <i className="fa-solid fa-star"></i>
+                        <span id='sd-boxrating'>
+                            {currSpot.avgStarRating ? currSpot.avgStarRating.toFixed(2) : '0.00'} </span>
+                        <span > · </span>
+                        <span id='sd-boxreviews'>{numReivews} reviews </span>
+                    </div>
+                </div>
                 <div className="bookingcreatedate-container">
                     <div className="bookingcreatedate-left">
                         <label className="bookingcreatedatetext">CHECK-IN</label>
                         <input
-                        className="bookingcreatedateinput"
-                        type='date'
-                        placeholder="Add date"
-                        value={startDate}
-                        required
-                        min={minStartDate}
-                        onChange={(e) => setStartDate(e.target.value)}
+                            className="bookingcreatedateinput"
+                            type='date'
+                            placeholder="Add date"
+                            value={startDate}
+                            required
+                            min={minStartDate}
+                            onChange={(e) => setStartDate(e.target.value)}
                         ></input>
                     </div>
                     <div className="bookingcreatedate-right">
                         <label className="bookingcreatedatetext">CHECK-OUT</label>
                         <input
-                        className="bookingcreatedateinput"
-                        type='date'
-                        value={endDate}
-                        required
-                        placeholder="Add date"
-                        min={minEndDate}
-                        max={maxEndDate}
-                        onChange={(e) => setEndDate(e.target.value)}
+                            className="bookingcreatedateinput"
+                            type='date'
+                            value={endDate}
+                            required
+                            placeholder="Add date"
+                            min={minEndDate}
+                            max={maxEndDate}
+                            onChange={(e) => setEndDate(e.target.value)}
                         ></input>
                     </div>
                 </div>
                 {errors.length > 0 &&
                     errors.map((error) => <div key={error} className='create_booking_errortext'>{error}</div>)}
                 <button type="submit" className="bookingformbutton__btn">Reserve</button>
-                    <div className="not-charge-text">You won't be charged yet</div>
+                <div className="not-charge-text">You won't be charged yet</div>
                 <div>
                     <div>
                         <div className='fee-container'>
-                            <div className='fee-containertext'>${currSpot?.price}x{diffDays? diffDays:1}&nbsp;nights</div>
+                            <div className='fee-containertext'>${currSpot?.price}x{diffDays ? diffDays : 1}&nbsp;nights</div>
 
-                        <div className='fee-containertext'>${currSpot?.price * (diffDays? diffDays:1)}</div>
+                            <div className='fee-containertext'>${currSpot?.price * (diffDays ? diffDays : 1)}</div>
                         </div >
                     </div>
                     <div className='fee-container'>
@@ -169,11 +186,11 @@ function BookingCreateFormPage() {
                     </div>
                     <div className='fee-container'>
                         <div className='fee-containertext'>Service fee</div>
-                        <div className='fee-containertext'>${((currSpot?.price * (diffDays? diffDays:1))*0.15).toFixed(0)}</div>
+                        <div className='fee-containertext'>${((currSpot?.price * (diffDays ? diffDays : 1)) * 0.15).toFixed(0)}</div>
                     </div>
                     <div className='fee-containertotal'>
                         <div className='fee-containertotaltext'>Total before taxes</div>
-                        <div className='fee-containertotaltext'>${(currSpot?.price * (diffDays? diffDays:1)+ 80 + Number.parseFloat((currSpot?.price * (diffDays? diffDays:1))*0.15)).toFixed(0)}</div>
+                        <div className='fee-containertotaltext'>${(currSpot?.price * (diffDays ? diffDays : 1) + 80 + Number.parseFloat((currSpot?.price * (diffDays ? diffDays : 1)) * 0.15)).toFixed(0)}</div>
                     </div>
                 </div>
 

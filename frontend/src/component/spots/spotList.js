@@ -11,9 +11,15 @@ const SpotsBrowser = () => {
 
   const allspots = Object.values(spotsObj)
 
-  const allspotsRev = allspots.sort(function(a, b){return b.id - a.id})
+  const allspotsRev = allspots.sort(function(a, b){
+    return b.id-a.id
+    // console.log("aaaaaaaaaaa", a.id, a.createdAt, a.createdAt.slice(0,10), a.createdAt.slice(0,20))
+    // console.log("bbbbbbbbbbbb", b.id, b.createdAt)
+    // return b.createdAt.slice(0,19) - a.createdAt.slice(0,19)
+  })
   // console.log('allspot======', allspots)
   // console.log('allspotsrev', allspotsRev)
+  // console.log('===========', '2022-12-19T20:24:34.345Z'<'2022-12-19T21:24:34.345Z')
   const dispatch = useDispatch();
 
   useEffect (() => {

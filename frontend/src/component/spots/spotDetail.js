@@ -215,7 +215,7 @@ const SpotDetail = () => {
         </div>
         <div id='spotdetail__rightbody'>
           <div id='sd-bookingbox'>
-            <div id='sd-boxhead'>
+            {/* <div id='sd-boxhead'>
               <div id='sd-boxheadleft'>
                 <span id='sd-bookingprice'>${spot.price}</span>
                 <span id='sd-bookingnight'>night</span>
@@ -227,7 +227,7 @@ const SpotDetail = () => {
                 <span > · </span>
                 <span id='sd-boxreviews'>{numReivews} reviews </span>
               </div>
-            </div>
+            </div> */}
             <BookingCreateFormPage />
             {/* <section id='sd-boxtail'>
                 <div className='fee-container'>

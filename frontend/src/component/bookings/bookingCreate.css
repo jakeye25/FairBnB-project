@@ -2,7 +2,8 @@
     border: 1px solid rgba(128, 128, 128, 0.8);
     border-radius: 8px;
     display: flex;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    /* margin-top: 90px; */
 }
 
 .bookingcreatedate-left{
