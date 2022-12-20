@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
+import { IoMdClose } from "react-icons/io";
 
-function SignupForm({setShowsignupForm, setShowModal}) {
+function SignupForm({ setShowsignupForm, setShowModal }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -26,28 +27,28 @@ function SignupForm({setShowsignupForm, setShowModal}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email.includes("@") || email.length<6 )
-    return setErrors(['Please provide a valid email'])
+    if (!email.includes("@") || email.length < 6)
+      return setErrors(['Please provide a valid email'])
     if (password === confirmPassword) {
       setErrors([]);
 
 
       return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
-      .then(
-        () => {setShowsignupForm(false)}
-      ).then(
-        () => {setShowModal(false)}
-      )
-      .catch(async (res) => {
-        const data = await res.json();
-        // console.log('signupformerror', data)
-        // console.log('signupformerrormsg', data.errors)
-        //   if (data && data.errors) setErrors(data.errors);
+        .then(
+          () => { setShowsignupForm(false) }
+        ).then(
+          () => { setShowModal(false) }
+        )
+        .catch(async (res) => {
+          const data = await res.json();
+          // console.log('signupformerror', data)
+          // console.log('signupformerrormsg', data.errors)
+          //   if (data && data.errors) setErrors(data.errors);
 
           const err = Object.values(data.errors)
           // console.log('err', err)
-          if(err) setErrors(err);
-      })
+          if (err) setErrors(err);
+        })
 
 
 
@@ -57,84 +58,83 @@ function SignupForm({setShowsignupForm, setShowModal}) {
 
   return (
     <>
-        <div className="signup__container">
-        {/* <header class="user__header"> */}
-        {/* <img src="https://www.doz.com/wp-content/uploads/2015/03/airbnb-logo.png" alt="" /> */}
+      <div className="signup__container">
+        <div className="signup-top">
+          <IoMdClose onClick={() => setShowModal(false)} className='signup-top-x' />
+          <div className="signup-top-text">Sign up</div>
+        </div>
         <h1 className="signup__head">Welcome to FAirBnB</h1>
         {/* </header> */}
         <form className="signupform"
-        onSubmit={handleSubmit}>
-
-        <ul id="signuperror">
+          onSubmit={handleSubmit}>
+          <ul id="signuperror">
             {errors.map((error, idx) => <li key={idx} >{error}</li>)}
-        </ul>
-        <div className="signup-input-div">
+          </ul>
+          <div className="addressform-street" id="addressform-top">
 
-            <label className="signuplabel">Email</label>
+            <label className="signupform-label">Email</label>
             <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="signupinput"
-            placeholder="Email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="signupinput1"
             />
-        </div>
+          </div>
 
 
-<div className="signup-input-div">
-<label className="signuplabel">Firstname</label>
+          <div className="signupform-div-fn">
+            <label className="signupform-label">Firstname</label>
             <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstname(e.target.value)}
-            required
-            placeholder="Firstname"
-            className="signupinput"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstname(e.target.value)}
+              required
+              className="signupinput1"
             />
-            </div>
-            <div className="signup-input-div">
+          </div>
+          <div className="signupform-div-fn">
 
-<label className="signuplabel">Lastname</label>
+            <label className="signupform-label">Lastname</label>
             <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastname(e.target.value)}
-            required
-            placeholder="Lastname"
-            className="signupinput"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastname(e.target.value)}
+              required
+              className="signupinput1"
             />
-            </div>
-            <div className="signup-input-div">
+          </div>
+          <div className="signupform-div-fn">
 
-<label className="signuplabel">Password</label>
+            <label className="signupform-label">Password</label>
             <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength='6'
-            placeholder="Password"
-            className="signupinput"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength='6'
+              maxLength='20'
+              className="signupinput1"
             />
-            </div>
-            <div className="signup-input-div">
+          </div>
+          <div className="signupform-div-bottom">
 
-<label className="signuplabel">Confirm Password</label>
+            <label className="signupform-label">Confirm Password</label>
             <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            placeholder="Confirm Password"
-            className="signupinput"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength='6'
+              maxLength='20'
+              className="signupinput2"
             />
-            </div>
+          </div>
 
 
           <button className="signupbutton" type="submit">Sign Up</button>
         </form>
-        </div>
+      </div>
     </>
   );
 }
