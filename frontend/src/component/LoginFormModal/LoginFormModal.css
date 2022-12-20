@@ -14,12 +14,19 @@
     /* background-color: aquamarine; */
   }
 .login__head{
-  display: flex;
+  /* display: flex;
   justify-content: center;
   margin-top: 15px;
   line-height: 14px;
-  height: 14px;
-
+  height: 14px; */
+  display: flex;
+  /* justify-content: center; */
+  margin-top: 15px;
+  margin-left: 40px;
+  line-height: 26px;
+  font-weight: 600;
+  font-size: 22px;
+  color: #222222;
 }
 
  .loginform {
@@ -31,7 +38,7 @@
     border-top: 1px solid white; */
     /* backdrop-filter: blur(10px); */
     /* box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2); */
-    text-align: center;
+    /* text-align: center; */
     /* position: relative; */
     /* transition: all 0.2s ease-in-out; */
     display: flex;
@@ -68,7 +75,7 @@
   height: fit-content;
   width: max-content;
   color: #df1760;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 
  }
 
