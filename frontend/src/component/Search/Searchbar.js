@@ -62,7 +62,7 @@ function Searchbar(){
    <input
       type = 'text'
       className='searchinput'
-      placeholder='Start your search'
+      placeholder='Search city, state, country'
       onChange={(e)=>setSearchWord(e.target.value)}
       value={searchWord}
    />
@@ -85,9 +85,10 @@ function Searchbar(){
 
         {/* <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div> */}
         <div className='search_dropdown_text_container'>
-          <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div>
+          {/* <div className='search_dropdown_text' >{spot.name.slice(0,270)}</div> */}
           <div className='search_dropdown_text' >{spot.city.slice(0,270)}</div>
           <div className='search_dropdown_text' >{spot.state.slice(0,270)}</div>
+          <div className='search_dropdown_text' >{spot.country.slice(0,270)}</div>
         </div>
       </div>
       </NavLink>
