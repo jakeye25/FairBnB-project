@@ -22,10 +22,10 @@ function Searchbar(){
       let spot = spots[i];
       if (
         // spot.address.toLowerCase().includes(word.toLowerCase())||
-         spot.city.toLowerCase().includes(word.toLowerCase()) ||
-         spot.state.toLowerCase().includes(word.toLowerCase())
-        //  ||
-        //  spot.country.toLowerCase().includes(word.toLowerCase())
+         spot.city.toLowerCase().startsWith(word.toLowerCase()) ||
+         spot.state.toLowerCase().startsWith(word.toLowerCase())
+         ||
+         spot.country.toLowerCase().startsWith(word.toLowerCase())
       ){
         str.push(spot)
       }
