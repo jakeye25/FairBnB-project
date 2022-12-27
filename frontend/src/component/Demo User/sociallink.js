@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithubSquare } from "react-icons/fa";
 import {ImMail2} from "react-icons/im";
-
+import {TiSocialLinkedin} from "react-icons/ti";
+import {FiGithub} from "react-icons/fi";
+import {AiOutlineMail} from "react-icons/ai"
 import "./sociallinks.css"
 
 const SocialLinks = () => {
@@ -15,7 +17,7 @@ const SocialLinks = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FaLinkedin  className="icon-position1 icon-style2"/>
+                    <TiSocialLinkedin  className="icon-position1 icon-style2"/>
                 </a>
             </div>
             <div className="top-to-btm">
@@ -25,7 +27,7 @@ const SocialLinks = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FaGithub  className="icon-position2 icon-style2" />
+                    <FiGithub  className="icon-position2 icon-style2" />
                 </a>
             </div>
             <div className="top-to-btm">
@@ -35,7 +37,7 @@ const SocialLinks = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <ImMail2 className="icon-position3 icon-style2"/>
+                    <AiOutlineMail className="icon-position3 icon-style2"/>
                 </a>
             </div>
         </div>

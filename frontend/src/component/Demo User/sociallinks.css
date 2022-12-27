@@ -4,7 +4,6 @@
 
 .top-to-btm{
     position: relative;
-
   }
 
   .icon-position1{
@@ -12,7 +11,6 @@
     bottom: 400px;
     right: 25px;
     z-index: 20;
-    background: aqua;
   }
   .icon-position2{
     position: fixed;
@@ -27,14 +25,13 @@
     z-index: 20;
   }
   .icon-style2{
-    background-color: rgba(128,128,128,0.2);
+    background-color: rgb(210, 210, 210);
     border: 2px solid #fff;
-    border-radius: 50%;
-    height: 50px;
+    /* border-radius: 50%; */
+    height: 60px;
     width: 50px;
     color: #fff;
     cursor: pointer;
-    opacity: 1;
 /* animation: movebtn 3s ease-in-out infinite; */
     transition: all .5s ease-in-out;
   }
@@ -44,7 +41,7 @@
     color: #df1760;
     /* border: 2px solid #df1760; */
     animation: movebtn 1s ease-in-out;
-    transition: all .5s ease-in-out;
+    transition: all 1s ease-in-out;
   }
   @keyframes movebtn {
     0%{
