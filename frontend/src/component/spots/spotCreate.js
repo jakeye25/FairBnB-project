@@ -27,8 +27,10 @@ function SpotCreateFormPage() {
   const [imageUrl2, setimageUrl2] = useState("");
   const [imageUrl3, setimageUrl3] = useState("");
   const [imageUrl4, setimageUrl4] = useState("");
+  const [page, setPage] = useState(1)
   // const [errorMessages, setErrorMessages] = useState({});
   const [errors, setErrors] = useState([]);
+  const [validations, setValidations] = ([])
   //   if (sessionUser) return <Redirect to="/api/spots" />;
 
   const [nameChar, setNameChar] = useState(0);
@@ -77,6 +79,13 @@ function SpotCreateFormPage() {
     // setErrorMessages({});
     setErrors([]);
     history.push(`/`);
+  }
+
+  const spotFormPage1 = () => {
+    let errors= [];
+    if (name.length<4){errors.push('name must be longer then 4 characters')}
+
+
   }
 
   return (

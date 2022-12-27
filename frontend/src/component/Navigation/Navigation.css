@@ -41,7 +41,7 @@
 
 .becomehost{
     position: relative;
-    margin-right: 60px;
+    /* margin-right: 60px; */
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
@@ -49,6 +49,7 @@
     border: 1px solid transparent;
     padding: 13px;
     border-radius: 18px;
+    min-width: 150px;
 }
 
 .becomehost a{
@@ -74,6 +75,7 @@
     border-radius: 20px;
     position: relative;
     cursor: pointer;
+    min-width: 70px;
 }
 
 .profile_button:hover{

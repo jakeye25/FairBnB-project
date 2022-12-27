@@ -4,6 +4,7 @@
 
 .top-to-btm{
     position: relative;
+
   }
 
   .icon-position1{
@@ -11,6 +12,7 @@
     bottom: 400px;
     right: 25px;
     z-index: 20;
+    background: aqua;
   }
   .icon-position2{
     position: fixed;
@@ -32,6 +34,7 @@
     width: 50px;
     color: #fff;
     cursor: pointer;
+    opacity: 1;
 /* animation: movebtn 3s ease-in-out infinite; */
     transition: all .5s ease-in-out;
   }
