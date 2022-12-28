@@ -20,6 +20,7 @@ import ReviewCreateFormPage from "./component/reviews/reviewCreate";
 import ReviewEditFormPage from "./component/reviews/reviewEdit";
 import ScrollToTop from "./component/Scroll/Scroll";
 import SocialLinks from "./component/Demo User/sociallink";
+import SpotCreateFormPage2 from "./component/spots/spotCreate copy";
 
 
 
@@ -50,7 +51,7 @@ function App() {
             <SpotEditFormPage />
           </Route>
           <Route path= "/spots/create" exact>
-            <SpotCreateFormPage />
+            <SpotCreateFormPage2 />
           </Route>
           <Route path="/spots/:spotId" exact>
             <SpotDetail />
