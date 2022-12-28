@@ -30,10 +30,10 @@ function SpotCreateFormPage2() {
   const [page, setPage] = useState(1)
   // const [errorMessages, setErrorMessages] = useState({});
   const [errors, setErrors] = useState([]);
-  const [validation1, setValidation1] = ([])
-  const [validation2, setValidation2] = ([])
-  const [validation3, setValidation3] = ([])
-  const [validation4, setValidation4] = ([])
+  const [validation1, setValidation1] = useState([])
+  const [validation2, setValidation2] = useState([])
+  const [validation3, setValidation3] = useState([])
+  const [validation4, setValidation4] = useState([])
   //   if (sessionUser) return <Redirect to="/api/spots" />;
 
   const [nameChar, setNameChar] = useState(0);
@@ -48,7 +48,7 @@ function SpotCreateFormPage2() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
+    // setErrors([]);
     let spot = { address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4 }
     // console.log('checkimageurl', spot.previewImage)
     // if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
@@ -86,28 +86,42 @@ function SpotCreateFormPage2() {
 
   const spotFormPage1 = () => {
     console.log('hit page 1=====================')
-
-
-
+    let errors1 = []
+    if (!address) { errors1.push("address is required") }
+    if (!city) { errors1.push("city is required") }
+    if (!lat) { errors1.push("latitude is required") }
+    if (!lng) { errors1.push("longitude is required") }
+    if (!state) { errors1.push("Please select a state") }
+    if (!country) { errors1.push("Please select a country") }
+    console.log('page 1===================== address', address)
+    console.log('page1 errors', errors1)
+    if (errors1?.length > 0) {
+      return setValidation1(errors1)
+    }
+    else {
+      setValidation1([])
       setPage(2)
+    }
   }
+
   const spotFormPage2 = () => {
     console.log('hit page 2=====================')
 
 
 
-      setPage(3)
+    setPage(3)
   }
   const spotFormPage3 = () => {
     console.log('hit page 3++++++++++++++++++++++++++++++')
-    let errors3= [];
-    if (description.length<20){errors3.push('description must be longer then 20 characters')}
+    let errors3 = [];
+    if (description.length < 20) { errors3.push('description must be longer then 20 characters') }
     if (errors3) return setValidation3(errors3)
     else {
       setValidation3([])
       setPage(4)
     }
   }
+  console.log('you are on page', page)
 
   return (
     <section className="spotform__container">
@@ -122,7 +136,7 @@ function SpotCreateFormPage2() {
         // className="spotform__info"
         className="spotform"
         onSubmit={handleSubmit}>
-          {page ===1 ?         <div className="spotform-button">
+        {page === 1 ? <div className="spotform-button">
           <div className="spotform-name-toptext">Where's your place located?</div>
           <div className="spotform-name-middletext">Your address is only shared with guests after they’ve made a reservation.</div>
           <div className="addressform" >
@@ -260,50 +274,71 @@ function SpotCreateFormPage2() {
                   onChange={(e) => setLng(e.target.value)} />
               </div>
             </div>
-            <div>
-              <button onClick={spotFormPage1}>Next</button>
-            </div>
+          </div>
+          {validation1?.length > 0 ? <div>
+            <div>testing page 1</div>
+            <ul>
+              {validation1?.map(error => <li key={error}>{error}</li>)}
+            </ul>
+          </div> : <div>teesting errors</div>}
+          <div>
+            <div onClick={spotFormPage1} >Next</div>
           </div>
         </div> : null}
-        {page ===2 ? <div className="spotform-name-container" >
-            <div className="spotform-name-toptext">Now, let's give your house a title</div>
-            <div className="spotform-name-middletext">Short titles work best. Have fun with it—you can always change it later.</div>
-            <textarea
-              type="text"
-              // placeholder="Name"
-              // minLength='3'
-              maxLength='49'
+        {page === 2 ? <div className="spotform-name-container" >
+          <div className="spotform-name-toptext">Now, let's give your house a title</div>
+          <div className="spotform-name-middletext">Short titles work best. Have fun with it—you can always change it later.</div>
+          <textarea
+            type="text"
+            // placeholder="Name"
+            // minLength='3'
+            maxLength='49'
 
-              className="spotform-textarea"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)} />
-            <div className="spotform-name-bottomtext">{nameChar}/49</div>
-            <div>
-              <button onClick={spotFormPage1}>Next</button>
-            </div>
-          </div> : null
-
+            className="spotform-textarea"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)} />
+          <div className="spotform-name-bottomtext">{nameChar}/49</div>
+          {validation2?.length > 0 ? <div>
+            <div>testing page 2</div>
+            <ul>
+              {validation2?.map(error => <li key={error}>{error}</li>)}
+            </ul>
+          </div> : <div>teesting errors2</div>}
+          <div>
+            <button onClick={spotFormPage2}>Next</button>
+          </div>
+        </div> : null
         }
-          {page === 3 ?
-            <div className="spotform-name-container">
-            <div className="spotform-name-toptext">Create your description</div>
-            <div className="spotform-name-middletext">Share what makes your place special.</div>
-            <textarea
-              type="text"
-              placeholder="Description"
-              minLength='20'
-              maxLength='500'
-              required
-              className="spotform-textarea"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)} />
-            <div className="spotform-name-bottomtext">{descriptionChar}/500</div>
-            <div>
-              <button onClick={spotFormPage2} disabled={validation2?.length>0}>Next</button>
-            </div>
-          </div> : null
-          }
+
+        {page === 3 ? <div className="spotform-name-container">
+          <div className="spotform-name-toptext">Create your description</div>
+          <div className="spotform-name-middletext">Share what makes your place special.</div>
+          <textarea
+            type="text"
+            placeholder="Description"
+            minLength='20'
+            maxLength='500'
+            required
+            className="spotform-textarea"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)} />
+          <div className="spotform-name-bottomtext">{descriptionChar}/500</div>
+          <div>
+            <button onClick={spotFormPage2} disabled={validation2?.length > 0}>Next</button>
+          </div>
+        </div> : null}
+        {page === 4 ?       <div>
+          <button type="submit"
+          className="spotformbtn"
+          >Create New Spot</button>
+          <span></span>
+          <button type="button"
+            className="spotformbtn"
+            onClick={handleCancelClick}>Cancel</button>
+          </div>
+          : <></>
+        }
         {/* <div className="spotform-left">
           {page ===1 ? <div className="spotform-name-container" >
             <div className="spotform-name-toptext">Now, let's give your house a title</div>

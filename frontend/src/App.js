@@ -20,7 +20,7 @@ import ReviewCreateFormPage from "./component/reviews/reviewCreate";
 import ReviewEditFormPage from "./component/reviews/reviewEdit";
 import ScrollToTop from "./component/Scroll/Scroll";
 import SocialLinks from "./component/Demo User/sociallink";
-import SpotCreateFormPage2 from "./component/spots/spotCreate copy";
+import SpotCreateFormPage2 from "./component/spots/spotCreate2";
 
 
 
