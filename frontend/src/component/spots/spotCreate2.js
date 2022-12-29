@@ -34,12 +34,22 @@ function SpotCreateFormPage2() {
   const [validation2, setValidation2] = useState([])
   const [validation3, setValidation3] = useState([])
   const [validation4, setValidation4] = useState([])
+  const [isdisable, setIsDisable] = useState(true)
   //   if (sessionUser) return <Redirect to="/api/spots" />;
+
+  useEffect(() => {
+    document.title = "Make your place stand out"
+  }, [])
+
+  useEffect(() => {
+    setIsDisable(false)
+  }, [address, city, state, name, lat, lng, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4])
 
   const [nameChar, setNameChar] = useState(0);
   useEffect(() => {
     setNameChar(name.length);
   }, [name]);
+
 
   const [descriptionChar, setDescriptionChar] = useState(0);
   useEffect(() => {
@@ -51,26 +61,20 @@ function SpotCreateFormPage2() {
     // setErrors([]);
     let spot = { address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4 }
     // console.log('checkimageurl', spot.previewImage)
-    // if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
-    //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl1.includes('.jpg') && !spot.imageUrl1.includes('.jpeg') && !spot.imageUrl1.includes('.png'))
-    //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl2.includes('.jpg') && !spot.imageUrl2.includes('.jpeg') && !spot.imageUrl2.includes('.png'))
-    //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl3.includes('.jpg') && !spot.imageUrl3.includes('.jpeg') && !spot.imageUrl3.includes('.png'))
-    //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl4.includes('.jpg') && !spot.imageUrl4.includes('.jpeg') && !spot.imageUrl4.includes('.png'))
-    //   return setErrors(['Please enter a valid image url'])
+    if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
+      return setErrors(['Please enter a valid image url'])
+    if (!spot.imageUrl1.includes('.jpg') && !spot.imageUrl1.includes('.jpeg') && !spot.imageUrl1.includes('.png'))
+      return setErrors(['Please enter a valid image url'])
+    if (!spot.imageUrl2.includes('.jpg') && !spot.imageUrl2.includes('.jpeg') && !spot.imageUrl2.includes('.png'))
+      return setErrors(['Please enter a valid image url'])
+    if (!spot.imageUrl3.includes('.jpg') && !spot.imageUrl3.includes('.jpeg') && !spot.imageUrl3.includes('.png'))
+      return setErrors(['Please enter a valid image url'])
+    if (!spot.imageUrl4.includes('.jpg') && !spot.imageUrl4.includes('.jpeg') && !spot.imageUrl4.includes('.png'))
+      return setErrors(['Please enter a valid image url'])
 
     let createdSpot;
     // try{
     createdSpot = await dispatch(spotActions.createSpot(spot))
-    // } catch (error) {
-    //     setErrorMessages({ overall: error.toString().slice(7) })
-    // }
-    // console.log('checkimageurl', createdSpot.previewImage.includes('jpeg'))
-    // if (!createdSpot.previewImage.includes('jpg') && !createdSpot.previewImage.includes('jpeg') && !createdSpot.previewImage.includes('png'))
-    // return setErrors(['Please enter a valid image url'])
 
     if (createdSpot) {
       // setErrorMessages({});
@@ -84,6 +88,7 @@ function SpotCreateFormPage2() {
     history.push(`/`);
   }
 
+
   const spotFormPage1 = () => {
     console.log('hit page 1=====================')
     let errors1 = []
@@ -96,9 +101,11 @@ function SpotCreateFormPage2() {
     console.log('page 1===================== address', address)
     console.log('page1 errors', errors1)
     if (errors1?.length > 0) {
+      setIsDisable(true)
       return setValidation1(errors1)
     }
     else {
+      setIsDisable(false)
       setValidation1([])
       setPage(2)
     }
@@ -106,19 +113,44 @@ function SpotCreateFormPage2() {
 
   const spotFormPage2 = () => {
     console.log('hit page 2=====================')
+    let errors2 = []
+    if (!name) { errors2.push("title is required") }
 
-
-
-    setPage(3)
+    if (errors2.length > 0) {
+      setIsDisable(true)
+      return setValidation2(errors2)
+    }
+    else {
+      setIsDisable(false)
+      setValidation2([])
+      setPage(3)
+    }
   }
   const spotFormPage3 = () => {
     console.log('hit page 3++++++++++++++++++++++++++++++')
     let errors3 = [];
-    if (description.length < 20) { errors3.push('description must be longer then 20 characters') }
-    if (errors3) return setValidation3(errors3)
+    if (!description) { errors3.push('description is required') }
+    if (errors3.length>0) {
+      setIsDisable(true)
+      return setValidation3(errors3)}
     else {
+      setIsDisable(false)
       setValidation3([])
       setPage(4)
+    }
+  }
+
+  const spotFormPage4 = () => {
+    console.log('hit page 4++++++++++++++++++++++++++++++')
+    let errors4 = [];
+    if (!price) { errors4.push('price is required') }
+    if (errors4.length>0) {
+      setIsDisable(true)
+      return setValidation4(errors4)}
+    else {
+      setIsDisable(false)
+      setValidation4([])
+      setPage(5)
     }
   }
   console.log('you are on page', page)
@@ -149,7 +181,7 @@ function SpotCreateFormPage2() {
                 className="addressforminput"
                 required
                 value={address}
-                onChange={(e) => setAddress(e.target.value)} />
+                onChange={(e) => setAddress(e.target.value.trimStart())} />
             </div>
             <div className="addressform-street">
 
@@ -161,7 +193,7 @@ function SpotCreateFormPage2() {
                 className="addressforminput"
                 required
                 value={city}
-                onChange={(e) => setCity(e.target.value)} />
+                onChange={(e) => setCity(e.target.value.trimStart())} />
             </div>
             <div className="addressform-state-container">
               <div className="addressform-state" id="addressform-inputleft">
@@ -275,14 +307,14 @@ function SpotCreateFormPage2() {
               </div>
             </div>
           </div>
-          {validation1?.length > 0 ? <div>
+          {/* {validation1?.length > 0 ? <div>
             <div>testing page 1</div>
             <ul>
               {validation1?.map(error => <li key={error}>{error}</li>)}
             </ul>
-          </div> : <div>teesting errors</div>}
+          </div> : <div>teesting errors</div>} */}
           <div>
-            <div onClick={spotFormPage1} >Next</div>
+            <button onClick={spotFormPage1} disabled={isdisable}>Next</button>
           </div>
         </div> : null}
         {page === 2 ? <div className="spotform-name-container" >
@@ -297,16 +329,19 @@ function SpotCreateFormPage2() {
             className="spotform-textarea"
             required
             value={name}
-            onChange={(e) => setName(e.target.value)} />
+            onChange={(e) => setName(e.target.value.trimStart())} />
           <div className="spotform-name-bottomtext">{nameChar}/49</div>
-          {validation2?.length > 0 ? <div>
+          {/* {validation2?.length > 0 ? <div>
             <div>testing page 2</div>
             <ul>
               {validation2?.map(error => <li key={error}>{error}</li>)}
             </ul>
-          </div> : <div>teesting errors2</div>}
+          </div> : <div>teesting errors2</div>} */}
           <div>
-            <button onClick={spotFormPage2}>Next</button>
+            <button onClick={() => setPage(1)} >Back</button>
+          </div>
+          <div>
+            <button onClick={spotFormPage2} disabled={isdisable}>Next</button>
           </div>
         </div> : null
         }
@@ -325,20 +360,141 @@ function SpotCreateFormPage2() {
             onChange={(e) => setDescription(e.target.value)} />
           <div className="spotform-name-bottomtext">{descriptionChar}/500</div>
           <div>
-            <button onClick={spotFormPage2} disabled={validation2?.length > 0}>Next</button>
+            <button onClick={() => setPage(2)} >back</button>
+          </div>
+          <div>
+            <button onClick={spotFormPage3} disabled={isdisable}>Next</button>
           </div>
         </div> : null}
-        {page === 4 ?       <div>
-          <button type="submit"
-          className="spotformbtn"
-          >Create New Spot</button>
-          <span></span>
-          <button type="button"
-            className="spotformbtn"
-            onClick={handleCancelClick}>Cancel</button>
+        {page === 4 ? <div className="spotform-name-container">
+          <div className="spotform-name-toptext">Now, set your price</div>
+          <div className="spotform-name-middletext">You can change it anytime.</div>
+          <input
+            type="number"
+            // placeholder="Price per night"
+            className="spotforminput"
+            min="1"
+            max="10000"
+            required
+            value={price}
+            onChange={(e) => setPrice(e.target.value)} />
+          <div className="spotform-name-middletext">Places like yours in your area usually range from $75 to $258 per night</div>
+          <div>
+            <button onClick={() => setPage(3)} >Back</button>
           </div>
+          <div>
+            <button onClick={spotFormPage4} disabled={isdisable}>Next</button>
+          </div>
+        </div>
+
           : <></>
         }
+        {page === 5 ?         <div className="spotform-right">
+          <div>
+            <div className="spotform-name-toptext">Choose at least 5 photos</div>
+            <div className="spotform-name-middletext">The image url you input must be JPEG, JPG or PNG files.</div>
+            <div className="spotform-coverimage-container">
+              <input
+                type="url"
+                placeholder="Cover Photo"
+                value={previewImage}
+                // type="file"
+                // accept="image/*"
+                // name="previewImage"
+                className="spotformimageinput"
+                required
+                onChange={(e) => setpreviewImage(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl1}
+                onChange={(e) => setimageUrl1(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl2}
+                onChange={(e) => setimageUrl2(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl3}
+                onChange={(e) => setimageUrl3(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="Add more"
+                className="spotformimageinput"
+                required
+                value={imageUrl4}
+                onChange={(e) => setimageUrl4(e.target.value)}
+              />
+
+            </div>
+            <div className="spotform-image-container">
+
+
+            </div>
+            <div className="spotform-image-container">
+              {previewImage ?
+                <img src={previewImage}
+                  className='spotform-preview'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+              <div className="spotform-image12">
+
+              {imageUrl1 ?
+                <img src={imageUrl1}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+              {imageUrl2 ?
+                <img src={imageUrl2}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+                  </div>
+                  <div className="spotform-image12">
+
+              {imageUrl3 ?
+                <img src={imageUrl3}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+              {imageUrl4 ?
+                <img src={imageUrl4}
+                  className='spotform-preview1'
+                  alt="pic"
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}></img> : <div></div>}
+            </div>
+                  </div>
+          </div>
+          <div>
+          <button type="submit"
+          className="spotformbtn"
+        >Create New Spot</button>
+        <span></span>
+        <div>
+            <button onClick={() => setPage(4)} >back</button>
+          </div>
+        <button type="button"
+          className="spotformbtn"
+          onClick={handleCancelClick}>Cancel</button>
+          </div>
+          <ul className="spotformerror">
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+        </div>
+
+        : <></>}
         {/* <div className="spotform-left">
           {page ===1 ? <div className="spotform-name-container" >
             <div className="spotform-name-toptext">Now, let's give your house a title</div>
