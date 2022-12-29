@@ -8,7 +8,7 @@ const spotsRouter = require('./spots.js');
 const bookingsRouter = require('./bookings');
 const reviewsRouter = require('./reviews.js');
 const imagesRouter = require('./images.js');
-const mapsRouter = require('./maps');
+const mapsRouter = require('./maps.js');
 
 router.use(restoreUser);
 
