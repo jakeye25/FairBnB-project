@@ -21,6 +21,8 @@ import ReviewEditFormPage from "./component/reviews/reviewEdit";
 import ScrollToTop from "./component/Scroll/Scroll";
 import SocialLinks from "./component/Demo User/sociallink";
 import SpotCreateFormPage2 from "./component/spots/spotCreate2";
+import MapContainer from "./component/Maps";
+
 
 
 
@@ -36,8 +38,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       <ScrollToTop/>
       <SocialLinks/>
+
       {isLoaded && (
         <Switch>
+          <Route exact path= "/map">
+          <MapContainer/>
+          </Route>
           <Route exact path= "/spots/me">
             <UserSpots />
           </Route>

@@ -2,13 +2,13 @@ import React from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '600px',
+  height: '600px',
 };
 
 const center = {
-  lat: 38.9072,
-  lng: 77.0369,
+  lat: 34.0522,
+  lng: -118.2437,
 };
 
 const Maps = ({ apiKey }) => {
