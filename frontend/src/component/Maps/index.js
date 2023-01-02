@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getKey } from '../../store/maps';
 import Maps from './Maps';
 
-const MapContainer = () => {
+const MapContainersd = ({lat, lng}) => {
   const key = useSelector((state) => state.maps.key);
   const dispatch = useDispatch();
 
@@ -19,8 +19,8 @@ const MapContainer = () => {
   }
 
   return (
-    <Maps apiKey={key} />
+    <Maps apiKey={key} lat={lat} lng={lng} />
   );
 };
 
-export default MapContainer;
+export default MapContainersd;

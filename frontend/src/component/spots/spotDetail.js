@@ -9,6 +9,7 @@ import ReviewCreateFormPage from '../reviews/reviewCreate'
 // import { getSpotReviews } from '../../store/review';
 import './spotDetail.css';
 import BookingCreateFormPage from '../bookings/bookingCreate';
+import MapContainersd from '../Maps';
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
@@ -274,6 +275,9 @@ const SpotDetail = () => {
         <SpotReviews />
         {/* {user &&<ReviewCreateFormPage/>} */}
         {user && !checkOwner && !checkUserfirstReview && <NavLink to={`/spots/${spotId}/newreview`}>Write a public review</NavLink>}
+      </div>
+      <div className='sd__map__container'>
+        <MapContainersd lat={spot?.lat} lng={spot?.lng}/>
       </div>
 
     </div>
