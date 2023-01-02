@@ -12,6 +12,8 @@
     margin-top: 90px;
     padding-left: 8%;
     padding-right: 8%;
+    min-height: 80vh;
+    justify-content: center;
     /* background-color: aquamarine; */
   }
 
@@ -173,7 +175,8 @@
   }
 
   .spotform{
-    display: flex;
+    /* display: flex; */
+    margin-top:100px
     /* padding-left: 15%; */
     /* padding-right: 15%; */
   }
@@ -198,9 +201,14 @@
   }
 
   .spotform-button{
-    display: flex;
+    margin: auto;
+    /* display: flex;
     flex-direction: column;
-    padding: 0 30px;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    padding: 0 30px; */
   }
 
   .addressform{
@@ -370,3 +378,123 @@
     font-size: medium;
     margin-bottom: 20px;
   }
+.spotform__container{
+  padding: 0;
+}
+
+.spotform-topbar{
+  position: absolute;
+  top:0;
+  z-index: 50;
+  background-color: white;
+  display: flex;
+  height: 150px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+.spotform_icon{
+  width: 10em;
+  height: 3em;
+  float: left;
+}
+
+.spotform-exit{
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+  text-decoration: none;
+  border:1px solid  rgba(128, 128, 128, 0.4);
+  padding: 5px 20px;
+  min-width: 20px;
+  border-radius: 20px;
+}
+
+.spotform-exit:hover{
+  border:1px solid  rgba(128, 128, 128, 1);
+}
+
+/* .spotform-btmbar-page1{
+  position: absolute;
+  bottom:0;
+  z-index: 50;
+  background-color: white;
+  display: flex;
+  height: 150px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  width: 100vw;
+
+  /* padding-right: 8%;
+} */
+
+.spotform-btmbar{
+  position: absolute;
+  bottom:0;
+  z-index: 48;
+  background-color: white;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  row-gap: 1px;
+  column-gap: 1px;
+  width: 100%;
+}
+
+.spotform-btmbar-1-page1{
+  width: 16%;
+  height: 6px;
+  background-color: #000000;
+
+}
+.spotform-btmbar-2-page1{
+  width: 16%;
+  height: 6px;
+  background-color:rgb(221, 221, 221);
+}
+.spotform-btmbar-3-page1{
+  width: 16%;
+  height: 6px;
+  background-color:rgb(221, 221, 221);
+}
+.spotform-btmbar-4-page1{
+  width: 16%;
+  height: 6px;
+  background-color:rgb(221, 221, 221);
+}
+.spotform-btmbar-5-page1{
+  width: 16%;
+  height: 6px;
+  background-color:rgb(221, 221, 221);
+}
+.spotform-btmbar-6-page1{
+  width: 16%;
+  height: 6px;
+  background-color:rgb(221, 221, 221);
+}
+
+.spotform-page1-next{
+  position: absolute;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 10px 30px;
+  border-radius: 8px;
+  bottom: 3%;
+  right:8%;
+  z-index: 49;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.spotform-page1-next:disabled{
+  background-color: rgb(221, 221, 221);
+  border: #ffffff;
+}

@@ -8,19 +8,19 @@
 
   .icon-position1{
     position: fixed;
-    bottom: 400px;
+    bottom: 300px;
     right: 25px;
     z-index: 20;
   }
   .icon-position2{
     position: fixed;
-    bottom: 350px;
+    bottom: 250px;
     right: 25px;
     z-index: 20;
   }
   .icon-position3{
     position: fixed;
-    bottom: 300px;
+    bottom: 200px;
     right: 25px;
     z-index: 20;
   }
