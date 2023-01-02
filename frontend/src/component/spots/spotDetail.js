@@ -277,7 +277,16 @@ const SpotDetail = () => {
         {user && !checkOwner && !checkUserfirstReview && <NavLink to={`/spots/${spotId}/newreview`}>Write a public review</NavLink>}
       </div>
       <div className='sd__map__container'>
+        <div className='sd__map_text'>Where you'll be</div>
         <MapContainersd lat={spot?.lat} lng={spot?.lng}/>
+        <div className='sd__map_text_btm1'>
+                  {spot?.city}, {spot?.state}, {spot?.country}
+        </div>
+        <div className='sd__map_text_btm2'>
+        The beauty of the canyon is incredible, and when the sun sets, the colors become surreal. There are so many beautiful hikes or you can go surf at the best surf spots. After that you can indulge into the best smoothy and organic pastries at Living Cafe, or go eat a pizza ou will never forget at Endless Colors.
+        </div>
+
+
       </div>
 
     </div>
