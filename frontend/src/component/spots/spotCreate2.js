@@ -269,9 +269,9 @@ function SpotCreateFormPage2() {
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}>
                   <option disabled value=''></option>
-                  <option value="Canada">Canada</option>
+                  {/* <option value="Canada">Canada</option>
                   <option value="Mexico">Mexico</option>
-                  <option value="Puerto Rico">Puerto Rico</option>
+                  <option value="Puerto Rico">Puerto Rico</option> */}
                   <option value="United States">United States</option>
                 </select>
               </div>
