@@ -34,6 +34,7 @@ function SpotCreateFormPage2() {
   const [validation2, setValidation2] = useState([])
   const [validation3, setValidation3] = useState([])
   const [validation4, setValidation4] = useState([])
+  const [validation5, setValidation5] = useState([])
   const [isdisable, setIsDisable] = useState(true)
   //   if (sessionUser) return <Redirect to="/api/spots" />;
 
@@ -70,16 +71,16 @@ function SpotCreateFormPage2() {
     // setErrors([]);
     let spot = { address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4 }
     // console.log('checkimageurl', spot.previewImage)
-    if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
-      return setErrors(['Please enter a valid image url'])
-    if (!spot.imageUrl1.includes('.jpg') && !spot.imageUrl1.includes('.jpeg') && !spot.imageUrl1.includes('.png'))
-      return setErrors(['Please enter a valid image url'])
-    if (!spot.imageUrl2.includes('.jpg') && !spot.imageUrl2.includes('.jpeg') && !spot.imageUrl2.includes('.png'))
-      return setErrors(['Please enter a valid image url'])
-    if (!spot.imageUrl3.includes('.jpg') && !spot.imageUrl3.includes('.jpeg') && !spot.imageUrl3.includes('.png'))
-      return setErrors(['Please enter a valid image url'])
-    if (!spot.imageUrl4.includes('.jpg') && !spot.imageUrl4.includes('.jpeg') && !spot.imageUrl4.includes('.png'))
-      return setErrors(['Please enter a valid image url'])
+    // if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
+    //   return setErrors(['Please enter a valid image url'])
+    // if (!spot.imageUrl1.includes('.jpg') && !spot.imageUrl1.includes('.jpeg') && !spot.imageUrl1.includes('.png'))
+    //   return setErrors(['Please enter a valid image url'])
+    // if (!spot.imageUrl2.includes('.jpg') && !spot.imageUrl2.includes('.jpeg') && !spot.imageUrl2.includes('.png'))
+    //   return setErrors(['Please enter a valid image url'])
+    // if (!spot.imageUrl3.includes('.jpg') && !spot.imageUrl3.includes('.jpeg') && !spot.imageUrl3.includes('.png'))
+    //   return setErrors(['Please enter a valid image url'])
+    // if (!spot.imageUrl4.includes('.jpg') && !spot.imageUrl4.includes('.jpeg') && !spot.imageUrl4.includes('.png'))
+    //   return setErrors(['Please enter a valid image url'])
 
     let createdSpot;
     // try{
@@ -162,6 +163,29 @@ function SpotCreateFormPage2() {
       setIsDisable(false)
       setValidation4([])
       setPage(5)
+    }
+  }
+
+  const spotFormPage5 = () => {
+    let errors5 = [];
+    if (!previewImage.includes('.jpg') && !previewImage.includes('.jpeg') && !previewImage.includes('.png'))
+    errors5.push('Please enter a valid image url')
+  if (!imageUrl1.includes('.jpg') && !imageUrl1.includes('.jpeg') && !imageUrl1.includes('.png'))
+    errors5.push('Please enter a valid image url')
+  if (!imageUrl2.includes('.jpg') && !imageUrl2.includes('.jpeg') && !imageUrl2.includes('.png'))
+    errors5.push('Please enter a valid image url')
+  if (!imageUrl3.includes('.jpg') && !imageUrl3.includes('.jpeg') && !imageUrl3.includes('.png'))
+    errors5.push('Please enter a valid image url')
+  if (!imageUrl4.includes('.jpg') && !imageUrl4.includes('.jpeg') && !imageUrl4.includes('.png'))
+    errors5.push('Please enter a valid image url')
+    if (errors5.length > 0) {
+      setIsDisable(true)
+      return setValidation5(errors5)
+    }
+    else {
+      setIsDisable(false)
+      setValidation5([])
+      setPage(6)
     }
   }
   console.log('you are on page', page)
@@ -477,10 +501,6 @@ function SpotCreateFormPage2() {
 
               </div>
               <div className="spotform-image-container">
-
-
-              </div>
-              <div className="spotform-image-container">
                 {previewImage ?
                   <img src={previewImage}
                     className='spotform-preview'
@@ -515,16 +535,14 @@ function SpotCreateFormPage2() {
               </div>
             </div>
             <div>
-              <button type="submit"
-                className="spotformbtn"
-              >Create New Spot</button>
-              <span></span>
+
+            <div>
+              <button onClick={spotFormPage5} disabled={isdisable} className="spotform-page1-next">Next</button>
+            </div>
               <div>
                 <button onClick={() => setPage(4)} className="spotform-page1-back">Back</button>
               </div>
-              <button type="button"
-                className="spotformbtn"
-                onClick={handleCancelClick}>Cancel</button>
+
             </div>
             <ul className="spotformerror">
               {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -532,6 +550,19 @@ function SpotCreateFormPage2() {
           </div>
 
             : <></>}
+            {page ===6 ? <div>
+              <div>
+                
+              </div>
+              <button type="submit"
+                className="spotformbtn"
+              >Create New Spot</button>
+                          <div>
+                          <button onClick={() => setPage(5)} className="spotform-page1-back">Back</button>
+                        </div>
+            </div>
+            : <></>
+            }
           {/* <div className="spotform-left">
           {page ===1 ? <div className="spotform-name-container" >
             <div className="spotform-name-toptext">Now, let's give your house a title</div>
@@ -870,7 +901,7 @@ function SpotCreateFormPage2() {
       </div>}
       {page ===6 &&<div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
-        <div className="spotform-btmbar-2-page2"></div>
+        <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>

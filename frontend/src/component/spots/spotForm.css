@@ -323,21 +323,26 @@
   }
 
   .spotform-preview{
-    width: 100%;
+    width: 50%;
+
+    padding-right: 1px;
     margin-bottom: 3px;
   }
   .spotform-preview1{
-    width: 50%;
+    width: 100%;
+    /* max-width: 100%; */
+    height: 50%;
     padding-right: 1px;
     padding-bottom: 1px;
   }
 
   .spotform-image-container{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* height: 150px; */
-    margin-top: -10px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-height: 200px;
   }
 
   .spotformimageinput{
@@ -361,6 +366,7 @@
 
   .spotform-image12{
     display: flex;
+    flex-direction: column;
 
   }
 
