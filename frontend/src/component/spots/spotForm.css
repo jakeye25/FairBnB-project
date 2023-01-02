@@ -440,7 +440,7 @@
   z-index: 48;
   background-color: white;
   display: flex;
-  height: 90px;
+  height: 100px;
   justify-content: space-between;
   row-gap: 1px;
   column-gap: 1px;
@@ -494,7 +494,30 @@
   cursor: pointer;
 }
 
+.spotform-page1-back{
+  position: absolute;
+  padding: 10px 15px;
+  text-decoration: underline;
+  bottom: 3%;
+  left:8%;
+  z-index: 49;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background-color: #ffffff;
+  color: #000000;
+}
+
 .spotform-page1-next:disabled{
   background-color: rgb(221, 221, 221);
   border: #ffffff;
+  cursor: not-allowed;
 }
+
+.spotform-page1-back:hover{
+  background-color: rgb(247, 247, 247);
+}
+
+

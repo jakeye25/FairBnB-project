@@ -50,6 +50,10 @@ function SpotCreateFormPage2() {
     setNameChar(name.length);
   }, [name]);
 
+  useEffect(() => {
+    if(!address || !city || !state || !lat || !lng)
+    setIsDisable(true)
+  }, [address, city, state, lat, lng])
 
   const [descriptionChar, setDescriptionChar] = useState(0);
   useEffect(() => {
@@ -336,7 +340,7 @@ function SpotCreateFormPage2() {
             : null}
           {page === 1 ?
             <div className="spotform-btmbar-page1">
-              <button onClick={spotFormPage2}
+              <button onClick={spotFormPage1}
                 disabled={isdisable}
                 className="spotform-page1-next">Next</button>
             </div>
@@ -363,7 +367,12 @@ function SpotCreateFormPage2() {
             </ul>
           </div> : <div>teesting errors2</div>} */}
             <div>
-              <button onClick={() => setPage(1)} >Back</button>
+              <button onClick={() => setPage(1)} className="spotform-page1-back">Back</button>
+            </div>
+            <div className="spotform-btmbar-page1">
+              <button onClick={spotFormPage2}
+                disabled={isdisable}
+                className="spotform-page1-next">Next</button>
             </div>
           </div> : null
           }
@@ -814,14 +823,54 @@ function SpotCreateFormPage2() {
 
       </div> */}
       </section>
-      <div className="spotform-btmbar">
+      {page ===1 &&<div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-2-page1"></div>
         <div className="spotform-btmbar-3-page1"></div>
         <div className="spotform-btmbar-4-page1"></div>
         <div className="spotform-btmbar-5-page1"></div>
         <div className="spotform-btmbar-6-page1"></div>
-      </div>
+      </div>}
+      {page ===2 &&<div className="spotform-btmbar">
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-3-page1"></div>
+        <div className="spotform-btmbar-4-page1"></div>
+        <div className="spotform-btmbar-5-page1"></div>
+        <div className="spotform-btmbar-6-page1"></div>
+      </div>}
+      {page ===3 &&<div className="spotform-btmbar">
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-4-page1"></div>
+        <div className="spotform-btmbar-5-page1"></div>
+        <div className="spotform-btmbar-6-page1"></div>
+      </div>}
+      {page ===4 &&<div className="spotform-btmbar">
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-5-page1"></div>
+        <div className="spotform-btmbar-6-page1"></div>
+      </div>}
+      {page ===5 &&<div className="spotform-btmbar">
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-6-page1"></div>
+      </div>}
+      {page ===6 &&<div className="spotform-btmbar">
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-2-page2"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+        <div className="spotform-btmbar-1-page1"></div>
+      </div>}
     </>
   );
 }
