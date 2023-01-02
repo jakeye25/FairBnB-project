@@ -19,7 +19,7 @@ function SpotCreateFormPage2() {
   const [country, setCountry] = useState("United States");
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Give your house a title");
   const [description, setDescription] = useState("Take it easy at this unique and tranquil getaway.");
   const [price, setPrice] = useState(150);
   const [previewImage, setpreviewImage] = useState("");
@@ -54,6 +54,11 @@ function SpotCreateFormPage2() {
     if(!address || !city || !state || !lat || !lng)
     setIsDisable(true)
   }, [address, city, state, lat, lng])
+
+  useEffect(() => {
+    if(page===2 && (!name))
+    setIsDisable(true)
+  }, [])
 
   const [descriptionChar, setDescriptionChar] = useState(0);
   useEffect(() => {
@@ -380,7 +385,7 @@ function SpotCreateFormPage2() {
 
           {page === 3 ? <div className="spotform-name-container">
             <div className="spotform-name-toptext">Create your description</div>
-            <div className="spotform-name-middletext">Share what makes your place special.</div>
+            <div className="spotform-name-middletext">Share what makes your place special, </div>
             <textarea
               type="text"
               placeholder="Description"
@@ -392,10 +397,10 @@ function SpotCreateFormPage2() {
               onChange={(e) => setDescription(e.target.value)} />
             <div className="spotform-name-bottomtext">{descriptionChar}/500</div>
             <div>
-              <button onClick={() => setPage(2)} >back</button>
+              <button onClick={() => setPage(2)} className="spotform-page1-back">Back</button>
             </div>
             <div>
-              <button onClick={spotFormPage3} disabled={isdisable}>Next</button>
+              <button onClick={spotFormPage3} disabled={isdisable} className="spotform-page1-next">Next</button>
             </div>
           </div> : null}
           {page === 4 ? <div className="spotform-name-container">
@@ -412,10 +417,10 @@ function SpotCreateFormPage2() {
               onChange={(e) => setPrice(e.target.value)} />
             <div className="spotform-name-middletext">Places like yours in your area usually range from $75 to $258 per night</div>
             <div>
-              <button onClick={() => setPage(3)} >Back</button>
+              <button onClick={() => setPage(3)} className="spotform-page1-back">Back</button>
             </div>
             <div>
-              <button onClick={spotFormPage4} disabled={isdisable}>Next</button>
+              <button onClick={spotFormPage4} disabled={isdisable} className="spotform-page1-next">Next</button>
             </div>
           </div>
 
@@ -515,7 +520,7 @@ function SpotCreateFormPage2() {
               >Create New Spot</button>
               <span></span>
               <div>
-                <button onClick={() => setPage(4)} >back</button>
+                <button onClick={() => setPage(4)} className="spotform-page1-back">Back</button>
               </div>
               <button type="button"
                 className="spotformbtn"
