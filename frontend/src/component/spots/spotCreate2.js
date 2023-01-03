@@ -98,9 +98,20 @@ function SpotCreateFormPage2() {
     history.push(`/`);
   }
 
+  const Increment = () => {
+    setPrice(price+5)
+  }
+
+  const Decrement = () => {
+    let val = 1
+    if(price <= val) { val = 1}
+    else ( val = price)
+
+    setPrice(val - 5)
+  }
 
   const spotFormPage1 = () => {
-    console.log('hit page 1=====================')
+
     let errors1 = []
     if (!address) { errors1.push("address is required") }
     if (!city) { errors1.push("city is required") }
@@ -122,7 +133,7 @@ function SpotCreateFormPage2() {
   }
 
   const spotFormPage2 = () => {
-    console.log('hit page 2=====================')
+
     let errors2 = []
     if (!name) { errors2.push("title is required") }
 
@@ -137,7 +148,7 @@ function SpotCreateFormPage2() {
     }
   }
   const spotFormPage3 = () => {
-    console.log('hit page 3++++++++++++++++++++++++++++++')
+
     let errors3 = [];
     if (!description) { errors3.push('description is required') }
     if (errors3.length > 0) {
@@ -152,7 +163,7 @@ function SpotCreateFormPage2() {
   }
 
   const spotFormPage4 = () => {
-    console.log('hit page 4++++++++++++++++++++++++++++++')
+
     let errors4 = [];
     if (!price) { errors4.push('price is required') }
     if (errors4.length > 0) {
@@ -188,7 +199,7 @@ function SpotCreateFormPage2() {
       setPage(6)
     }
   }
-  console.log('you are on page', page)
+
 
   return (
     <>
@@ -430,15 +441,18 @@ function SpotCreateFormPage2() {
           {page === 4 ? <div className="spotform-name-container">
             <div className="spotform-name-toptext">Now, set your price</div>
             <div className="spotform-name-middletext">You can change it anytime.</div>
+            <button onClick={()=> Decrement()}> - </button>
             <input
               type="number"
               // placeholder="Price per night"
               className="spotforminput"
+              step='5'
               min="1"
               max="10000"
               required
               value={price}
               onChange={(e) => setPrice(e.target.value)} />
+              <button onClick={()=> Increment()}> + </button>
             <div className="spotform-name-middletext">Places like yours in your area usually range from $75 to $258 per night</div>
             <div>
               <button onClick={() => setPage(3)} className="spotform-page1-back">Back</button>

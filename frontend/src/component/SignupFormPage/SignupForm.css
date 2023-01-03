@@ -28,11 +28,12 @@
     border-radius: 8px;
 
     /* text-align: center; */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     outline: none;
+    overflow-y: auto;
+    flex: 1 1 auto ;
 
 
   }

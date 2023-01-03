@@ -63,7 +63,7 @@ function SignupForm({ setShowsignupForm, setShowModal }) {
           <IoMdClose onClick={() => setShowModal(false)} className='signup-top-x' />
           <div className="signup-top-text">Sign up</div>
         </div>
-        <h1 className="signup__head">Welcome to FAirBnB</h1>
+        <h1 className="signup__head">Welcome to FairBnB</h1>
         {/* </header> */}
         <form className="signupform"
           onSubmit={handleSubmit}>
