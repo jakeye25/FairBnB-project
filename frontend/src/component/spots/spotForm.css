@@ -248,6 +248,7 @@
 
   .spotform-name-container{
     margin-bottom: 30px;
+
   }
 
 .spotform-textarea{
@@ -444,7 +445,7 @@
 } */
 
 .spotform-btmbar{
-  position: absolute;
+  position: sticky;
   bottom:0;
   z-index: 48;
   background-color: white;
@@ -489,7 +490,7 @@
 }
 
 .spotform-page1-next{
-  position: absolute;
+  position: fixed;
   background-color: #000000;
   color: #ffffff;
   padding: 10px 30px;
@@ -504,7 +505,7 @@
 }
 
 .spotform-page1-back{
-  position: absolute;
+  position: fixed;
   padding: 10px 15px;
   text-decoration: underline;
   bottom: 3%;
@@ -527,4 +528,13 @@
 
 .spotform-page1-back:hover{
   background-color: rgb(247, 247, 247);
+}
+
+.spotform-preview-container{
+  width: fit-content;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  padding: 2em;
+  height: fit-content;
+  box-shadow: 5px 8px 20px -6px rgba(0,0,0,0.2);
 }

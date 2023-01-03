@@ -52,13 +52,13 @@ function SpotCreateFormPage2() {
   }, [name]);
 
   useEffect(() => {
-    if(!address || !city || !state || !lat || !lng)
-    setIsDisable(true)
+    if (!address || !city || !state || !lat || !lng)
+      setIsDisable(true)
   }, [address, city, state, lat, lng])
 
   useEffect(() => {
-    if(page===2 && (!name))
-    setIsDisable(true)
+    if (page === 2 && (!name))
+      setIsDisable(true)
   }, [])
 
   const [descriptionChar, setDescriptionChar] = useState(0);
@@ -169,15 +169,15 @@ function SpotCreateFormPage2() {
   const spotFormPage5 = () => {
     let errors5 = [];
     if (!previewImage.includes('.jpg') && !previewImage.includes('.jpeg') && !previewImage.includes('.png'))
-    errors5.push('Please enter a valid image url')
-  if (!imageUrl1.includes('.jpg') && !imageUrl1.includes('.jpeg') && !imageUrl1.includes('.png'))
-    errors5.push('Please enter a valid image url')
-  if (!imageUrl2.includes('.jpg') && !imageUrl2.includes('.jpeg') && !imageUrl2.includes('.png'))
-    errors5.push('Please enter a valid image url')
-  if (!imageUrl3.includes('.jpg') && !imageUrl3.includes('.jpeg') && !imageUrl3.includes('.png'))
-    errors5.push('Please enter a valid image url')
-  if (!imageUrl4.includes('.jpg') && !imageUrl4.includes('.jpeg') && !imageUrl4.includes('.png'))
-    errors5.push('Please enter a valid image url')
+      errors5.push('Please enter a valid image url')
+    if (!imageUrl1.includes('.jpg') && !imageUrl1.includes('.jpeg') && !imageUrl1.includes('.png'))
+      errors5.push('Please enter a valid image url')
+    if (!imageUrl2.includes('.jpg') && !imageUrl2.includes('.jpeg') && !imageUrl2.includes('.png'))
+      errors5.push('Please enter a valid image url')
+    if (!imageUrl3.includes('.jpg') && !imageUrl3.includes('.jpeg') && !imageUrl3.includes('.png'))
+      errors5.push('Please enter a valid image url')
+    if (!imageUrl4.includes('.jpg') && !imageUrl4.includes('.jpeg') && !imageUrl4.includes('.png'))
+      errors5.push('Please enter a valid image url')
     if (errors5.length > 0) {
       setIsDisable(true)
       return setValidation5(errors5)
@@ -536,9 +536,9 @@ function SpotCreateFormPage2() {
             </div>
             <div>
 
-            <div>
-              <button onClick={spotFormPage5} disabled={isdisable} className="spotform-page1-next">Next</button>
-            </div>
+              <div>
+                <button onClick={spotFormPage5} disabled={isdisable} className="spotform-page1-next">Next</button>
+              </div>
               <div>
                 <button onClick={() => setPage(4)} className="spotform-page1-back">Back</button>
               </div>
@@ -550,19 +550,49 @@ function SpotCreateFormPage2() {
           </div>
 
             : <></>}
-            {page ===6 ? <div>
-              <div>
-                
+          {page === 6 ? <div className="spotform-name-container">
+            <div className="spotform-name-toptext">Review your listing</div>
+            <div className="spotform-name-middletext">Here's what we'll show to guests. Make sure everything looks good.</div>
+            <div className="spotform-preview-container">
+              <div className='image__container'>
+                <img
+                  className="card__image"
+                  alt=''
+                  src={previewImage}
+                  onError={e => { e.currentTarget.src = "https://filestore.community.support.microsoft.com/api/images/ext?url=https%3A%2F%2Fanswersstaticfilecdnv2.azureedge.net%2Fstatic%2Fimages%2Fimage-not-found.jpg"; }}
+                />
               </div>
-              <button type="submit"
-                className="spotformbtn"
-              >Create New Spot</button>
-                          <div>
-                          <button onClick={() => setPage(5)} className="spotform-page1-back">Back</button>
-                        </div>
+              <div className='card__des'>
+                <div id='card__des_1container'>
+                  <div className='card__city'>{city}, {state}</div>
+                  <div className='card__rating'>
+                    <i className="fa-solid fa-star "></i>
+                    <span id='card__ratingnum'>
+                      New
+                    </span>
+                  </div>
+                </div>
+                <div id='card__des_2container'>
+                  <span>{country}</span>
+                </div>
+                <div id='card__des_3container'>
+                  <div className="card__price">${price} </div>
+
+                  <span> night</span>
+                </div>
+              </div>
             </div>
-            : <></>
-            }
+            <div>
+              <button type="submit" className="spotform-page1-next">Create New Spot</button>
+              {/* </div><button
+                className="spotformbtn"
+              >Create New Spot</button> */}
+            </div>
+            <div>
+              <button onClick={() => setPage(5)} className="spotform-page1-back">Back</button>
+            </div>
+          </div>
+            : <></>}
           {/* <div className="spotform-left">
           {page ===1 ? <div className="spotform-name-container" >
             <div className="spotform-name-toptext">Now, let's give your house a title</div>
@@ -859,7 +889,7 @@ function SpotCreateFormPage2() {
 
       </div> */}
       </section>
-      {page ===1 &&<div className="spotform-btmbar">
+      {page === 1 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-2-page1"></div>
         <div className="spotform-btmbar-3-page1"></div>
@@ -867,7 +897,7 @@ function SpotCreateFormPage2() {
         <div className="spotform-btmbar-5-page1"></div>
         <div className="spotform-btmbar-6-page1"></div>
       </div>}
-      {page ===2 &&<div className="spotform-btmbar">
+      {page === 2 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-3-page1"></div>
@@ -875,7 +905,7 @@ function SpotCreateFormPage2() {
         <div className="spotform-btmbar-5-page1"></div>
         <div className="spotform-btmbar-6-page1"></div>
       </div>}
-      {page ===3 &&<div className="spotform-btmbar">
+      {page === 3 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
@@ -883,7 +913,7 @@ function SpotCreateFormPage2() {
         <div className="spotform-btmbar-5-page1"></div>
         <div className="spotform-btmbar-6-page1"></div>
       </div>}
-      {page ===4 &&<div className="spotform-btmbar">
+      {page === 4 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
@@ -891,7 +921,7 @@ function SpotCreateFormPage2() {
         <div className="spotform-btmbar-5-page1"></div>
         <div className="spotform-btmbar-6-page1"></div>
       </div>}
-      {page ===5 &&<div className="spotform-btmbar">
+      {page === 5 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
@@ -899,7 +929,7 @@ function SpotCreateFormPage2() {
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-6-page1"></div>
       </div>}
-      {page ===6 &&<div className="spotform-btmbar">
+      {page === 6 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
         <div className="spotform-btmbar-1-page1"></div>
