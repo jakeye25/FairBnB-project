@@ -22,9 +22,7 @@ import ScrollToTop from "./component/Scroll/Scroll";
 import SocialLinks from "./component/Demo User/sociallink";
 import SpotCreateFormPage2 from "./component/spots/spotCreate2";
 import MapContainer from "./component/Maps";
-
-
-
+import SpotEditFormPage2 from "./component/spots/spotEdit2";
 
 
 function App() {
@@ -55,7 +53,7 @@ function App() {
             <ReviewEditFormPage />
           </Route> */}
           <Route path= "/spots/:spotId/edit" exact>
-            <SpotEditFormPage />
+            <SpotEditFormPage2 />
           </Route>
           <Route path= "/spots/create" exact>
             <SpotCreateFormPage2 />

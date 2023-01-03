@@ -1,32 +1,38 @@
 
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-// import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useParams } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
-import * as spotActions from "../../store/spot"
-import { NavLink, useHistory } from 'react-router-dom'
+
+import { useHistory } from 'react-router-dom'
+import { updateSpot } from "../../store/spot";
 import './spotForm.css';
 
-
-function SpotCreateFormPage2() {
+function SpotEditFormPage2() {
   const history = useHistory();
+  let spot = useSelector(state => Object.values(state.spot))
+  // console.log('editspot', spot)
 
+  const { spotId } = useParams()
+  let editSpot = spot.find(ele => ele.id == spotId)
+  // console.log('editspot', editSpot)
   const dispatch = useDispatch();
-  //   const sessionUser = useSelector((state) => state.session.user);
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("United States");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-  const [name, setName] = useState("Give your house a title");
-  const [description, setDescription] = useState("Take it easy at this unique and tranquil getaway.");
-  const [price, setPrice] = useState(150);
-  const [previewImage, setpreviewImage] = useState("");
-  const [imageUrl1, setimageUrl1] = useState("");
-  const [imageUrl2, setimageUrl2] = useState("");
-  const [imageUrl3, setimageUrl3] = useState("");
-  const [imageUrl4, setimageUrl4] = useState("");
+
+  const [address, setAddress] = useState(editSpot.address);
+  const [city, setCity] = useState(editSpot.city);
+  const [state, setState] = useState(editSpot.state);
+  const [country, setCountry] = useState(editSpot.country);
+  const [lat, setLat] = useState(editSpot.lat);
+  const [lng, setLng] = useState(editSpot.lng);
+  const [name, setName] = useState(editSpot.name);
+  const [description, setDescription] = useState(editSpot.description);
+  const [price, setPrice] = useState(editSpot.price);
+  const [previewImage, setpreviewImage] = useState(editSpot.previewImage);
+  const [imageUrl1, setimageUrl1] = useState(editSpot.imageUrl1);
+  const [imageUrl2, setimageUrl2] = useState(editSpot.imageUrl2);
+  const [imageUrl3, setimageUrl3] = useState(editSpot.imageUrl3);
+  const [imageUrl4, setimageUrl4] = useState(editSpot.imageUrl4);
+  // const [errorMessages, setErrorMessages] = useState({});
   const [page, setPage] = useState(1)
   // const [errorMessages, setErrorMessages] = useState({});
   const [errors, setErrors] = useState([]);
@@ -36,20 +42,14 @@ function SpotCreateFormPage2() {
   const [validation4, setValidation4] = useState([])
   const [validation5, setValidation5] = useState([])
   const [isdisable, setIsDisable] = useState(true)
-  //   if (sessionUser) return <Redirect to="/api/spots" />;
 
   useEffect(() => {
-    document.title = "Make your place stand out"
+    document.title = "Edit your place"
   }, [])
 
   useEffect(() => {
     setIsDisable(false)
   }, [address, city, state, name, lat, lng, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4])
-
-  const [nameChar, setNameChar] = useState(0);
-  useEffect(() => {
-    setNameChar(name.length);
-  }, [name]);
 
   useEffect(() => {
     if (!address || !city || !state || !lat || !lng)
@@ -61,6 +61,11 @@ function SpotCreateFormPage2() {
       setIsDisable(true)
   }, [name, page])
 
+  const [nameChar, setNameChar] = useState(0);
+  useEffect(() => {
+    setNameChar(name.length);
+  }, [name]);
+
   const [descriptionChar, setDescriptionChar] = useState(0);
   useEffect(() => {
     setDescriptionChar(description.length);
@@ -69,33 +74,43 @@ function SpotCreateFormPage2() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setErrors([]);
-    let spot = { address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4 }
-    // console.log('checkimageurl', spot.previewImage)
-    // if (!spot.previewImage.includes('.jpg') && !spot.previewImage.includes('.jpeg') && !spot.previewImage.includes('.png'))
+    // let spot = { address, city, state, country, lat, lng, name, description, price }
+    let payload = {
+      id: spotId,
+      address, city, state, country, lat, lng, name, description, price, previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4
+    };
+    // console.log('checkimageurl', payload.previewImage)
+    // console.log('checkimageurl', payload.previewImage.includes('jpg'))
+    // if (!payload.previewImage.includes('.jpg') && !payload.previewImage.includes('.jpeg') && !payload.previewImage.includes('.png'))
     //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl1.includes('.jpg') && !spot.imageUrl1.includes('.jpeg') && !spot.imageUrl1.includes('.png'))
+    // if (!payload.imageUrl1.includes('.jpg') && !payload.imageUrl1.includes('.jpeg') && !payload.imageUrl1.includes('.png'))
     //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl2.includes('.jpg') && !spot.imageUrl2.includes('.jpeg') && !spot.imageUrl2.includes('.png'))
+    // if (!payload.imageUrl2.includes('.jpg') && !payload.imageUrl2.includes('.jpeg') && !payload.imageUrl2.includes('.png'))
     //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl3.includes('.jpg') && !spot.imageUrl3.includes('.jpeg') && !spot.imageUrl3.includes('.png'))
+    // if (!payload.imageUrl3.includes('.jpg') && !payload.imageUrl3.includes('.jpeg') && !payload.imageUrl3.includes('.png'))
     //   return setErrors(['Please enter a valid image url'])
-    // if (!spot.imageUrl4.includes('.jpg') && !spot.imageUrl4.includes('.jpeg') && !spot.imageUrl4.includes('.png'))
+    // if (!payload.imageUrl4.includes('.jpg') && !payload.imageUrl4.includes('.jpeg') && !payload.imageUrl4.includes('.png'))
     //   return setErrors(['Please enter a valid image url'])
 
-    let createdSpot;
+    let returnedSpot;
     // try{
-    createdSpot = await dispatch(spotActions.createSpot(spot))
+    returnedSpot = await dispatch(updateSpot(payload))
+    // } catch (error) {
+    //   setErrorMessages({ overall: error.toString().slice(7) })
+    // }
+    // if (!returnedSpot.previewImage.includes('jpg') || !returnedSpot.previewImage.includes('jpeg') || !returnedSpot.previewImage.includes('png'))
+    // return setErrors(['Only jpg, jpeg and png Image url valid'])
 
-    if (createdSpot) {
+    if (returnedSpot) {
       // setErrorMessages({});
-      history.push(`/spots/${createdSpot.id}`);
+      history.push(`/spots/${returnedSpot.id}`)
     }
   }
   const handleCancelClick = (e) => {
     e.preventDefault();
     // setErrorMessages({});
     setErrors([]);
-    history.push(`/`);
+    history.push(`/spots/${spotId}`);
   }
 
   const Increment = () => {
@@ -109,8 +124,7 @@ function SpotCreateFormPage2() {
 
     setPrice(val - 5)
   }
-
-  const spotFormPage1 = () => {
+    const spotFormPage1 = () => {
 
     let errors1 = []
     if (!address) { errors1.push("address is required") }
@@ -601,23 +615,14 @@ function SpotCreateFormPage2() {
               </div>
             </div>
             <div>
-              <button type="submit" className="spotform-page1-next">Create New Listing</button>
-              {/* </div><button
-                className="spotformbtn"
-              >Create New Spot</button> */}
+              <button type="submit" className="spotform-page1-next">Update Listing</button>
             </div>
             <div>
               <button onClick={() => setPage(5)} className="spotform-page1-back">Back</button>
             </div>
           </div>
             : <></>}
-
         </form>
-
-        {/* </div> */}
-        {/* <div className="rightspotform">
-
-      </div> */}
       </section>
       {page === 1 && <div className="spotform-btmbar">
         <div className="spotform-btmbar-1-page1"></div>
@@ -671,4 +676,4 @@ function SpotCreateFormPage2() {
   );
 }
 
-export default SpotCreateFormPage2;
+export default SpotEditFormPage2;

@@ -10,19 +10,19 @@
     position: fixed;
     bottom: 300px;
     right: 25px;
-    z-index: 20;
+    z-index: 70;
   }
   .icon-position2{
     position: fixed;
     bottom: 250px;
     right: 25px;
-    z-index: 20;
+    z-index: 70;
   }
   .icon-position3{
     position: fixed;
     bottom: 200px;
     right: 25px;
-    z-index: 20;
+    z-index: 70;
   }
   .icon-style2{
     background-color: rgb(208, 239, 243);
