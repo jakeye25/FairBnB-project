@@ -39,7 +39,7 @@ const Maps = ({ apiKey, lat, lng }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
-    libraries: ["places"]
+    // libraries: ["places"]
   });
   console.log("check lat, lng", lat, lng)
   const center = useMemo(
