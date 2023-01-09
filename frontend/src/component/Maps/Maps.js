@@ -41,7 +41,8 @@ const Maps = ({ apiKey, lat, lng }) => {
     googleMapsApiKey: apiKey,
     // libraries: ["places"]
   });
-  console.log("check lat, lng", lat, lng)
+  console.log("check apikey", apiKey, lat, lng)
+
   const center = useMemo(
     () => ({ lat: lat, lng: lng }),
     []
