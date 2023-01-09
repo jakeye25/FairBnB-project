@@ -38,7 +38,7 @@ const closeOptions = {
 const Maps = ({ apiKey, lat, lng }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: parseFloat(apiKey),
+    googleMapsApiKey: apiKey,
     // libraries: ["places"]
   });
   console.log("checking apikey", apiKey, lat, lng)
@@ -63,6 +63,7 @@ const Maps = ({ apiKey, lat, lng }) => {
     <>
       {isLoaded && (
         <>
+          <div>{apiKey}</div>
           <GoogleMap
             mapContainerStyle={containerStyle}
             mapContainerClassName="map-container"
