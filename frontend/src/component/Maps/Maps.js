@@ -4,14 +4,15 @@ import { Circle, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/ap
 import './Googlemap.css'
 
 const containerStyle = {
-  width: '100%',
+  // width: '100%',
+  width: '600px',
   height: '600px',
 };
 
-// const center = {
-//   lat: 34.0522,
-//   lng: -118.2437,
-// };
+const center = {
+  lat: 34.0522,
+  lng: -118.2437,
+};
 const defaultOptions = {
   strokeOpacity: 0.5,
   strokeWeight: 2,
@@ -43,10 +44,10 @@ const Maps = ({ apiKey, lat, lng }) => {
   });
   console.log("checking apikey", apiKey, lat, lng)
 
-  const center = useMemo(
-    () => ({ lat: lat, lng: lng }),
-    []
-  );
+  // const center = useMemo(
+  //   () => ({ lat: lat, lng: lng }),
+  //   []
+  // );
 
   const options = useMemo(
     () => ({
@@ -63,7 +64,7 @@ const Maps = ({ apiKey, lat, lng }) => {
     <>
       {isLoaded && (
         <>
-          <div>{apiKey}</div>
+          {/* <div>{apiKey}</div> */}
           <GoogleMap
             mapContainerStyle={containerStyle}
             mapContainerClassName="map-container"
