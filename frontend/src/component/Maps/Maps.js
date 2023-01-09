@@ -9,10 +9,10 @@ const containerStyle = {
   height: '600px',
 };
 
-const center = {
-  lat: 34.0522,
-  lng: -118.2437,
-};
+// const center = {
+//   lat: 34.0522,
+//   lng: -118.2437,
+// };
 const defaultOptions = {
   strokeOpacity: 0.5,
   strokeWeight: 2,
@@ -44,10 +44,10 @@ const Maps = ({ apiKey, lat, lng }) => {
   });
   console.log("checking apikey", apiKey, lat, lng)
 
-  // const center = useMemo(
-  //   () => ({ lat: lat, lng: lng }),
-  //   []
-  // );
+  const center = useMemo(
+    () => ({ lat: parseFloat(lat), lng: parseFloat(lng) }),
+    []
+  );
 
   const options = useMemo(
     () => ({
