@@ -38,7 +38,7 @@ const closeOptions = {
 const Maps = ({ apiKey, lat, lng }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: apiKey,
+    googleMapsApiKey: parseFloat(apiKey),
     // libraries: ["places"]
   });
   console.log("checking apikey", apiKey, lat, lng)
