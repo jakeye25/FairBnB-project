@@ -129,8 +129,8 @@ function SpotCreateFormPage2() {
     if (!lng) { errors1.push("longitude is required") }
     if (!state) { errors1.push("Please select a state") }
     if (!country) { errors1.push("Please select a country") }
-    console.log('page 1===================== address', address)
-    console.log('page1 errors', errors1)
+    // console.log('page 1===================== address', address)
+    // console.log('page1 errors', errors1)
     if (errors1?.length > 0) {
       setIsDisable(true)
       return setValidation1(errors1)
