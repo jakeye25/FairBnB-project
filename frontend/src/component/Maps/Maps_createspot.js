@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Circle, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 // import Map from './Googlemap';
 import './Googlemap.css'
+
 
 const containerStyle = {
   width: '100%',
@@ -36,19 +37,34 @@ const closeOptions = {
 //   anchor: new window.google.maps.Point(0, 0) // anchor
 // };
 
-const Maps = ({ apiKey, lat, lng }) => {
+const Mapcreatespot = ({ apiKey, lat, lng }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
     // libraries: ["places"]
   });
 
+  // const [center, setCenter] = useState({lat: parseFloat(34.0522), lng: parseFloat(-118.2437)})
 
-  const center = useMemo(
-    () => ({ lat: parseFloat(lat), lng: parseFloat(lng) }),
+  // useEffect(() => {
+  //   if(!city) { setCenter({lat: parseFloat(34.0522), lng: parseFloat(-118.2437)})}
+  //   if (city == 'Los Angeles') { setCenter({lat: parseFloat(34.0522), lng: parseFloat(-118.2437)})}
+  //   if (city == 'San Francisco') { setCenter({lat: parseFloat(37.7749), lng: parseFloat(-122.4194)})}
+  //   if (city == 'New York') { setCenter({lat: parseFloat(40.7128), lng: parseFloat(-74.0060)})}
+  //   if (city == 'Dallas') { setCenter({lat: parseFloat(32.7767), lng: parseFloat(-96.7970)})}
+  //   if (city == 'San Diego') { setCenter({lat: parseFloat(32.7157), lng: parseFloat(-117.1611)})}
+  //   if (city == 'Oakland') { setCenter({lat: parseFloat(37.8044), lng: parseFloat(-122.2712)})}
+
+  // }, [city])
+  // const center = useMemo(
+  //   () => ({ lat: parseFloat(lat), lng: parseFloat(lng) }),
+  //   []
+  // );
+    const center = useMemo(
+    () => ({ lat: parseFloat(lat), lng: parseFloat(lng)}),
     []
   );
-
+console.log("check map city", city, center)
   const options = useMemo(
     () => ({
       disableDefaultUI: true,
@@ -91,4 +107,4 @@ const Maps = ({ apiKey, lat, lng }) => {
   );
 };
 
-export default React.memo(Maps);
+export default React.memo(Mapcreatespot);

@@ -71,6 +71,15 @@ function SpotEditFormPage2() {
     setDescriptionChar(description.length);
   }, [description]);
 
+  useEffect(() => {
+    if (city == 'Los Angeles') { setLat(34.0522); setLng(-118.2437); setState('California') }
+    if (city == 'San Francisco') { setLat(37.7749); setLng(-122.4194); setState('California') }
+    if (city == 'New York') { setLat(40.7128); setLng(-74.0060); setState('New York') }
+    if (city == 'Dallas') { setLat(32.7767); setLng(-96.7970); setState('Texas') }
+    if (city == 'San Diego') { setLat(32.7157); setLng(-117.1611); setState('California') }
+    if (city == 'Oakland') { setLat(37.8044); setLng(-122.2712); setState('California') }
+  }, [city])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setErrors([]);
@@ -114,17 +123,17 @@ function SpotEditFormPage2() {
   }
 
   const Increment = () => {
-    setPrice(price+5)
+    setPrice(price + 5)
   }
 
   const Decrement = () => {
     let val = 1
-    if(price <= val) { val = 1}
-    else ( val = price)
+    if (price <= val) { val = 1 }
+    else (val = price)
 
     setPrice(val - 5)
   }
-    const spotFormPage1 = () => {
+  const spotFormPage1 = () => {
 
     let errors1 = []
     if (!address) { errors1.push("address is required") }
@@ -260,14 +269,27 @@ function SpotEditFormPage2() {
               <div className="addressform-street">
 
                 <label className="addressform-label">City</label>
-                <input
+                {/* <input
                   type="text"
                   minLength='6'
                   maxLength='50'
                   className="addressforminput"
                   required
                   value={city}
-                  onChange={(e) => setCity(e.target.value.trimStart())} />
+                  onChange={(e) => setCity(e.target.value.trimStart())} /> */}
+                <select
+                  className="addressforminput"
+                  required
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}>
+                  <option disabled value=''>City</option>
+                  <option value="Dallas">Dallas</option>
+                  <option value="Los Angeles">Los Angeles</option>
+                  <option value="New York">New York</option>
+                  <option value="Oakland">Oakland</option>
+                  <option value="San Diego">San Diego</option>
+                  <option value="San Francisco">San Francisco</option>
+                </select>
               </div>
               <div className="addressform-state-container">
                 <div className="addressform-state" id="addressform-inputleft">
@@ -455,23 +477,23 @@ function SpotEditFormPage2() {
           {page === 4 ? <div className="spotform-name-container">
             <div className="spotform-name-toptext">Now, set your price</div>
             <div className="spotform-name-middletext">You can change it anytime.</div>
-          <div className="spotform-price-container">
-            <div className="spotform-price-container-1">
-            <button onClick={()=> Decrement()} type='button' className="price-minus"><i class="fa-solid fa-minus"></i></button>
-            <input
-              type="number"
-              // placeholder="Price per night"
-              className="spotforminput-price"
-              min="1"
-              max="10000"
-              required
-              value={price}
-              onChange={(e) => setPrice(e.target.value)} />
-              <button onClick={()=> Increment()} type='button' className="price-minus"><i class="fa-solid fa-plus"></i></button>
+            <div className="spotform-price-container">
+              <div className="spotform-price-container-1">
+                <button onClick={() => Decrement()} type='button' className="price-minus"><i class="fa-solid fa-minus"></i></button>
+                <input
+                  type="number"
+                  // placeholder="Price per night"
+                  className="spotforminput-price"
+                  min="1"
+                  max="10000"
+                  required
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)} />
+                <button onClick={() => Increment()} type='button' className="price-minus"><i class="fa-solid fa-plus"></i></button>
+              </div>
+              <div className="sf-price-btm-text1">per night</div>
+              <div className="sf-price-btm-text2">Places like yours in your area usually range from $75 to $258 per night</div>
             </div>
-            <div className="sf-price-btm-text1">per night</div>
-            <div className="sf-price-btm-text2">Places like yours in your area usually range from $75 to $258 per night</div>
-          </div>
             <div>
               <button onClick={() => setPage(3)} className="spotform-page1-back">Back</button>
             </div>
