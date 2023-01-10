@@ -4,8 +4,8 @@ import { Circle, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/ap
 import './Googlemap.css'
 
 const containerStyle = {
-  // width: '100%',
-  width: '600px',
+  width: '100%',
+  // width: '600px',
   height: '600px',
 };
 
