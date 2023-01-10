@@ -4,6 +4,7 @@ import {ImMail2} from "react-icons/im";
 import {TiSocialLinkedin} from "react-icons/ti";
 import {FiGithub} from "react-icons/fi";
 import {AiOutlineMail} from "react-icons/ai"
+import {AiOutlineFolderOpen} from "react-icons/ai"
 import "./sociallinks.css"
 
 const SocialLinks = () => {
@@ -32,12 +33,22 @@ const SocialLinks = () => {
             </div>
             <div className="top-to-btm">
                 <a
-                    className="email_link"
-                    href="mailto:kebonkim@gmail.com"
+                    className="more_info_text"
+                    href="https://jakeye25.github.io/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <AiOutlineMail className="icon-position3 icon-style2"/>
+                    <AiOutlineFolderOpen className="icon-position3 icon-style2"/>
+                </a>
+            </div>
+            <div className="top-to-btm">
+                <a
+                    className="email_link"
+                    href="mailto:jayyeucla@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <AiOutlineMail className="icon-position4 icon-style2"/>
                 </a>
             </div>
         </div>
