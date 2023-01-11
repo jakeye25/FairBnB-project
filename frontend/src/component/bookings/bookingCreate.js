@@ -170,7 +170,12 @@ function BookingCreateFormPage() {
                 </div>
                 {errors.length > 0 &&
                     errors.map((error) => <div key={error} className='create_booking_errortext'>{error}</div>)}
+                {currUser ?
                 <button type="submit" className="bookingformbutton__btn">Reserve</button>
+                :
+                <div className="bookingformbutton__btn"
+                onClick={() => { alert('You have to login or signup first.') }}>Reserve</div>
+                }
                 <div className="not-charge-text">You won't be charged yet</div>
                 <div>
                     <div>
