@@ -62,7 +62,8 @@ function BookingCreateFormPage() {
 
     let day = new Date(startDate)
     let maxEndDate = day.getFullYear() + "-" + parseInt(day.getMonth() + 1) + "-" + parseInt(day.getDate() + 6);
-    //   console.log("check max end date", maxEndDate)
+    
+    console.log("check max end date", maxEndDate)
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
     const secondDate = new Date(endDate);
