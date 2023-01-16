@@ -9,7 +9,16 @@
     align-content: center;
     justify-items: center;
 }
-
+.edit_review_div{
+    padding: 10px 30px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
 .create_review_header{
     font-size: 20px;
     line-height: 20px;

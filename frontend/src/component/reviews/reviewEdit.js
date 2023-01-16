@@ -59,7 +59,7 @@ function ReviewEditFormPage({review, setShowModal}) {
     return (
 
 
-            <div className="create_review_div">
+            <div className="edit_review_div">
                 {/* {!checkOwner && !checkUserfirstReview && <button onClick={toggleReview } className="createreviewBtn">
                     Write a public review
                 </button>} */}
