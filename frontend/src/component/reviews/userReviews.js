@@ -4,6 +4,7 @@ import { getUserReviews, deleteReview } from "../../store/review";
 import { NavLink } from "react-router-dom";
 import './reviewBrowser.css'
 import ReviewEditModal from "./reviewEditModal";
+import ReviewDeleteFormModal from "./reviewDelete";
 
 
 const UserReviews = () => {
@@ -57,9 +58,10 @@ const UserReviews = () => {
               {/* <div style={{ "margin-top": "10px" }}> */}
                   <ReviewEditModal review={review} />
               {/* </div> */}
-                <button className="reviewlist__delbtn" onClick={() => dispatch(deleteReview(review.id))}>
+              <ReviewDeleteFormModal review={review}/>
+                {/* <button className="reviewlist__delbtn" onClick={() => dispatch(deleteReview(review.id))}>
                     Delete
-                 </button>
+                 </button> */}
                  </div>
             </div>
             ))}
