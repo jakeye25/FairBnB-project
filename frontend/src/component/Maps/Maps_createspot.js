@@ -64,7 +64,7 @@ const Mapcreatespot = ({ apiKey, lat, lng }) => {
     () => ({ lat: parseFloat(lat), lng: parseFloat(lng)}),
     []
   );
-console.log("check map city", city, center)
+// console.log("check map city", city, center)
   const options = useMemo(
     () => ({
       disableDefaultUI: true,
