@@ -72,7 +72,15 @@ let day = new Date(startDate)
 if(startDate) {
     let date_selectDate = new Date(startDate)
 
-    if (parseInt(date_selectDate.getDate()) >= 8 && (date_selectDate.getMonth() + 1) >= 10) {
+    if (parseInt(date_selectDate.getDate()) == (30||31) && (date_selectDate.getMonth() + 1) >= 9){
+        var minEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 2);
+        var maxEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 6);
+    }
+    else if (parseInt(date_selectDate.getDate()) == (30||31) && (date_selectDate.getMonth() + 1) < 9){
+        var minEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 2);
+        var maxEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 6);
+    }
+    else if (parseInt(date_selectDate.getDate()) >= 8 && (date_selectDate.getMonth() + 1) >= 10) {
         var minEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 1) + "-" + parseInt(date_selectDate.getDate() + 2);
     } else if (parseInt(date_selectDate.getDate()) >= 8 && (date_selectDate.getMonth() + 1) < 10) {
         var minEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 1) + "-" + parseInt(date_selectDate.getDate() + 2);

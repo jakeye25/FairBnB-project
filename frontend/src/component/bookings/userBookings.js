@@ -16,11 +16,25 @@ function MyBookingListing() {
 
     let today = new Date();
     // console.log("parseInt(today.getDate())", typeof(parseInt(today.getDate())))
-    if(parseInt(today.getDate()) >= 10){
+    // if(parseInt(today.getDate()) >= 10){
 
-        var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
-    } else {
-        var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
+    //     var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
+    // } else {
+    //     var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
+    // }
+    if (parseInt(today.getDate()) >= 10 && (today.getMonth() + 1) >= 10) {
+
+        var date = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
+
+    } else if (parseInt(today.getDate()) >= 10 && (today.getMonth() + 1) < 10) {
+        var date = today.getFullYear() + "-0" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
+
+    } else if (parseInt(today.getDate()) < 10 && (today.getMonth() + 1) >= 10) {
+        var date = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-0" + today.getDate()
+
+    } else if (parseInt(today.getDate()) < 10 && (today.getMonth() + 1) < 10) {
+        var date = today.getFullYear() + "-0" + parseInt(today.getMonth() + 1) + "-0" + today.getDate()
+
     }
 
     useEffect(() => {

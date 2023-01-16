@@ -26,21 +26,19 @@ function BookingEdit ({ booking, setShowModal }){
     // console.log("--------------", currBookings)
     let today = new Date();
 
-    if(parseInt(today.getDate()) >= 10){
+    if (parseInt(today.getDate()) >= 10 && (today.getMonth() + 1) >= 10) {
 
-        var date=today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+today.getDate();
-        var minStartDate = date
+        var minStartDate = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
 
-    } else {
-        var date = today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-0"+today.getDate()
-        var minStartDate = date
+    } else if (parseInt(today.getDate()) >= 10 && (today.getMonth() + 1) < 10) {
+        var minStartDate = today.getFullYear() + "-0" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
 
-    }
+    } else if (parseInt(today.getDate()) < 10 && (today.getMonth() + 1) >= 10) {
+        var minStartDate = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-0" + today.getDate()
 
-    if(parseInt(today.getDate()) >= 8){
-        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-"+parseInt(today.getDate()+2);
-    } else {
-        var minEndDate = today.getFullYear() + "-"+ parseInt(today.getMonth()+1) +"-0"+parseInt(today.getDate()+2);
+    } else if (parseInt(today.getDate()) < 10 && (today.getMonth() + 1) < 10) {
+        var minStartDate = today.getFullYear() + "-0" + parseInt(today.getMonth() + 1) + "-0" + today.getDate()
+
     }
 
 
@@ -62,8 +60,39 @@ function BookingEdit ({ booking, setShowModal }){
     }, [dispatch])
 
     let day= new Date(editstartDate)
-    let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
+    // let maxEndDate = day.getFullYear() + "-"+ parseInt(day.getMonth()+1) +"-"+parseInt(day.getDate()+6);
 
+    if(editstartDate) {
+        let date_selectDate = new Date(editstartDate)
+
+        if (parseInt(date_selectDate.getDate()) == (30||31) && (date_selectDate.getMonth() + 1) >= 9){
+            var minEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 2);
+            var maxEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 6);
+        }
+        else if (parseInt(date_selectDate.getDate()) == (30||31) && (date_selectDate.getMonth() + 1) < 9){
+            var minEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 2);
+            var maxEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 2) + "-" + parseInt(date_selectDate.getDate() + 6);
+        }
+        else if (parseInt(date_selectDate.getDate()) >= 8 && (date_selectDate.getMonth() + 1) >= 10) {
+            var minEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 1) + "-" + parseInt(date_selectDate.getDate() + 2);
+        } else if (parseInt(date_selectDate.getDate()) >= 8 && (date_selectDate.getMonth() + 1) < 10) {
+            var minEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 1) + "-" + parseInt(date_selectDate.getDate() + 2);
+        } else if (parseInt(date_selectDate.getDate()) < 8 && (date_selectDate.getMonth() + 1) >= 10) {
+            var minEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 1) + "-0" + parseInt(date_selectDate.getDate() + 2);
+        } else if (parseInt(date_selectDate.getDate()) < 8 && (date_selectDate.getMonth() + 1) < 10){
+            var minEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 1) + "-0" + parseInt(date_selectDate.getDate() + 2);
+        }
+
+        if (parseInt(date_selectDate.getDate()) >= 4 && (date_selectDate.getMonth() + 1) >= 10) {
+            var maxEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 1) + "-" + parseInt(date_selectDate.getDate() + 6);
+        } else if (parseInt(date_selectDate.getDate()) >= 4 && (date_selectDate.getMonth() + 1) < 10) {
+            var maxEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 1) + "-" + parseInt(date_selectDate.getDate() + 6);
+        } else if (parseInt(date_selectDate.getDate()) < 4 && (date_selectDate.getMonth() + 1) >= 10) {
+            var maxEndDate = date_selectDate.getFullYear() + "-" + parseInt(date_selectDate.getMonth() + 1) + "-0" + parseInt(date_selectDate.getDate() + 6);
+        } else if (parseInt(date_selectDate.getDate()) < 4 && (date_selectDate.getMonth() + 1) < 10){
+            var maxEndDate = date_selectDate.getFullYear() + "-0" + parseInt(date_selectDate.getMonth() + 1) + "-0" + parseInt(date_selectDate.getDate() + 6);
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([]);
