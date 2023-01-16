@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal'
 import { Link } from "react-router-dom";
 import './spotList.css';
+import SpotDeleteFormModal from "./reviewDelete";
 
 const UserSpots = () => {
     const spotsObj = useSelector((state) => state.spot)
@@ -67,10 +68,10 @@ const UserSpots = () => {
                       Edit
                       </Link>
                     {/* </button> */}
-
-                      <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
+                    <SpotDeleteFormModal spot={spot}/>
+                      {/* <button className="userspotbtn" onClick={() => dispatch(spotActions.deleteSpot(spot.id))}>
                       Delete
-                      </button>
+                      </button> */}
 
 
           </div>
